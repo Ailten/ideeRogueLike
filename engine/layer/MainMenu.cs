@@ -34,6 +34,7 @@ public class MainMenu : Layer
         buttonOption.eventClick = () => {
             //TODO : transition layer.
         };
+        buttonOption.setIsDisabled(true);
 
         ButtonUi buttonOptionTwitch = new ButtonUi(idLayer);
         buttonOptionTwitch.text = "option twitch";
@@ -42,6 +43,7 @@ public class MainMenu : Layer
         buttonOptionTwitch.eventClick = () => {
             //TODO : transition layer.
         };
+        buttonOptionTwitch.setIsDisabled(true);
 
         ButtonUi buttonExit = new ButtonUi(idLayer);
         buttonExit.text = "quit";

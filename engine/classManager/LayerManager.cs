@@ -44,6 +44,7 @@ public static class LayerManager
         get { return _transitionOpacity; }
     }
     private static Action? midTransitionAction = null;
+    private static bool isMidTransitionSet;
     private static bool isMidTransitionPast;
     public static void transition(int idLevelStart, int idLevelEnd, Action? midAction=null)
     {
@@ -57,6 +58,7 @@ public static class LayerManager
         timeWhenStartTransition = UpdateManager.timeFromStartGame;
         _transitionOpacity = 0f;
         midTransitionAction = midAction;
+        isMidTransitionSet = false;
         isMidTransitionPast = false;
     }
     public static void updateTransition()
@@ -64,35 +66,41 @@ public static class LayerManager
         if(!isTransitionActive) //skip if no transition active.
             return;
 
-        const float timeOfFullTransition = 1000f; //delay of full transition anime.
+        const float timeOfFullTransition = 500f; //delay of full transition anime.
+        float i = (float)(UpdateManager.timeFromStartGame - timeWhenStartTransition) / timeOfFullTransition; //interpolation of transation (0f~1f).
 
-        float i = Math.Min((float)(UpdateManager.timeFromStartGame - timeWhenStartTransition) / timeOfFullTransition, 1f); //interpolation of transation (0f~1f).
-
-        if(i == 1f){ //end transition.
-            _isTransitionActive = false;
+        //during transition, set opacity up or down.
+        if(i < 1f){
+            _transitionOpacity = ((!isMidTransitionPast)? i: 1f-i); //transition opacity.
             return;
         }
-
-        if(i >= 0.5f && !isMidTransitionPast){ //mid transition execution.
-            isMidTransitionPast = true;
+        
+        //execute all process for switch layer and do action.
+        if(!isMidTransitionSet){
+            isMidTransitionSet = true;
             _transitionOpacity = 1f;
             foreach(int idLevelUnActive in idLevelStartTransition){ //disable all level for transition.
                 getLayerByIdLayer(idLevelUnActive).unActive();
-            }
-            foreach(int idLevelActive in idLevelEndTransition){ //active all level for transition.
-                getLayerByIdLayer(idLevelActive).active();
             }
             if(midTransitionAction != null){ //action in mid transition (if has one).
                 midTransitionAction();
                 midTransitionAction = null;
             }
+            foreach(int idLevelActive in idLevelEndTransition){ //active all level for transition.
+                getLayerByIdLayer(idLevelActive).active();
+            }
             return;
         }
 
-        _transitionOpacity = ((i <= 0.5f)? //transition opacity.
-            i*2f : //transition opacity 0 to 1.
-            1f-(i-0.5f)*2f //transition opacity 1 to 0.
-        );
+        //update time from start before execute an update (for action and update time).
+        if(!isMidTransitionPast){
+            isMidTransitionPast = true;
+            timeWhenStartTransition = UpdateManager.timeFromStartGame;
+            return;
+        }
+
+        //end transition.
+        _isTransitionActive = false;
 
     }
 

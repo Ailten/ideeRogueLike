@@ -121,7 +121,13 @@ public static class CanvasManager
             if(e.isUi){ //replace on size canvas.
                 posAtScreen *= scaleCanvas;
             }else{ //replace world pos to screen pos.
-                //TODO : ...
+
+                posAtScreen -= CameraManager.posCam; //substract pos cam to replace all entity in cam view.
+
+                posAtScreen *= CameraManager.zoomCam; //scale for zoom camera.
+
+                posAtScreen *= scaleCanvas; //scale to canvas resized.
+
             }
 
             posAtScreen += posDecalCanvas;
@@ -129,6 +135,8 @@ public static class CanvasManager
 
             //eval size at screen.
             Vector sizeAtScreen = e.size * e.scale * scaleCanvas;
+            if(!e.isUi)
+                sizeAtScreen *= CameraManager.zoomCam;
 
             //default get rect source.
             Rectangle rectSourceInTexture = e.sprite.getSpriteTileBySpriteType(e.spriteType).getRectSource();
@@ -141,6 +149,8 @@ public static class CanvasManager
 
             //default get gizmo.
             Vector origine = e.encrage * e.size * e.scale * scaleCanvas;
+            if(!e.isUi)
+                origine *= CameraManager.zoomCam;
 
             //draw at screen (with all data eval).
             Raylib.DrawTexturePro(

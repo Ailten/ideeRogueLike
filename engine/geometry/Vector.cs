@@ -13,6 +13,16 @@ public struct Vector
     }
 
 
+    //lerp pos a to pos b at interpolation i (0 to 1).
+    public static Vector lerp(Vector a, Vector b, float i)
+    {
+        return new(
+            a.x*(1-i) + b.x*i,
+            a.y*(1-i) + b.y*i
+        );
+    }
+
+
     public override string ToString() => $"[x:{x}, y:{y}]";
 
     //public static implicit operator string(Vector a) => a.ToString();

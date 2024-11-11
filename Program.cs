@@ -5,17 +5,12 @@ class Program
 
     // TODO :
 
-    //edit sprite hover buttons.
-    //typo button replace down when hover or click.
+    // sprite door up, left, right, down.
 
-    // event click, entity souris ...
-    // MouseManager.
-    // ColiderManager.
+    // make tuto :
+    // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).
 
-    // LayerManager -> transition layer.
-    // SpritManager -> color ramp, animation.
 
-    // CameraManager.
     // KeyboardManager.
 
     public static void Main(string[] args)

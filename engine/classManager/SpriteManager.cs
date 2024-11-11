@@ -12,15 +12,24 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.ButtonUi, new Vector(16, 400), new Vector(384, 97));
         s.addSpriteType(SpriteType.ButtonUi_Hover, new Vector(16, 505), new Vector(384, 97));
         s.addSpriteType(SpriteType.ButtonUi_Selected, new Vector(16 ,610), new Vector(384, 97));
+        s.addSpriteType(SpriteType.ButtonUi_Disabled, new Vector(16, 293), new Vector(384, 97));
         s.addSpriteType(SpriteType.CheckBoxUi, new Vector(429, 400), new Vector(93, 92));
         s.addSpriteType(SpriteType.CheckBoxUi_Hover, new Vector(429, 503), new Vector(93, 92));
         s.addSpriteType(SpriteType.CheckBoxUi_Selected, new Vector(429, 606), new Vector(93, 92));
+        s.addSpriteType(SpriteType.CheckBoxUi_Disabled, new Vector(429, 293), new Vector(93, 92));
         s.addSpriteType(SpriteType.SlideBarUi, new Vector(540, 0), new Vector(53, 720));
         s.addSpriteType(SpriteType.SlideBarButtonUi, new Vector(486, 13), new Vector(42, 59));
         s.addSpriteType(SpriteType.SlideBarButtonUi_Hover, new Vector(486, 80), new Vector(42, 59));
         s.addSpriteType(SpriteType.SlideBarButtonUi_Selected, new Vector(486, 147), new Vector(42, 59));
-        s.addSpriteType(SpriteType.SeparatorUi, new Vector(21, 333), new Vector(496, 333));
-        s.addSpriteType(SpriteType.ColorBlueDark, new Vector(37, 270), new Vector(1,1));
+        s.addSpriteType(SpriteType.SlideBarButtonUi_Disabled, new Vector(440, 147), new Vector(42, 59));
+        s.addSpriteType(SpriteType.SeparatorUi, new Vector(21, 247), new Vector(496, 333));
+
+        s = new Sprite("Characters");
+        s.addSpriteType(SpriteType.Character_Ailten, new Vector(0, 0), new Vector(126, 126));
+
+        s = new Sprite("DungeonCels");
+        s.addSpriteType(SpriteType.Cel, new Vector(0, 0), new Vector(126, 126));
+        
     }
 
     //push a new sprite in list.

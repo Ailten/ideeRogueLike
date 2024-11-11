@@ -9,6 +9,11 @@ public class ButtonUi : Entity
     public Raylib_cs.Color colorText = Raylib_cs.Color.Black;
 
     protected Dictionary<SpriteType, SpriteType> castSpriteType = new();
+    private bool _isDisabled = false;
+    public bool isDisabled
+    {
+        get { return _isDisabled; }
+    }
 
 
     public ButtonUi(int idLayer) : base(idLayer, SpriteType.ButtonUi)
@@ -26,6 +31,7 @@ public class ButtonUi : Entity
         this.castSpriteType.Add(SpriteType.ButtonUi, SpriteType.ButtonUi); //set all cast SpriteType for child.
         this.castSpriteType.Add(SpriteType.ButtonUi_Hover, SpriteType.ButtonUi_Hover);
         this.castSpriteType.Add(SpriteType.ButtonUi_Selected, SpriteType.ButtonUi_Selected);
+        this.castSpriteType.Add(SpriteType.ButtonUi_Disabled, SpriteType.ButtonUi_Disabled);
     }
 
     //empty constructor for child (skip constructor ButtonUi).
@@ -64,16 +70,25 @@ public class ButtonUi : Entity
 
     public override void eventMouseEnter()
     {
+        if(getBaseType() == SpriteType.ButtonUi_Disabled)
+            return;
+
         spriteType = castSpriteType[SpriteType.ButtonUi_Hover]; //change sprite.
     }
 
     public override void eventMouseExit()
     {
+        if(getBaseType() == SpriteType.ButtonUi_Disabled)
+            return;
+
         spriteType = castSpriteType[SpriteType.ButtonUi]; //change sprite.
     }
 
     public override void eventMouseClick(bool isLeftClick, bool isClickDown)
     {
+        if(getBaseType() == SpriteType.ButtonUi_Disabled)
+            return;
+
         if(!isLeftClick) //skip if right click.
             return;
 
@@ -92,9 +107,34 @@ public class ButtonUi : Entity
 
 
     //get the button type (reverce get from Dictionary).
-    private SpriteType getBaseType()
+    protected SpriteType getBaseType()
     {
         return castSpriteType.FirstOrDefault((keyValue) => keyValue.Value == spriteType).Key;
+    }
+
+
+    //switch state isDisabled.
+    public void switchIsDisabled()
+    {
+        _isDisabled = !isDisabled;
+        updateStateIsDisabled();
+    }
+
+    //set manualy the bool isDisabled.
+    public void setIsDisabled(bool isDisabled)
+    {
+        _isDisabled = isDisabled;
+        updateStateIsDisabled();
+    }
+
+    //update the state of button, depend of isDisabled.
+    private void updateStateIsDisabled()
+    {
+        if(isDisabled){
+            spriteType = castSpriteType[SpriteType.ButtonUi_Disabled];
+        }else{
+            spriteType = castSpriteType[SpriteType.ButtonUi];
+        }
     }
 
 }

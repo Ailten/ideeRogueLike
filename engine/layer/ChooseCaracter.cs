@@ -26,6 +26,24 @@ public class ChooseCaracter : Layer
             );
         };
 
+        ButtonUi buttonNext = new ButtonUi(idLayer);
+        buttonNext.text = "next";
+
+        buttonNext.pos = CanvasManager.sizeWindow; //pos bottom right of window.
+        buttonNext.pos += (buttonNext.size / 2) * -1; //replace a corner (fake gizmo).
+        buttonNext.pos += -10; //border 10 from window.
+
+        buttonNext.eventClick = () => {
+            LayerManager.transition(
+                layer.idLayer, //id layer start.
+                RunLayer.layer.idLayer, //id layer end.
+                () => { //action to do during black screen transition.
+                    RunManager.buildNewRun();
+                }
+            );
+        };
+
+
         LittleButtonUi littleButtonLeft = new LittleButtonUi(idLayer);
         littleButtonLeft.text = "<";
         littleButtonLeft.pos = new(
@@ -35,6 +53,7 @@ public class ChooseCaracter : Layer
         littleButtonLeft.eventClick = ()=>{
             //TODO...
         };
+        littleButtonLeft.setIsDisabled(true);
 
         LittleButtonUi littleButtonRight = new LittleButtonUi(idLayer);
         littleButtonRight.text = ">";
@@ -45,6 +64,12 @@ public class ChooseCaracter : Layer
         littleButtonRight.eventClick = ()=>{
             //TODO...
         };
+        littleButtonRight.setIsDisabled(true);
+
+
+        CharacterUi characterUi = new CharacterUi(idLayer);
+        characterUi.pos = CanvasManager.centerWindow;
+        characterUi.isDrawPseudo = true;
 
 
         base.active();

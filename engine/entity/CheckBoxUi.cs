@@ -17,6 +17,9 @@ public class CheckBoxUi : LittleButtonUi
 
     public override void eventMouseClick(bool isLeftClick, bool isClickDown)
     {
+        if(getBaseType() == SpriteType.ButtonUi_Disabled)
+            return;
+
         if(isLeftClick && !isClickDown)
             switchIsOn(); //switch state checkbox.
             

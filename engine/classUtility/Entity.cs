@@ -46,6 +46,7 @@ public class Entity
     //constructor for an entity without link to any layer and without sprite.
     public Entity(){
         this.sprite = SpriteManager.findBySpriteType(spriteType) ?? throw new Exception("Sprite not found !");
+        this.size = new(0, 0);
     }
 
 }

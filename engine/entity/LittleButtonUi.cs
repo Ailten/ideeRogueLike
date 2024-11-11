@@ -17,6 +17,7 @@ public class LittleButtonUi : ButtonUi
         this.castSpriteType.Add(SpriteType.ButtonUi, SpriteType.CheckBoxUi); //set all cast SpriteType for child.
         this.castSpriteType.Add(SpriteType.ButtonUi_Hover, SpriteType.CheckBoxUi_Hover);
         this.castSpriteType.Add(SpriteType.ButtonUi_Selected, SpriteType.CheckBoxUi_Selected);
+        this.castSpriteType.Add(SpriteType.ButtonUi_Disabled, SpriteType.CheckBoxUi_Disabled);
     }
 
 

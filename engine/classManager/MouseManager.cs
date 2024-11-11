@@ -9,9 +9,17 @@ public static class MouseManager
 
     private static Entity? entityLastFind = null;
 
+    public static bool isWheelMoveTheZoomCam = false;
+    public static bool isRightMouseMovePosCam = false;
+
+    public static Vector posMouseLastRightClickHandle = new();
+    public static bool isMouseRightClickStayHandle = false;
+
+
     //event for update data mouse (input move mouse and click).
     public static void update()
     {
+
         if(LayerManager.isTransitionActive) //skip update if in transition layers.
             return;
 
@@ -21,6 +29,7 @@ public static class MouseManager
         bool isRightClickDown = Raylib.IsMouseButtonDown(MouseButton.Right);
         bool isLeftClickUp = Raylib.IsMouseButtonReleased(MouseButton.Left);
         bool isRightClickUp = Raylib.IsMouseButtonReleased(MouseButton.Right);
+        float wheelMove = Raylib.GetMouseWheelMove();
 
         //get entity colide with mouse.
         Entity? entityFindByMouse = ColideManager.findEntityUiColideByMouse(mouse);
@@ -52,6 +61,29 @@ public static class MouseManager
         }
         if(isRightClickUp && entityFindByMouse != null){ //click right down.
             entityFindByMouse.eventMouseClick(false, false);
+        }
+
+        //wheel move.
+        if(isWheelMoveTheZoomCam && wheelMove != 0f){ //aply wheel move into edit zoom cam.
+            CameraManager.editZoomCam(wheelMove);
+        }
+
+        //mouse left click move cam pos.
+        if(isRightMouseMovePosCam){
+
+            if(isMouseRightClickStayHandle){ //stay down.
+                Vector movementMouseThisFrame = posMouseLastRightClickHandle - mouse.pos;
+                CameraManager.movePosCam(movementMouseThisFrame);
+                posMouseLastRightClickHandle = mouse.pos;
+            }
+            if(isRightClickDown){ //click down.
+                posMouseLastRightClickHandle = mouse.pos;
+                isMouseRightClickStayHandle = true;
+            }
+            if(isRightClickUp){ //click up.
+                isMouseRightClickStayHandle = false;
+            }
+
         }
 
     }
