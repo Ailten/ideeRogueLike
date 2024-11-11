@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ie5gZMwdDG3qjsM7odEM2hGCHrBDwCvarA5H628k+q5bmkgXtrqjN8uROjR3VmWXjo5g7GznAqhbOgGlJ6Ir6Q==",
+  "success": true,
+  "projectFilePath": "/home/faouzi/Documents/ideeRogueLike/ideeRogueLike.csproj",
+  "expectedPackageFiles": [
+    "/home/faouzi/.nuget/packages/raylib-cs/6.1.1/raylib-cs.6.1.1.nupkg.sha512",
+    "/home/faouzi/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
