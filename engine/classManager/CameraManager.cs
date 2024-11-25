@@ -14,10 +14,10 @@ public static class CameraManager
     }
 
 
-    //reset posCam to 0.
-    public static void resetTarget()
+    //reset posCam to 0 or Vector set.
+    public static void resetPosCam(Vector newPos=new())
     {
-        _posCam = new();
+        _posCam = newPos;
     }
 
     //apply a movement to pos cam.

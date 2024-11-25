@@ -41,7 +41,7 @@ public class ButtonUi : Entity
     public Action eventClick = () => {};
 
 
-    public override void drawAfter(Vector posToDraw)
+    public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
         float fontSizeEval = fontSize * scale.y * CanvasManager.scaleCanvas; //eval font size and spacing.
         float fontSpacingEval = fontSpacing * scale.y * CanvasManager.scaleCanvas;

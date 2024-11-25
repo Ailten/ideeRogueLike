@@ -17,7 +17,28 @@ public class RunLayer : Layer
         MouseManager.isWheelMoveTheZoomCam = true; //active wheel mouse zoom cam.
         MouseManager.isRightMouseMovePosCam = true; //active right mouse move cam.
 
-        //TODO : player.
+        CameraManager.resetPosCam(Room.getPosAtIndexCelRoom(new( //replace cam at center Room.
+            Room.midWidthMax,
+            Room.midHeightMax
+        )));
+
+        //player.
+        CharacterPlayer player = CharacterPlayer.init(
+            ChooseCaracter.layer.characterPlayerChoose, //character player.
+            new( //pos index cel (default center room).
+                Room.midWidthMax,
+                Room.midHeightMax
+            )
+        );
+
+        //turn manager.
+        TurnManager.reset();
+        TurnManager.addCharacterInRoom(player);
+
+
+        //TODO : Ui entity : HP playeur, MP, SP, Card in Hands, list of player turn to play.
+
+        
 
         base.active();
     }
@@ -25,6 +46,9 @@ public class RunLayer : Layer
     public override void update()
     {
         //do the update. --->
+
+        //update action turn of every character.
+        TurnManager.updateTurn();
 
         base.update();
     }

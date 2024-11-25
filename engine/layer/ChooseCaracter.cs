@@ -8,6 +8,26 @@ public class ChooseCaracter : Layer
         get { return _layer; }
     }
 
+
+    public int characterPlayerChooseIndex = 0;
+    public List<SpriteType> characterPlayerCanBeChoose = new();
+    public SpriteType characterPlayerChoose
+    {
+        get { return characterPlayerCanBeChoose[characterPlayerChooseIndex]; }
+    }
+
+    public LittleButtonUi? _littleButtonLeft;
+    public LittleButtonUi littleButtonLeft
+    {
+        get { return _littleButtonLeft ?? throw new Exception("littleButtonLeft is null !"); }
+    }
+    public LittleButtonUi? _littleButtonRight;
+    public LittleButtonUi littleButtonRight
+    {
+        get { return _littleButtonRight ?? throw new Exception("littleButtonRight is null !"); }
+    }
+
+
     public override void active()
     {
         //init all entities of layer. --->
@@ -44,32 +64,58 @@ public class ChooseCaracter : Layer
         };
 
 
-        LittleButtonUi littleButtonLeft = new LittleButtonUi(idLayer);
+        _littleButtonLeft = new LittleButtonUi(idLayer);
         littleButtonLeft.text = "<";
         littleButtonLeft.pos = new(
             CanvasManager.sizeWindow.x / 4,
             CanvasManager.centerWindow.y
         );
         littleButtonLeft.eventClick = ()=>{
-            //TODO...
+
+            ChooseCaracter.layer.characterPlayerChooseIndex -= 1; //move index choose.
+
+            if(ChooseCaracter.layer.characterPlayerChooseIndex == 0) //disable left.
+                ChooseCaracter.layer.littleButtonLeft.setIsDisabled(true);
+
+            if(ChooseCaracter.layer.characterPlayerChooseIndex < ChooseCaracter.layer.characterPlayerCanBeChoose.Count -1) //unable right.
+                ChooseCaracter.layer.littleButtonRight.setIsDisabled(false);
+
         };
         littleButtonLeft.setIsDisabled(true);
 
-        LittleButtonUi littleButtonRight = new LittleButtonUi(idLayer);
+        _littleButtonRight = new LittleButtonUi(idLayer);
         littleButtonRight.text = ">";
         littleButtonRight.pos = new(
             (CanvasManager.sizeWindow.x / 4) *3,
             CanvasManager.centerWindow.y
         );
         littleButtonRight.eventClick = ()=>{
-            //TODO...
+
+            ChooseCaracter.layer.characterPlayerChooseIndex += 1; //move index choose.
+
+            if(ChooseCaracter.layer.characterPlayerChooseIndex > 0) //enable left.
+                ChooseCaracter.layer.littleButtonLeft.setIsDisabled(false);
+
+            if(ChooseCaracter.layer.characterPlayerChooseIndex == ChooseCaracter.layer.characterPlayerCanBeChoose.Count -1) //disable right.
+                ChooseCaracter.layer.littleButtonRight.setIsDisabled(true);
+
         };
-        littleButtonRight.setIsDisabled(true);
 
 
         CharacterUi characterUi = new CharacterUi(idLayer);
         characterUi.pos = CanvasManager.centerWindow;
         characterUi.isDrawPseudo = true;
+
+
+        characterPlayerChooseIndex = 0; //reset default choose.
+
+        characterPlayerCanBeChoose = new(); //list of character playable.
+        characterPlayerCanBeChoose.Add(SpriteType.Character_Ailten);
+
+        //TODO : add other character playable based on succes unlock (or nothing).
+
+        if(characterPlayerCanBeChoose.Count == 1) //enable button right.
+            littleButtonRight.setIsDisabled(true);
 
 
         base.active();
@@ -85,6 +131,9 @@ public class ChooseCaracter : Layer
     public override void unActive()
     {
         //free all entities of layer. --->
+
+        _littleButtonLeft = null;
+        _littleButtonRight = null;
 
         base.unActive();
     }

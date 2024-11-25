@@ -5,6 +5,17 @@ public class Stage
     public List<Dictionary<int, Room>> rooms = new();
     public Vector currentIndexRoom = new();
 
+    public Room? currentRoom
+    {
+        get { 
+            try{
+                return rooms[(int)currentIndexRoom.y][(int)currentIndexRoom.x]; 
+            }catch(KeyNotFoundException){
+                return null;
+            }
+        }
+    }
+
     public Stage(int stage)
     {
         this.stage = stage;

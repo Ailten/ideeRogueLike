@@ -126,6 +126,8 @@ public static class CanvasManager
 
                 posAtScreen *= CameraManager.zoomCam; //scale for zoom camera.
 
+                posAtScreen += centerWindow * scaleCanvas;
+
                 posAtScreen *= scaleCanvas; //scale to canvas resized.
 
             }
@@ -164,7 +166,7 @@ public static class CanvasManager
 
 
             //event draw after.
-            e.drawAfter(posAtScreen);
+            e.drawAfter(posAtScreen, rectDest, origine);
 
 
             if(isDebug){

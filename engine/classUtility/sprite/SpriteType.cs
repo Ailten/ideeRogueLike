@@ -28,6 +28,8 @@ public enum SpriteType
 
 
     // --- Dungeons.
-    Cel
+    Cel,
+    Cel_DoorToNextRoom,
+    Cel_RopeToNextStage
 
 }

@@ -19,14 +19,13 @@ public static class MouseManager
     //event for update data mouse (input move mouse and click).
     public static void update()
     {
-
         if(LayerManager.isTransitionActive) //skip update if in transition layers.
             return;
 
         //get input from mouse.
         mouse.pos = Raylib.GetMousePosition();
-        bool isLeftClickDown = Raylib.IsMouseButtonDown(MouseButton.Left);
-        bool isRightClickDown = Raylib.IsMouseButtonDown(MouseButton.Right);
+        bool isLeftClickDown = Raylib.IsMouseButtonPressed(MouseButton.Left);
+        bool isRightClickDown = Raylib.IsMouseButtonPressed(MouseButton.Right);
         bool isLeftClickUp = Raylib.IsMouseButtonReleased(MouseButton.Left);
         bool isRightClickUp = Raylib.IsMouseButtonReleased(MouseButton.Right);
         float wheelMove = Raylib.GetMouseWheelMove();
@@ -50,18 +49,21 @@ public static class MouseManager
         }
 
         //execute event click.
-        if(isLeftClickDown && entityFindByMouse != null){ //click left down.
-            entityFindByMouse.eventMouseClick(true, true);
+        if(entityFindByMouse != null){
+            if(isLeftClickDown){ //click left down.
+                entityFindByMouse.eventMouseClick(true, true);
+            }
+            if(isRightClickDown){ //click right down.
+                entityFindByMouse.eventMouseClick(false, true);
+            }
+            if(isLeftClickUp){ //click left up.
+                entityFindByMouse.eventMouseClick(true, false);
+            }
+            if(isRightClickUp){ //click right down.
+                entityFindByMouse.eventMouseClick(false, false);
+            }
         }
-        if(isRightClickDown && entityFindByMouse != null){ //click right down.
-            entityFindByMouse.eventMouseClick(false, true);
-        }
-        if(isLeftClickUp && entityFindByMouse != null){ //click left up.
-            entityFindByMouse.eventMouseClick(true, false);
-        }
-        if(isRightClickUp && entityFindByMouse != null){ //click right down.
-            entityFindByMouse.eventMouseClick(false, false);
-        }
+
 
         //wheel move.
         if(isWheelMoveTheZoomCam && wheelMove != 0f){ //aply wheel move into edit zoom cam.

@@ -29,6 +29,8 @@ public static class SpriteManager
 
         s = new Sprite("DungeonCels");
         s.addSpriteType(SpriteType.Cel, new Vector(0, 0), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Cel_DoorToNextRoom, new Vector(128, 0), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Cel_RopeToNextStage, new Vector(256, 0), new Vector(126, 126));
         
     }
 

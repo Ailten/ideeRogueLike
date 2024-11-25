@@ -5,10 +5,20 @@ class Program
 
     // TODO :
 
-    // sprite door up, left, right, down.
+    //Re resonner le turnManager pr possiblement prévoir des invocation joueur controlable. !!!
+
+    // player in cels.
+    // player move.
+    // HUD stats player.
+    // mob spawner.
+    // mob.
+
+    // json manager (for success, save, etc).
 
     // make tuto :
     // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).
+
+    // path finding manager.
 
 
     // KeyboardManager.

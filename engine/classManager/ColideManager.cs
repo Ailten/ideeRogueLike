@@ -5,7 +5,6 @@ public static class ColideManager
     public static Entity? findEntityUiColideByMouse(Entity mouse)
     {
         return EntityManager.entities.Where((e) =>  //filter entities valid for try colide to mouse.
-            e.isUi &&
             e.geometryTrigger != null &&
             e.isActive
         ).OrderBy((e) =>  //sort by draw order reverce (most close to cam in first).

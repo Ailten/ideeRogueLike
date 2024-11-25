@@ -19,10 +19,11 @@ public class CharacterUi : Entity
 
         this.size = new(126, 126);
 
-        this.geometryTrigger = new Rect(
-            new(-64, -64), 
-            new(126, 126)
-        );
+        //no need colision.
+        //this.geometryTrigger = new Rect(
+        //    new(-64, -64), 
+        //    new(126, 126)
+        //);
         
         setPseudo();
 
@@ -39,7 +40,7 @@ public class CharacterUi : Entity
     }
 
 
-    public override void drawAfter(Vector posToDraw)
+    public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
         if(isDrawPseudo){
 

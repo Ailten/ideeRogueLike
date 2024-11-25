@@ -11,6 +11,15 @@ public static class RunManager
     private static int currentIndexStage;
     private static List<Stage> stages = new();
 
+    public static Stage currentStage
+    {
+        get { return stages[currentIndexStage]; }
+    }
+    public static Room? currentRoom
+    {
+        get { return currentStage.currentRoom; }
+    }
+
     public static void buildNewRun()
     {
         Random rng = new Random(new DateTime().Millisecond);
@@ -64,6 +73,16 @@ public static class RunManager
         activeAllCelOfARoom(false); //un active current room.
         stages[currentIndexStage].currentIndexRoom += editIndexRoom; //go to next room.
         activeAllCelOfARoom(true); //active current room (in next room).
+    }
+
+
+    //get cel by index pos (in current stage, in current room).
+    public static Cel? getCel(Vector celPosIndex)
+    {
+        if(currentRoom == null)
+            return null;
+
+        return currentRoom.getCel(celPosIndex);
     }
 
 }

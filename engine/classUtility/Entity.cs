@@ -18,7 +18,7 @@ public class Entity
     public SpriteType spriteType = SpriteType.none;
     public Sprite sprite;
 
-    public virtual void drawAfter(Vector posToDraw){}
+    public virtual void drawAfter(Vector posToDraw, Rect rectDest, Vector origine){}
 
     //TODO : geometrySolid & geometry Trigger.
     public Rect? geometryTrigger = null;

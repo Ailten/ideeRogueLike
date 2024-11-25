@@ -31,6 +31,8 @@ public struct Rect
 
             posAtScreen *= CameraManager.zoomCam; //scale for zoom camera.
 
+            posAtScreen += CanvasManager.centerWindow * CanvasManager.scaleCanvas;
+
             posAtScreen *= CanvasManager.scaleCanvas; //scale to canvas resized.
 
         }

@@ -12,6 +12,27 @@ public class Room
     public bool isARoomDown;
     public bool isARoomLeft;
 
+
+    private static int _widthMax = 15;
+    public static int widthMax
+    {
+        get { return _widthMax; }
+    }
+    public static int midWidthMax
+    {
+        get { return (_widthMax+1)/2; }
+    }
+    private static int _heightMax = 15;
+    public static int heightMax
+    {
+        get { return _heightMax; }
+    }
+    public static int midHeightMax
+    {
+        get { return (_heightMax+1)/2; }
+    }
+
+
     public Room(bool isARoomTop, bool isARoomRight, bool isARoomDown, bool isARoomLeft, int stage, RoomType roomType)
     {
         this.stage = stage;
@@ -25,7 +46,7 @@ public class Room
         switch(stage){
 
             case(0):
-                generateRoom(5);
+                generateRoom(2);
                 break;
 
             case(1):
@@ -56,26 +77,24 @@ public class Room
     //generate a random room.
     private void generateRoom(int rayonSpread=7)
     {
-        const int width = 15;
-        const int height = 15;
 
         if(roomType == RoomType.Room_Tuto){ //room tuto.
 
             cels = new();
-            for(int y=0; y<height; y++){
+            for(int y=0; y<heightMax; y++){
                 cels.Add(new());
-            	for(int x=0; x<width; x++){
+            	for(int x=0; x<widthMax; x++){
 
-                    int distToCenterX = Math.Abs(x - (width+1)/2); //eval dist.
-                    int distToCenterY = Math.Abs(y - (height+1)/2);
+                    int distToCenterX = Math.Abs(x - midWidthMax); //eval dist.
+                    int distToCenterY = Math.Abs(y - midHeightMax);
                     int dist = Math.Max(distToCenterX, distToCenterY);
 
-                    if(x == (width+1)/2 && y == (height+1)/2 - (rayonSpread+1)){ //map a cel up to exit stage tuto.
+                    if(x == midWidthMax && y == midHeightMax - (rayonSpread+1)){ //map a cel up to exit stage tuto.
                         cels[cels.Count-1].Add(
                             x,
                             new Cel(
                                 CelType.Cel_NextStage,
-                                x, y
+                                new(x, y)
                             )
                         );
                         continue;
@@ -89,7 +108,7 @@ public class Room
                         x,
                         new Cel(
                             CelType.Cel,
-                            x, y
+                            new(x, y)
                         )
                     );
 
@@ -102,19 +121,19 @@ public class Room
         List<List<bool>> celsBool = new();
 
         //generate default grid full of false.
-        for(int y=0; y<height; y++){
+        for(int y=0; y<heightMax; y++){
             celsBool.Add(new());
-        	for(int x=0; x<width; x++){
+        	for(int x=0; x<widthMax; x++){
         		celsBool[celsBool.Count-1].Add(false);
         	}
         }
 
         //loop spreading, decreasing the amount of rng.
         for(int r=0; r<rayonSpread; r++){
-	        for(int y=0; y<height; y++){
-	        	for(int x=0; x<width; x++){
-                    int distToCenterX = Math.Abs(x - (width+1)/2);
-                    int distToCenterY = Math.Abs(y - (height+1)/2);
+	        for(int y=0; y<heightMax; y++){
+	        	for(int x=0; x<widthMax; x++){
+                    int distToCenterX = Math.Abs(x - midWidthMax);
+                    int distToCenterY = Math.Abs(y - midHeightMax);
                     int dist = Math.Max(distToCenterX, distToCenterY);
                     if(dist != r) //skip if not the current circle target at this loop.
                         continue;
@@ -124,9 +143,9 @@ public class Room
                         continue;
                     int countAdj = (
                         ((y>0 && celsBool[y-1][x])? 1: 0) +
-                        ((y<(height-1) && celsBool[y+1][x])? 1: 0) +
+                        ((y<(heightMax-1) && celsBool[y+1][x])? 1: 0) +
                         ((x>0 && celsBool[y][x-1])? 1: 0) +
-                        ((x<(width-1) && celsBool[y][x+1])? 1: 0)
+                        ((x<(widthMax-1) && celsBool[y][x+1])? 1: 0)
                     );
                     if(countAdj < 1 && dist != 0) //skip if cell is not adjacent to another valid.
                         continue;
@@ -150,22 +169,22 @@ public class Room
             if(!isNeedThisDoor)
                 continue;
 
-            for(int y=0; y<height; y++){ //find door to room up. --->
+            for(int y=0; y<heightMax; y++){ //find door to room up. --->
 
                 posInLine = new();
 
-            	for(int x=0; x<width; x++){
+            	for(int x=0; x<widthMax; x++){
 
                     int xcast = ( //remap x and y for scroll order.
                         (d==0)? x: //int x=0; x<width; x++
                         (d==1)? y: //int y=0; y<height; y++
-                        (d==2)? (width-1)-x: //x=width-1; x>=0; x--
-                        (height-1)-y //int y=height-1; y>=0; y--
+                        (d==2)? (widthMax-1)-x: //x=width-1; x>=0; x--
+                        (heightMax-1)-y //int y=height-1; y>=0; y--
                     );
                     int ycast = (
                         (d==0)? y: //int y=0; y<height; y++
-                        (d==1)? (width-1)-x: //x=width-1; x>=0; x--
-                        (d==2)? (height-1)-y: //int y=height-1; y>=0; y--
+                        (d==1)? (widthMax-1)-x: //x=width-1; x>=0; x--
+                        (d==2)? (heightMax-1)-y: //int y=height-1; y>=0; y--
                         x //int x=0; x<width; x++
                     );
 
@@ -205,9 +224,9 @@ public class Room
 
         //cast celsBool into cels.
         cels = new();
-        for(int y=0; y<height; y++){
+        for(int y=0; y<heightMax; y++){
             cels.Add(new());
-        	for(int x=0; x<width; x++){
+        	for(int x=0; x<widthMax; x++){
                 if(!celsBool[y][x]){ //skip cel.
                     continue;
                 }
@@ -224,7 +243,7 @@ public class Room
                     x,
                     new Cel(
                         (CelType)indexCelType,
-                        x, y
+                        new(x, y)
                     )
                 );
 
@@ -243,6 +262,24 @@ public class Room
                 cel.Value.isActive = editActive; //edit isActive.
             }
         });
+    }
+
+
+    //cast a vector (index pos cel in list) into a pos world of the cel.
+    public static Vector getPosAtIndexCelRoom(Vector indexPosInRoom)
+    {
+        return indexPosInRoom * 126;
+    }
+
+
+    //get cel by index pos.
+    public Cel? getCel(Vector indexPosCel)
+    {
+        try{
+            return cels[(int)indexPosCel.y][(int)indexPosCel.x]; 
+        }catch(KeyNotFoundException){
+            return null;
+        }
     }
 
 }
