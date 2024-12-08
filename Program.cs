@@ -9,14 +9,6 @@ class Program
     // dev a mini-map.
 
 
-
-    // push git.
-    // unfollow + block le bot.
-    // ask somenda what is the surprise qui fait peur.
-    // add commande !blaca.
-
-
-
     // HUD stats player in choose character.
     // HUD stats character in fight.
     // HUD HP,AP,MP turnCharacter during fight.
