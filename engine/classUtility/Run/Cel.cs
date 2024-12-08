@@ -86,6 +86,10 @@ public class Cel : Entity
 
         switch(celType){
 
+            //default.
+            case(CelType.Cel):
+                return 0;
+
             //rotate door.
             case(CelType.CelDoor_up):
                 return 0;
@@ -135,9 +139,12 @@ public class Cel : Entity
         //player walk to cel or use card to the cel.
         if(isLeftClick && !isClickDown){
 
-            //skip action if is not turn player.
-            if(!characterTurn.isInRedTeam)
+            //reason for cancel action.
+            if(!characterTurn.isInRedTeam) //skip action if is not turn player.
                 return;
+            if(WalkManager.isWalking) //skip action if during a walk.
+                return;
+
 
             //play a card at this cel.
             if(characterTurn.deck.isACardSelected){
@@ -151,17 +158,110 @@ public class Cel : Entity
             PathFindingManager.evalAPath( //eval a pathfinding.
                 characterTurn.indexPosCel, //posIndexFrom.
                 indexPosCel, //posIndexTo.
-                characterTurn.MP //maxMPCost.
+                (TurnManager.isInFight? characterTurn.MP: 100) //maxMPCost (only during fight).
             );
             if(PathFindingManager.isPathValid){
-                
-                WalkManager.startWalk();
+
+                WalkManager.startWalk( //start walk along the path.
+                    TurnManager.isInFight //isDecreaseMP.
+                );
 
                 return;
             }
 
             return;
         }
+
+    }
+
+
+    //ask if cel is odd.
+    public bool isOdd()
+    {
+        return Room.isOddCel(indexPosCel);
+    }
+
+
+    //execute action of type cel to character step into.
+    public void doActionTypeCel(Character characterStep)
+    {
+        switch(celType){
+
+            //default.
+            case(CelType.Cel):
+                return;
+
+            //door to move another room.
+            case(CelType.CelDoor_up):
+                if(characterStep.isAPlayer && !TurnManager.isInFight){
+                    moveToAnotherRoom(characterStep, 0);
+                }
+                return;
+            case(CelType.CelDoor_right):
+                if(characterStep.isAPlayer && !TurnManager.isInFight){
+                    moveToAnotherRoom(characterStep, 1);
+                }
+                return;
+            case(CelType.CelDoor_down):
+                if(characterStep.isAPlayer && !TurnManager.isInFight){
+                    moveToAnotherRoom(characterStep, 2);
+                }
+                return;
+            case(CelType.CelDoor_left):
+                if(characterStep.isAPlayer && !TurnManager.isInFight){
+                    moveToAnotherRoom(characterStep, 3);
+                }
+                return;
+
+            //up to next stage.
+            case(CelType.Cel_NextStage):
+                if(characterStep.isAPlayer){ //only if is a player.
+                    LayerManager.transition(() => { //transition layer.
+                        characterStep.moveTo(new( //move player to center pos room.
+                            Room.midWidthMax,
+                            Room.midHeightMax
+                        ), false);
+                        RunManager.switchToNextStage();
+                    });
+                }
+                return;
+
+            default:
+                return;
+
+        }
+    }
+
+    //move player to another room (indexDirection is an index in clockwise from 0 to 3).
+    private void moveToAnotherRoom(Character characterStep, int indexDirection)
+    {
+        //eval vector movement in room index.
+        Vector moveRoom = (
+            (indexDirection==0)? new Vector(0, -1):
+            (indexDirection==1)? new Vector(1, 0):
+            (indexDirection==2)? new Vector(0, 1):
+            new Vector(-1, 0)
+        );
+
+        CelType celTypeDestination = (
+            (indexDirection==0)? CelType.CelDoor_down:
+            (indexDirection==1)? CelType.CelDoor_left:
+            (indexDirection==2)? CelType.CelDoor_up:
+            CelType.CelDoor_right
+        );
+
+        //make transition to another room.
+        LayerManager.transition(() => {
+            characterStep.moveTo(new( //move player to center pos room.
+                Room.midWidthMax,
+                Room.midHeightMax
+            ), false);
+            RunManager.switchToNextRoom(moveRoom);
+            characterStep.moveTo( //move player arrow door (from previous room).
+                RunManager.currentRoom!.getCelByType(celTypeDestination).indexPosCel, 
+                false
+            );
+        });
 
     }
     

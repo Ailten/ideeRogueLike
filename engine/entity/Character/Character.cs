@@ -18,6 +18,14 @@ public class Character : Entity
     public bool isInRedTeam; //team in a fight (red of blue).
 
     public Character? invokedBy = null; //when the character was invoked by another one.
+    public bool isAnInvoc
+    {
+        get { return invokedBy != null; }
+    }
+    public bool isAPlayer
+    {
+        get { return isInRedTeam && !isAnInvoc; }
+    }
 
     public Deck deck = new(); //deck of all card.
 
@@ -26,7 +34,7 @@ public class Character : Entity
     {
         this.size = new(126, 126);
 
-        moveTo(posIndexCel); //apply pos.
+        moveTo(posIndexCel, false);
 
         this.zIndex = 1200;
 
@@ -57,15 +65,13 @@ public class Character : Entity
     //apply damage to shild.
     private void takeDamageShild(int atk)
     {
-        int damageAplyToSP = Math.Min(atk, SP);
-        SP -= damageAplyToSP;
+        SP -= Math.Min(atk, SP);
     }
 
     //apply damage to heath point.
     private void takeDamageToHP(int atk, Character? characterMakeAtk=null)
     {
-        int damageAplyToHP = Math.Min(atk, HP);
-        HP -= damageAplyToHP;
+        HP -= Math.Min(atk, HP);
 
         if(HP <= 0){
             death(characterMakeAtk);
@@ -125,10 +131,19 @@ public class Character : Entity
 
 
     //move character to a vector index pos.
-    public void moveTo(Vector indexPos)
+    public void moveTo(Vector indexPos, bool isActionCel=true)
     {
         indexPosCel = indexPos;
         pos = Room.getPosAtIndexCelRoom(indexPos);
+
+        if(isActionCel)
+            RunManager.getCelNN(indexPos).doActionTypeCel(this);
+    }
+
+    //decrease MP.
+    public void decreaseMP(int decrease)
+    {
+        MP -= Math.Min(decrease, MP);
     }
 
 }

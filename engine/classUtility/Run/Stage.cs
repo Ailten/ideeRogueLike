@@ -27,23 +27,23 @@ public class Stage
                 break;
 
             case(1):
-                generateStage(3);
+                generateStage(4);
                 break;
 
             case(2):
-                generateStage(4);
+                generateStage(5);
                 break;
 
             case(3):
-                generateStage(4);
+                generateStage(5);
                 break;
 
             case(4):
-                generateStage(5);
+                generateStage(6);
                 break;
 
             case(5):
-                generateStage(5);
+                generateStage(6);
                 break;
 
         }
@@ -52,11 +52,13 @@ public class Stage
 
 
     //generate a random stage.
-    private void generateStage(int rayonSpread)
+    private void generateStage(int rayonSpread=7)
     {
         const int width = 15; //max size.
         const int height = 15;
-        currentIndexRoom = new((width+1)/2, (height+1)/2);
+        const int midWidthMax = (width-1)/2;
+        const int midHeightMax = (height-1)/2;
+        currentIndexRoom = new(midWidthMax, midHeightMax);
 
         if(rayonSpread == 1){ //stage tuto.
 
@@ -64,9 +66,9 @@ public class Stage
             for(int y=0; y<height; y++){
                 rooms.Add(new());
 
-                if(y == (height+1)/2){
+                if(y == midHeightMax){
                     rooms[rooms.Count-1].Add(
-                        (width+1)/2,
+                        midWidthMax,
                         new Room(
                             false, false, false, false, //room in 4 direction.
                             stage, //stage.
@@ -94,13 +96,17 @@ public class Stage
         for(int r=0; r<rayonSpread; r++){
 	        for(int y=0; y<height; y++){
 	        	for(int x=0; x<width; x++){
-                    int distToCenterX = Math.Abs(x - (width+1)/2);
-                    int distToCenterY = Math.Abs(y - (height+1)/2);
+                    int distToCenterX = Math.Abs(x - midWidthMax);
+                    int distToCenterY = Math.Abs(y - midHeightMax);
                     int dist = distToCenterX + distToCenterY;
                     if(dist != r) //skip if not the current circle target at this loop.
                         continue;
-                    int rngCeil = 1000 - (int)(600 * ((float)r / (rayonSpread-1)));
+
+                    const int radiusSafe = 1; //RNG.
+                    float rayonI = Math.Clamp((float)(r-radiusSafe) / (rayonSpread-1-radiusSafe), 0f, 1f);
+                    int rngCeil = 1000 - (int)(800 * rayonI); 
                     int rngGet = RunManager.rngSeed.Next(1000);
+
                     if(rngGet > rngCeil) //skip if cell rng say no.
                         continue;
                     int countAdj = (
@@ -149,11 +155,13 @@ public class Stage
                 
                 int roomTypeIndex = 0; //eval room type.
                 for(int i=0; i<4; i++){
+                    if(i >= posForSpecialRoom.Count)
+                        break;
                     if(posForSpecialRoom[i].x == x && posForSpecialRoom[i].y == y)
                         roomTypeIndex = i + 1;
                 }
 
-                if(y == (height+1)/2 && x == (width+1)/2) //center room type.
+                if(y == midHeightMax && x == midWidthMax) //center room type.
                     roomTypeIndex = (int)RoomType.Room_Center;
 
         		rooms[rooms.Count-1].Add(

@@ -22,7 +22,7 @@ public static class RunManager
 
     public static void buildNewRun()
     {
-        Random rng = new Random(new DateTime().Millisecond);
+        Random rng = new Random(DateTime.Now.Millisecond);
         buildNewRun(rng.Next()); //0 to int32.maxValue.
     }
     public static void buildNewRun(int seed)
@@ -30,6 +30,7 @@ public static class RunManager
         //rng.
         RunManager.seed = seed;
         _rngSeed = new Random(seed);
+        Console.WriteLine($"Seed : {seed}");
 
         //time.
         timeStartRun = UpdateManager.timeFromStartGame;
@@ -50,7 +51,7 @@ public static class RunManager
     {
         activeAllCelOfARoom( //use param of current stage.
             currentIndexStage, 
-            stages[currentIndexStage].currentIndexRoom, 
+            currentStage.currentIndexRoom, 
             editActiveCel
         );
     }
@@ -63,7 +64,7 @@ public static class RunManager
     public static void switchToNextStage()
     {
         activeAllCelOfARoom(false); //un active current room.
-        currentIndexStage++; //go to next stage.
+        currentIndexStage += 1; //go to next stage.
         activeAllCelOfARoom(true); //active current room (in next stage).
     }
 
@@ -71,18 +72,25 @@ public static class RunManager
     public static void switchToNextRoom(Vector editIndexRoom)
     {
         activeAllCelOfARoom(false); //un active current room.
-        stages[currentIndexStage].currentIndexRoom += editIndexRoom; //go to next room.
+        currentStage.currentIndexRoom += editIndexRoom; //go to next room.
         activeAllCelOfARoom(true); //active current room (in next room).
     }
 
 
     //get cel by index pos (in current stage, in current room).
-    public static Cel? getCel(Vector celPosIndex)
+    public static Cel? getCel(Vector celPosIndex, bool isCanBeNull=true)
     {
-        if(currentRoom == null)
+        if(currentRoom == null){
             return null;
+        }
 
         return currentRoom.getCel(celPosIndex);
+    }
+
+    //get cel by index pos (not null).
+    public static Cel getCelNN(Vector celPosIndex)
+    {
+        return getCel(celPosIndex) ?? throw new Exception("Cel not found !");
     }
 
 }

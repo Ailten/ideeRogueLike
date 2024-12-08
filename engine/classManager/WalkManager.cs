@@ -12,14 +12,16 @@ public static class WalkManager
 
     private static int timeStartWalk;
     private static readonly int milisecForWalkOneCel = 300;
+    private static bool isDecreaseMP;
 
 
     //start a new walk.
-    public static void startWalk()
+    public static void startWalk(bool isDecreaseMP=true)
     {
         _isWalking = true;
         indexWalkInPath = 0;
         timeStartWalk = RunLayer.layer.milisecInLevel;
+        WalkManager.isDecreaseMP = isDecreaseMP;
     }
 
     //end the current walk.
@@ -40,10 +42,16 @@ public static class WalkManager
             timeStartWalk = RunLayer.layer.milisecInLevel; //reset the timer walk between two cel.
             indexWalkInPath += 1; //move to next index cel.
 
+            characterWalk.scale = new(1, 1); //reset zoom.
+            characterWalk.rotate = 0; //reset rotate.
+
             //end of walk (last cel).
             if(indexWalkInPath >= PathFindingManager.pathFind.Count - 1){
 
                 characterWalk.moveTo(PathFindingManager.pathFind[PathFindingManager.pathFind.Count - 1]); //move to end pos.
+
+                if(isDecreaseMP)
+                    characterWalk.decreaseMP(indexWalkInPath); //decrease MP by cost walking.
 
                 endWalk();
                 return;
@@ -60,6 +68,17 @@ public static class WalkManager
             Room.getPosAtIndexCelRoom(PathFindingManager.pathFind[indexWalkInPath + 1]),
             i
         );
+
+        //curve zoom.
+        float scaleCurv = (float)Math.Pow(1 - Math.Abs((i * 2) - 1), 2);
+        characterWalk.scale = Vector.lerp(
+            new(1, 1),
+            new(1.3f, 1.3f),
+            scaleCurv
+        );
+
+        //rotate.
+        characterWalk.rotate = scaleCurv * 30f * (Room.isOddCel(PathFindingManager.pathFind[indexWalkInPath])? 1: -1);
 
     }
 

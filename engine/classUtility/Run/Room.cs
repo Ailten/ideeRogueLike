@@ -20,7 +20,7 @@ public class Room
     }
     public static int midWidthMax
     {
-        get { return (_widthMax+1)/2; }
+        get { return (_widthMax-1)/2; }
     }
     private static int _heightMax = 15;
     public static int heightMax
@@ -29,7 +29,7 @@ public class Room
     }
     public static int midHeightMax
     {
-        get { return (_heightMax+1)/2; }
+        get { return (_heightMax-1)/2; }
     }
 
 
@@ -50,19 +50,19 @@ public class Room
                 break;
 
             case(1):
-                generateRoom(4);
+                generateRoom(7);
                 break;
 
             case(2):
-                generateRoom(5);
+                generateRoom(7);
                 break;
 
             case(3):
-                generateRoom(6);
+                generateRoom(7);
                 break;
 
             case(4):
-                generateRoom(6);
+                generateRoom(7);
                 break;
 
             case(5):
@@ -134,12 +134,16 @@ public class Room
 	        	for(int x=0; x<widthMax; x++){
                     int distToCenterX = Math.Abs(x - midWidthMax);
                     int distToCenterY = Math.Abs(y - midHeightMax);
-                    int dist = Math.Max(distToCenterX, distToCenterY);
+                    int dist = distToCenterX + distToCenterY; //Math.Max(distToCenterX, distToCenterY);
                     if(dist != r) //skip if not the current circle target at this loop.
                         continue;
-                    int rngCeil = 1000 - (int)(900 * ((float)r / (rayonSpread-1)));
+
+                    const int radiusSafe = 2; //RNG.
+                    float rayonI = Math.Clamp((float)(r-radiusSafe) / (rayonSpread-1-radiusSafe), 0f, 1f);
+                    int rngCeil = 1000 - (int)(800 * rayonI); 
                     int rngGet = RunManager.rngSeed.Next(1000);
-                    if(rngGet > rngCeil) //skip if cell rng say no.
+
+                    if(rngGet >= rngCeil) //skip if cell rng say no.
                         continue;
                     int countAdj = (
                         ((y>0 && celsBool[y-1][x])? 1: 0) +
@@ -177,15 +181,15 @@ public class Room
 
                     int xcast = ( //remap x and y for scroll order.
                         (d==0)? x: //int x=0; x<width; x++
-                        (d==1)? y: //int y=0; y<height; y++
+                        (d==1)? (heightMax-1)-y: //int y=0; y<height; y++
                         (d==2)? (widthMax-1)-x: //x=width-1; x>=0; x--
-                        (heightMax-1)-y //int y=height-1; y>=0; y--
+                        y //int y=height-1; y>=0; y--
                     );
                     int ycast = (
                         (d==0)? y: //int y=0; y<height; y++
-                        (d==1)? (widthMax-1)-x: //x=width-1; x>=0; x--
+                        (d==1)? x: //x=width-1; x>=0; x--
                         (d==2)? (heightMax-1)-y: //int y=height-1; y>=0; y--
-                        x //int x=0; x<width; x++
+                        (widthMax-1)-x //int x=0; x<width; x++
                     );
 
                     if(celsBool[ycast][xcast])
@@ -208,6 +212,8 @@ public class Room
 
                 break; //break loop y, when find a pos for door at this direction.
             }
+            if(posInLine.Count == 0)
+                continue;
 
             posForDoor.Add( //add pos door up.
                 d, 
@@ -271,6 +277,12 @@ public class Room
         return indexPosInRoom * 126;
     }
 
+    //ask if a pos index is a cel odd or not.
+    public static bool isOddCel(Vector index)
+    {
+        return index.x % 2 != index.y % 2;
+    }
+
 
     //get cel by index pos.
     public Cel? getCel(Vector indexPosCel)
@@ -280,6 +292,20 @@ public class Room
         }catch(KeyNotFoundException){
             return null;
         }
+    }
+
+
+    //return the first cel in a room (find by typeCel).
+    public Cel getCelByType(CelType celTypeSearch)
+    {
+        for(int i=0; i<cels.Count; i++){
+            foreach(KeyValuePair<int, Cel> keyValuePairCel in cels[i]){
+                if(keyValuePairCel.Value.celType == celTypeSearch){
+                    return keyValuePairCel.Value;
+                }
+            }
+        }
+        throw new Exception("GetCelByType Cel not found !");
     }
 
 }

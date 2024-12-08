@@ -5,20 +5,32 @@ class Program
 
     // TODO :
 
-    //Re resonner le turnManager pr possiblement prévoir des invocation joueur controlable. !!!
 
-    // player in cels.
-    // player move.
-    // HUD stats player.
+    // dev a mini-map.
+
+
+
+    // push git.
+    // unfollow + block le bot.
+    // ask somenda what is the surprise qui fait peur.
+    // add commande !blaca.
+
+
+
+    // HUD stats player in choose character.
+    // HUD stats character in fight.
+    // HUD HP,AP,MP turnCharacter during fight.
     // mob spawner.
     // mob.
+
+    // draw deck icon (pioche and cimetier).
+    // draw skip turn icon.
+    // draw menu pause button.
 
     // json manager (for success, save, etc).
 
     // make tuto :
     // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).
-
-    // path finding manager.
 
 
     // KeyboardManager.

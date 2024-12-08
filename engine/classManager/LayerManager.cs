@@ -46,6 +46,10 @@ public static class LayerManager
     private static Action? midTransitionAction = null;
     private static bool isMidTransitionSet;
     private static bool isMidTransitionPast;
+    public static void transition(Action midAction)
+    {
+        transition(new int[]{}, new int[]{}, midAction);
+    }
     public static void transition(int idLevelStart, int idLevelEnd, Action? midAction=null)
     {
         transition(new int[]{ idLevelStart }, new int[]{ idLevelEnd }, midAction);

@@ -20,16 +20,28 @@ public enum SpriteType
     SlideBarButtonUi_Hover,
     SlideBarButtonUi_Selected,
     SlideBarButtonUi_Disabled,
-    SeparatorUi,
+    HudHP,
+    HudSP,
 
 
     // --- Characters.
     Character_Ailten,
+    Character_Slime,
 
 
     // --- Dungeons.
     Cel,
     Cel_DoorToNextRoom,
-    Cel_RopeToNextStage
+    Cel_RopeToNextStage,
+    Cel_Invocation,
+
+
+    // --- Card.
+    CardRecto,
+    CardBG_Blue,
+    CardBG_Red,
+    CardImg_Splash,
+    CardImg_WoodenSword,
+    CardImg_WoodenShild
 
 }
