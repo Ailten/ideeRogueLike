@@ -72,6 +72,10 @@ public class Cel : Entity
             case(CelType.Cel_NextStage):
                 return SpriteType.Cel_RopeToNextStage;
 
+            //mobSpawner.
+            case(CelType.Cel_MobSpawner):
+                return SpriteType.Cel_Invocation;
+
             default:
                 throw new Exception("SpriteType no match for CelType !");
 

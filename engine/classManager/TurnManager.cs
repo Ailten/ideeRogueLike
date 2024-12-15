@@ -185,4 +185,11 @@ public static class TurnManager
     }
 
 
+    //get main play character.
+    public static Character getMainPlayerCharacter()
+    {
+        return allCharacterInRoom.Find((c) => c.isAPlayer) ?? throw new Exception("MainPlayer not found !");
+    }
+
+
 }

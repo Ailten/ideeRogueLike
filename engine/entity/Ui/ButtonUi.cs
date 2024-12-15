@@ -34,7 +34,7 @@ public class ButtonUi : Entity
         this.castSpriteType.Add(SpriteType.ButtonUi_Disabled, SpriteType.ButtonUi_Disabled);
     }
 
-    //empty constructor for child (skip constructor ButtonUi).
+    //empty constructor for child (skip constructor ButtonUi for class child).
     protected ButtonUi(int idLayer, SpriteType spriteType) : base(idLayer, spriteType){}
 
 

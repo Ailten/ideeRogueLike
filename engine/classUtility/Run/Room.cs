@@ -129,6 +129,8 @@ public class Room
         }
 
         //loop spreading, decreasing the amount of rng.
+        const int radiusSafe = 2; //rayon safe for generation cel.
+
         for(int r=0; r<rayonSpread; r++){
 	        for(int y=0; y<heightMax; y++){
 	        	for(int x=0; x<widthMax; x++){
@@ -138,7 +140,6 @@ public class Room
                     if(dist != r) //skip if not the current circle target at this loop.
                         continue;
 
-                    const int radiusSafe = 2; //RNG.
                     float rayonI = Math.Clamp((float)(r-radiusSafe) / (rayonSpread-1-radiusSafe), 0f, 1f);
                     int rngCeil = 1000 - (int)(800 * rayonI); 
                     int rngGet = RunManager.rngSeed.Next(1000);
@@ -222,9 +223,41 @@ public class Room
         }
 
         // TODO : add monster if is a normal type room.
+        List<Vector> posCelForMobSpawner = new();
         if(roomType == RoomType.Room){
 
-            //TODO.
+            int amountOfMobInRoom = RunManager.rngSeed.Next(1, 5);
+
+            for(int i=0; i<amountOfMobInRoom; i++){
+
+                Vector posForMobSpawner = new( //random pos in square (0~n).
+                    RunManager.rngSeed.Next(-radiusSafe, radiusSafe+1), 
+                    RunManager.rngSeed.Next(-radiusSafe, radiusSafe+1)
+                );
+
+                if(Math.Abs(posForMobSpawner.x) + Math.Abs(posForMobSpawner.y) > radiusSafe){ //skip if random pos not in circle.
+                    i--;
+                    continue;
+                }
+
+                posForMobSpawner.x += midWidthMax; //replace pos att center of room.
+                posForMobSpawner.y += midHeightMax;
+
+                bool isRandomPosBusy = false; //skip if random pos is already used.
+                for(int j=0; j<posCelForMobSpawner.Count; j++){
+                    if(posCelForMobSpawner[j].x == posForMobSpawner.x && posCelForMobSpawner[j].y == posForMobSpawner.y){
+                        isRandomPosBusy = true;
+                        break;
+                    }
+                }
+                if(isRandomPosBusy){
+                    i--;
+                    continue;
+                }
+
+                posCelForMobSpawner.Add(posForMobSpawner);
+
+            }
 
         }
 
@@ -241,6 +274,14 @@ public class Room
                 foreach(KeyValuePair<int, Vector> posForDoorKeyValue in posForDoor){ //set type for door.
                     if(posForDoorKeyValue.Value.x == x && posForDoorKeyValue.Value.y == y){
                         indexCelType = posForDoorKeyValue.Key + 1;
+                    }
+                }
+
+                if(indexCelType == 0){
+                    foreach(Vector posForMobSpawner in posCelForMobSpawner){ //set type for mob spawner.
+                        if(posForMobSpawner.x == x && posForMobSpawner.y == y){
+                            indexCelType = (int)CelType.Cel_MobSpawner;
+                        }
                     }
                 }
 

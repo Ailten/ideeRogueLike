@@ -79,7 +79,7 @@ public class Character : Entity
     }
 
     //call when character dead.
-    public void death(Character? characterMakeKill=null)
+    public virtual void death(Character? characterMakeKill=null)
     {
         //hidde.
         isActive = false;

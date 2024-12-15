@@ -23,4 +23,24 @@ public class CharacterPlayer : Character
         }
     }
 
+
+    //call when character dead.
+    public override void death(Character? characterMakeKill=null)
+    {
+        if(!isAPlayer){
+            base.death(characterMakeKill);
+            return;
+        }
+
+        //hidde.
+        isActive = false;
+
+        //execute death of every entity in turn has invoc by this one.
+        TurnManager.getAllInvocOfACharacter(this).ForEach((c) => c.death());
+        
+        //do not remove main player of turnManager, for prevent getter overage.
+
+        //TODO : test.
+    }
+
 }

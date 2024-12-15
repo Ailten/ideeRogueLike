@@ -12,7 +12,10 @@ public enum CelType
     CelDoor_left = 4,
 
 
-    Cel_NextStage
+    Cel_NextStage,
+
+
+    Cel_MobSpawner
 
     
 }

@@ -55,8 +55,11 @@ public class ChooseCaracter : Layer
 
         buttonNext.eventClick = () => {
             LayerManager.transition(
-                layer.idLayer, //id layer start.
-                RunLayer.layer.idLayer, //id layer end.
+                new int[]{layer.idLayer}, //id layer start.
+                new int[]{ //id layer end.
+                    RunLayer.layer.idLayer, //main game layer.
+                    RunHudLayer.layer.idLayer //hud for stats in fight.
+                },
                 () => { //action to do during black screen transition.
                     RunManager.buildNewRun();
                 }
