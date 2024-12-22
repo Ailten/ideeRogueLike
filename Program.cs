@@ -7,6 +7,7 @@ class Program
 
 
     // dev a mini-map.
+    // --- sprite already code, need to add an entity miniMap into layer, in the entity code afterDraw, based on a new list pos into Stage.
 
 
     // HUD stats player in choose character.
@@ -17,7 +18,7 @@ class Program
 
     // draw deck icon (pioche and cimetier).
     // draw skip turn icon.
-    // draw menu pause button.
+    // draw menu pause-button.
 
     // json manager (for success, save, etc).
 

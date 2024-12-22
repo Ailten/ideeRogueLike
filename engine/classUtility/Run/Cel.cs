@@ -76,6 +76,10 @@ public class Cel : Entity
             case(CelType.Cel_MobSpawner):
                 return SpriteType.Cel_Invocation;
 
+            //center room cel.
+            case(CelType.Cel_CenterRoom):
+                return SpriteType.Cel_CenterRoom;
+
             default:
                 throw new Exception("SpriteType no match for CelType !");
 

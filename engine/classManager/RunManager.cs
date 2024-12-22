@@ -73,6 +73,9 @@ public static class RunManager
     {
         activeAllCelOfARoom(false); //un active current room.
         currentStage.currentIndexRoom += editIndexRoom; //go to next room.
+
+        currentStage.walkOnAnOtherRoom(); //call event walk other room.
+
         activeAllCelOfARoom(true); //active current room (in next room).
     }
 

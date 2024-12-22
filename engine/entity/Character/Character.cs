@@ -104,14 +104,14 @@ public class Character : Entity
         if(TurnManager.getCharacterOfCurrentTurn().idEntity != idEntity) //can't skip turn if is not the turn of this entity.
             return;
 
+        AP = APmax; //refill AP (for next turn).
+
         TurnManager.moveCharacterIndex(); //switch to next entity turn.
     }
 
     //make turn start for the character.
     public void startTurn()
     {
-        AP = APmax; //refill AP.
-        
         SP = 0; //reset shild.
 
         deck.piocheOfStartTurn();

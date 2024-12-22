@@ -285,6 +285,10 @@ public class Room
                     }
                 }
 
+                if(indexCelType == 0 && roomType==RoomType.Room_Center && x==midWidthMax && y==midHeightMax){
+                    indexCelType = (int)CelType.Cel_CenterRoom; //print center room for spawn stage cel.
+                }
+
                 //instancie cel.
                 cels[cels.Count-1].Add(
                     x,
@@ -347,6 +351,76 @@ public class Room
             }
         }
         throw new Exception("GetCelByType Cel not found !");
+    }
+
+
+    //return the sprite type for mini map (depend on door).
+    public SpriteType getSpriteTypeOfMiniMap()
+    {
+        //cast 4 bool door into an int (byte).
+        int doorByte = (
+            ((isARoomTop  )? 1: 0) +
+            ((isARoomRight)? 2: 0) +
+            ((isARoomDown )? 4: 0) +
+            ((isARoomLeft )? 8: 0)
+        );
+
+        switch(doorByte){
+            case(0):
+                return SpriteType.MiniMapUi_RoomBG_;
+            case(1):
+                return SpriteType.MiniMapUi_RoomBG_U;
+            case(2):
+                return SpriteType.MiniMapUi_RoomBG_R;
+            case(3):
+                return SpriteType.MiniMapUi_RoomBG_UR;
+            case(4):
+                return SpriteType.MiniMapUi_RoomBG_D;
+            case(5):
+                return SpriteType.MiniMapUi_RoomBG_UD;
+            case(6):
+                return SpriteType.MiniMapUi_RoomBG_RD;
+            case(7):
+                return SpriteType.MiniMapUi_RoomBG_URD;
+            case(8):
+                return SpriteType.MiniMapUi_RoomBG_L;
+            case(9):
+                return SpriteType.MiniMapUi_RoomBG_UL;
+            case(10):
+                return SpriteType.MiniMapUi_RoomBG_RL;
+            case(11):
+                return SpriteType.MiniMapUi_RoomBG_URL;
+            case(12):
+                return SpriteType.MiniMapUi_RoomBG_DL;
+            case(13):
+                return SpriteType.MiniMapUi_RoomBG_UDL;
+            case(14):
+                return SpriteType.MiniMapUi_RoomBG_RDL;
+            case(15):
+                return SpriteType.MiniMapUi_RoomBG_URDL;
+            default:
+                throw new Exception("SpriteTypeOfMiniMap generate a door byte invalide !");
+        }
+    }
+
+
+    //return sprite type of the type room (for minimap).
+    public SpriteType? getSpriteTypeOfMiniMapTypeRoom()
+    {
+        switch(roomType){
+            //case(RoomType.Room_Center):
+            //    return SpriteType.MiniMapUI_RoomCenter;
+            case(RoomType.Room_Chest):
+                return SpriteType.MiniMapUI_RoomChest;
+            case(RoomType.Room_Boss):
+                return SpriteType.MiniMapUI_RoomBoss;
+            case(RoomType.Room_Boost):
+                return SpriteType.MiniMapUI_RoomBoost;
+            case(RoomType.Room_Fusion):
+                return SpriteType.MiniMapUI_RoomFusion;
+            default:
+                return null;
+        }
     }
 
 }

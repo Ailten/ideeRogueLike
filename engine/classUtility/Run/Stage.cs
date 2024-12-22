@@ -5,6 +5,31 @@ public class Stage
     public List<Dictionary<int, Room>> rooms = new();
     public Vector currentIndexRoom = new();
 
+    public List<Vector> roomsWalked = new(){ new(midWidthMax, midHeightMax) };
+
+    //TODO : Add room when walk on it.
+
+
+    private static int _widthMax = 15;
+    public static int widthMax
+    {
+        get { return _widthMax; }
+    }
+    public static int midWidthMax
+    {
+        get { return (_widthMax-1)/2; }
+    }
+    private static int _heightMax = 15;
+    public static int heightMax
+    {
+        get { return _heightMax; }
+    }
+    public static int midHeightMax
+    {
+        get { return (_heightMax-1)/2; }
+    }
+
+
     public Room? currentRoom
     {
         get { 
@@ -54,16 +79,13 @@ public class Stage
     //generate a random stage.
     private void generateStage(int rayonSpread=7)
     {
-        const int width = 15; //max size.
-        const int height = 15;
-        const int midWidthMax = (width-1)/2;
-        const int midHeightMax = (height-1)/2;
+
         currentIndexRoom = new(midWidthMax, midHeightMax);
 
         if(rayonSpread == 1){ //stage tuto.
 
             rooms = new();
-            for(int y=0; y<height; y++){
+            for(int y=0; y<heightMax; y++){
                 rooms.Add(new());
 
                 if(y == midHeightMax){
@@ -85,17 +107,17 @@ public class Stage
         List<List<bool>> roomsBool = new();
 
         //generate default grid full of false.
-        for(int y=0; y<height; y++){
+        for(int y=0; y<heightMax; y++){
             roomsBool.Add(new());
-        	for(int x=0; x<width; x++){
+        	for(int x=0; x<widthMax; x++){
         		roomsBool[roomsBool.Count-1].Add(false);
         	}
         }
 
         //loop spreading, decreasing the amount of rng.
         for(int r=0; r<rayonSpread; r++){
-	        for(int y=0; y<height; y++){
-	        	for(int x=0; x<width; x++){
+	        for(int y=0; y<heightMax; y++){
+	        	for(int x=0; x<widthMax; x++){
                     int distToCenterX = Math.Abs(x - midWidthMax);
                     int distToCenterY = Math.Abs(y - midHeightMax);
                     int dist = distToCenterX + distToCenterY;
@@ -111,9 +133,9 @@ public class Stage
                         continue;
                     int countAdj = (
                         ((y>0 && roomsBool[y-1][x])? 1: 0) +
-                        ((y<(height-1) && roomsBool[y+1][x])? 1: 0) +
+                        ((y<(heightMax-1) && roomsBool[y+1][x])? 1: 0) +
                         ((x>0 && roomsBool[y][x-1])? 1: 0) +
-                        ((x<(width-1) && roomsBool[y][x+1])? 1: 0)
+                        ((x<(widthMax-1) && roomsBool[y][x+1])? 1: 0)
                     );
                     if(countAdj < 1 && dist != 0) //skip if cell is not adjacent to another valid.
                         continue;
@@ -124,15 +146,15 @@ public class Stage
 
         //list of border room (for special room).
         List<Vector> posForSpecialRoom = new();
-        for(int y=0; y<height; y++){
-        	for(int x=0; x<width; x++){
+        for(int y=0; y<heightMax; y++){
+        	for(int x=0; x<widthMax; x++){
                 if(!roomsBool[y][x]) //skip if not a room.
                     continue;
                 int countAdj = (
                     ((y>0 && roomsBool[y-1][x])? 1: 0) +
-                    ((y<(height-1) && roomsBool[y+1][x])? 1: 0) +
+                    ((y<(heightMax-1) && roomsBool[y+1][x])? 1: 0) +
                     ((x>0 && roomsBool[y][x-1])? 1: 0) +
-                    ((x<(width-1) && roomsBool[y][x+1])? 1: 0)
+                    ((x<(widthMax-1) && roomsBool[y][x+1])? 1: 0)
                 );
                 if(countAdj <= 2) //add in room can be special.
                     posForSpecialRoom.Add(new(x, y));
@@ -146,9 +168,9 @@ public class Stage
 
         //cast roomBool into rooms.
         rooms = new();
-        for(int y=0; y<height; y++){
+        for(int y=0; y<heightMax; y++){
             rooms.Add(new());
-        	for(int x=0; x<width; x++){
+        	for(int x=0; x<widthMax; x++){
                 if(!roomsBool[y][x]){ //no room.
                     continue;
                 }
@@ -168,8 +190,8 @@ public class Stage
                     x,
                     new Room(
                         (y>0 && roomsBool[y-1][x]), //is room up.
-                        (x<(width-1) && roomsBool[y][x+1]), //is room right.
-                        (y<(height-1) && roomsBool[y+1][x]), //is room down.
+                        (x<(widthMax-1) && roomsBool[y][x+1]), //is room right.
+                        (y<(heightMax-1) && roomsBool[y+1][x]), //is room down.
                         (x>0 && roomsBool[y][x-1]), //is room left.
                         stage, //stage.
                         (RoomType)roomTypeIndex
@@ -178,6 +200,43 @@ public class Stage
         	}
         }
         
+    }
+
+
+    //call when player walk on an other room.
+    public void walkOnAnOtherRoom()
+    {
+        bool isFirstWalkOnThisRoom = !isContainInRoomsWalked(currentIndexRoom);
+
+        if(isFirstWalkOnThisRoom){
+
+            roomsWalked.Add(currentIndexRoom); //add in list walked.
+
+            //TODO : activate spawn every mob in the room.
+
+        }
+    }
+
+    //return true if the vector ask is in list.
+    public bool isContainInRoomsWalked(Vector indexPosAsk)
+    {
+        for(int i=0; i<roomsWalked.Count; i++){
+            if(roomsWalked[i].x == indexPosAsk.x && roomsWalked[i].y == indexPosAsk.y){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    //get a room by index.
+    public Room? getRoom(Vector indexRoom)
+    {
+        try{
+            return rooms[(int)indexRoom.y][(int)indexRoom.x]; 
+        }catch(KeyNotFoundException){
+            return null;
+        }
     }
 
     /* --- demo JS.

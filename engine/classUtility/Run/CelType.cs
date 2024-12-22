@@ -14,6 +14,8 @@ public enum CelType
 
     Cel_NextStage,
 
+    Cel_CenterRoom,
+
 
     Cel_MobSpawner
 

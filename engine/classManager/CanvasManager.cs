@@ -17,7 +17,7 @@ public static class CanvasManager
     {
         get { return _posDecalCanvas; }
     }
-    private static float _scaleCanvas = 1.0f; //scale of canvas (for scale every entities rendered).
+    private static float _scaleCanvas = 1.0f; //scale of canvas (for scale every entities rendered, scale window).
     public static float scaleCanvas
     {
         get { return _scaleCanvas; }

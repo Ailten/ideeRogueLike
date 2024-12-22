@@ -13,7 +13,10 @@ public class RunHudLayer : Layer
     {
         //init all entities of layer. --->
 
-        StatsCharacterUi statsCharacterUI = new StatsCharacterUi(idLayer);
+        StatsCharacterUi statsCharacterUI = new StatsCharacterUi(idLayer); //sprite of HP and SP player.
+
+        MiniMapUi miniMapUi = new MiniMapUi(idLayer); //mini map.
+        miniMapUi.pos = new(1280, 0);
 
         
         base.active();
