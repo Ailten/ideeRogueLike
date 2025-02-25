@@ -33,6 +33,17 @@ public class Room
     }
 
 
+    private List<SpriteType> _typeMobToSpawn = new();
+    public List<SpriteType> typeMobToSpawn
+    {
+        get { return _typeMobToSpawn; }
+    }
+    public bool isHasMob
+    {
+        get { return typeMobToSpawn.Count > 0; }
+    }
+
+
     public Room(bool isARoomTop, bool isARoomRight, bool isARoomDown, bool isARoomLeft, int stage, RoomType roomType)
     {
         this.stage = stage;
@@ -259,6 +270,15 @@ public class Room
 
             }
 
+            for(int i=0; i<posCelForMobSpawner.Count; i++){ //generate random type mob for the room.
+                typeMobToSpawn.Add(CharacterMob.generateRandomMobType(stage));
+            }
+
+        }else if(roomType == RoomType.Room_Boss){ // spawner for boss.
+
+            posCelForMobSpawner.Add(new Vector(midWidthMax, midHeightMax));
+            typeMobToSpawn.Add(CharacterMob.generateRandomMobType(stage, true));
+
         }
 
         //cast celsBool into cels.
@@ -351,6 +371,20 @@ public class Room
             }
         }
         throw new Exception("GetCelByType Cel not found !");
+    }
+
+    //return a list of all cel in a room (matching typeCel).
+    public List<Cel> getCelsByType(CelType celTypeSearch)
+    {
+        List<Cel> output = new();
+        for(int i=0; i<cels.Count; i++){
+            foreach(KeyValuePair<int, Cel> keyValuePairCel in cels[i]){
+                if(keyValuePairCel.Value.celType == celTypeSearch){
+                    output.Add(keyValuePairCel.Value);
+                }
+            }
+        }
+        return output;
     }
 
 

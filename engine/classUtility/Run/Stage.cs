@@ -41,6 +41,13 @@ public class Stage
         }
     }
 
+    public Room currentRoomNN
+    {
+        get {
+            return currentRoom ?? throw new Exception("currentRoom is null !");
+        }
+    }
+
     public Stage(int stage)
     {
         this.stage = stage;
@@ -212,7 +219,18 @@ public class Stage
 
             roomsWalked.Add(currentIndexRoom); //add in list walked.
 
-            //TODO : activate spawn every mob in the room.
+            //spawn mobs if has one in room.
+            if(currentRoomNN.isHasMob){
+
+                //spawn mobs.
+                for(int i=0; i<currentRoomNN.typeMobToSpawn.Count; i++){
+                    SpriteType spriteType = currentRoomNN.typeMobToSpawn[i];
+                    Vector posIndexCel = currentRoomNN.getCelsByType(CelType.Cel_MobSpawner)[i].indexPosCel;
+                    Character newMobSpawn = CharacterMob.init(spriteType, posIndexCel);
+                    TurnManager.addCharacterInRoom(newMobSpawn);
+                }
+
+            }
 
         }
     }
@@ -238,6 +256,7 @@ public class Stage
             return null;
         }
     }
+
 
     /* --- demo JS.
 
