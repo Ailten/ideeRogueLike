@@ -53,6 +53,14 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.HudHP, new Vector(0, 0), new Vector(219, 246));
         s.addSpriteType(SpriteType.HudSP, new Vector(220, 0), new Vector(149, 110));
 
+        s.addSpriteType(SpriteType.ButtonUiSkipTurn_Disabled, new Vector(533, 0), new Vector(142, 108)); //sprites skip and all.
+        s.addSpriteType(SpriteType.ButtonUiSkipTurn, new Vector(533, 109), new Vector(142, 108));
+        s.addSpriteType(SpriteType.ButtonUiSkipTurn_Hover, new Vector(533, 218), new Vector(142, 108));
+        s.addSpriteType(SpriteType.ButtonUiSkipTurn_Selected, new Vector(533, 327), new Vector(142, 108));
+
+        s.addSpriteType(SpriteType.SkipTurnBack, new Vector(676, 0), new Vector(269, 126));
+        s.addSpriteType(SpriteType.DeckIcon, new Vector(306, 111), new Vector(115, 99));
+
         s = new Sprite("Characters");
         s.addSpriteType(SpriteType.Character_Ailten, new Vector(0, 0), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Slime, new Vector(128, 0), new Vector(126, 126));

@@ -22,6 +22,12 @@ public enum SpriteType
     SlideBarButtonUi_Disabled,
     HudHP,
     HudSP,
+    ButtonUiSkipTurn,
+    ButtonUiSkipTurn_Hover,
+    ButtonUiSkipTurn_Selected,
+    ButtonUiSkipTurn_Disabled,
+    SkipTurnBack,
+    DeckIcon,
 
     MiniMapUi_RoomBG_,
     MiniMapUi_RoomBG_UR,
