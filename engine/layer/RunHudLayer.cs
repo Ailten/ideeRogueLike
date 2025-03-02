@@ -18,6 +18,13 @@ public class RunHudLayer : Layer
         MiniMapUi miniMapUi = new MiniMapUi(idLayer); //mini map.
         miniMapUi.pos = new(1280, 0);
 
+        SkipTurnBackUi skipTurnBackUi = new SkipTurnBackUi(idLayer); //background ui for skip turn button.
+        skipTurnBackUi.pos = CanvasManager.sizeWindow;
+        skipTurnBackUi.isLeftSPriteTo = true;
+
+        ButtonSkipTurnUi buttonSkipTurn = new ButtonSkipTurnUi(idLayer);
+        buttonSkipTurn.pos = CanvasManager.sizeWindow - new Vector(195, 60);
+
         
         base.active();
     }
