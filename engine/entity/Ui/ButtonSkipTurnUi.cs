@@ -10,8 +10,8 @@ public class ButtonSkipTurnUi : ButtonUi
         this.size = new(142, 108);
 
         this.geometryTrigger = new Rect(
-            new(-70, -50), 
-            new(140, 100)
+            new(-65, -50), 
+            new(130, 95)
         );
 
         this.castSpriteType.Add(SpriteType.ButtonUi, SpriteType.ButtonUiSkipTurn); //set all cast SpriteType for child.

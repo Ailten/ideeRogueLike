@@ -70,20 +70,17 @@ public static class TurnManager
         indexCharacterTurn = (indexCharacterTurn + movement + allCharacterInRoom.Count) %allCharacterInRoom.Count;
     }
 
+    //event call when a character skip his turn.
+    public static void moveCharacterIndexToNextCharacter()
+    {
+        moveCharacterIndex(); //move index.
+        getCharacterOfCurrentTurn().startTurn(); //call event start turn.
+    }
+
     //get a list of all invoc of a specific character.
     public static List<Character> getAllInvocOfACharacter(Character characterInovcator)
     {
         return allCharacterInRoom.Where((c) => c.invokedBy != null && c.invokedBy.idEntity == characterInovcator.idEntity).ToList();
-    }
-
-
-    //do the turn of an entity.
-    public static void doTheTurnOfCurrentCharacter()
-    {
-        if(allCharacterInRoom.Count == 0)
-            return;
-
-        allCharacterInRoom[indexCharacterTurn].turn();
     }
 
 

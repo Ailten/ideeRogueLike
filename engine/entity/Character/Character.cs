@@ -95,7 +95,7 @@ public class Character : Entity
     }
 
 
-    //do the turn of a character (event when it's the turn of this character).
+    //do the turn of a character (event when it's the turn of this character) use for execute logic mobs.
     public virtual void turn(){}
 
     //make skip turn of the character.
@@ -105,8 +105,9 @@ public class Character : Entity
             return;
 
         AP = APmax; //refill AP (for next turn).
+        MP = MPmax; //refill MP.
 
-        TurnManager.moveCharacterIndex(); //switch to next entity turn.
+        TurnManager.moveCharacterIndexToNextCharacter(); //switch to next entity turn.
     }
 
     //make turn start for the character.
@@ -115,6 +116,8 @@ public class Character : Entity
         SP = 0; //reset shild.
 
         deck.piocheOfStartTurn();
+
+        RunHudLayer.layer.buttonSkipTurnNN.isDisabled = !this.isInRedTeam; //set button skip turn enable or disable based on the team.
     }
 
 
@@ -126,7 +129,8 @@ public class Character : Entity
             return;
         }
 
-        //TODO : other stuff.
+        //if not in an animation, do logic turn.
+        this.turn();
     }
 
 

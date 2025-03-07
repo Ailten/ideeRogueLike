@@ -68,6 +68,8 @@ public class CharacterMob : Character
     public override void turn()
     {
         //TODO.
+        Console.WriteLine($"turn of mob {this.idEntity}");
+        this.skipTurn();
     }
 
 }

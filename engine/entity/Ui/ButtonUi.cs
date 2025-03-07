@@ -13,6 +13,7 @@ public class ButtonUi : Entity
     public bool isDisabled
     {
         get { return _isDisabled; }
+        set { _isDisabled = value; }
     }
 
 

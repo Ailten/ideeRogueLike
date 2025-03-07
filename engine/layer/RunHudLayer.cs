@@ -1,4 +1,6 @@
 
+using System.Runtime.CompilerServices;
+
 public class RunHudLayer : Layer
 {
 
@@ -22,12 +24,29 @@ public class RunHudLayer : Layer
         skipTurnBackUi.pos = CanvasManager.sizeWindow;
         skipTurnBackUi.isLeftSPriteTo = true;
 
-        ButtonSkipTurnUi buttonSkipTurn = new ButtonSkipTurnUi(idLayer);
-        buttonSkipTurn.pos = CanvasManager.sizeWindow - new Vector(195, 60);
+        this.buttonSkipTurn = new ButtonSkipTurnUi(idLayer);
+        this.buttonSkipTurn.pos = CanvasManager.sizeWindow - new Vector(195, 60);
+        this.buttonSkipTurn.eventClick = () => { //event skip turn click.
+            if(!TurnManager.isInFight)
+                return;
+            Character currentCharacter = TurnManager.getCharacterOfCurrentTurn();
+            if(!currentCharacter.isInRedTeam)
+                return;
+            currentCharacter.skipTurn();
+            Console.WriteLine("press skip turn successfully !");
+        };
 
         
         base.active();
     }
+
+
+    private ButtonSkipTurnUi? buttonSkipTurn = null;
+    public ButtonSkipTurnUi buttonSkipTurnNN
+    {
+        get { return buttonSkipTurn ?? throw new Exception(); }
+    }
+
 
     public override void update()
     {
@@ -39,6 +58,7 @@ public class RunHudLayer : Layer
     public override void unActive()
     {
         //free all entities of layer. --->
+        this.buttonSkipTurn = null;
 
         base.unActive();
     }
