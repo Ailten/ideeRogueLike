@@ -71,7 +71,8 @@ public static class LayerManager
             return;
 
         const float timeOfFullTransition = 500f; //delay of full transition anime.
-        float i = (float)(UpdateManager.timeFromStartGame - timeWhenStartTransition) / timeOfFullTransition; //interpolation of transation (0f~1f).
+        int timeSpeeded = UpdateManager.timeSpeedForAnime(UpdateManager.timeFromStartGame); //time with speed game.
+        float i = (float)(timeSpeeded - timeWhenStartTransition) / timeOfFullTransition; //interpolation of transation (0f~1f).
 
         //during transition, set opacity up or down.
         if(i < 1f){

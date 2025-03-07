@@ -21,6 +21,8 @@ public static class UpdateManager
         get { return _timeFromStartGame ; }
     }
 
+    public static int timeSpeed = 1;
+
 
     public static void init()
     {
@@ -61,5 +63,12 @@ public static class UpdateManager
         //reset stopWatch for next update event.
         stopwatchForFrameRate.Reset();
         stopwatchForFrameRate.Start();
+    }
+
+
+    //call to adapt a time to the speed game.
+    public static int timeSpeedForAnime(int timeBase)
+    {
+        return timeBase * timeSpeed;
     }
 }
