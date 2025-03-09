@@ -81,6 +81,9 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_WoodenSword, new Vector(220, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_WoodenShild, new Vector(440, 323), new Vector(219, 125));
         
+        s = new Sprite("FX");
+        s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));
+
     }
 
     //push a new sprite in list.

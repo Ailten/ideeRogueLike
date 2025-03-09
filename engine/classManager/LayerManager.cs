@@ -59,7 +59,7 @@ public static class LayerManager
         _isTransitionActive = true;
         idLevelStartTransition = idLevelStart;
         idLevelEndTransition = idLevelEnd;
-        timeWhenStartTransition = UpdateManager.timeFromStartGame;
+        timeWhenStartTransition = UpdateManager.timeSpeedForAnime(UpdateManager.timeFromStartGame);
         _transitionOpacity = 0f;
         midTransitionAction = midAction;
         isMidTransitionSet = false;

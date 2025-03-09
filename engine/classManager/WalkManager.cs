@@ -20,7 +20,7 @@ public static class WalkManager
     {
         _isWalking = true;
         indexWalkInPath = 0;
-        timeStartWalk = RunLayer.layer.milisecInLevel;
+        timeStartWalk = UpdateManager.timeSpeedForAnime(RunLayer.layer.milisecInLevel);
         WalkManager.isDecreaseMP = isDecreaseMP;
     }
 

@@ -36,4 +36,10 @@ public static class EntityManager
         _entities = _entities.Where((e) => e.idLayer != idLayer).ToList(); //drop all entity in layer (stay order).
     }
 
+    //remove an entity of his layer (like for entity FX).
+    public static void removeOneEntity(Entity entity)
+    {
+        _entities.Remove(entity);
+    }
+
 }

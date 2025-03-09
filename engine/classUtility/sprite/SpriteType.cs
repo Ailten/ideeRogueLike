@@ -72,6 +72,10 @@ public enum SpriteType
     CardBG_Red,
     CardImg_Splash,
     CardImg_WoodenSword,
-    CardImg_WoodenShild
+    CardImg_WoodenShild,
+
+
+    // --- FX.
+    FX_turnOn
 
 }
