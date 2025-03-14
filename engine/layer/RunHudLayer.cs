@@ -33,7 +33,6 @@ public class RunHudLayer : Layer
             if(!currentCharacter.isInRedTeam)
                 return;
             currentCharacter.skipTurn();
-            Console.WriteLine("press skip turn successfully !");
         };
 
         

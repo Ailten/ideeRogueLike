@@ -23,6 +23,16 @@ public struct Vector
     }
 
 
+    //rotate a vector of an angle specifid.
+    public static Vector rotate(Vector a, float eulerAngle)
+    {
+        return new(
+			(float)(Math.Cos(eulerAngle) * a.x + (-Math.Sin(eulerAngle)) * a.y),
+			(float)(Math.Sin(eulerAngle) * a.x + Math.Cos(eulerAngle) * a.y)
+        );
+    }
+
+
     public override string ToString() => $"[x:{x}, y:{y}]";
 
     //public static implicit operator string(Vector a) => a.ToString();

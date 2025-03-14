@@ -7,7 +7,7 @@ public class Fx : Entity
         timeStartAnime = UpdateManager.timeSpeedForAnime(RunLayer.layer.milisecInLevel);
 
         this.size = new(0, 0);
-        this.zIndex = 1400; 
+        this.zIndex = 1400; //character 1200. UI 2000. (1400 base)
 
         EntityManager.sortAllEntities();
     }
