@@ -33,6 +33,15 @@ public struct Vector
     }
 
 
+    //cast euler to angle.
+    public static float eulerToAngle(float euler){
+        return euler * 57.29577951308232f;
+    }
+    public static float angleToEuler(float angle){ //this one not verify.
+        return angle / 57.29577951308232f;
+    }
+
+
     public override string ToString() => $"[x:{x}, y:{y}]";
 
     //public static implicit operator string(Vector a) => a.ToString();

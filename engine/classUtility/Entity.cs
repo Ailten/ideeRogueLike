@@ -49,4 +49,26 @@ public class Entity
         this.size = new(0, 0);
     }
 
+
+    //print all data of entity.
+    public void debug(){
+        Console.WriteLine(
+            "[ entity : \n"+
+            $"  isActive: {this.isActive}\n"+
+            $"  idEntity: {this.idEntity}\n"+
+            $"  idLayer: {this.idLayer}\n"+
+            $"  pos: (x: {this.pos.x}; y: {this.pos.y})\n"+
+            $"  size: (x: {this.size.x}; y: {this.size.y})\n"+
+            $"  zIndex: {this.zIndex}\n"+
+            $"  scale: (x: {this.scale.x}; y: {this.scale.y})\n"+
+            $"  rotate: {this.rotate}\n"+
+            $"  encrage: (x: {this.encrage.x}; y: {this.encrage.y})\n"+
+            $"  spriteType: {this.spriteType}\n"+
+            $"  sprite: {this.sprite.texture.ToString()}\n"+
+            $"  geometryTrigger: {((this.geometryTrigger == null)? "null": "contain geometry")}\n"+
+            $"  isUi: {this.isUi}\n"+
+            "]"
+        );
+    }
+
 }

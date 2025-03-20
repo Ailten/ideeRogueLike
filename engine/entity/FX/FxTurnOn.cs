@@ -24,10 +24,11 @@ public class FxTurnOn : Fx
         // --- TODO : find why FX is not print (zindex fine, order entity fine, drawAfter call, pos to draw look fine, rotate no change).
 
 
+        Vector sizeFx = new(63, 63);
         float iEulerAngleRotate = i * (float)(Math.PI * 2);
         Vector posWorldEncrageRotate = Vector.rotate(new Vector(-60, -60), iEulerAngleRotate);
-        posWorldEncrageRotate -= this.size /2;
-
+        //posWorldEncrageRotate -= (sizeFx /2) * 0.0f; //no need replacement at all, because texture is already not centered.
+        
         posWorldEncrageRotate *= CameraManager.zoomCam; //scale for zoom camera.
         posWorldEncrageRotate *= CanvasManager.scaleCanvas; //scale to canvas resized.
 
@@ -36,21 +37,21 @@ public class FxTurnOn : Fx
 
         Rectangle rectSourceFx = this.sprite.getSpriteTileBySpriteType(this.spriteType).getRectSource();
 
-        Vector sizeAtScreenFx = this.size * this.scale * CanvasManager.scaleCanvas * CameraManager.zoomCam;
+        Vector sizeAtScreenFx = sizeFx * this.scale * CanvasManager.scaleCanvas * CameraManager.zoomCam;
 
         Rectangle rectDestFx = new Rectangle(
             posWorldEncrageRotate.x, posWorldEncrageRotate.y,
             sizeAtScreenFx.x, sizeAtScreenFx.y
         );
 
-        Vector origineFx = this.encrage * this.size * this.scale * CanvasManager.scaleCanvas * CameraManager.zoomCam;
+        Vector origineFx = this.encrage * sizeFx * this.scale * CanvasManager.scaleCanvas * CameraManager.zoomCam;
 
         Raylib.DrawTexturePro(
             this.sprite.texture, //texture.
             rectSourceFx, //rect source from texture.
             rectDestFx, //rect desintation at screen.
             origineFx, //origine, like encrage by adapt at sprite draw in screen (for rotation aply).
-            iEulerAngleRotate, //rotation.
+            Vector.eulerToAngle(iEulerAngleRotate), //rotation.
             Color.White //color (already white).
         );
 
