@@ -21,8 +21,6 @@ public class FxTurnOn : Fx
 
         //draw sprite with effect based on time i.
 
-        // --- TODO : find why FX is not print (zindex fine, order entity fine, drawAfter call, pos to draw look fine, rotate no change).
-
 
         Vector sizeFx = new(63, 63);
         float iEulerAngleRotate = i * (float)(Math.PI * 2);

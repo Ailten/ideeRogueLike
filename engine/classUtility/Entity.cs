@@ -20,7 +20,7 @@ public class Entity
 
     public virtual void drawAfter(Vector posToDraw, Rect rectDest, Vector origine){}
 
-    //TODO : geometrySolid & geometry Trigger.
+    //no need geometrySolid for this game.
     public Rect? geometryTrigger = null;
     public Rect geometryTriggerNN
     {

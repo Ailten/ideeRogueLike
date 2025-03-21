@@ -90,8 +90,7 @@ public class Character : Entity
         //remove from list turn.
         TurnManager.removeCharacterInRoom(this);
 
-        //TODO : drop.
-        //TODO : xp gain.
+        //TODO : drop of mob, xp gain, kill count ...
     }
 
 
@@ -150,7 +149,7 @@ public class Character : Entity
     //decrease MP.
     public void decreaseMP(int decrease)
     {
-        MP -= Math.Min(decrease, MP);
+        MP = Math.Max(MP - decrease, 0);
     }
 
 }

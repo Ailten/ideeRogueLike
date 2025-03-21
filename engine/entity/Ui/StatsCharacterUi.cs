@@ -161,7 +161,7 @@ public class StatsCharacterUi : Entity
                 colorTextSP //color.
             );
 
-            //TODO : debug color SP and pos text SP.
+            //TODO : debug color SP and pos text SP (never try to add shild point of a character so text can be at wrong place).
 
         }
 

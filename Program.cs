@@ -3,37 +3,21 @@
 class Program 
 {
 
-    // TODO :
-
-    //Stage line 225.
-
-
-    // dev a mini-map.
-    // --- sprite already code, need to add an entity miniMap into layer, in the entity code afterDraw, based on a new list pos into Stage.
-
-
-    // HUD stats player in choose character.
     // HUD stats character in fight.
-    // mob spawner.
-    // mob.
 
-    // draw deck icon (pioche and cimetier).
-    // draw skip turn icon.
+    // HUD deck (pioche and cimetier).
     // draw menu pause-button.
 
     // json manager (for success, save, etc).
 
     // make tuto :
     // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).
+    // - card, etc ...
 
-
-
-    // new todo :
-    // add a button "skip turn" for player, (ui AND exec).
     // add mob turn (walk to player closest player, eval distance to closest player, state, use atk...(not now)).
 
-
     // KeyboardManager.
+
 
     public static void Main(string[] args)
     {

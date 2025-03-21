@@ -15,7 +15,7 @@ public class CharacterPlayer : Character
             case(SpriteType.Character_Ailten):
                 return new CharacterAilten(spriteType, posIndexCel);
 
-            //TODO : add other CharacterPlayer. (maybe do a Dictionary<SpriteType, Type>)
+            //add heer other CharacterPlayer.
                 
             default:
                 throw new Exception("SpriteType has no CharacterPlayer match !");
@@ -40,7 +40,7 @@ public class CharacterPlayer : Character
         
         //do not remove main player of turnManager, for prevent getter overage.
 
-        //TODO : test.
+        //TODO : game over screen ? (not remove, jsut unactive, so endFight redWin never call ?).
     }
 
 }

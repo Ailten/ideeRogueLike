@@ -124,13 +124,13 @@ public static class TurnManager
     {
         if(isRedWiner){ //player win the fight.
 
-            //TODO.
+            //TODO. (like increment fight win, or loot).
+
+            deathAllInvoc(); //death all invoc.
 
         }else{ //ennemy win the fight.
             
-            //TODO.
-
-            deathAllInvoc(); //death all invoc.
+            //TODO. (game over screen).
 
         }
 
@@ -186,6 +186,13 @@ public static class TurnManager
     public static Character getMainPlayerCharacter()
     {
         return allCharacterInRoom.Find((c) => c.isAPlayer) ?? throw new Exception("MainPlayer not found !");
+    }
+
+
+    //get all character in room.
+    public static List<Character> getAllCharacters()
+    {
+        return allCharacterInRoom;
     }
 
 

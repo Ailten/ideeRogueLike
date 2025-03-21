@@ -5,16 +5,25 @@ public static class PathFindingManager
     public static List<Vector> pathFind = new();
     public static bool isPathValid
     {
-        get { return pathFind.Count > 0; }
+        get { return pathFind.Count >= 2; }
     }
 
     private static readonly List<Vector> adjacentSquaresPos = new(){new Vector(0, -1), new Vector(1, 0), new Vector(0, 1), new Vector(-1, 0)}; //4 direction, for move during the path finding.
 
     //eval a path from a posIndex to anoter.
-    public static void evalAPath(Vector posFrom, Vector posTo, int maxMPCost = 100)
+    public static void evalAPath(Vector posFrom, Vector posTo, int maxMPCost = 100, int distanceToDestAlow = 0)
     {
 		if(posFrom.x == posTo.x && posFrom.y == posTo.y){
 			pathFind = new(); //path invalid if start and end at same position.
+			return;
+		}
+
+		int distFromToEnd = (
+			Math.Abs((int)Math.Round(posFrom.x - posTo.x)) + 
+			Math.Abs((int)Math.Round(posFrom.y - posTo.y))
+		);
+		if(distanceToDestAlow > 0 && distFromToEnd <= distanceToDestAlow){
+			pathFind = new(); //path invalid, already enough close to dest.
 			return;
 		}
 
@@ -55,7 +64,11 @@ public static class PathFindingManager
 			closedList.Add(currentNode);
 
             //when path is find.
-            if(currentNode.pos.x == nodeEnd.pos.x && currentNode.pos.y == nodeEnd.pos.y){
+			int distCurrentToEnd = (
+				Math.Abs((int)Math.Round(currentNode.pos.x - nodeEnd.pos.x)) + 
+				Math.Abs((int)Math.Round(currentNode.pos.y - nodeEnd.pos.y))
+			);
+			if(distCurrentToEnd <= distanceToDestAlow){
 				pathFind = new();
 				PathFindingNode? current = currentNode;
 				while(current != null){
@@ -82,7 +95,7 @@ public static class PathFindingManager
 
                 //skip the pos if cel is busy (a character in this pos).
                 Character? character = TurnManager.getCharacterAtIndexPos(nodePos);
-                if(character != null)
+				if(character != null)
                     continue;
 				
                 //push the new children in node tree.
@@ -140,6 +153,16 @@ public static class PathFindingManager
         pathFind = new(); //reset path empty if no path found.
 
     }
+
+
+	//remove cel from path, until stay N first elements.
+	public static void editPathToStayFirstsCels(int lenghtToStay)
+	{
+		lenghtToStay += 1; //include the cel start. 
+		if(pathFind.Count <= lenghtToStay) //path is already at good size (or shorter).
+			return;
+		pathFind.RemoveRange(lenghtToStay, pathFind.Count-lenghtToStay);
+	}
 
 }
 

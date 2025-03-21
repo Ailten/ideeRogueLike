@@ -42,6 +42,14 @@ public struct Vector
     }
 
 
+    public static float distance(Vector a, Vector b)
+    {
+        a = (a - b);
+        a *= a;
+        return (float) Math.Sqrt(a.x + a.y);
+    }
+
+
     public override string ToString() => $"[x:{x}, y:{y}]";
 
     //public static implicit operator string(Vector a) => a.ToString();

@@ -233,7 +233,7 @@ public class Room
             );
         }
 
-        // TODO : add monster if is a normal type room.
+        //add monster if is a normal type room.
         List<Vector> posCelForMobSpawner = new();
         if(roomType == RoomType.Room){
 

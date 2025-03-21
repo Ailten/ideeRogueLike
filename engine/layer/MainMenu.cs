@@ -32,16 +32,16 @@ public class MainMenu : Layer
         buttonOption.pos = buttonPlay.pos + spacingButton;
         buttonOption.scale = scaleButton;
         buttonOption.eventClick = () => {
-            //TODO : transition layer.
+            //TODO : option menu (a full menu).
         };
         buttonOption.setIsDisabled(true);
 
         ButtonUi buttonOptionTwitch = new ButtonUi(idLayer);
-        buttonOptionTwitch.text = "option twitch";
+        buttonOptionTwitch.text = $"progres {0}%";
         buttonOptionTwitch.pos = buttonOption.pos + spacingButton;
         buttonOptionTwitch.scale = scaleButton;
         buttonOptionTwitch.eventClick = () => {
-            //TODO : transition layer.
+            //TODO : success and contains progression (resume + note about how complet it).
         };
         buttonOptionTwitch.setIsDisabled(true);
 

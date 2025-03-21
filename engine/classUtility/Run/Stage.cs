@@ -7,8 +7,6 @@ public class Stage
 
     public List<Vector> roomsWalked = new(){ new(midWidthMax, midHeightMax) };
 
-    //TODO : Add room when walk on it.
-
 
     private static int _widthMax = 15;
     public static int widthMax

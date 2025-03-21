@@ -1,11 +1,18 @@
 
 public class CharacterMob : Character
 {
+
+    protected List<LogicState> logicState = new();
+    private int logicStateIndex = 0;
+    private Character? targetOfState = null;
+
     private static List<MobType> allMobTypes = new(){ //list of all mob type and their dificulty.
         new MobType(SpriteType.Character_Slime, 1, false),
-        new MobType(SpriteType.Character_Slime, 1, true), // todo : make a proper boss.
+        new MobType(SpriteType.Character_Slime, 1, true),
 
-        new MobType(SpriteType.Character_Slime, 2, false), // todo : make other mob for up dificulty.
+        // TODO : make a proper boss, and other dificulty mob.
+
+        new MobType(SpriteType.Character_Slime, 2, false),
         new MobType(SpriteType.Character_Slime, 2, true),
         new MobType(SpriteType.Character_Slime, 3, false),
         new MobType(SpriteType.Character_Slime, 3, true),
@@ -39,7 +46,7 @@ public class CharacterMob : Character
             case(SpriteType.Character_Slime):
                 return new CharacterSlime(spriteType, posIndexCel);
 
-            //TODO : add other CharacterMob. (maybe do a Dictionary<SpriteType, Type>)
+            //add heer new CharacterMob.
                 
             default:
                 throw new Exception("SpriteType has no CharacterMob match !");
@@ -65,11 +72,88 @@ public class CharacterMob : Character
     }
 
 
+    //default process of turn of ennemy.
     public override void turn()
     {
-        //TODO.
-        Console.WriteLine($"turn of mob {this.idEntity}");
+        switch(this.logicState[this.logicStateIndex])
+        {
+            case(LogicState.skipTurn):
+                this.logicStateSkipTurn();
+                break;
+
+            case(LogicState.chase):
+                this.logicStateChase();
+                break;
+
+            case(LogicState.bigestHit): //TODO.
+                break;
+
+            default:
+                throw new Exception("doLogicState has no execution to this enum !");
+        }
+    }
+    private void nextLogicState()
+    {
+        this.logicStateIndex++;
+        this.targetOfState = null;
+    }
+    private void logicStateSkipTurn()
+    {
+        this.logicStateIndex = 0; //reset logic index.
         this.skipTurn();
+    }
+    private void logicStateChase(int distanceAlowFromTarget = 1)
+    {
+        if(targetOfState == null){
+
+            //get all oponents (sort by poxi).
+            List<Character> oponents = TurnManager.getAllCharacters().Where((c) => //filter.
+                c.isInRedTeam != this.isInRedTeam
+            ).OrderBy((c) =>  //order by proximity.
+                Vector.distance(this.pos, c.pos)
+            ).ToList();
+
+            foreach(Character oponent in oponents){
+
+                //walk to cel (if can).
+                PathFindingManager.evalAPath( //eval a pathfinding.
+                    this.indexPosCel, //posIndexFrom.
+                    oponent.indexPosCel, //posIndexTo.
+                    100, //infinit length path.
+                    distanceAlowFromTarget //the distance alow to target for stop path.
+                );
+
+                Console.WriteLine($"path walk from {$"(st:{this.spriteType}|id:{this.idEntity})"} to {$"(st:{oponent.spriteType}|id:{oponent.idEntity})"}");
+
+                if(!PathFindingManager.isPathValid){
+                    Console.WriteLine("path invalide");
+                    continue;
+                }
+
+                Console.WriteLine($"path valide : [{String.Join(", ", PathFindingManager.pathFind.Select((pf) => $"{pf.ToString()}"))}]");
+
+                this.targetOfState = oponent;
+
+                PathFindingManager.editPathToStayFirstsCels(this.MP); //remove elemnt path until stay as much as current caracter can walk.
+
+                Console.WriteLine($"path shorter : [{String.Join(", ", PathFindingManager.pathFind.Select((pf) => $"{pf.ToString()}"))}]");
+
+                WalkManager.startWalk(); //start walk along the path.
+
+                return;
+            }
+
+            if(this.targetOfState == null){ //if no one oponent can be chase.
+                this.nextLogicState();
+                return;
+            }
+
+        }
+
+        if(!WalkManager.isWalking){ //when the chase phase is end
+            this.nextLogicState();
+            return;
+        }
     }
 
 }
