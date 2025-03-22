@@ -8,7 +8,7 @@ public class Deck
 
     private int indexCardHandSelected = -1; //index of hand, for card selected.
 
-    private int pickCountByTurn = 3; //amount of card peak by turn.
+    public int pickCountByTurn = 3; //amount of card peak by turn.
 
     public bool isACardSelected //bool for know if a card is selected.
     {
@@ -26,14 +26,19 @@ public class Deck
     }
 
 
+    //add a new card to deck (in cimetier).
+    public void addCardToDeck(Card card, int multiAdd = 1)
+    {
+        for(int i=0; i<multiAdd; i++)
+            this.cardsInCimetier.Add(card);
+    }
+
+
     //make the deck pioche
     public void piocheOfStartTurn()
     {
-        while(cardsInHand.Count < pickCountByTurn){
+        for(int i=0; i<pickCountByTurn; i++){
             piocheACard();
-
-            if(cardsInPioche.Count + cardsInCimetier.Count == 0) //if all deck is already in hand.
-                break;
         }
     }
 
@@ -78,6 +83,13 @@ public class Deck
     {
         cardsInCimetier.Add(cardsInHand[indexCardHandSelected]); //add card from hand to cimetier.
         cardsInHand.RemoveAt(indexCardHandSelected); //remove card use from hand.
+    }
+
+    //defaus a card from hand to cimetier (base on index in hand).
+    public void pushCardHandIntoCimetier(int indexHand)
+    {
+        cardsInCimetier.Add(cardsInHand[indexHand]); //add card from hand to cimetier.
+        cardsInHand.RemoveAt(indexHand); //remove card use from hand.
     }
 
 }

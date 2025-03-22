@@ -45,13 +45,13 @@ public class Character : Entity
 
 
     //apply damage to another Character.
-    public void makeDamage(Character target, int atk)
+    public virtual void makeDamage(Character target, int atk)
     {
         target.takeDamage(atk, this);
     }
 
     //apply damage to character.
-    private void takeDamage(int atk, Character? characterMakeAtk=null)
+    protected virtual void takeDamage(int atk, Character? characterMakeAtk=null)
     {
         if(SP > 0){
             int damageAplyToSP = Math.Min(atk, SP);
@@ -91,6 +91,17 @@ public class Character : Entity
         TurnManager.removeCharacterInRoom(this);
 
         //TODO : drop of mob, xp gain, kill count ...
+    }
+
+    //give shild point.
+    public virtual void giveShild(Character target, int shildIncrement)
+    {
+        target.takeShild(shildIncrement, this);
+    }
+    //give shild point.
+    protected virtual void takeShild(int shildIncrement, Character? characterGiveShild)
+    {
+        SP += shildIncrement;
     }
 
 

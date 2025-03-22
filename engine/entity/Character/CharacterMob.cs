@@ -123,14 +123,8 @@ public class CharacterMob : Character
                     distanceAlowFromTarget //the distance alow to target for stop path.
                 );
 
-                Console.WriteLine($"path walk from {$"(st:{this.spriteType}|id:{this.idEntity})"} to {$"(st:{oponent.spriteType}|id:{oponent.idEntity})"}");
-
-                if(!PathFindingManager.isPathValid){
-                    Console.WriteLine("path invalide");
+                if(!PathFindingManager.isPathValid)
                     continue;
-                }
-
-                Console.WriteLine($"path valide : [{String.Join(", ", PathFindingManager.pathFind.Select((pf) => $"{pf.ToString()}"))}]");
 
                 this.targetOfState = oponent;
 
