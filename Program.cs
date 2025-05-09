@@ -3,6 +3,9 @@
 class Program 
 {
 
+    // use cascade seed for all etage. (optimisation, not priority first)
+    // debug screen transition when window resize.
+
     // HUD stats character in fight. (skip button unable)
 
     // HUD deck (pioche and cimetier).
@@ -15,8 +18,6 @@ class Program
     // - card, etc ...
 
     // KeyboardManager. (for play more speed) (not now)
-
-    // use cascade seed for all etage. (optimisation, not priority first)
 
 
     public static void Main(string[] args)

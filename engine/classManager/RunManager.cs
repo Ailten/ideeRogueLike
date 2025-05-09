@@ -40,8 +40,11 @@ public static class RunManager
         stages = new();
         const int quantityStage = 6;
         for(int i=0; i<quantityStage; i++){
-            stages.Add(new Stage(i));
+            stages.Add(new Stage(i, rngSeed.Next()));
         }
+
+        //load first stage.
+        stages[0].generateStage();
 
     }
 
@@ -64,7 +67,11 @@ public static class RunManager
     public static void switchToNextStage()
     {
         activeAllCelOfARoom(false); //un active current room.
+        currentStage.destroyStage(); //destroy last stage.
+
         currentIndexStage += 1; //go to next stage.
+
+        currentStage.generateStage(); //generate new stage.
         activeAllCelOfARoom(true); //active current room (in next stage).
     }
 
@@ -94,6 +101,12 @@ public static class RunManager
     public static Cel getCelNN(Vector celPosIndex)
     {
         return getCel(celPosIndex) ?? throw new Exception("Cel not found !");
+    }
+
+    //get stage by index.
+    public static Stage getStage(int indexStage)
+    {
+        return stages[indexStage];
     }
 
 }

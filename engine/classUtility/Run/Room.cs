@@ -44,7 +44,15 @@ public class Room
     }
 
 
-    public Room(bool isARoomTop, bool isARoomRight, bool isARoomDown, bool isARoomLeft, int stage, RoomType roomType)
+    private int seed;
+    private Random _rngSeed = new Random();
+    public Random rngSeed
+    {
+        get { return _rngSeed; }
+    }
+
+
+    public Room(bool isARoomTop, bool isARoomRight, bool isARoomDown, bool isARoomLeft, int stage, RoomType roomType, int seed)
     {
         this.stage = stage;
         this.roomType = roomType;
@@ -53,6 +61,8 @@ public class Room
         this.isARoomRight = isARoomRight;
         this.isARoomDown = isARoomDown;
         this.isARoomLeft = isARoomLeft;
+
+        this.seed = seed;
 
         switch(stage){
 
@@ -88,6 +98,7 @@ public class Room
     //generate a random room.
     private void generateRoom(int rayonSpread=7)
     {
+        _rngSeed = new Random(seed);
 
         if(roomType == RoomType.Room_Tuto){ //room tuto.
 
@@ -153,7 +164,7 @@ public class Room
 
                     float rayonI = Math.Clamp((float)(r-radiusSafe) / (rayonSpread-1-radiusSafe), 0f, 1f);
                     int rngCeil = 1000 - (int)(800 * rayonI); 
-                    int rngGet = RunManager.rngSeed.Next(1000);
+                    int rngGet = rngSeed.Next(1000);
 
                     if(rngGet >= rngCeil) //skip if cell rng say no.
                         continue;
@@ -235,15 +246,16 @@ public class Room
 
         //add monster if is a normal type room.
         List<Vector> posCelForMobSpawner = new();
+        _typeMobToSpawn = new();
         if(roomType == RoomType.Room){
 
-            int amountOfMobInRoom = RunManager.rngSeed.Next(1, 5);
+            int amountOfMobInRoom = rngSeed.Next(1, 5);
 
             for(int i=0; i<amountOfMobInRoom; i++){
 
                 Vector posForMobSpawner = new( //random pos in square (0~n).
-                    RunManager.rngSeed.Next(-radiusSafe, radiusSafe+1), 
-                    RunManager.rngSeed.Next(-radiusSafe, radiusSafe+1)
+                    rngSeed.Next(-radiusSafe, radiusSafe+1), 
+                    rngSeed.Next(-radiusSafe, radiusSafe+1)
                 );
 
                 if(Math.Abs(posForMobSpawner.x) + Math.Abs(posForMobSpawner.y) > radiusSafe){ //skip if random pos not in circle.
@@ -271,13 +283,13 @@ public class Room
             }
 
             for(int i=0; i<posCelForMobSpawner.Count; i++){ //generate random type mob for the room.
-                typeMobToSpawn.Add(CharacterMob.generateRandomMobType(stage));
+                typeMobToSpawn.Add(CharacterMob.generateRandomMobType(this, stage, false));
             }
 
         }else if(roomType == RoomType.Room_Boss){ // spawner for boss.
 
             posCelForMobSpawner.Add(new Vector(midWidthMax, midHeightMax));
-            typeMobToSpawn.Add(CharacterMob.generateRandomMobType(stage, true));
+            typeMobToSpawn.Add(CharacterMob.generateRandomMobType(this, stage, true));
 
         }
 
@@ -455,6 +467,22 @@ public class Room
             default:
                 return null;
         }
+    }
+
+
+    //free room.
+    public void destroyRoom()
+    {
+
+        EntityManager.removeManyEntities(
+            cels.SelectMany((dicoC) => 
+                dicoC.ToList().Select((kvpC) => (Entity)kvpC.Value)
+            ).ToList()
+        );
+
+        cels = new();
+
+        _typeMobToSpawn = new();
     }
 
 }

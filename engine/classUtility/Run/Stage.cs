@@ -7,6 +7,15 @@ public class Stage
 
     public List<Vector> roomsWalked = new(){ new(midWidthMax, midHeightMax) };
 
+    private int seed;
+    private Random _rngSeed = new Random();
+    public Random rngSeed
+    {
+        get { return _rngSeed; }
+    }
+
+    private int rayonSpread;
+
 
     private static int _widthMax = 15;
     public static int widthMax
@@ -46,34 +55,36 @@ public class Stage
         }
     }
 
-    public Stage(int stage)
+    public Stage(int stage, int seed)
     {
+
         this.stage = stage;
+        this.seed = seed;
 
         switch(stage){
 
             case(0): //stage without ennemy, light for begun (tuto single room).
-                generateStage(1);
+                this.rayonSpread = 1;
                 break;
 
             case(1):
-                generateStage(4);
+                this.rayonSpread = 4;
                 break;
 
             case(2):
-                generateStage(5);
+                this.rayonSpread = 5;
                 break;
 
             case(3):
-                generateStage(5);
+                this.rayonSpread = 5;
                 break;
 
             case(4):
-                generateStage(6);
+                this.rayonSpread = 6;
                 break;
 
             case(5):
-                generateStage(6);
+                this.rayonSpread = 6;
                 break;
 
         }
@@ -82,8 +93,10 @@ public class Stage
 
 
     //generate a random stage.
-    private void generateStage(int rayonSpread=7)
+    public void generateStage()
     {
+
+        _rngSeed = new Random(seed);
 
         currentIndexRoom = new(midWidthMax, midHeightMax);
 
@@ -99,7 +112,8 @@ public class Stage
                         new Room(
                             false, false, false, false, //room in 4 direction.
                             stage, //stage.
-                            RoomType.Room_Tuto
+                            RoomType.Room_Tuto,
+                            rngSeed.Next()
                         )
                     );
                 }
@@ -132,7 +146,7 @@ public class Stage
                     const int radiusSafe = 1; //RNG.
                     float rayonI = Math.Clamp((float)(r-radiusSafe) / (rayonSpread-1-radiusSafe), 0f, 1f);
                     int rngCeil = 1000 - (int)(800 * rayonI); 
-                    int rngGet = RunManager.rngSeed.Next(1000);
+                    int rngGet = rngSeed.Next(1000);
 
                     if(rngGet > rngCeil) //skip if cell rng say no.
                         continue;
@@ -169,7 +183,7 @@ public class Stage
         //no need to verify if as anefor in list, until use 4 or less.
 
         //random order the list.
-        posForSpecialRoom = posForSpecialRoom.OrderBy(_ => RunManager.rngSeed.Next(0, 100) < 50).ToList();
+        posForSpecialRoom = posForSpecialRoom.OrderBy(_ => rngSeed.Next(0, 100) < 50).ToList();
 
         //cast roomBool into rooms.
         rooms = new();
@@ -199,11 +213,14 @@ public class Stage
                         (y<(heightMax-1) && roomsBool[y+1][x]), //is room down.
                         (x>0 && roomsBool[y][x-1]), //is room left.
                         stage, //stage.
-                        (RoomType)roomTypeIndex
+                        (RoomType)roomTypeIndex,
+                        rngSeed.Next()
                     )
                 );
         	}
         }
+
+        EntityManager.sortAllEntities();
         
     }
 
@@ -253,6 +270,20 @@ public class Stage
         }catch(KeyNotFoundException){
             return null;
         }
+    }
+
+
+    //reset the obj stage (oposite of generate).
+    public void destroyStage()
+    {
+        rooms.ForEach((dicoR) => 
+            dicoR.ToList().ForEach((kvpR) => {
+                kvpR.Value.destroyRoom();
+            })
+        );
+
+        rooms = new();
+        roomsWalked = new(){ new(midWidthMax, midHeightMax) };
     }
 
 

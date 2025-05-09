@@ -42,4 +42,12 @@ public static class EntityManager
         _entities.Remove(entity);
     }
 
+    //remove many entities of entities manager (use for unload entities without switch layer).
+    public static void removeManyEntities(List<Entity> entitiesToRemove)
+    {
+        _entities = _entities.Where((e) => 
+            !entitiesToRemove.Select((etr) => etr.idEntity).Contains(e.idEntity)
+        ).ToList();
+    }
+
 }

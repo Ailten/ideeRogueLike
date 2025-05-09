@@ -56,7 +56,7 @@ public class CharacterMob : Character
 
 
     //pick a random type mob.
-    public static SpriteType generateRandomMobType(int dificulty, bool isBoss=false)
+    public static SpriteType generateRandomMobType(Room room, int dificulty, bool isBoss=false)
     {
         //filter list type mob (for math to condition param).
         List<MobType> mobTypeFiltered = allMobTypes.Where((mt) => {
@@ -68,7 +68,7 @@ public class CharacterMob : Character
             throw new Exception("generateRandomMobType return a empty list filtered !");
 
         //return a random element in list filtered (only the spriteType).
-        return mobTypeFiltered[RunManager.rngSeed.Next(mobTypeFiltered.Count)].spriteType;
+        return mobTypeFiltered[room.rngSeed.Next(mobTypeFiltered.Count)].spriteType;
     }
 
 
