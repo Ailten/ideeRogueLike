@@ -3,6 +3,8 @@
 class Program 
 {
 
+    // !!! use seed in cascade for all stage.
+
     // HUD stats character in fight.
 
     // HUD deck (pioche and cimetier).
@@ -10,13 +12,11 @@ class Program
 
     // json manager (for success, save, etc).
 
-    // make tuto :
+    // make tuto : (not now)
     // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).
     // - card, etc ...
 
-    // add mob turn (walk to player closest player, eval distance to closest player, state, use atk...(not now)).
-
-    // KeyboardManager.
+    // KeyboardManager. (for play more speed) (not now)
 
 
     public static void Main(string[] args)
