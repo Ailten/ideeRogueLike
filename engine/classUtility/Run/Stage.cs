@@ -237,6 +237,9 @@ public class Stage
             //spawn mobs if has one in room.
             if(currentRoomNN.isHasMob){
 
+                //unable button skip turn.
+                RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(false);
+
                 //spawn mobs.
                 for(int i=0; i<currentRoomNN.typeMobToSpawn.Count; i++){
                     SpriteType spriteType = currentRoomNN.typeMobToSpawn[i];

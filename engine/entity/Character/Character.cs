@@ -127,7 +127,7 @@ public class Character : Entity
 
         deck.piocheOfStartTurn();
 
-        RunHudLayer.layer.buttonSkipTurnNN.isDisabled = !this.isInRedTeam; //set button skip turn enable or disable based on the team.
+        RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(!this.isInRedTeam); //set button skip turn enable or disable based on the team.
 
         //make an FX sparkle (and sound) for signal start turn.
         new FxTurnOn(this.pos);

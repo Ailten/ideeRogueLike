@@ -34,6 +34,7 @@ public class RunHudLayer : Layer
                 return;
             currentCharacter.skipTurn();
         };
+        this.buttonSkipTurn.setIsDisabled(true);
 
         
         base.active();

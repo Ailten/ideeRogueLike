@@ -122,6 +122,7 @@ public static class TurnManager
     //call when a fight is end.
     private static void enfOfFight(bool isRedWiner)
     {
+
         if(isRedWiner){ //player win the fight.
 
             //TODO. (like increment fight win, or loot).
@@ -135,6 +136,9 @@ public static class TurnManager
         }
 
         cleanPoolDeadCharacter();
+
+        //disable button skip turn.
+        RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(true);
     }
 
     //make all invocation death.

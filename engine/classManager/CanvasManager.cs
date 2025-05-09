@@ -216,7 +216,7 @@ public static class CanvasManager
         Vector sizeScreen = sizeWindow * scaleCanvas;
 
         Raylib.DrawRectangle(
-            0, 0,
+            (int)posDecalCanvas.x, (int)posDecalCanvas.y,
             (int)sizeScreen.x, (int)sizeScreen.y,
             new Color((byte)0, (byte)0, (byte)0, (byte)(LayerManager.transitionOpacity * 255))
         );
