@@ -32,37 +32,42 @@ public class MiniMapUi : Entity
                 posTile.x = posToDraw.x + (x - Stage.widthMax) * sizeTileWidth; //set pos tile x.
                 indexPosRoom.x = x;
 
-                bool isTileAlreadyWalked = RunManager.currentStage.isContainInRoomsWalked(indexPosRoom);
-                if(!isTileAlreadyWalked) //skip tile if player not walked.
-                    continue;
-
-                //get sprite tile.
                 Room? roomOfTile = RunManager.currentStage.getRoom(indexPosRoom);
-                if(roomOfTile == null)
+                if(roomOfTile == null) //skip if no room at this index.
                     continue;
 
-                //get sprite type.
-                SpriteType spriteTypeTile = roomOfTile.getSpriteTypeOfMiniMap();
-                Raylib_cs.Rectangle rectSourceInTexture = this.sprite.getSpriteTileBySpriteType(spriteTypeTile).getRectSource();
-
+                //get object usefull for draw in many case.
+                SpriteType? spriteTypeTileN = roomOfTile.getSpriteTypeOfMiniMapTypeRoom();
                 Rect rectDestTile = new(posTile, sizeTile);
 
-                //draw tile.
-                Raylib_cs.Raylib.DrawTexturePro(
-                    this.sprite.texture, //texture.
-                    rectSourceInTexture, //rect source from texture.
-                    rectDestTile, //rect desintation at screen.
-                    origineTile, //origine, like encrage by adapt at sprite draw in screen (for rotation aply).
-                    rotate, //rotation.
-                    Raylib_cs.Color.White //color (already white).
-                );
+                //get bool for if draw.
+                bool isASpecialRoom = spriteTypeTileN != null;
+                bool isAnAdjacenteRoomToWalk = RunManager.currentStage.getClosestDistFromWalked(indexPosRoom) == 1;
+                bool isTileAlreadyWalked = RunManager.currentStage.isContainInRoomsWalked(indexPosRoom);
+                bool isTheTileCurrent = RunManager.currentStage.currentIndexRoom.x == indexPosRoom.x && RunManager.currentStage.currentIndexRoom.y == indexPosRoom.y;
 
+                //draw back room if walked.
+                if(isTileAlreadyWalked){
 
-                //get sprite type of type room.
-                SpriteType? spriteTypeTileN = roomOfTile.getSpriteTypeOfMiniMapTypeRoom();
-                if(spriteTypeTileN != null){
-                    spriteTypeTile = spriteTypeTileN ?? throw new Exception("SpriteTypeTileN is null !");
-                    rectSourceInTexture = this.sprite.getSpriteTileBySpriteType(spriteTypeTile).getRectSource();
+                    SpriteType spriteTypeTile = roomOfTile.getSpriteTypeOfMiniMap();
+                    Raylib_cs.Rectangle rectSourceInTexture = this.sprite.getSpriteTileBySpriteType(spriteTypeTile).getRectSource();
+
+                    //draw tile.
+                    Raylib_cs.Raylib.DrawTexturePro(
+                        this.sprite.texture, //texture.
+                        rectSourceInTexture, //rect source from texture.
+                        rectDestTile, //rect desintation at screen.
+                        origineTile, //origine, like encrage by adapt at sprite draw in screen (for rotation aply).
+                        rotate, //rotation.
+                        Raylib_cs.Color.White //color (already white).
+                    );
+
+                }
+
+                if(isASpecialRoom && (isTileAlreadyWalked || isAnAdjacenteRoomToWalk)){ //draw special icon room.
+                    
+                    SpriteType spriteTypeTile = spriteTypeTileN ?? throw new Exception("SpriteTypeTileN is null !");
+                    Raylib_cs.Rectangle rectSourceInTexture = this.sprite.getSpriteTileBySpriteType(spriteTypeTile).getRectSource();
 
                     //draw special type room.
                     Raylib_cs.Raylib.DrawTexturePro(
@@ -75,10 +80,10 @@ public class MiniMapUi : Entity
                     );
                 }
 
-
                 //draw marker if the tile is the current pos of player.
-                if(RunManager.currentStage.currentIndexRoom.x == indexPosRoom.x && RunManager.currentStage.currentIndexRoom.y == indexPosRoom.y){
-                    rectSourceInTexture = this.sprite.getSpriteTileBySpriteType(SpriteType.MiniMapUI_PosPlayer).getRectSource();
+                if(isTheTileCurrent){
+
+                    Raylib_cs.Rectangle rectSourceInTexture = this.sprite.getSpriteTileBySpriteType(SpriteType.MiniMapUI_PosPlayer).getRectSource();
 
                     //draw marker player on the tile map.
                     Raylib_cs.Raylib.DrawTexturePro(

@@ -264,6 +264,21 @@ public class Stage
         return false;
     }
 
+    //return the distance from the the closest room walk.
+    public int getClosestDistFromWalked(Vector indexPosAsk)
+    {
+        int closestDist = 1000;
+        for(int i=0; i<roomsWalked.Count; i++){
+            int dist = (
+                Math.Abs((int)roomsWalked[i].x - (int)indexPosAsk.x) +
+                Math.Abs((int)roomsWalked[i].y - (int)indexPosAsk.y)
+            );
+            if(dist < closestDist)
+                closestDist = dist;
+        }
+        return closestDist;
+    }
+
 
     //get a room by index.
     public Room? getRoom(Vector indexRoom)
