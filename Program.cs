@@ -3,9 +3,7 @@
 class Program 
 {
 
-    // !!! use seed in cascade for all stage.
-
-    // HUD stats character in fight.
+    // HUD stats character in fight. (skip button unable)
 
     // HUD deck (pioche and cimetier).
     // draw menu pause-button.
@@ -17,6 +15,8 @@ class Program
     // - card, etc ...
 
     // KeyboardManager. (for play more speed) (not now)
+
+    // use cascade seed for all etage. (optimisation, not priority first)
 
 
     public static void Main(string[] args)
