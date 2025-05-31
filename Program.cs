@@ -4,9 +4,8 @@ class Program
 {
 
     // HUD deck (pioche and cimetier).
+    
     // draw menu pause-button.
-
-    // draw type of cell adjacente to then walk.
 
 
 

@@ -75,12 +75,19 @@ public static class SpriteManager
         s = new Sprite("Card");
         s.addSpriteType(SpriteType.CardBG_Blue, new Vector(0, 0), new Vector(219, 322)); // -- encrage : (0.5f, 0.5f).
         s.addSpriteType(SpriteType.CardBG_Red, new Vector(220, 0), new Vector(219, 322));
-        s.addSpriteType(SpriteType.CardRecto, new Vector(440, 0), new Vector(219, 322));
+        s.addSpriteType(SpriteType.CardBG_Green, new Vector(440, 0), new Vector(219, 322));
+        s.addSpriteType(SpriteType.CardBG_PolyChrome, new Vector(660, 0), new Vector(219, 322));
+        s.addSpriteType(SpriteType.CardBG_Recto, new Vector(0, 702), new Vector(219, 322));
+        s.addSpriteType(SpriteType.CardBG_Craced, new Vector(220, 702), new Vector(219, 322));
+        s.addSpriteType(SpriteType.CardBG_Shinny, new Vector(440, 702), new Vector(219, 322));
+        //-- placeholder last bg.
 
         s.addSpriteType(SpriteType.CardImg_Splash, new Vector(0, 323), new Vector(219, 125)); // -- encrage : (0.5f, 0.952f).
         s.addSpriteType(SpriteType.CardImg_WoodenSword, new Vector(220, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_WoodenShild, new Vector(440, 323), new Vector(219, 125));
-        
+        //-- placeholder last img.
+        s.addSpriteType(SpriteType.CardImg_Meet, new Vector(0, 449), new Vector(219, 125));
+
         s = new Sprite("FX");
         s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));
 

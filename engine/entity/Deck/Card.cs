@@ -3,30 +3,33 @@ public struct Card
 {
 
     public SpriteType cardIllu; //sprite of illustation card.
-    public SpriteType cardBGType; //sprite of background card (and type).
+    public CardColor cardColor; //sprite of background card.
+    public CardEdition cardEdition; //special effect upper the card.
+    public bool isRecto = false; //to know if it has to print masked.
 
     public int APCost; //the amount of AP need for use the card.
-
     public Vector distanceToUse; //distance can be use (x=min, y=max).
 
     public List<KeyValuePair<EffectCard, int>> effects; //all effects of a card (with an int of value).
 
 
     //default constructor.
-    public Card(SpriteType cardIllu, SpriteType cardBGType, int APCost = 0, Vector distanceToUse = new(), List<KeyValuePair<EffectCard, int>>? effects = null)
+    public Card(SpriteType cardIllu, CardColor cardColor, CardEdition cardEdition, int APCost = 0, Vector distanceToUse = new(), List<KeyValuePair<EffectCard, int>>? effects = null)
     {
         this.cardIllu = cardIllu;
-        this.cardBGType = cardBGType;
+        this.cardColor = cardColor;
+        this.cardEdition = cardEdition;
         this.APCost = APCost;
         this.distanceToUse = distanceToUse;
         this.effects = effects ?? new();
     }
 
     //constructor with single effect.
-    public Card(SpriteType cardIllu, SpriteType cardBGType, int APCost = 0, Vector distanceToUse = new(), KeyValuePair<EffectCard, int>? effect = null)
+    public Card(SpriteType cardIllu, CardColor cardColor, CardEdition cardEdition, int APCost = 0, Vector distanceToUse = new(), KeyValuePair<EffectCard, int>? effect = null)
     {
         this.cardIllu = cardIllu;
-        this.cardBGType = cardBGType;
+        this.cardColor = cardColor;
+        this.cardEdition = cardEdition;
         this.APCost = APCost;
         this.distanceToUse = distanceToUse;
         this.effects = new();

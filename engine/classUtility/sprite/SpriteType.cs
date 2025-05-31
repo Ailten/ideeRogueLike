@@ -67,12 +67,18 @@ public enum SpriteType
 
 
     // --- Card.
-    CardRecto,
     CardBG_Blue,
     CardBG_Red,
+    CardBG_Green,
+    CardBG_PolyChrome,
+    CardBG_Recto,
+    CardBG_Craced,
+    CardBG_Shinny,
     CardImg_Splash,
     CardImg_WoodenSword,
     CardImg_WoodenShild,
+    //-- placehoder last img.
+    CardImg_Meet,
 
 
     // --- FX.
