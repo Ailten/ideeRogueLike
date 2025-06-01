@@ -5,6 +5,18 @@ public class Deck
     private List<Card> cardsInHand = new();
     private List<Card> cardsInPioche = new();
     private List<Card> cardsInCimetier = new();
+    public int amountOfCardInHand
+    {
+        get{ return cardsInHand.Count; }
+    }
+    public int amountOfCardInPioche
+    {
+        get{ return cardsInPioche.Count; }
+    }
+    public int amountOfCardInCimetier
+    {
+        get{ return cardsInCimetier.Count; }
+    }
 
     private int indexCardHandSelected = -1; //index of hand, for card selected.
 
@@ -27,10 +39,14 @@ public class Deck
 
 
     //add a new card to deck (in cimetier).
-    public void addCardToDeck(Card card, int multiAdd = 1)
+    public void addCardToDeck(Card card, int amountOfCardAdd = 1, bool isSameColor = false, bool isIncludePolyChrome = false)
     {
-        for(int i=0; i<multiAdd; i++)
+        for (int i = 0; i < amountOfCardAdd; i++){
+            Card c = card;
+            if(!isSameColor)
+                c.cardColor = StaticCardColor.getRandomColor(isIncludePolyChrome);
             this.cardsInCimetier.Add(card);
+        }
     }
 
 

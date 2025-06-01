@@ -1,5 +1,6 @@
 
 using System.Runtime.CompilerServices;
+using System.Security.Principal;
 
 public class RunHudLayer : Layer
 {
@@ -24,7 +25,7 @@ public class RunHudLayer : Layer
         skipTurnBackUi.pos = CanvasManager.sizeWindow;
         skipTurnBackUi.isLeftSPriteTo = true;
 
-        this.buttonSkipTurn = new ButtonSkipTurnUi(idLayer);
+        this.buttonSkipTurn = new ButtonSkipTurnUi(idLayer); //button skip turn.
         this.buttonSkipTurn.pos = CanvasManager.sizeWindow - new Vector(195, 60);
         this.buttonSkipTurn.eventClick = () => { //event skip turn click.
             if(!TurnManager.isInFight)
@@ -36,6 +37,15 @@ public class RunHudLayer : Layer
         };
         this.buttonSkipTurn.setIsDisabled(true);
 
+        DeckButtonUi deckButtonUi = new DeckButtonUi(idLayer); //button deck (pioche).
+        deckButtonUi.pos = new(10, CanvasManager.sizeWindow.y -10);
+
+        deckButtonUi = new DeckButtonUi(idLayer); //button deck (defausse).
+        deckButtonUi.pos.x = CanvasManager.sizeWindow.x - 125;
+        deckButtonUi.pos.y = CanvasManager.sizeWindow.y - 10;
+        deckButtonUi.isDeckPioche = false;
+
+        
         
         base.active();
     }

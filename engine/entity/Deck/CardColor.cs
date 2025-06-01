@@ -4,7 +4,7 @@ public enum CardColor
     Blue,
     Red,
     Green,
-    PolyChrome
+    PolyChrome,
 
 }
 
@@ -32,6 +32,29 @@ public static class StaticCardColor
         if (cardColor == CardColor.PolyChrome)
             return true;
         return cardColor == cardColorAsk;
+    }
+    
+    private static Random? _rand = null;
+    public static Random rand
+    {
+        get
+        {
+            if (_rand == null)
+                _rand = new Random(RunManager.seed);
+            return _rand;
+        }
+    }
+
+    public static CardColor getRandomColor(bool isIncludePolyChrome = false)
+    {
+        List<CardColor> rangeColor = new() { CardColor.Blue, CardColor.Red, CardColor.Green };
+        if (isIncludePolyChrome){
+            rangeColor.AddRange(new CardColor[] { CardColor.Blue, CardColor.Red, CardColor.Green });
+            rangeColor.Add(CardColor.PolyChrome); // 1/7 rng.
+        }
+
+        int randomIndex = rand.Next(rangeColor.Count);
+        return rangeColor[randomIndex];
     }
 
 }

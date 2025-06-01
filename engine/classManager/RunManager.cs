@@ -1,7 +1,11 @@
 
 public static class RunManager
 {
-    private static int seed;
+    private static int _seed;
+    public static int seed
+    {
+        get { return _seed; }
+    }
     private static Random _rngSeed = new Random();
     public static Random rngSeed
     {
@@ -28,7 +32,7 @@ public static class RunManager
     public static void buildNewRun(int seed)
     {
         //rng.
-        RunManager.seed = seed;
+        RunManager._seed = seed;
         _rngSeed = new Random(seed);
         Console.WriteLine($"Seed : {seed}");
 

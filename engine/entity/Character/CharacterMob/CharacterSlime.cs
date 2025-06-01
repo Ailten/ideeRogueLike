@@ -18,13 +18,18 @@ public class CharacterSlime : CharacterMob
         this.HP = HPmax;
 
         this.deck.pickCountByTurn = 1;
-        this.deck.addCardToDeck(new Card(
-            SpriteType.CardImg_Splash, 
-            SpriteType.CardBG_Blue,
-            1,
-            new(1, 1),
-            new KeyValuePair<EffectCard, int>(EffectCard.hit, 1)
-        ), 3);
+        this.deck.addCardToDeck(
+            new Card(
+                cardIllu: SpriteType.CardImg_Splash,
+                cardColor: StaticCardColor.getRandomColor(),
+                cardEdition: CardEdition.Default,
+                APCost: 1,
+                distanceToUse: new(1, 1),
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.hit, 1)
+            ),
+            amountOfCardAdd: 3,
+            isSameColor: false
+        );
     }
 
 }

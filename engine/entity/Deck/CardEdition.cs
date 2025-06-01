@@ -23,4 +23,19 @@ public static class StaticCardEdition
                 throw new Exception("CardEdition.getSpriteType found no match !");
         }
     }
+
+    public static CardEdition getRandomEdition()
+    {
+        List<CardEdition> rangeEdition = new() {
+            CardEdition.Default,
+            CardEdition.Default,
+            CardEdition.Default,
+            CardEdition.Default,
+            CardEdition.Cracked,
+            CardEdition.Shinny
+        };
+
+        int randomIndex = StaticCardColor.rand.Next(rangeEdition.Count);
+        return rangeEdition[randomIndex];
+    }
 }

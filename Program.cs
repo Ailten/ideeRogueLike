@@ -4,8 +4,10 @@ class Program
 {
 
     // HUD deck (pioche and cimetier).
-    
+
     // draw menu pause-button.
+    
+    // draw menu print card in deck.
 
 
 
@@ -36,7 +38,8 @@ class Program
         CanvasManager.isDebug = true; //set debug mode.
 
         //stay open window (with exit input).
-        while(!Raylib.WindowShouldClose()){
+        while (!Raylib.WindowShouldClose())
+        {
 
             //resize window.
             if (Raylib.IsWindowResized())
@@ -63,7 +66,8 @@ class Program
             UpdateManager.waitEndFrame();
 
             //exit loop update when bool close window was set.
-            if(CanvasManager.isCloseWindow){
+            if (CanvasManager.isCloseWindow)
+            {
                 break;
             }
 

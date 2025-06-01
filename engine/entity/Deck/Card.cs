@@ -14,10 +14,10 @@ public struct Card
 
 
     //default constructor.
-    public Card(SpriteType cardIllu, CardColor cardColor, CardEdition cardEdition, int APCost = 0, Vector distanceToUse = new(), List<KeyValuePair<EffectCard, int>>? effects = null)
+    public Card(SpriteType cardIllu, CardColor? cardColor = null, CardEdition cardEdition = CardEdition.Default, int APCost = 0, Vector distanceToUse = new(), List<KeyValuePair<EffectCard, int>>? effects = null)
     {
         this.cardIllu = cardIllu;
-        this.cardColor = cardColor;
+        this.cardColor = cardColor ?? StaticCardColor.getRandomColor();
         this.cardEdition = cardEdition;
         this.APCost = APCost;
         this.distanceToUse = distanceToUse;
@@ -25,10 +25,10 @@ public struct Card
     }
 
     //constructor with single effect.
-    public Card(SpriteType cardIllu, CardColor cardColor, CardEdition cardEdition, int APCost = 0, Vector distanceToUse = new(), KeyValuePair<EffectCard, int>? effect = null)
+    public Card(SpriteType cardIllu, CardColor? cardColor = null, CardEdition cardEdition = CardEdition.Default, int APCost = 0, Vector distanceToUse = new(), KeyValuePair<EffectCard, int>? effect = null)
     {
         this.cardIllu = cardIllu;
-        this.cardColor = cardColor;
+        this.cardColor = cardColor ?? StaticCardColor.getRandomColor();
         this.cardEdition = cardEdition;
         this.APCost = APCost;
         this.distanceToUse = distanceToUse;

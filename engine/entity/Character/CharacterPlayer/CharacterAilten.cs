@@ -12,20 +12,30 @@ public class CharacterAilten : CharacterPlayer
         this.HP = HPmax;
 
         this.deck.pickCountByTurn = 3;
-        this.deck.addCardToDeck(new Card(
-            SpriteType.CardImg_WoodenSword, 
-            SpriteType.CardBG_Blue,
-            1,
-            new(1, 1),
-            new KeyValuePair<EffectCard, int>(EffectCard.hit, 2)
-        ), 6);
-        this.deck.addCardToDeck(new Card(
-            SpriteType.CardImg_WoodenShild, 
-            SpriteType.CardBG_Blue,
-            1,
-            new(0, 0),
-            new KeyValuePair<EffectCard, int>(EffectCard.shild, 2)
-        ), 6);
+        this.deck.addCardToDeck(
+            new Card(
+                cardIllu: SpriteType.CardImg_WoodenSword,
+                cardColor: StaticCardColor.getRandomColor(),
+                cardEdition: CardEdition.Default,
+                APCost: 1,
+                distanceToUse: new(1, 1),
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.hit, 2)
+            ),
+            amountOfCardAdd: 6,
+            isSameColor: false
+        );
+        this.deck.addCardToDeck(
+            new Card(
+                cardIllu: SpriteType.CardImg_WoodenShild,
+                cardColor: StaticCardColor.getRandomColor(),
+                cardEdition: CardEdition.Default,
+                APCost: 1,
+                distanceToUse: new(0, 0),
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.shild, 2)
+            ),
+            amountOfCardAdd: 4,
+            isSameColor: false
+        );
     }
 
 }
