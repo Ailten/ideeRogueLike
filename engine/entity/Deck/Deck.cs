@@ -5,22 +5,10 @@ public class Deck
     private List<Card> cardsInHand = new();
     private List<Card> cardsInPioche = new();
     private List<Card> cardsInCimetier = new();
-    public int amountOfCardInHand
-    {
-        get{ return cardsInHand.Count; }
-    }
-    public int amountOfCardInPioche
-    {
-        get{ return cardsInPioche.Count; }
-    }
-    public int amountOfCardInCimetier
-    {
-        get{ return cardsInCimetier.Count; }
-    }
 
     private int indexCardHandSelected = -1; //index of hand, for card selected.
 
-    public int pickCountByTurn = 3; //amount of card peak by turn.
+    public int pickCountByTurn = 5; //amount of card peak by turn.
 
     public bool isACardSelected //bool for know if a card is selected.
     {
@@ -29,6 +17,18 @@ public class Deck
     public int countCardInFullDeck //amount of all card in deck.
     {
         get { return cardsInHand.Count + cardsInPioche.Count + cardsInCimetier.Count; }
+    }
+    public List<Card> getCardsInHand
+    {
+        get{ return cardsInHand; }
+    }
+    public List<Card> getCardsInPioche
+    {
+        get{ return cardsInPioche; }
+    }
+    public List<Card> getCardsInCimetier
+    {
+        get{ return cardsInCimetier; }
     }
 
 

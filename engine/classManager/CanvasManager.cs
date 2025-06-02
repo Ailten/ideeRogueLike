@@ -118,20 +118,12 @@ public static class CanvasManager
             //eval pos (gizmo) at screen.
             Vector posAtScreen = e.pos;
 
-            if(e.isUi){ //replace on size canvas.
-                posAtScreen *= scaleCanvas;
-            }else{ //replace world pos to screen pos.
-
+            if(!e.isUi){ //replace world pos to screen pos.
                 posAtScreen -= CameraManager.posCam; //substract pos cam to replace all entity in cam view.
-
                 posAtScreen *= CameraManager.zoomCam; //scale for zoom camera.
-
                 posAtScreen += centerWindow * scaleCanvas;
-
-                posAtScreen *= scaleCanvas; //scale to canvas resized.
-
             }
-
+            posAtScreen *= scaleCanvas; //scale to canvas resized.
             posAtScreen += posDecalCanvas;
 
 

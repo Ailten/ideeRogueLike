@@ -7,7 +7,7 @@ public class DeckButtonUi : Entity
     private static Font font = FontManager.getFontByFontType(FontType.IntensaFuente);
     private static float fontSize = 35f;
     private static float fontSpacing = 2f;
-    public Raylib_cs.Color colorText = new Raylib_cs.Color(118, 101, 61, 255);
+    public static Raylib_cs.Color colorText = new Raylib_cs.Color(118, 101, 61, 255);
 
 
     public DeckButtonUi(int idLayer) : base(idLayer, SpriteType.DeckIcon)
@@ -33,8 +33,8 @@ public class DeckButtonUi : Entity
 
         Deck deckMainPlayerCharacter = TurnManager.getMainPlayerCharacter().deck;
         string text = (this.isDeckPioche ?
-            deckMainPlayerCharacter.amountOfCardInPioche:
-            deckMainPlayerCharacter.amountOfCardInCimetier
+            deckMainPlayerCharacter.getCardsInPioche.Count:
+            deckMainPlayerCharacter.getCardsInCimetier.Count
         ).ToString();
 
         float fontSizeEval = fontSize * scale.y * CanvasManager.scaleCanvas; //eval font size and spacing.
@@ -75,12 +75,18 @@ public class DeckButtonUi : Entity
 
     public override void eventMouseClick(bool isLeftClick, bool isClickDown)
     {
-        if (isLeftClick && isClickDown)
-        {
-            isMouseHover = false;
+        if (!isLeftClick || isClickDown)
+            return;
+            
+        isMouseHover = false;
 
-            //TODO : open the preview of card in deck.
-        }
+        Deck deckMainPlayerCharacter = TurnManager.getMainPlayerCharacter().deck;
+        List<Card> listCardToPrint = new List<Card>(this.isDeckPioche ?
+            deckMainPlayerCharacter.getCardsInPioche:
+            deckMainPlayerCharacter.getCardsInCimetier
+        );
+        RunHudLayer.layer.setListCardToMenuCardUi(listCardToPrint);
+        RunHudLayer.layer.activeMenuCardUi(true);
     }
 
 }

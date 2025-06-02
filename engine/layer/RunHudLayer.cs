@@ -45,7 +45,29 @@ public class RunHudLayer : Layer
         deckButtonUi.pos.y = CanvasManager.sizeWindow.y - 10;
         deckButtonUi.isDeckPioche = false;
 
-        
+        CardMenuBGUi cardMenuBGUi = new CardMenuBGUi(idLayer); //menu card ui.
+        cardMenuBGUi.isActive = false;
+        cardMenuBGUi.pos = new(240, 0);
+        elementsInMenuCardUi.Add(cardMenuBGUi);
+
+        ListCardUi cardMenuListCardUi = new ListCardUi(idLayer); //list card ui.
+        cardMenuListCardUi.isActive = false;
+        cardMenuListCardUi.pos = new(250, 388);
+        elementsInMenuCardUi.Add(cardMenuListCardUi);
+
+        CheckBoxUi cardMenuButtonExit = new CheckBoxUi(idLayer); //button exit card menu.
+        cardMenuButtonExit.isActive = false;
+        cardMenuButtonExit.zIndex = 3200;
+        cardMenuButtonExit.scale = new(0.5f, 0.5f);
+        cardMenuButtonExit.pos = new(1007, 33);
+        cardMenuButtonExit.eventClick = () =>
+        {
+            cardMenuButtonExit.switchIsOn(); //stay on "X".
+            RunHudLayer.layer.activeMenuCardUi(false); //close the card menu.
+        };
+        elementsInMenuCardUi.Add(cardMenuButtonExit);
+
+
         
         base.active();
     }
@@ -55,6 +77,18 @@ public class RunHudLayer : Layer
     public ButtonSkipTurnUi buttonSkipTurnNN
     {
         get { return buttonSkipTurn ?? throw new Exception(); }
+    }
+
+    private List<Entity> elementsInMenuCardUi = new();
+    public void activeMenuCardUi(bool isActive = true)
+    {
+        elementsInMenuCardUi.ForEach(e => e.isActive = isActive);
+    }
+    public void setListCardToMenuCardUi(List<Card> listCardToPrint)
+    {
+        foreach (Entity e in elementsInMenuCardUi){
+            (e as ListCardUi)?.setListCard(listCardToPrint);
+        }
     }
 
 
@@ -69,6 +103,7 @@ public class RunHudLayer : Layer
     {
         //free all entities of layer. --->
         this.buttonSkipTurn = null;
+        this.elementsInMenuCardUi = new();
 
         base.unActive();
     }
