@@ -39,7 +39,7 @@ public class ListCardUi : Entity
     public float upCardWhenSelected = 20f;
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
-        if (listCard.Count == 0) //TODO: print text no-card.
+        if (listCard.Count == 0) //TODO: draw text no-card.
             return;
 
         //get area of all cards.
@@ -89,8 +89,12 @@ public class ListCardUi : Entity
     //get area of cards (for rect dest and colide mouse).
     private List<Rect> getCardsArrea()
     {
+        //case when no card.
+        if (listCard.Count == 0)
+            return new();
+
         //pos screen of full entity.
-        Vector posAtScreen = this.pos * CanvasManager.scaleCanvas + CanvasManager.posDecalCanvas;
+            Vector posAtScreen = this.pos * CanvasManager.scaleCanvas + CanvasManager.posDecalCanvas;
 
         //eval size at screen.
         Vector sizeAtScreen = this.size * this.scale * CanvasManager.scaleCanvas;
@@ -108,8 +112,18 @@ public class ListCardUi : Entity
         Vector posStart = rectDest.posStart + (sizeAtScreenCard * 0.5f);
         Vector posEnd = rectDest.posStart + rectDest.size - (sizeAtScreenCard * 0.5f);
 
-        List<Rect> output = new();
+        //case when only one card.
+        if (listCard.Count == 1)
+            return new List<Rect>() { new Rect(
+                new Vector(
+                    Vector.lerpF(posStart.x, posEnd.x, 0.5f),
+                    posStart.y
+                ),
+                sizeAtScreenCard
+            )};
 
+        //loop for every pos card.
+        List<Rect> output = new();
         for (int i = 0; i < listCard.Count; i++)
         {
             Vector posCard = new(0, posStart.y);
@@ -122,7 +136,6 @@ public class ListCardUi : Entity
                 sizeAtScreenCard
             ));
         }
-
         return output;
     }
 }
