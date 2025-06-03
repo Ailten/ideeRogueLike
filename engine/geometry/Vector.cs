@@ -21,14 +21,18 @@ public struct Vector
             a.y*(1-i) + b.y*i
         );
     }
+    public static float lerpF(float a, float b, float i)
+    {
+        return a * (1 - i) + b * i;
+    }
 
 
     //rotate a vector of an angle specifid.
     public static Vector rotate(Vector a, float eulerAngle)
     {
         return new(
-			(float)(Math.Cos(eulerAngle) * a.x + (-Math.Sin(eulerAngle)) * a.y),
-			(float)(Math.Sin(eulerAngle) * a.x + Math.Cos(eulerAngle) * a.y)
+            (float)(Math.Cos(eulerAngle) * a.x + (-Math.Sin(eulerAngle)) * a.y),
+            (float)(Math.Sin(eulerAngle) * a.x + Math.Cos(eulerAngle) * a.y)
         );
     }
 

@@ -53,6 +53,14 @@ public class RunHudLayer : Layer
         ListCardUi cardMenuListCardUi = new ListCardUi(idLayer); //list card ui.
         cardMenuListCardUi.isActive = false;
         cardMenuListCardUi.pos = new(250, 388);
+        cardMenuListCardUi.clickOnCard = (cardClicked) =>
+        {
+            Console.WriteLine(cardClicked.cardIllu); // TODO: print card upper and details.
+        };
+        cardMenuListCardUi.unClickOnCard = (cardClicked) =>
+        {
+            Console.WriteLine(cardClicked.cardIllu); // TODO: 
+        };
         elementsInMenuCardUi.Add(cardMenuListCardUi);
 
         CheckBoxUi cardMenuButtonExit = new CheckBoxUi(idLayer); //button exit card menu.

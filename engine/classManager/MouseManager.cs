@@ -6,6 +6,10 @@ public static class MouseManager
     private static Entity mouse = new(){ 
         isUi = true
     };
+    public static Vector getPosMouseAtScreen
+    {
+        get { return mouse.pos; }
+    }
 
     private static Entity? entityLastFind = null;
 

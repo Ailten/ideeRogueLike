@@ -45,7 +45,7 @@ public class Deck
             Card c = card;
             if(!isSameColor)
                 c.cardColor = StaticCardColor.getRandomColor(isIncludePolyChrome);
-            this.cardsInCimetier.Add(card);
+            this.cardsInCimetier.Add(c);
         }
     }
 

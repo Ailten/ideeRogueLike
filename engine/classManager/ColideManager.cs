@@ -17,7 +17,7 @@ public static class ColideManager
     }
 
     //ask if a pos is in a rect.
-    private static bool isPosIsInRect(Vector pos, Rect rect)
+    public static bool isPosIsInRect(Vector pos, Rect rect)
     {
         return (
             pos.x > rect.posStart.x &&
