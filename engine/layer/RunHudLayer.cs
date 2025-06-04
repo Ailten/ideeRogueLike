@@ -53,30 +53,41 @@ public class RunHudLayer : Layer
         ListCardUi cardMenuListCardUi = new ListCardUi(idLayer); //list card ui.
         cardMenuListCardUi.isActive = false;
         cardMenuListCardUi.pos = new(250, 388);
-        cardMenuListCardUi.clickOnCard = (cardClicked) =>
+        cardMenuListCardUi.upCardWhenSelected = 45f;
+        cardMenuListCardUi.clickOnCard = (cardClicked, isLeftClick, isClickDown) =>
         {
-            Console.WriteLine(cardClicked.cardIllu); // TODO: print card upper and details.
+            if (isClickDown)
+                return;
+            RunHudLayer.layer.setCardSelectedToMenuCardUi(cardClicked);
         };
-        cardMenuListCardUi.unClickOnCard = (cardClicked) =>
+        cardMenuListCardUi.unClickOnCard = (cardClicked, isLeftClick, isClickDown) =>
         {
-            Console.WriteLine(cardClicked.cardIllu); // TODO: 
+            if (isClickDown)
+                return;
+            RunHudLayer.layer.setCardSelectedToMenuCardUi(null);
         };
         elementsInMenuCardUi.Add(cardMenuListCardUi);
 
         CheckBoxUi cardMenuButtonExit = new CheckBoxUi(idLayer); //button exit card menu.
         cardMenuButtonExit.isActive = false;
-        cardMenuButtonExit.zIndex = 3200;
+        cardMenuButtonExit.zIndex = 3400;
         cardMenuButtonExit.scale = new(0.5f, 0.5f);
         cardMenuButtonExit.pos = new(1007, 33);
         cardMenuButtonExit.eventClick = () =>
         {
             cardMenuButtonExit.switchIsOn(); //stay on "X".
+            RunHudLayer.layer.setCardSelectedToMenuCardUi(null); //unselected card.
             RunHudLayer.layer.activeMenuCardUi(false); //close the card menu.
         };
         elementsInMenuCardUi.Add(cardMenuButtonExit);
 
+        CardDetails cardDetails = new CardDetails(idLayer); //card details.
+        cardDetails.isActive = false;
+        cardDetails.pos = new(250, 10);
+        elementsInMenuCardUi.Add(cardDetails);
 
-        
+
+
         base.active();
     }
 
@@ -96,6 +107,12 @@ public class RunHudLayer : Layer
     {
         foreach (Entity e in elementsInMenuCardUi){
             (e as ListCardUi)?.setListCard(listCardToPrint);
+        }
+    }
+    public void setCardSelectedToMenuCardUi(Card? cardSelected)
+    {
+        foreach (Entity e in elementsInMenuCardUi){
+            (e as CardDetails)?.setListCard(cardSelected);
         }
     }
 

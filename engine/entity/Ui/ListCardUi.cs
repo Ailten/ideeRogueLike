@@ -30,9 +30,9 @@ public class ListCardUi : Entity
 
 
     //action when click on a card of list.
-    public Action<Card> clickOnCard = (cardSelected) => { };
+    public Action<Card, bool, bool> clickOnCard = (cardSelected, isLeftClick, isClickDown) => { };
     //action when click on the card currently selected (seconde click).
-    public Action<Card> unClickOnCard = (cardSelected) => { };
+    public Action<Card, bool, bool> unClickOnCard = (cardSelected, isLeftClick, isClickDown) => { };
 
 
     public float scaleCards = 1f;
@@ -58,7 +58,7 @@ public class ListCardUi : Entity
 
     public override void eventMouseClick(bool isLeftClick, bool isClickDown)
     {
-        if (!isLeftClick || isClickDown)
+        if (isClickDown)
             return;
 
         //get area of all cards.
@@ -76,9 +76,9 @@ public class ListCardUi : Entity
                 indexCardSelected = (isAnUndoClick)? -1: i;
 
                 if (isAnUndoClick)
-                    unClickOnCard(listCard[i]);
+                    unClickOnCard(listCard[i], isLeftClick, isClickDown);
                 else
-                    clickOnCard(listCard[i]);
+                    clickOnCard(listCard[i], isLeftClick, isClickDown);
 
                 return;
             }
@@ -94,7 +94,7 @@ public class ListCardUi : Entity
             return new();
 
         //pos screen of full entity.
-            Vector posAtScreen = this.pos * CanvasManager.scaleCanvas + CanvasManager.posDecalCanvas;
+        Vector posAtScreen = this.pos * CanvasManager.scaleCanvas + CanvasManager.posDecalCanvas;
 
         //eval size at screen.
         Vector sizeAtScreen = this.size * this.scale * CanvasManager.scaleCanvas;

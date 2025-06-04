@@ -13,6 +13,15 @@ public struct Card
     public Vector distanceToUse; //distance can be use (x=min, y=max).
 
     public List<KeyValuePair<EffectCard, int>> effects; //all effects of a card (with an int of value).
+    private static int maxEffectByCard = 5;
+    public string getNameCard
+    {
+        get { return cardIllu.ToString().Substring("CardImg_".Length); }
+    }
+    public string getPorteeToUseStr
+    {
+        get { return Math.Round(distanceToUse.x).ToString() + "~" + Math.Round(distanceToUse.y).ToString(); }
+    }
 
 
     //default constructor.
@@ -24,6 +33,7 @@ public struct Card
         this.APCost = APCost;
         this.distanceToUse = distanceToUse;
         this.effects = effects ?? new();
+        //size card : 219, 322;
     }
 
     //constructor with single effect.
@@ -85,6 +95,17 @@ public struct Card
     private static Vector cardEncrage = new(0.5f, 0.5f);
     public static Vector illuSize = new(219, 125);
     private static Vector illuEncrage = new(0.5f, 0.952f);
+    private static Font font = FontManager.getFontByFontType(FontType.IntensaFuente);
+    private static float fontSize = 30f;
+    private static float fontSizeShorter = 20f;
+    private static float fontSpacing = 2f;
+    private static Vector APCostEncrage = new(0, 0.5f);
+    private static Vector posAPCost = new Vector(22, 26);
+    private static Vector porteeToUseEncrage = new(0.5f, 0.5f);
+    private static Vector posPorteeToUse = new Vector(193, 25);
+    private static Vector nameEncrage = new(0.5f, 0.5f);
+    private static Vector posName = new(106, 29);
+    private static Vector[] posEffects = new Vector[] { new(34, 185), new(34, 212), new(34, 240), new(34, 268), new(34, 296),};
     public void drawCard(Vector posAtScreen, float scale = 1f)
     {
         SpriteType spriteType;
@@ -149,6 +170,75 @@ public struct Card
             Raylib_cs.Color.White
         );
 
+        // draw text (cost AP).
+        string text = this.APCost.ToString();
+        Vector posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posAPCost * scale * CanvasManager.scaleCanvas);
+        float fontSizeText = fontSize * scale * CanvasManager.scaleCanvas;
+        float fontSpacingText = fontSpacing * scale * CanvasManager.scaleCanvas;
+        Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
+
+        Raylib_cs.Raylib.DrawTextEx(
+            font: font,
+            text: text,
+            position: posText - (sizeText * APCostEncrage),
+            fontSize: fontSizeText,
+            spacing: fontSpacingText,
+            Raylib_cs.Color.Black
+        );
+
+        // draw text (distanceToUse).
+        text = this.getPorteeToUseStr;
+        posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posPorteeToUse * scale * CanvasManager.scaleCanvas);
+        fontSizeText = fontSizeShorter * scale * CanvasManager.scaleCanvas;
+        sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
+
+        Raylib_cs.Raylib.DrawTextEx(
+            font: font,
+            text: text,
+            position: posText - (sizeText * porteeToUseEncrage),
+            fontSize: fontSizeText,
+            spacing: fontSpacingText,
+            Raylib_cs.Color.Black
+        );
+
+        // draw text (name card).
+        text = this.getNameCard;
+        posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posName * scale * CanvasManager.scaleCanvas);
+        sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
+
+        Raylib_cs.Raylib.DrawTextEx(
+            font: font,
+            text: text,
+            position: posText - (sizeText * nameEncrage),
+            fontSize: fontSizeText,
+            spacing: fontSpacingText,
+            Raylib_cs.Color.Black
+        );
+
+        // draw text (effects).
+        List<string> effectsStr = ((effects.Count == 0) ?
+            new List<string>() { "(no-effect)" } :
+            effects.Select(e => "- " + e.Key.ToString() + " (" + e.Value.ToString() + ")").ToList()
+        );
+        for (int i = 0; i < effectsStr.Count; i++)
+        {
+            text = effectsStr[i];
+            posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posEffects[i] * scale * CanvasManager.scaleCanvas);
+            sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
+
+            Raylib_cs.Raylib.DrawTextEx(
+                font: font,
+                text: text,
+                position: posText - (sizeText * APCostEncrage),
+                fontSize: fontSizeText,
+                spacing: fontSpacingText,
+                Raylib_cs.Color.Black
+            );
+        }
+        ;
+
+
+
         // draw edition.
         if (cardEdition != CardEdition.Default)
         {
@@ -171,13 +261,13 @@ public struct Card
 
         //debug encrage.
         Raylib_cs.Raylib.DrawLine(
-            (int)posAtScreen.x -5, (int)posAtScreen.y -5,
-            (int)posAtScreen.x +5, (int)posAtScreen.y +5,
+            (int)posAtScreen.x - 5, (int)posAtScreen.y - 5,
+            (int)posAtScreen.x + 5, (int)posAtScreen.y + 5,
             Raylib_cs.Color.Orange
         );
         Raylib_cs.Raylib.DrawLine(
-            (int)posAtScreen.x -5, (int)posAtScreen.y +5,
-            (int)posAtScreen.x +5, (int)posAtScreen.y -5,
+            (int)posAtScreen.x - 5, (int)posAtScreen.y + 5,
+            (int)posAtScreen.x + 5, (int)posAtScreen.y - 5,
             Raylib_cs.Color.Orange
         );
 

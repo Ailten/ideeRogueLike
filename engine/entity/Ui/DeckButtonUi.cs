@@ -86,6 +86,7 @@ public class DeckButtonUi : Entity
             deckMainPlayerCharacter.getCardsInCimetier
         );
         RunHudLayer.layer.setListCardToMenuCardUi(listCardToPrint);
+        RunHudLayer.layer.setCardSelectedToMenuCardUi(null);
         RunHudLayer.layer.activeMenuCardUi(true);
     }
 
