@@ -95,17 +95,17 @@ public struct Card
     private static Vector cardEncrage = new(0.5f, 0.5f);
     public static Vector illuSize = new(219, 125);
     private static Vector illuEncrage = new(0.5f, 0.952f);
-    private static Font font = FontManager.getFontByFontType(FontType.IntensaFuente);
+    public static Font font = FontManager.getFontByFontType(FontType.IntensaFuente);
     private static float fontSize = 30f;
-    private static float fontSizeShorter = 20f;
-    private static float fontSpacing = 2f;
+    public static float fontSizeShorter = 20f;
+    public static float fontSpacing = 2f;
     private static Vector APCostEncrage = new(0, 0.5f);
     private static Vector posAPCost = new Vector(22, 26);
     private static Vector porteeToUseEncrage = new(0.5f, 0.5f);
     private static Vector posPorteeToUse = new Vector(193, 25);
     private static Vector nameEncrage = new(0.5f, 0.5f);
     private static Vector posName = new(106, 29);
-    private static Vector[] posEffects = new Vector[] { new(34, 185), new(34, 212), new(34, 240), new(34, 268), new(34, 296),};
+    public static Vector[] posEffects = new Vector[] { new(34, 185), new(34, 212), new(34, 240), new(34, 268), new(34, 296),};
     public void drawCard(Vector posAtScreen, float scale = 1f)
     {
         SpriteType spriteType;

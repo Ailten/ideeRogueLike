@@ -1,7 +1,9 @@
 
 public enum EffectCard
 {
-    hit, //make damage to the target.
+    NoEffect, //no effect.
 
+    hit, //make damage to the target.
+    
     shild //add shild to the target.
 }
