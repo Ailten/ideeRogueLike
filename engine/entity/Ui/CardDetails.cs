@@ -46,15 +46,45 @@ public class CardDetails : Entity
         // draw effect text (on a right box).
         if (effectSelected != null)
         {
-            //TODO: draw text effect selected on a box at right.
+            // get values for draw text details effect selected.
+            string text = effectSelected?.getDetails() ?? throw new Exception("CardDetails.effectSelected is null !");
+            Vector posText = posToDraw + (new Vector(1, 0) * (sizeAtScreenCard.x + 10));
+            float fontSizeText = Card.fontSizeShorter * scaleCards * CanvasManager.scaleCanvas;
+            float fontSpacingText = Card.fontSpacing * scaleCards * CanvasManager.scaleCanvas;
+            Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(Card.font, text, fontSizeText, fontSpacingText);
+            const float padding = 10;
+
+            // draw back text.
+            sizeText += padding * (text.Count(c => c == '\n') * 0.5f + 2);
+            Raylib_cs.Raylib.DrawRectangle(
+                (int)posText.x, 
+                (int)posText.y, 
+                (int)sizeText.x, 
+                (int)sizeText.y, 
+                Raylib_cs.Color.Gray
+            );
+
+            // draw text (effect details).
+            posText += padding;
+            Raylib_cs.Raylib.DrawTextEx(
+                font: Card.font,
+                text: text,
+                position: posText,
+                fontSize: fontSizeText,
+                spacing: fontSpacingText,
+                Raylib_cs.Color.Black
+            );
         }
     }
 
 
     public override void eventMouseClick(bool isLeftClick, bool isClickDown)
     {
-        if (card == null)
+        if (isClickDown)
             return;
+
+        if (card == null)
+                return;
         Card cardNN = card ?? throw new Exception("CardDetails.card is null !");
 
         List<Rect> rectEffects = getRectEffects();

@@ -63,13 +63,13 @@ public struct Card
 
             switch (currentEffectType)
             {
-                case (EffectCard.hit):
+                case (EffectCard.Hit):
                     if (characterTarget == null)
                         continue;
                     effectCardHit(characterLauncher, currentEffectValue, characterTarget);
                     break;
 
-                case (EffectCard.shild):
+                case (EffectCard.Shild):
                     if (characterTarget == null)
                         continue;
                     effectCardShild(characterLauncher, currentEffectValue, characterTarget);

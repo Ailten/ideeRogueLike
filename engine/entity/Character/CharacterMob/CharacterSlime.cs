@@ -25,7 +25,7 @@ public class CharacterSlime : CharacterMob
                 cardEdition: CardEdition.Default,
                 APCost: 1,
                 distanceToUse: new(1, 1),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.hit, 1)
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 1)
             ),
             amountOfCardAdd: 3,
             isSameColor: false
