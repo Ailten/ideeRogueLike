@@ -27,6 +27,7 @@ public class CardDetails : Entity
     public void setListCard(Card? card)
     {
         this.card = card;
+        this.effectSelected = null;
     }
 
 
@@ -86,6 +87,9 @@ public class CardDetails : Entity
         if (card == null)
                 return;
         Card cardNN = card ?? throw new Exception("CardDetails.card is null !");
+
+        if (cardNN.isRecto)
+            return;
 
         List<Rect> rectEffects = getRectEffects();
 

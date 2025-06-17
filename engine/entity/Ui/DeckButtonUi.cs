@@ -33,9 +33,10 @@ public class DeckButtonUi : Entity
 
         Deck deckMainPlayerCharacter = TurnManager.getMainPlayerCharacter().deck;
         string text = (this.isDeckPioche ?
-            deckMainPlayerCharacter.getCardsInPioche.Count:
+            deckMainPlayerCharacter.getCardsInPioche.Count :
             deckMainPlayerCharacter.getCardsInCimetier.Count
         ).ToString();
+        text += "/" + deckMainPlayerCharacter.getAmountCardsInAllDeck;
 
         float fontSizeEval = fontSize * scale.y * CanvasManager.scaleCanvas; //eval font size and spacing.
         float fontSpacingEval = fontSpacing * scale.y * CanvasManager.scaleCanvas;
@@ -60,6 +61,29 @@ public class DeckButtonUi : Entity
             fontSpacingEval, //space between two letter.
             colorText //color.
         );
+
+        // draw text (type of deck).
+        text = (this.isDeckPioche ? "pioche" : "defausse");
+
+        textRectDest = Raylib_cs.Raylib.MeasureTextEx( //size rect text at screen.
+            font,
+            text,
+            fontSizeEval,
+            fontSpacingEval
+        );
+
+        posReplaceTextAtScreen = new Vector(57, -138); //vector to replace text from center entity.
+        posReplaceTextAtScreen *= this.scale * CanvasManager.scaleCanvas;
+
+        Raylib_cs.Raylib.DrawTextEx(
+            font, //font.
+            text, //txt.
+            posToDraw + posReplaceTextAtScreen - textRectDest * encrageText, //pos in canvas.
+            fontSizeEval, //font size.
+            fontSpacingEval, //space between two letter.
+            colorText //color.
+        );
+
     }
 
 

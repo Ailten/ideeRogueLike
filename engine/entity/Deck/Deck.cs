@@ -30,6 +30,10 @@ public class Deck
     {
         get{ return cardsInCimetier; }
     }
+    public int getAmountCardsInAllDeck
+    {
+        get{ return cardsInHand.Count + cardsInPioche.Count + cardsInCimetier.Count; }
+    }
 
 
     public Deck()
