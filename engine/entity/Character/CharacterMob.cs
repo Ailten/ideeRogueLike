@@ -130,8 +130,6 @@ public class CharacterMob : Character
 
                 PathFindingManager.editPathToStayFirstsCels(this.MP); //remove elemnt path until stay as much as current caracter can walk.
 
-                Console.WriteLine($"path shorter : [{String.Join(", ", PathFindingManager.pathFind.Select((pf) => $"{pf.ToString()}"))}]");
-
                 WalkManager.startWalk(); //start walk along the path.
 
                 return;

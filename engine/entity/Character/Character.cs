@@ -109,7 +109,7 @@ public class Character : Entity
     public virtual void turn(){}
 
     //make skip turn of the character.
-    public void skipTurn()
+    public virtual void skipTurn()
     {
         if(TurnManager.getCharacterOfCurrentTurn().idEntity != idEntity) //can't skip turn if is not the turn of this entity.
             return;
@@ -117,11 +117,13 @@ public class Character : Entity
         AP = APmax; //refill AP (for next turn).
         MP = MPmax; //refill MP.
 
+        deck.discardOfEndTurn(); //drop full hands in cimetiere.
+
         TurnManager.moveCharacterIndexToNextCharacter(); //switch to next entity turn.
     }
 
     //make turn start for the character.
-    public void startTurn()
+    public virtual void startTurn()
     {
         SP = 0; //reset shild.
 

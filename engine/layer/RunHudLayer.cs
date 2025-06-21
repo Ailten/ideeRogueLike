@@ -54,16 +54,12 @@ public class RunHudLayer : Layer
         cardMenuListCardUi.isActive = false;
         cardMenuListCardUi.pos = new(250, 388);
         cardMenuListCardUi.upCardWhenSelected = 45f;
-        cardMenuListCardUi.clickOnCard = (cardClicked, isLeftClick, isClickDown) =>
+        cardMenuListCardUi.clickOnCard = (cardClicked, isLeftClick) =>
         {
-            if (isClickDown)
-                return;
             RunHudLayer.layer.setCardSelectedToMenuCardUi(cardClicked);
         };
-        cardMenuListCardUi.unClickOnCard = (cardClicked, isLeftClick, isClickDown) =>
+        cardMenuListCardUi.unClickOnCard = (cardClicked, isLeftClick) =>
         {
-            if (isClickDown)
-                return;
             RunHudLayer.layer.setCardSelectedToMenuCardUi(null);
         };
         elementsInMenuCardUi.Add(cardMenuListCardUi);
@@ -86,6 +82,23 @@ public class RunHudLayer : Layer
         cardDetails.pos = new(250, 10);
         elementsInMenuCardUi.Add(cardDetails); //TODO: click on effects of card selected, and print details at right.
 
+        cardHandListCardUi = new ListCardUi(idLayer); //list card ui (hand).
+        cardHandListCardUi.pos = new(190-40, 620);
+        cardHandListCardUi.sizeListCard.x += 75;
+        cardHandListCardUi.updateGeometryTriggerBasedOnSizeListCard();
+        cardHandListCardUi.zIndex = 2010; //same has button deck ui.
+        //cardHandListCardUi.upCardWhenSelected = 45f;
+        cardHandListCardUi.clickOnCard = (cardClicked, isLeftClick) =>
+        {
+            //RunHudLayer.layer.setCardSelectedToMenuCardUi(cardClicked);
+        };
+        cardHandListCardUi.unClickOnCard = (cardClicked, isLeftClick) =>
+        {
+            //RunHudLayer.layer.setCardSelectedToMenuCardUi(null);
+        };
+        cardHandListCardUi.setListCard(TurnManager.getMainPlayerCharacter().deck.getCardsInHand); //link card hands list to list UI.
+
+        //TODO: why hand card not print ?
 
 
         base.active();
@@ -115,6 +128,7 @@ public class RunHudLayer : Layer
             (e as CardDetails)?.setListCard(cardSelected);
         }
     }
+    public ListCardUi? cardHandListCardUi;
 
 
     public override void update()
@@ -129,6 +143,7 @@ public class RunHudLayer : Layer
         //free all entities of layer. --->
         this.buttonSkipTurn = null;
         this.elementsInMenuCardUi = new();
+        this.cardHandListCardUi = null;
 
         base.unActive();
     }

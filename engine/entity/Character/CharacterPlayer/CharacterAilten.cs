@@ -11,7 +11,7 @@ public class CharacterAilten : CharacterPlayer
         this.HPmax = 10;
         this.HP = HPmax;
 
-        this.deck.pickCountByTurn = 3;
+        this.deck.pickCountByTurn = 5;
         this.deck.addCardToDeck(
             new Card(
                 cardIllu: SpriteType.CardImg_WoodenSword,

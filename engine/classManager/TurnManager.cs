@@ -88,12 +88,15 @@ public static class TurnManager
     private static void verifyIfFightIsEnd()
     {
         bool? teamFind = null;
-        foreach(Character c in allCharacterInRoom){
-            if(teamFind == null){ //first.
+        foreach (Character c in allCharacterInRoom)
+        {
+            if (teamFind == null)
+            { //first.
                 teamFind = c.isInRedTeam;
                 continue;
             }
-            if(c.isInRedTeam != teamFind){ //fight not finish.
+            if (c.isInRedTeam != teamFind)
+            { //fight not finish.
                 return;
             }
         }
@@ -101,6 +104,10 @@ public static class TurnManager
         _isInFight = false;
 
         enfOfFight(teamFind ?? false);
+
+        Deck deckOfMainPlayer = getMainPlayerCharacter().deck; //discard hand at end fight (every card of deck on cimetier).
+        deckOfMainPlayer.discardOfEndTurn();
+        deckOfMainPlayer.pushAllCardPiocheIntoCimetier();
     }
 
     //verify if the fight is start.
@@ -114,6 +121,7 @@ public static class TurnManager
             }
             if(c.isInRedTeam != teamFind){ //fight start.
                 _isInFight = true;
+                getMainPlayerCharacter().deck.piocheOfStartTurn(); //pioche first hands of fight.
                 return;
             }
         }

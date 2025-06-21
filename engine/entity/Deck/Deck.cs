@@ -20,19 +20,19 @@ public class Deck
     }
     public List<Card> getCardsInHand
     {
-        get{ return cardsInHand; }
+        get { return cardsInHand; }
     }
     public List<Card> getCardsInPioche
     {
-        get{ return cardsInPioche; }
+        get { return cardsInPioche; }
     }
     public List<Card> getCardsInCimetier
     {
-        get{ return cardsInCimetier; }
+        get { return cardsInCimetier; }
     }
     public int getAmountCardsInAllDeck
     {
-        get{ return cardsInHand.Count + cardsInPioche.Count + cardsInCimetier.Count; }
+        get { return cardsInHand.Count + cardsInPioche.Count + cardsInCimetier.Count; }
     }
 
 
@@ -45,9 +45,10 @@ public class Deck
     //add a new card to deck (in cimetier).
     public void addCardToDeck(Card card, int amountOfCardAdd = 1, bool isSameColor = false, bool isIncludePolyChrome = false)
     {
-        for (int i = 0; i < amountOfCardAdd; i++){
+        for (int i = 0; i < amountOfCardAdd; i++)
+        {
             Card c = card;
-            if(!isSameColor)
+            if (!isSameColor)
                 c.cardColor = StaticCardColor.getRandomColor(isIncludePolyChrome);
             this.cardsInCimetier.Add(c);
         }
@@ -57,17 +58,28 @@ public class Deck
     //make the deck pioche
     public void piocheOfStartTurn()
     {
-        for(int i=0; i<pickCountByTurn; i++){
+        for (int i = 0; i < pickCountByTurn; i++)
+        {
             piocheACard();
+        }
+    }
+
+    //make discard all card in hand into defausse. (except if card have a special effect or somthing)
+    public void discardOfEndTurn()
+    {
+        for (int i = cardsInHand.Count - 1; i >= 0; i--)
+        {
+            pushCardHandIntoCimetier(i);
         }
     }
 
     //pioche a card from
     public void piocheACard()
     {
-        if(cardsInPioche.Count == 0){ //if no card in pioche.
+        if (cardsInPioche.Count == 0)
+        { //if no card in pioche.
 
-            if(cardsInCimetier.Count == 0) //if cimetier has also no card, can't pioche.
+            if (cardsInCimetier.Count == 0) //if cimetier has also no card, can't pioche.
                 return;
 
             shuffleCimetierIntoPioche(); //re fill the pioche with the cimetier.
@@ -97,7 +109,7 @@ public class Deck
         cardsInPioche = cardsInPioche.OrderBy((c) => RandomManager.rng.Next()).ToList();
     }
 
-    
+
     //push the card selected in the cimetier.
     public void pushCardSelectedIntoCimetier()
     {
@@ -110,6 +122,13 @@ public class Deck
     {
         cardsInCimetier.Add(cardsInHand[indexHand]); //add card from hand to cimetier.
         cardsInHand.RemoveAt(indexHand); //remove card use from hand.
+    }
+
+    //remove all card from pioche into cimetier.
+    public void pushAllCardPiocheIntoCimetier()
+    {
+        cardsInCimetier.AddRange(cardsInPioche);
+        cardsInPioche = new();
     }
 
 }

@@ -9,7 +9,8 @@ public class ListCardUi : Entity
         this.isUi = true;
         this.zIndex = 3200;
 
-        this.size = new(780, 322);
+        this.size = new(0, 0);
+        //this.size = new(780, 322);
         //size card : 219, 322;
 
         this.encrage = new(0, 0);
@@ -28,14 +29,21 @@ public class ListCardUi : Entity
         this.indexCardSelected = -1;
     }
 
+    //set rect geometryTrigger with custom size.
+    public void updateGeometryTriggerBasedOnSizeListCard()
+    {
+        this.geometryTrigger = new Rect(new Vector(0, 0), this.sizeListCard);
+    }
+
 
     //action when click on a card of list.
-    public Action<Card, bool, bool> clickOnCard = (cardSelected, isLeftClick, isClickDown) => { };
+    public Action<Card, bool> clickOnCard = (cardSelected, isLeftClick) => { };
     //action when click on the card currently selected (seconde click).
-    public Action<Card, bool, bool> unClickOnCard = (cardSelected, isLeftClick, isClickDown) => { };
+    public Action<Card, bool> unClickOnCard = (cardSelected, isLeftClick) => { };
 
 
     public float scaleCards = 1f;
+    public Vector sizeListCard = new(780, 322);
     public float upCardWhenSelected = 20f;
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
@@ -76,9 +84,9 @@ public class ListCardUi : Entity
                 indexCardSelected = (isAnUndoClick)? -1: i;
 
                 if (isAnUndoClick)
-                    unClickOnCard(listCard[i], isLeftClick, isClickDown);
+                    unClickOnCard(listCard[i], isLeftClick);
                 else
-                    clickOnCard(listCard[i], isLeftClick, isClickDown);
+                    clickOnCard(listCard[i], isLeftClick);
 
                 return;
             }
@@ -97,7 +105,7 @@ public class ListCardUi : Entity
         Vector posAtScreen = this.pos * CanvasManager.scaleCanvas + CanvasManager.posDecalCanvas;
 
         //eval size at screen.
-        Vector sizeAtScreen = this.size * this.scale * CanvasManager.scaleCanvas;
+        Vector sizeAtScreen = this.sizeListCard * this.scale * CanvasManager.scaleCanvas;
 
         //rect dest of full entity.
         Rect rectDest = new Rect(
