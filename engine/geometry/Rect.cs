@@ -19,11 +19,14 @@ public struct Rect
         //eval pos (gizmo) at screen.
         Vector posAtScreen = e.pos;
 
-        if(e.isUi){ //replace on size canvas.
+        if (e.isUi)
+        { //replace on size canvas.
             posAtScreen += (this.posStart * e.scale);
 
             posAtScreen *= CanvasManager.scaleCanvas;
-        }else{ //replace world pos to screen pos.
+        }
+        else
+        { //replace world pos to screen pos.
 
             posAtScreen -= CameraManager.posCam; //substract pos cam to replace all entity in cam view.
 
@@ -42,7 +45,7 @@ public struct Rect
 
         //eval size at screen.
         Vector sizeAtScreen = this.size * e.scale * CanvasManager.scaleCanvas;
-        if(!e.isUi)
+        if (!e.isUi)
             sizeAtScreen *= CameraManager.zoomCam;
 
 
@@ -52,6 +55,9 @@ public struct Rect
             sizeAtScreen
         );
     }
+
+
+    public override string ToString() => $"{{posStart: {posStart}, size: {size}}}";
 
 
     public static implicit operator Raylib_cs.Rectangle(Rect a) => new(a.posStart, a.size);

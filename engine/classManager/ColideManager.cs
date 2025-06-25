@@ -13,6 +13,8 @@ public static class ColideManager
 
             isPosIsInRect(mouse.pos, e.geometryTriggerNN.getRectAtScreen(e)) //eval the colide.
 
+            || (e.geometryTriggerSecond != null && isPosIsInRect(mouse.pos, e.geometryTriggerSecondNN.getRectAtScreen(e))) //second trigger (if has one).
+
         );
     }
 

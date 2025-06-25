@@ -75,17 +75,17 @@ public class CharacterMob : Character
     //default process of turn of ennemy.
     public override void turn()
     {
-        switch(this.logicState[this.logicStateIndex])
+        switch (this.logicState[this.logicStateIndex])
         {
-            case(LogicState.skipTurn):
+            case (LogicState.skipTurn):
                 this.logicStateSkipTurn();
                 break;
 
-            case(LogicState.chase):
+            case (LogicState.chase):
                 this.logicStateChase();
                 break;
 
-            case(LogicState.bigestHit): //TODO.
+            case (LogicState.bigestHit): //TODO.
                 break;
 
             default:

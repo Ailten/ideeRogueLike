@@ -121,7 +121,10 @@ public static class TurnManager
             }
             if(c.isInRedTeam != teamFind){ //fight start.
                 _isInFight = true;
+
                 getMainPlayerCharacter().deck.piocheOfStartTurn(); //pioche first hands of fight.
+                RunHudLayer.layer.cardHandListCardUi?.setListCard(getMainPlayerCharacter().deck.cardsInHand); //set card list hand to UI.
+
                 return;
             }
         }

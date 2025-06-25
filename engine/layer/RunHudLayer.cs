@@ -83,11 +83,11 @@ public class RunHudLayer : Layer
         elementsInMenuCardUi.Add(cardDetails); //TODO: click on effects of card selected, and print details at right.
 
         cardHandListCardUi = new ListCardUi(idLayer); //list card ui (hand).
-        cardHandListCardUi.pos = new(190-40, 620);
+        cardHandListCardUi.pos = new(150, 620);
         cardHandListCardUi.sizeListCard.x += 75;
         cardHandListCardUi.updateGeometryTriggerBasedOnSizeListCard();
         cardHandListCardUi.zIndex = 2010; //same has button deck ui.
-        //cardHandListCardUi.upCardWhenSelected = 45f;
+        cardHandListCardUi.upCardWhenSelected = 65f;
         cardHandListCardUi.clickOnCard = (cardClicked, isLeftClick) =>
         {
             //RunHudLayer.layer.setCardSelectedToMenuCardUi(cardClicked);
@@ -96,7 +96,7 @@ public class RunHudLayer : Layer
         {
             //RunHudLayer.layer.setCardSelectedToMenuCardUi(null);
         };
-        cardHandListCardUi.setListCard(TurnManager.getMainPlayerCharacter().deck.getCardsInHand); //link card hands list to list UI.
+        cardHandListCardUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInHand); //link card hands list to list UI.
 
         //TODO: why hand card not print ?
 

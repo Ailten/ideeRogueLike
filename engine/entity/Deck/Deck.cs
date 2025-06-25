@@ -2,9 +2,9 @@
 
 public class Deck
 {
-    private List<Card> cardsInHand = new();
-    private List<Card> cardsInPioche = new();
-    private List<Card> cardsInCimetier = new();
+    public List<Card> cardsInHand = new();
+    public List<Card> cardsInPioche = new();
+    public List<Card> cardsInCimetier = new();
 
     private int indexCardHandSelected = -1; //index of hand, for card selected.
 
@@ -17,18 +17,6 @@ public class Deck
     public int countCardInFullDeck //amount of all card in deck.
     {
         get { return cardsInHand.Count + cardsInPioche.Count + cardsInCimetier.Count; }
-    }
-    public List<Card> getCardsInHand
-    {
-        get { return cardsInHand; }
-    }
-    public List<Card> getCardsInPioche
-    {
-        get { return cardsInPioche; }
-    }
-    public List<Card> getCardsInCimetier
-    {
-        get { return cardsInCimetier; }
     }
     public int getAmountCardsInAllDeck
     {
@@ -93,20 +81,24 @@ public class Deck
     public void shuffleCimetierIntoPioche()
     {
         shuffleCimetier(); //shuffle cimetier.
-        cardsInPioche = cardsInCimetier; //copy cimetier into pioche.
-        cardsInCimetier = new(); //clean cimetier.
+        cardsInPioche.AddRange(cardsInCimetier); //copy cimetier into pioche.
+        cardsInCimetier.RemoveAll(_=>true); //clean cimetier.
     }
 
 
     //shuffle cimetier.
     public void shuffleCimetier()
     {
-        cardsInCimetier = cardsInCimetier.OrderBy((c) => RandomManager.rng.Next()).ToList();
+        List<Card> cardsCimetierShuffle = cardsInCimetier.OrderBy((c) => RandomManager.rng.Next()).ToList();
+        cardsInCimetier.RemoveAll(_ => true);
+        cardsInCimetier.AddRange(cardsCimetierShuffle);
     }
     //shuffle pioche.
     public void shufflePioche()
     {
-        cardsInPioche = cardsInPioche.OrderBy((c) => RandomManager.rng.Next()).ToList();
+        List<Card> cardsPiocheShuffle = cardsInPioche.OrderBy((c) => RandomManager.rng.Next()).ToList();
+        cardsInPioche.RemoveAll(_ => true);
+        cardsInPioche.AddRange(cardsPiocheShuffle);
     }
 
 
@@ -128,7 +120,7 @@ public class Deck
     public void pushAllCardPiocheIntoCimetier()
     {
         cardsInCimetier.AddRange(cardsInPioche);
-        cardsInPioche = new();
+        cardsInPioche.RemoveAll(_ => true);
     }
 
 }

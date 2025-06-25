@@ -241,11 +241,15 @@ public class Stage
                 RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(false);
 
                 //spawn mobs.
-                for(int i=0; i<currentRoomNN.typeMobToSpawn.Count; i++){
+                for (int i = 0; i < currentRoomNN.typeMobToSpawn.Count; i++)
+                {
                     SpriteType spriteType = currentRoomNN.typeMobToSpawn[i];
                     Vector posIndexCel = currentRoomNN.getCelsByType(CelType.Cel_MobSpawner)[i].indexPosCel;
                     Character newMobSpawn = CharacterMob.init(spriteType, posIndexCel);
                     TurnManager.addCharacterInRoom(newMobSpawn);
+                    
+                    if (i == currentRoomNN.typeMobToSpawn.Count - 1) //sort all entities zIndex when last mob are spawn.
+                        EntityManager.sortAllEntities();
                 }
 
             }

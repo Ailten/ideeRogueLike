@@ -71,6 +71,7 @@ public class ListCardUi : Entity
 
         //get area of all cards.
         List<Rect> cardsArrea = getCardsArrea();
+        Console.WriteLine(String.Join(", \n", cardsArrea.Select(ca => ca.ToString())));
 
         for (int i = listCard.Count - 1; i >= 0; i--)
         {
@@ -80,13 +81,30 @@ public class ListCardUi : Entity
             );
             if (isClickOnCurrentCard)
             {
-                bool isAnUndoClick = indexCardSelected == i;
-                indexCardSelected = (isAnUndoClick)? -1: i;
+                bool isAnUndoClick = this.indexCardSelected == i;
+                this.indexCardSelected = (isAnUndoClick) ? -1 : i;
 
                 if (isAnUndoClick)
+                {
                     unClickOnCard(listCard[i], isLeftClick);
+                    this.geometryTriggerSecond = null; //reset second geometry trigger.
+                }
                 else
+                {
                     clickOnCard(listCard[i], isLeftClick);
+
+                    Vector sizeTriggerSecond = new Vector(
+                        Card.cardSize.x * this.scaleCards
+                    );
+
+                    //generate second geometry trigger (for card selected up).
+                    float widthCard = Card.cardSize.x * this.scaleCards;
+                    float leftCardReplace = Vector.lerpF(0, this.geometryTriggerNN.size.x - widthCard, (float)i/(listCard.Count-1));
+                    this.geometryTriggerSecond = new Rect(
+                        posStart: this.geometryTriggerNN.posStart + new Vector(leftCardReplace, -this.upCardWhenSelected),
+                        size: new Vector(widthCard, this.upCardWhenSelected)
+                    );
+                }
 
                 return;
             }
@@ -120,13 +138,18 @@ public class ListCardUi : Entity
         Vector posStart = rectDest.posStart + (sizeAtScreenCard * 0.5f);
         Vector posEnd = rectDest.posStart + rectDest.size - (sizeAtScreenCard * 0.5f);
 
-        //case when only one card.
+        //replacement up when a card is selected.
+        Vector upPosWhenSelected = new Vector(0, -1 * this.upCardWhenSelected * CanvasManager.scaleCanvas);
+
+        //case when only one card (for prevent divid by zero).
         if (listCard.Count == 1)
             return new List<Rect>() { new Rect(
                 new Vector(
                     Vector.lerpF(posStart.x, posEnd.x, 0.5f),
                     posStart.y
-                ),
+                ) + (
+                    this.indexCardSelected == 0? upPosWhenSelected: new Vector(0, 0)
+                ) - sizeAtScreenCard * 0.5f,
                 sizeAtScreenCard
             )};
 
@@ -137,7 +160,7 @@ public class ListCardUi : Entity
             Vector posCard = new(0, posStart.y);
             posCard.x = Vector.lerpF(posStart.x, posEnd.x, ((float)i) / ((float)listCard.Count - 1));
             if (i == indexCardSelected)
-                posCard.y -= this.upCardWhenSelected * CanvasManager.scaleCanvas;
+                posCard += upPosWhenSelected;
 
             output.Add(new Rect(
                 posCard - sizeAtScreenCard * 0.5f,

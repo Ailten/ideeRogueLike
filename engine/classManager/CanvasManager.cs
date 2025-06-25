@@ -161,24 +161,35 @@ public static class CanvasManager
             e.drawAfter(posAtScreen, rectDest, origine);
 
 
-            if(isDebug){
+            if (isDebug)
+            {
 
                 //debug encrage.
                 Raylib.DrawLine(
-                    (int)posAtScreen.x -5, (int)posAtScreen.y -5,
-                    (int)posAtScreen.x +5, (int)posAtScreen.y +5,
+                    (int)posAtScreen.x - 5, (int)posAtScreen.y - 5,
+                    (int)posAtScreen.x + 5, (int)posAtScreen.y + 5,
                     Color.Orange
                 );
                 Raylib.DrawLine(
-                    (int)posAtScreen.x -5, (int)posAtScreen.y +5,
-                    (int)posAtScreen.x +5, (int)posAtScreen.y -5,
+                    (int)posAtScreen.x - 5, (int)posAtScreen.y + 5,
+                    (int)posAtScreen.x + 5, (int)posAtScreen.y - 5,
                     Color.Orange
                 );
 
                 //debug geometry trigger.
-                if(e.geometryTrigger != null){
+                if (e.geometryTrigger != null)
+                {
                     Raylib.DrawRectangleLinesEx(
                         e.geometryTriggerNN.getRectAtScreen(e),
+                        1,
+                        Color.Orange
+                    );
+                }
+                
+                //debug geometry trigger second.
+                if(e.geometryTriggerSecond != null){
+                    Raylib.DrawRectangleLinesEx(
+                        e.geometryTriggerSecondNN.getRectAtScreen(e),
                         1,
                         Color.Orange
                     );

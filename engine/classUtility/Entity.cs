@@ -26,8 +26,13 @@ public class Entity
     {
         get { return geometryTrigger ?? throw new Exception("GeometryTrigger is null !"); }
     }
+    public Rect? geometryTriggerSecond = null; //second geometry, only for complex forme (like list card selected UI).
+    public Rect geometryTriggerSecondNN
+    {
+        get { return geometryTriggerSecond ?? throw new Exception("GeometryTriggerSecond is null !"); }
+    }
 
-    public virtual void eventTriggerEnter(Entity entityEnter){}
+    public virtual void eventTriggerEnter(Entity entityEnter) { }
 
     public bool isUi = false;
     public virtual void eventMouseClick(bool isLeftClick, bool isClickDown){}

@@ -33,8 +33,8 @@ public class DeckButtonUi : Entity
 
         Deck deckMainPlayerCharacter = TurnManager.getMainPlayerCharacter().deck;
         string text = (this.isDeckPioche ?
-            deckMainPlayerCharacter.getCardsInPioche.Count :
-            deckMainPlayerCharacter.getCardsInCimetier.Count
+            deckMainPlayerCharacter.cardsInPioche.Count :
+            deckMainPlayerCharacter.cardsInCimetier.Count
         ).ToString();
         text += "/" + deckMainPlayerCharacter.getAmountCardsInAllDeck;
 
@@ -106,8 +106,8 @@ public class DeckButtonUi : Entity
 
         Deck deckMainPlayerCharacter = TurnManager.getMainPlayerCharacter().deck;
         List<Card> listCardToPrint = new List<Card>(this.isDeckPioche ?
-            deckMainPlayerCharacter.getCardsInPioche:
-            deckMainPlayerCharacter.getCardsInCimetier
+            deckMainPlayerCharacter.cardsInPioche:
+            deckMainPlayerCharacter.cardsInCimetier
         );
         RunHudLayer.layer.setListCardToMenuCardUi(listCardToPrint);
         RunHudLayer.layer.setCardSelectedToMenuCardUi(null);
