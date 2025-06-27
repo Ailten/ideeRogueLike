@@ -52,6 +52,7 @@ public static class SpriteManager
 
         s.addSpriteType(SpriteType.HudHP, new Vector(0, 0), new Vector(219, 246));
         s.addSpriteType(SpriteType.HudSP, new Vector(220, 0), new Vector(149, 110));
+        s.addSpriteType(SpriteType.HudPO, new Vector(676, 127), new Vector(134, 69));
 
         s.addSpriteType(SpriteType.ButtonUiSkipTurn_Disabled, new Vector(533, 0), new Vector(142, 108)); //sprites skip and all.
         s.addSpriteType(SpriteType.ButtonUiSkipTurn, new Vector(533, 109), new Vector(142, 108));

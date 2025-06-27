@@ -22,6 +22,7 @@ public enum SpriteType
     SlideBarButtonUi_Disabled,
     HudHP,
     HudSP,
+    HudPO,
     ButtonUiSkipTurn,
     ButtonUiSkipTurn_Hover,
     ButtonUiSkipTurn_Selected,

@@ -13,6 +13,8 @@ public class Character : Entity
 
     public int SP = 0; //Shild Point.
 
+    public int PO = 0; //Gold Piece (piece d'or, PO).
+
     public Vector indexPosCel = new(); //position of character in room.
 
     public bool isInRedTeam; //team in a fight (red of blue).

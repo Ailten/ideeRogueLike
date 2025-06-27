@@ -8,6 +8,7 @@ public class StatsCharacterUi : Entity
     private static Raylib_cs.Color colorTextAP = new Raylib_cs.Color(155, 155, 80, 255);
     private static Raylib_cs.Color colorTextMP = new Raylib_cs.Color(55, 125, 55, 255);
     private static Raylib_cs.Color colorTextSP = new Raylib_cs.Color(55, 55, 125, 255);
+    private static Raylib_cs.Color colorTextPO = new Raylib_cs.Color(160, 59, 0, 255);
     
 
     public StatsCharacterUi(int idLayer) : base(idLayer, SpriteType.HudHP)
@@ -24,7 +25,8 @@ public class StatsCharacterUi : Entity
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
         Character character = TurnManager.getCharacterOfCurrentTurn();
-        if(!character.isInRedTeam){ //print stats of main character durring turn of ennemies.
+        if (!character.isInRedTeam)
+        { //print stats of main character durring turn of ennemies.
             character = TurnManager.getMainPlayerCharacter();
         }
 
@@ -108,7 +110,8 @@ public class StatsCharacterUi : Entity
 
 
         // --- shild.
-        if(character.SP > 0){
+        if (character.SP > 0)
+        {
 
             //pos at screen.
             Vector posAtScreen = new(size.x, 0);
@@ -145,7 +148,7 @@ public class StatsCharacterUi : Entity
             textRectDest = Raylib_cs.Raylib.MeasureTextEx( //get size of rect texture text at screen.
                 font,
                 text,
-                fontSizeEvalMp,
+                fontSizeEvalSp,
                 fontSpacingEval
             );
 
@@ -156,13 +159,73 @@ public class StatsCharacterUi : Entity
                 font, //font.
                 text, //txt.
                 posToDraw + posReplaceTextAtScreen - textRectDest * encrageText, //pos in canvas.
-                fontSizeEvalMp, //font size.
+                fontSizeEvalSp, //font size.
                 fontSpacingEval, //space between two letter.
                 colorTextSP //color.
             );
 
             //TODO : debug color SP and pos text SP (never try to add shild point of a character so text can be at wrong place).
 
+        }
+
+        if (character.PO != 0)
+        {
+
+            //pos at screen.
+            Vector posAtScreen = new(0, 242);
+            posAtScreen *= CanvasManager.scaleCanvas;
+            posAtScreen += CanvasManager.posDecalCanvas;
+
+            //get sprite tile (for get size and rectSource).
+            SpriteTile stPO = sprite.getSpriteTileBySpriteType(SpriteType.HudPO);
+
+            //eval size at screen.
+            Vector sizeAtScreen = stPO.size * scale * CanvasManager.scaleCanvas;
+
+            //default rect dest.
+            Raylib_cs.Rectangle rectDestSP = new Raylib_cs.Rectangle(
+                posAtScreen.x, posAtScreen.y,
+                sizeAtScreen.x, sizeAtScreen.y
+            );
+
+            //default get rect source.
+            Raylib_cs.Rectangle rectSourceInTexture = stPO.getRectSource();
+
+            Raylib_cs.Raylib.DrawTexturePro(
+                sprite.texture, //texture.
+                rectSourceInTexture, //rect source from texture.
+                rectDestSP, //rect desintation at screen.
+                origine, //origine, like encrage by adapt at sprite draw in screen (for rotation aply).
+                rotate, //rotation.
+                Raylib_cs.Color.White //color (already white).
+            );
+
+            // --- print text SP.
+            text = $"{character.PO}";
+
+            const float fontSizePO = 70f;
+            float fontSizeEvalPO = fontSizePO * scale.y * CanvasManager.scaleCanvas; //eval font size.
+
+            textRectDest = Raylib_cs.Raylib.MeasureTextEx( //get size of rect texture text at screen.
+                font,
+                text,
+                fontSizeEvalPO,
+                fontSpacingEval
+            );
+
+            posReplaceTextAtScreen = new Vector(94, 276); //vector to replace text from center entity.
+            posReplaceTextAtScreen *= this.scale * CanvasManager.scaleCanvas;
+
+            Raylib_cs.Raylib.DrawTextEx(
+                font, //font.
+                text, //txt.
+                posToDraw + posReplaceTextAtScreen - textRectDest * encrageText, //pos in canvas.
+                fontSizeEvalPO, //font size.
+                fontSpacingEval, //space between two letter.
+                colorTextPO //color.
+            );
+
+            //TODO: debug gold print.
         }
 
 
