@@ -36,13 +36,8 @@ public class Cel : Entity
     {
         if (TurnManager.isInFight && RunHudLayer.layer.cardHandListCardUiNN.isCardSelected)
         {
-            Vector posEntityTurn = TurnManager.getCharacterOfCurrentTurn().indexPosCel;
-            float dist = ( 
-                Math.Abs(posEntityTurn.x - this.indexPosCel.x) +
-                Math.Abs(posEntityTurn.y - this.indexPosCel.y)
-            );
-            Vector cardPortee = RunHudLayer.layer.cardHandListCardUiNN.getCardSelected.distanceToUse;
-            if (dist >= cardPortee.x && dist <= cardPortee.y) //right dist to use card selected, so print fx on cel.
+            bool isCardOnRange = isCelIsOnRangeOfACard(RunHudLayer.layer.cardHandListCardUiNN.getCardSelected);
+            if (isCardOnRange) //right dist to use card selected, so print fx on cel.
             {
                 //draw fx cel selectable.
                 Raylib_cs.Raylib.DrawTexturePro(
@@ -293,6 +288,15 @@ public class Cel : Entity
         });
 
     }
-    
 
+    private bool isCelIsOnRangeOfACard(Card card, Character? caracterWhoUseCard = null)
+    {
+        caracterWhoUseCard ??= TurnManager.getCharacterOfCurrentTurn();
+        float dist = ( 
+            Math.Abs(caracterWhoUseCard.indexPosCel.x - this.indexPosCel.x) +
+            Math.Abs(caracterWhoUseCard.indexPosCel.y - this.indexPosCel.y)
+        );
+        Vector cardPortee = card.distanceToUse;
+        return (dist >= cardPortee.x && dist <= cardPortee.y);
+    }
 }

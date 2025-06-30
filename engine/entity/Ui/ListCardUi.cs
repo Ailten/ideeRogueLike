@@ -80,7 +80,6 @@ public class ListCardUi : Entity
 
         //get area of all cards.
         List<Rect> cardsArrea = getCardsArrea();
-        Console.WriteLine(String.Join(", \n", cardsArrea.Select(ca => ca.ToString())));
 
         for (int i = listCard.Count - 1; i >= 0; i--)
         {
