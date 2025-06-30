@@ -171,7 +171,16 @@ public class Cel : Entity
 
 
             //play a card at this cel.
-            if(characterTurn.deck.isACardSelected){
+            if (RunHudLayer.layer.cardHandListCardUiNN.isCardSelected) //characterTurn.deck.isACardSelected
+            {
+
+                Card cardSelected = RunHudLayer.layer.cardHandListCardUiNN.getCardSelected;
+
+                bool isRandeToUseCard = isCelIsOnRangeOfACard(cardSelected);
+                if (!isRandeToUseCard)
+                    return;
+
+                cardSelected.useACard(characterTurn, this.indexPosCel);
 
                 //TODO (in specific function).
 

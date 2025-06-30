@@ -51,15 +51,15 @@ public struct Card
 
 
     //use a card in battle (do this effect).
-    public static void useACard(Character characterLauncher, Card cardToUse, Vector posTarget)
+    public void useACard(Character characterLauncher, Vector indexPosTarget)
     {
         //loop on every effect of the card.
-        for (int i = 0; i < cardToUse.effects.Count; i++)
+        for (int i = 0; i < this.effects.Count; i++)
         {
-            EffectCard currentEffectType = cardToUse.effects[i].Key;
-            int currentEffectValue = cardToUse.effects[i].Value;
+            EffectCard currentEffectType = this.effects[i].Key;
+            int currentEffectValue = this.effects[i].Value;
 
-            Character? characterTarget = TurnManager.getCharacterAtIndexPos(posTarget);
+            Character? characterTarget = TurnManager.getCharacterAtIndexPos(indexPosTarget);
 
             switch (currentEffectType)
             {

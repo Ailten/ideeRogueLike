@@ -140,7 +140,7 @@ public class StatsCharacterUi : Entity
             );
 
             // --- print text SP.
-            text = $"{character.MP}/{character.MPmax}";
+            text = $"{character.SP}";
 
             const float fontSizeSP = 70f;
             float fontSizeEvalSp = fontSizeSP * scale.y * CanvasManager.scaleCanvas; //eval font size.

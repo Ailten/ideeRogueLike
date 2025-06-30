@@ -6,14 +6,8 @@ public class Deck
     public List<Card> cardsInPioche = new();
     public List<Card> cardsInCimetier = new();
 
-    private int indexCardHandSelected = -1; //index of hand, for card selected.
-
     public int pickCountByTurn = 5; //amount of card peak by turn.
 
-    public bool isACardSelected //bool for know if a card is selected.
-    {
-        get { return indexCardHandSelected >= 0 && indexCardHandSelected < cardsInHand.Count; }
-    }
     public int countCardInFullDeck //amount of all card in deck.
     {
         get { return cardsInHand.Count + cardsInPioche.Count + cardsInCimetier.Count; }
@@ -103,10 +97,10 @@ public class Deck
 
 
     //push the card selected in the cimetier.
-    public void pushCardSelectedIntoCimetier()
+    public void pushCardFromHandIntoCimetier(int indexCard)
     {
-        cardsInCimetier.Add(cardsInHand[indexCardHandSelected]); //add card from hand to cimetier.
-        cardsInHand.RemoveAt(indexCardHandSelected); //remove card use from hand.
+        cardsInCimetier.Add(cardsInHand[indexCard]); //add card from hand to cimetier.
+        cardsInHand.RemoveAt(indexCard); //remove card use from hand.
     }
 
     //defaus a card from hand to cimetier (base on index in hand).
