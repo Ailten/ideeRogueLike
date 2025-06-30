@@ -65,6 +65,8 @@ public enum SpriteType
     Cel_RopeToNextStage,
     Cel_Invocation,
     Cel_CenterRoom,
+    Cel_Selectable,
+    Cel_DoorToNextRoomLock,
 
 
     // --- Card.
