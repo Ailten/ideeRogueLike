@@ -130,6 +130,10 @@ public class RunHudLayer : Layer
         }
     }
     public ListCardUi? cardHandListCardUi;
+    public ListCardUi cardHandListCardUiNN
+    {
+        get { return cardHandListCardUi ?? throw new Exception("RunHudLayer.cardHandListCardUi is null !"); }
+    }
 
 
     public override void update()

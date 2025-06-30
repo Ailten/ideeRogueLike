@@ -34,7 +34,29 @@ public class Cel : Entity
     //draw over the cel.
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
-        if(celType == CelType.Cel) //skip draw effect if cel is basic.
+        if (TurnManager.isInFight && RunHudLayer.layer.cardHandListCardUiNN.isCardSelected)
+        {
+            Vector posEntityTurn = TurnManager.getCharacterOfCurrentTurn().indexPosCel;
+            float dist = ( 
+                Math.Abs(posEntityTurn.x - this.indexPosCel.x) +
+                Math.Abs(posEntityTurn.y - this.indexPosCel.y)
+            );
+            Vector cardPortee = RunHudLayer.layer.cardHandListCardUiNN.getCardSelected.distanceToUse;
+            if (dist >= cardPortee.x && dist <= cardPortee.y) //right dist to use card selected, so print fx on cel.
+            {
+                //draw fx cel selectable.
+                Raylib_cs.Raylib.DrawTexturePro(
+                    sprite.texture, //texture.
+                    sprite.getSpriteTileBySpriteType(SpriteType.Cel_Selectable).getRectSource(), //rect source from texture.
+                    rectDest, //rect desintation at screen.
+                    origine, //origine, like encrage by adapt at sprite draw in screen (for rotation aply).
+                    this.rotate, //rotation.
+                    Raylib_cs.Color.White //color (already white).
+                );
+            }
+        }
+
+        if (celType == CelType.Cel) //skip draw effect if cel is basic.
             return;
 
         SpriteType spriteTypeDrawAfter = Cel.celTypeToSpriteType(celType);
@@ -60,12 +82,11 @@ public class Cel : Entity
 
             //door.
             case(CelType.CelDoor_up):
-                return SpriteType.Cel_DoorToNextRoom;
             case(CelType.CelDoor_right):
-                return SpriteType.Cel_DoorToNextRoom;
             case(CelType.CelDoor_down):
-                return SpriteType.Cel_DoorToNextRoom;
             case(CelType.CelDoor_left):
+                if (TurnManager.isInFight)
+                    return SpriteType.Cel_DoorToNextRoomLock; //mark as door lock when in fight.
                 return SpriteType.Cel_DoorToNextRoom;
 
             //rope.

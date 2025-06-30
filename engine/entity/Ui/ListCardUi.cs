@@ -4,6 +4,15 @@ public class ListCardUi : Entity
     private List<Card> listCard = new();
     private int indexCardSelected = -1;
 
+    public bool isCardSelected
+    {
+        get { return indexCardSelected != -1; }
+    }
+    public Card getCardSelected
+    {
+        get { return listCard[indexCardSelected]; }
+    }
+
     public ListCardUi(int idLayer) : base(idLayer, SpriteType.none)
     {
         this.isUi = true;
