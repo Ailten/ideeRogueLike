@@ -3,7 +3,12 @@ public class ListCardUi : Entity
 {
     private List<Card> listCard = new();
     private int indexCardSelected = -1;
+    public bool isMakeReOrdered = true;
 
+    public int getIndexCardSelected
+    {
+        get { return indexCardSelected; }
+    }
     public bool isCardSelected
     {
         get { return indexCardSelected != -1; }
@@ -34,8 +39,14 @@ public class ListCardUi : Entity
     //set list and reset selectioned card.
     public void setListCard(List<Card> listCard)
     {
-        this.listCard = listCard.OrderBy(c => c.cardIllu).ToList();
+        this.listCard = (this.isMakeReOrdered? listCard.OrderBy(c => c.cardIllu).ToList(): listCard);
+        this.unselectCard();
+    }
+    //unselect the card selected.
+    public void unselectCard()
+    {
         this.indexCardSelected = -1;
+        this.geometryTriggerSecond = null;
     }
 
     //set rect geometryTrigger with custom size.
@@ -90,30 +101,29 @@ public class ListCardUi : Entity
             if (isClickOnCurrentCard)
             {
                 bool isAnUndoClick = this.indexCardSelected == i;
-                this.indexCardSelected = (isAnUndoClick) ? -1 : i;
-
                 if (isAnUndoClick)
                 {
                     unClickOnCard(listCard[i], isLeftClick);
-                    this.geometryTriggerSecond = null; //reset second geometry trigger.
+                    this.unselectCard(); //set index to -1 and reset second geometry trigger.
+                    return;
                 }
-                else
-                {
-                    clickOnCard(listCard[i], isLeftClick);
+                
+                this.indexCardSelected = i;
 
-                    Vector sizeTriggerSecond = new Vector(
-                        Card.cardSize.x * this.scaleCards
-                    );
+                clickOnCard(listCard[i], isLeftClick);
 
-                    //generate second geometry trigger (for card selected up).
-                    float widthCard = Card.cardSize.x * this.scaleCards;
-                    float leftCardReplace = Vector.lerpF(0, this.geometryTriggerNN.size.x - widthCard, (float)i/(listCard.Count-1));
-                    this.geometryTriggerSecond = new Rect(
-                        posStart: this.geometryTriggerNN.posStart + new Vector(leftCardReplace, -this.upCardWhenSelected),
-                        size: new Vector(widthCard, this.upCardWhenSelected)
-                    );
-                }
+                Vector sizeTriggerSecond = new Vector(
+                    Card.cardSize.x * this.scaleCards
+                );
 
+                //generate second geometry trigger (for card selected up).
+                float widthCard = Card.cardSize.x * this.scaleCards;
+                float leftCardReplace = Vector.lerpF(0, this.geometryTriggerNN.size.x - widthCard, (float)i/(listCard.Count-1));
+                this.geometryTriggerSecond = new Rect(
+                    posStart: this.geometryTriggerNN.posStart + new Vector(leftCardReplace, -this.upCardWhenSelected),
+                    size: new Vector(widthCard, this.upCardWhenSelected)
+                );
+                
                 return;
             }
         }

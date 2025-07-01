@@ -171,18 +171,22 @@ public class Cel : Entity
 
 
             //play a card at this cel.
-            if (RunHudLayer.layer.cardHandListCardUiNN.isCardSelected) //characterTurn.deck.isACardSelected
+            ListCardUi handUiPlayer = RunHudLayer.layer.cardHandListCardUiNN;
+            if (handUiPlayer.isCardSelected) //characterTurn.deck.isACardSelected
             {
+                Card cardSelected = handUiPlayer.getCardSelected;
 
-                Card cardSelected = RunHudLayer.layer.cardHandListCardUiNN.getCardSelected;
-
-                bool isRandeToUseCard = isCelIsOnRangeOfACard(cardSelected);
-                if (!isRandeToUseCard)
+                if (cardSelected.APCost > characterTurn.AP) //cost AP card over range character.
                     return;
 
-                cardSelected.useACard(characterTurn, this.indexPosCel);
+                bool isRandeToUseCard = isCelIsOnRangeOfACard(cardSelected);
+                if (!isRandeToUseCard) //cancel because out of range distance to use.
+                    return;
 
-                //TODO (in specific function).
+                int indexCardSelected = handUiPlayer.getIndexCardSelected;
+                characterTurn.useACardFromHand(indexCardSelected, this.indexPosCel); //play the card at this pos.
+
+                handUiPlayer.setListCard(characterTurn.deck.cardsInHand); //update hand change by the card played.
 
                 return;
             }

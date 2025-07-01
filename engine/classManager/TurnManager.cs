@@ -56,7 +56,7 @@ public static class TurnManager
 
                 verifyIfFightIsEnd(); //check end fight.
 
-                if(i > indexCharacterTurn) //replace index at right place.
+                if(i < indexCharacterTurn) //replace index at right place.
                     moveCharacterIndex(-1);
                 return;
             }

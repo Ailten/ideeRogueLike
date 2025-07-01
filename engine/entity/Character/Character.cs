@@ -53,9 +53,10 @@ public class Character : Entity
     }
 
     //apply damage to character.
-    protected virtual void takeDamage(int atk, Character? characterMakeAtk=null)
+    protected virtual void takeDamage(int atk, Character? characterMakeAtk = null)
     {
-        if(SP > 0){
+        if (SP > 0)
+        {
             int damageAplyToSP = Math.Min(atk, SP);
             atk -= damageAplyToSP;
             takeDamageShild(damageAplyToSP);
@@ -71,24 +72,25 @@ public class Character : Entity
     }
 
     //apply damage to heath point.
-    private void takeDamageToHP(int atk, Character? characterMakeAtk=null)
+    private void takeDamageToHP(int atk, Character? characterMakeAtk = null)
     {
         HP -= Math.Min(atk, HP);
 
-        if(HP <= 0){
+        if (HP <= 0)
+        {
             death(characterMakeAtk);
         }
     }
 
     //call when character dead.
-    public virtual void death(Character? characterMakeKill=null)
+    public virtual void death(Character? characterMakeKill = null)
     {
         //hidde.
         isActive = false;
 
         //execute death of every entity in turn has invoc by this one.
         TurnManager.getAllInvocOfACharacter(this).ForEach((c) => c.death());
-        
+
         //remove from list turn.
         TurnManager.removeCharacterInRoom(this);
 
@@ -108,12 +110,12 @@ public class Character : Entity
 
 
     //do the turn of a character (event when it's the turn of this character) use for execute logic mobs.
-    public virtual void turn(){}
+    public virtual void turn() { }
 
     //make skip turn of the character.
     public virtual void skipTurn()
     {
-        if(TurnManager.getCharacterOfCurrentTurn().idEntity != idEntity) //can't skip turn if is not the turn of this entity.
+        if (TurnManager.getCharacterOfCurrentTurn().idEntity != idEntity) //can't skip turn if is not the turn of this entity.
             return;
 
         AP = APmax; //refill AP (for next turn).
@@ -141,7 +143,8 @@ public class Character : Entity
     //update turn of character (call by turn manager).
     public virtual void updateTurn()
     {
-        if(WalkManager.isWalking){
+        if (WalkManager.isWalking)
+        {
             WalkManager.updateWalk();
             return;
         }
@@ -152,12 +155,12 @@ public class Character : Entity
 
 
     //move character to a vector index pos.
-    public void moveTo(Vector indexPos, bool isActionCel=true)
+    public void moveTo(Vector indexPos, bool isActionCel = true)
     {
         indexPosCel = indexPos;
         pos = Room.getPosAtIndexCelRoom(indexPos);
 
-        if(isActionCel)
+        if (isActionCel)
             RunManager.getCelNN(indexPos).doActionTypeCel(this);
     }
 
@@ -165,6 +168,29 @@ public class Character : Entity
     public void decreaseMP(int decrease)
     {
         MP = Math.Max(MP - decrease, 0);
+    }
+
+    //decrease AP.
+    public void decreaseAP(int decrease)
+    {
+        AP = Math.Max(AP - decrease, 0);
+    }
+
+
+    //use a card on another character.
+    public void useACardFromHand(int indexCardFromHand, Vector indexPosTarget)
+    {
+        Card cardPlay = this.deck.cardsInHand[indexCardFromHand];
+
+        cardPlay.applyCardEffect(this, indexPosTarget, indexCardFromHand);
+
+        this.decreaseAP(cardPlay.APCost);
+
+        Console.WriteLine(this.deck.ToString());
+        Console.WriteLine($"indexSelected: {indexCardFromHand}");
+        Console.WriteLine($"cardSelected: {cardPlay}");
+
+        this.deck.pushCardFromHandIntoCimetier(indexCardFromHand);
     }
 
 }

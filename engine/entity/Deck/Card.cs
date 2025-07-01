@@ -51,43 +51,22 @@ public struct Card
 
 
     //use a card in battle (do this effect).
-    public void useACard(Character characterLauncher, Vector indexPosTarget)
+    public void applyCardEffect(Character characterLauncher, Vector indexPosTarget, int indexCardHand)
     {
         //loop on every effect of the card.
         for (int i = 0; i < this.effects.Count; i++)
         {
             EffectCard currentEffectType = this.effects[i].Key;
-            int currentEffectValue = this.effects[i].Value;
+            int effectValue = this.effects[i].Value;
 
-            Character? characterTarget = TurnManager.getCharacterAtIndexPos(indexPosTarget);
-
-            switch (currentEffectType)
-            {
-                case (EffectCard.Hit):
-                    if (characterTarget == null)
-                        continue;
-                    effectCardHit(characterLauncher, currentEffectValue, characterTarget);
-                    break;
-
-                case (EffectCard.Shild):
-                    if (characterTarget == null)
-                        continue;
-                    effectCardShild(characterLauncher, currentEffectValue, characterTarget);
-                    break;
-
-                default:
-                    throw new Exception($"useACard find a EffectCard with no effect {currentEffectType} !");
-            }
+            currentEffectType.doEffectCard(
+                characterLauncher: characterLauncher,
+                indexPosTarget: indexPosTarget,
+                effectValue: effectValue,
+                indexCardHand: indexCardHand
+            );
 
         }
-    }
-    private static void effectCardHit(Character characterLauncher, int effectValue, Character characterTarget)
-    {
-        characterLauncher.makeDamage(characterTarget, effectValue);
-    }
-    private static void effectCardShild(Character characterLauncher, int effectValue, Character characterTarget)
-    {
-        characterLauncher.giveShild(characterTarget, effectValue);
     }
 
 
@@ -105,7 +84,7 @@ public struct Card
     private static Vector posPorteeToUse = new Vector(193, 25);
     private static Vector nameEncrage = new(0.5f, 0.5f);
     private static Vector posName = new(106, 29);
-    public static Vector[] posEffects = new Vector[] { new(34, 185), new(34, 212), new(34, 240), new(34, 268), new(34, 296),};
+    public static Vector[] posEffects = new Vector[] { new(34, 185), new(34, 212), new(34, 240), new(34, 268), new(34, 296), };
     public void drawCard(Vector posAtScreen, float scale = 1f)
     {
         SpriteType spriteType;
@@ -286,6 +265,16 @@ public struct Card
         drawCard(
             posAtScreen: posCard,
             scale: scale
+        );
+    }
+
+
+    public override string ToString()
+    {
+        return (
+            $"{cardIllu.ToString().Substring("CardImg_".Length)}" +
+            $"-{cardColor}" +
+            $"{(cardEdition != CardEdition.Default ? "-"+cardEdition : "")}"
         );
     }
 

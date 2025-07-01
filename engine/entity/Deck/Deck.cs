@@ -51,7 +51,7 @@ public class Deck
     {
         for (int i = cardsInHand.Count - 1; i >= 0; i--)
         {
-            pushCardHandIntoCimetier(i);
+            pushCardFromHandIntoCimetier(i);
         }
     }
 
@@ -76,7 +76,7 @@ public class Deck
     {
         shuffleCimetier(); //shuffle cimetier.
         cardsInPioche.AddRange(cardsInCimetier); //copy cimetier into pioche.
-        cardsInCimetier.RemoveAll(_=>true); //clean cimetier.
+        cardsInCimetier.RemoveAll(_ => true); //clean cimetier.
     }
 
 
@@ -103,18 +103,20 @@ public class Deck
         cardsInHand.RemoveAt(indexCard); //remove card use from hand.
     }
 
-    //defaus a card from hand to cimetier (base on index in hand).
-    public void pushCardHandIntoCimetier(int indexHand)
-    {
-        cardsInCimetier.Add(cardsInHand[indexHand]); //add card from hand to cimetier.
-        cardsInHand.RemoveAt(indexHand); //remove card use from hand.
-    }
-
     //remove all card from pioche into cimetier.
     public void pushAllCardPiocheIntoCimetier()
     {
         cardsInCimetier.AddRange(cardsInPioche);
         cardsInPioche.RemoveAll(_ => true);
+    }
+
+
+    public override string ToString()
+    {
+        return $"d: \n" +
+        $"  pioc: [{string.Join(", ", this.cardsInPioche.Select(c=>c.ToString()))}]\n"+
+        $"  hand: [{string.Join(", ", this.cardsInHand.Select(c=>c.ToString()))}]\n"+
+        $"  defo: [{string.Join(", ", this.cardsInCimetier.Select(c=>c.ToString()))}]\n";
     }
 
 }

@@ -3,21 +3,16 @@
 class Program 
 {
     //TODO : fix bug card fight :
-    // - first click on cel with card selected make no effect (second yes).
-    // - wturn is skiped automatically (disable this feature).
-    // -- when turn is auto skip : make stay card in hand : not defaus.
-    // -- when turn is auto skip : hitbox of hand stay for the second rect (card selected top).
-    // - when fight is end card hand ui is stay heer (but card is put on defaus).
+    // (- draw live bar upper charactere). -> usefull for debug.
+    // (- add slime can hit by using theres own cards).
+    // (- add many fx)
+    // (- add loot)
 
+    //some time the game make all card in hand into cimetiere : 
+    //maybe it defaus all card from hand because player skip turn, or fight think is end.
 
-
-
-
-    // HUD deck (pioche and cimetier).
 
     // draw menu pause-button.
-
-    // draw menu print card in deck.
 
 
 

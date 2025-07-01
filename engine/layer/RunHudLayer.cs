@@ -88,14 +88,7 @@ public class RunHudLayer : Layer
         cardHandListCardUi.updateGeometryTriggerBasedOnSizeListCard();
         cardHandListCardUi.zIndex = 2010; //same has button deck ui.
         cardHandListCardUi.upCardWhenSelected = 65f;
-        cardHandListCardUi.clickOnCard = (cardClicked, isLeftClick) =>
-        {
-            //RunHudLayer.layer.setCardSelectedToMenuCardUi(cardClicked);
-        };
-        cardHandListCardUi.unClickOnCard = (cardClicked, isLeftClick) =>
-        {
-            //RunHudLayer.layer.setCardSelectedToMenuCardUi(null);
-        };
+        cardHandListCardUi.isMakeReOrdered = false;
         cardHandListCardUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInHand); //link card hands list to list UI.
 
 
