@@ -92,8 +92,6 @@ public class RunHudLayer : Layer
         cardHandListCardUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInHand); //link card hands list to list UI.
 
 
-        //TODO: event click card, and unclick, and verify if list card hand adapt to list hand without re-afect every edit.
-
 
         base.active();
     }

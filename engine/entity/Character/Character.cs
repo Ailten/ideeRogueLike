@@ -193,6 +193,12 @@ public class Character : Entity
     }
 
 
+    public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
+    {
+        //TODO : draw rect life bar upper character (!only when in fight and not durring walk)
+    }
+
+
     public override string ToString()
     {
         return (
