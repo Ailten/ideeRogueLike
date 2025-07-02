@@ -8,9 +8,6 @@ class Program
     // (- add many fx)
     // (- add loot)
 
-    //some time the game make all card in hand into cimetiere : 
-    //maybe it defaus all card from hand because player skip turn, or fight think is end.
-
 
     // draw menu pause-button.
 

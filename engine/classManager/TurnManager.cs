@@ -134,14 +134,24 @@ public static class TurnManager
     private static void enfOfFight(bool isRedWiner)
     {
 
-        if(isRedWiner){ //player win the fight.
+        if (isRedWiner)
+        { //player win the fight.
 
             //TODO. (like increment fight win, or loot).
 
             deathAllInvoc(); //death all invoc.
 
-        }else{ //ennemy win the fight.
-            
+            //reset all stats player when fight is end.
+            Character player = getMainPlayerCharacter();
+            player.HP = player.HPmax; //to think : maybe change refill life every all fight.
+            player.AP = player.APmax;
+            player.MP = player.MPmax;
+            player.SP = 0;
+
+        }
+        else
+        { //ennemy win the fight.
+
             //TODO. (game over screen).
 
         }

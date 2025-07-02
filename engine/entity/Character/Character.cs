@@ -184,13 +184,21 @@ public class Character : Entity
 
         cardPlay.applyCardEffect(this, indexPosTarget, indexCardFromHand);
 
+        if (!TurnManager.isInFight) //cut process defaus card if end fight (so hand is already full remove).
+            return;
+
         this.decreaseAP(cardPlay.APCost);
 
-        Console.WriteLine(this.deck.ToString());
-        Console.WriteLine($"indexSelected: {indexCardFromHand}");
-        Console.WriteLine($"cardSelected: {cardPlay}");
-
         this.deck.pushCardFromHandIntoCimetier(indexCardFromHand);
+    }
+
+
+    public override string ToString()
+    {
+        return (
+            $"{this.spriteType.ToString().Substring("Character_".Length)}" +
+            $"-(hp: {this.HP}/{this.HPmax})"
+        );
     }
 
 }
