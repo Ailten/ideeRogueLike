@@ -3,7 +3,7 @@
 class Program 
 {
     //TODO : fix bug card fight :
-    // (- draw live bar upper charactere). -> usefull for debug.
+    // (- draw live bar upper charactere). -> usefull for debug. *** <--- next one.
     // (- add slime can hit by using theres own cards).
     // (- add many fx)
     // (- add loot)

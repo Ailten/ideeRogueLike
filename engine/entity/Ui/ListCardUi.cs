@@ -41,6 +41,7 @@ public class ListCardUi : Entity
     {
         this.listCard = (this.isMakeReOrdered? listCard.OrderBy(c => c.cardIllu).ToList(): listCard);
         this.unselectCard();
+        this.updateGeometryTriggerBasedOnSizeListCard();
     }
     //unselect the card selected.
     public void unselectCard()
@@ -52,6 +53,10 @@ public class ListCardUi : Entity
     //set rect geometryTrigger with custom size.
     public void updateGeometryTriggerBasedOnSizeListCard()
     {
+        if(this.listCard.Count == 0){ //no colide area when no card in UI.
+            this.geometryTrigger = null;
+            return;
+        }
         this.geometryTrigger = new Rect(new Vector(0, 0), this.sizeListCard);
     }
 
