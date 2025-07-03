@@ -93,6 +93,7 @@ public static class SpriteManager
 
         s = new Sprite("FX");
         s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));
+        s.addSpriteType(SpriteType.FX_starHit, new Vector(64, 0), new Vector(126, 126));
 
     }
 

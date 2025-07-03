@@ -1,10 +1,10 @@
 
-public enum SpriteType 
+public enum SpriteType
 {
 
     // --- exeption for no sprite.
     none,
-    
+
 
     // --- UI.
     ButtonUi,
@@ -85,6 +85,7 @@ public enum SpriteType
 
 
     // --- FX.
-    FX_turnOn
+    FX_turnOn,
+    FX_starHit
 
 }
