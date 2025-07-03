@@ -16,7 +16,7 @@ public static class WalkManager
 
 
     //start a new walk.
-    public static void startWalk(bool isDecreaseMP=true)
+    public static void startWalk(bool isDecreaseMP = true)
     {
         _isWalking = true;
         indexWalkInPath = 0;
@@ -33,12 +33,13 @@ public static class WalkManager
     public static void updateWalk()
     {
         int timeLayerSpeeded = UpdateManager.timeSpeedForAnime(RunLayer.layer.milisecInLevel); //get the time including speed game.
-        float i = (float)(timeLayerSpeeded - timeStartWalk) / milisecForWalkOneCel ; //interpolation walk current cel.
+        float i = (float)(timeLayerSpeeded - timeStartWalk) / milisecForWalkOneCel; //interpolation walk current cel.
 
         Character characterWalk = TurnManager.getCharacterOfCurrentTurn();
 
         //end of this cel walk.
-        if(i >= 1f){
+        if (i >= 1f)
+        {
 
             timeStartWalk = RunLayer.layer.milisecInLevel; //reset the timer walk between two cel.
             indexWalkInPath += 1; //move to next index cel.
@@ -47,11 +48,12 @@ public static class WalkManager
             characterWalk.rotate = 0; //reset rotate.
 
             //end of walk (last cel).
-            if(indexWalkInPath >= PathFindingManager.pathFind.Count - 1){
+            if (indexWalkInPath >= PathFindingManager.pathFind.Count - 1)
+            {
 
                 characterWalk.moveTo(PathFindingManager.pathFind[PathFindingManager.pathFind.Count - 1]); //move to end pos.
 
-                if(isDecreaseMP)
+                if (isDecreaseMP)
                     characterWalk.decreaseMP(indexWalkInPath); //decrease MP by cost walking.
 
                 endWalk();
@@ -59,7 +61,7 @@ public static class WalkManager
             }
 
             characterWalk.moveTo(PathFindingManager.pathFind[indexWalkInPath]); //move to next cel.
-            
+
             return;
         }
 
@@ -79,8 +81,15 @@ public static class WalkManager
         );
 
         //rotate.
-        characterWalk.rotate = scaleCurv * 30f * (Room.isOddCel(PathFindingManager.pathFind[indexWalkInPath])? 1: -1);
+        characterWalk.rotate = scaleCurv * 30f * (Room.isOddCel(PathFindingManager.pathFind[indexWalkInPath]) ? 1 : -1);
 
+    }
+
+
+    // ask if a character is currently walking (is turn and walking).
+    public static bool isThisCharacterWalk(Character characterAsk)
+    {
+        return isWalking && TurnManager.getCharacterOfCurrentTurn() == characterAsk;
     }
 
 }

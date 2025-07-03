@@ -18,7 +18,7 @@ public class Entity
     public SpriteType spriteType = SpriteType.none;
     public Sprite sprite;
 
-    public virtual void drawAfter(Vector posToDraw, Rect rectDest, Vector origine){}
+    public virtual void drawAfter(Vector posToDraw, Rect rectDest, Vector origine) { }
 
     //no need geometrySolid for this game.
     public Rect? geometryTrigger = null;
@@ -35,9 +35,9 @@ public class Entity
     public virtual void eventTriggerEnter(Entity entityEnter) { }
 
     public bool isUi = false;
-    public virtual void eventMouseClick(bool isLeftClick, bool isClickDown){}
-    public virtual void eventMouseEnter(){}
-    public virtual void eventMouseExit(){}
+    public virtual void eventMouseClick(bool isLeftClick, bool isClickDown) { }
+    public virtual void eventMouseEnter() { }
+    public virtual void eventMouseExit() { }
 
 
     public Entity(int idLayer, SpriteType spriteType)
@@ -49,29 +49,44 @@ public class Entity
     }
 
     //constructor for an entity without link to any layer and without sprite.
-    public Entity(){
+    public Entity() {
         this.sprite = SpriteManager.findBySpriteType(spriteType) ?? throw new Exception("Sprite not found !");
         this.size = new(0, 0);
     }
 
 
+    public static bool operator ==(Entity? a, Entity? b)
+    {
+        if (a is null ^ b is null) //xor.
+            return false;
+        return (a?.idEntity ?? -1) == (b?.idEntity ?? -1);
+    }
+    public static bool operator !=(Entity? a, Entity? b)
+    {
+        if (a is null ^ b is null)
+            return true;
+        return (a?.idEntity ?? -1) != (b?.idEntity ?? -1);
+    }
+
+
     //print all data of entity.
-    public void debug(){
+    public void debug()
+    {
         Console.WriteLine(
-            "[ entity : \n"+
-            $"  isActive: {this.isActive}\n"+
-            $"  idEntity: {this.idEntity}\n"+
-            $"  idLayer: {this.idLayer}\n"+
-            $"  pos: (x: {this.pos.x}; y: {this.pos.y})\n"+
-            $"  size: (x: {this.size.x}; y: {this.size.y})\n"+
-            $"  zIndex: {this.zIndex}\n"+
-            $"  scale: (x: {this.scale.x}; y: {this.scale.y})\n"+
-            $"  rotate: {this.rotate}\n"+
-            $"  encrage: (x: {this.encrage.x}; y: {this.encrage.y})\n"+
-            $"  spriteType: {this.spriteType}\n"+
-            $"  sprite: {this.sprite.texture.ToString()}\n"+
-            $"  geometryTrigger: {((this.geometryTrigger == null)? "null": "contain geometry")}\n"+
-            $"  isUi: {this.isUi}\n"+
+            "[ entity : \n" +
+            $"  isActive: {this.isActive}\n" +
+            $"  idEntity: {this.idEntity}\n" +
+            $"  idLayer: {this.idLayer}\n" +
+            $"  pos: (x: {this.pos.x}; y: {this.pos.y})\n" +
+            $"  size: (x: {this.size.x}; y: {this.size.y})\n" +
+            $"  zIndex: {this.zIndex}\n" +
+            $"  scale: (x: {this.scale.x}; y: {this.scale.y})\n" +
+            $"  rotate: {this.rotate}\n" +
+            $"  encrage: (x: {this.encrage.x}; y: {this.encrage.y})\n" +
+            $"  spriteType: {this.spriteType}\n" +
+            $"  sprite: {this.sprite.texture.ToString()}\n" +
+            $"  geometryTrigger: {((this.geometryTrigger == null) ? "null" : "contain geometry")}\n" +
+            $"  isUi: {this.isUi}\n" +
             "]"
         );
     }

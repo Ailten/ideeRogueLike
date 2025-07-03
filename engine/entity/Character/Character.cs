@@ -1,4 +1,6 @@
 
+using Raylib_cs;
+
 public class Character : Entity
 {
 
@@ -195,7 +197,34 @@ public class Character : Entity
 
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
-        //TODO : draw rect life bar upper character (!only when in fight and not durring walk)
+        if (!TurnManager.isInFight) //skip draw life bar if not in fight.
+            return;
+        if (WalkManager.isThisCharacterWalk(this)) //skip draw life bar if this character is walking.
+            return;
+        if (this.HP == this.HPmax) //don't draw bare life if full life.
+            return;
+
+        // draw background life bare.
+            float borderSpacingPurcent = 5;
+        float borderSpacingBrut = rectDest.size.x * (borderSpacingPurcent / 100);
+        Rect rectDestBgLifeBar = new Rect(
+            rectDest.posStart - (rectDest.size / 2) + borderSpacingBrut,
+            new Vector(rectDest.size.x - borderSpacingBrut * 2, borderSpacingBrut)
+        );
+        Raylib.DrawRectangle(
+            (int)rectDestBgLifeBar.posStart.x, (int)rectDestBgLifeBar.posStart.y,
+            (int)rectDestBgLifeBar.size.x, (int)rectDestBgLifeBar.size.y,
+            Color.Red
+        );
+
+        // draw life bare upper.
+        int widthSizeLifeBar = (int)(((float)this.HP / this.HPmax) * rectDestBgLifeBar.size.x);
+        Raylib.DrawRectangle(
+            (int)rectDestBgLifeBar.posStart.x, (int)rectDestBgLifeBar.posStart.y,
+            widthSizeLifeBar, (int)rectDestBgLifeBar.size.y,
+            Color.Green
+        );
+
     }
 
 

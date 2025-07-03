@@ -3,9 +3,10 @@
 class Program 
 {
     //TODO : fix bug card fight :
-    // (- draw live bar upper charactere). -> usefull for debug. *** <--- next one.
+    // - fx atk anime.
+    // - fx print hp of atk.
+    // - add text recap 3 last action in fight.
     // (- add slime can hit by using theres own cards).
-    // (- add many fx)
     // (- add loot)
 
 
