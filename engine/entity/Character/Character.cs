@@ -65,6 +65,9 @@ public class Character : Entity
         }
 
         takeDamageToHP(atk, characterMakeAtk);
+
+        //make an FX star (and sound) for signal make damage.
+        new FxStarHit(this.pos);
     }
 
     //apply damage to shild.

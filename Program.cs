@@ -3,11 +3,14 @@
 class Program 
 {
     //TODO : fix bug card fight :
-    // - fx atk anime.
+    // - fx atk anime. (star rotate lerp) <---
     // - fx print hp of atk.
     // - add text recap 3 last action in fight.
     // (- add slime can hit by using theres own cards).
     // (- add loot)
+
+
+    // window icone ?
 
 
     // draw menu pause-button.

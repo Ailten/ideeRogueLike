@@ -1,5 +1,5 @@
 
-public static class SpriteManager 
+public static class SpriteManager
 {
 
     private static List<Sprite> sprites = new();
@@ -27,7 +27,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.SlideBarButtonUi_Hover, new Vector(220, 171), new Vector(42, 59));
         s.addSpriteType(SpriteType.SlideBarButtonUi_Selected, new Vector(263, 171), new Vector(42, 59));
 
-        s.addSpriteType(SpriteType.MiniMapUi_RoomBG_  , new Vector(370, 0), new Vector(16, 16)); //line mini map.
+        s.addSpriteType(SpriteType.MiniMapUi_RoomBG_, new Vector(370, 0), new Vector(16, 16)); //line mini map.
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_UR, new Vector(386, 0), new Vector(16, 16));
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_UD, new Vector(402, 0), new Vector(16, 16));
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_UL, new Vector(418, 0), new Vector(16, 16));
@@ -35,19 +35,19 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_R, new Vector(386, 16), new Vector(16, 16));
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_D, new Vector(402, 16), new Vector(16, 16));
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_L, new Vector(418, 16), new Vector(16, 16));
-        s.addSpriteType(SpriteType.MiniMapUi_RoomBG_RD  , new Vector(370, 32), new Vector(16, 16)); //line mini map.
-        s.addSpriteType(SpriteType.MiniMapUi_RoomBG_RL  , new Vector(386, 32), new Vector(16, 16));
-        s.addSpriteType(SpriteType.MiniMapUi_RoomBG_DL  , new Vector(402, 32), new Vector(16, 16));
+        s.addSpriteType(SpriteType.MiniMapUi_RoomBG_RD, new Vector(370, 32), new Vector(16, 16)); //line mini map.
+        s.addSpriteType(SpriteType.MiniMapUi_RoomBG_RL, new Vector(386, 32), new Vector(16, 16));
+        s.addSpriteType(SpriteType.MiniMapUi_RoomBG_DL, new Vector(402, 32), new Vector(16, 16));
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_URDL, new Vector(418, 32), new Vector(16, 16));
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_URD, new Vector(370, 48), new Vector(16, 16)); //line mini map.
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_RDL, new Vector(386, 48), new Vector(16, 16));
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_UDL, new Vector(402, 48), new Vector(16, 16));
         s.addSpriteType(SpriteType.MiniMapUi_RoomBG_URL, new Vector(418, 48), new Vector(16, 16));
         s.addSpriteType(SpriteType.MiniMapUI_RoomCenter, new Vector(370, 64), new Vector(16, 16)); //line mini map.
-        s.addSpriteType(SpriteType.MiniMapUI_PosPlayer , new Vector(386, 64), new Vector(16, 16));
-        s.addSpriteType(SpriteType.MiniMapUI_RoomChest , new Vector(402, 64), new Vector(16, 16));
-        s.addSpriteType(SpriteType.MiniMapUI_RoomBoss  , new Vector(418, 64), new Vector(16, 16));
-        s.addSpriteType(SpriteType.MiniMapUI_RoomBoost , new Vector(370, 80), new Vector(16, 16)); //line mini map.
+        s.addSpriteType(SpriteType.MiniMapUI_PosPlayer, new Vector(386, 64), new Vector(16, 16));
+        s.addSpriteType(SpriteType.MiniMapUI_RoomChest, new Vector(402, 64), new Vector(16, 16));
+        s.addSpriteType(SpriteType.MiniMapUI_RoomBoss, new Vector(418, 64), new Vector(16, 16));
+        s.addSpriteType(SpriteType.MiniMapUI_RoomBoost, new Vector(370, 80), new Vector(16, 16)); //line mini map.
         s.addSpriteType(SpriteType.MiniMapUI_RoomFusion, new Vector(386, 80), new Vector(16, 16));
 
         s.addSpriteType(SpriteType.HudHP, new Vector(0, 0), new Vector(219, 246));
@@ -106,8 +106,10 @@ public static class SpriteManager
     //find a sprite by send a type of sprite.
     public static Sprite? findBySpriteType(SpriteType spriteType)
     {
-        return sprites.Find((s) => {
-            return s.spriteTiles.Find((st) => {
+        return sprites.Find((s) =>
+        {
+            return s.spriteTiles.Find((st) =>
+            {
                 return st.spriteType == spriteType;
             }) != null;
         });
@@ -116,7 +118,8 @@ public static class SpriteManager
     //deinit all sprite.
     public static void deinit()
     {
-        sprites.ForEach((s) => {
+        sprites.ForEach((s) =>
+        {
             s.deinit();
         });
     }

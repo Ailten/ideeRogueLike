@@ -54,6 +54,16 @@ public struct Vector
     }
 
 
+    public static Vector rotateAVector(Vector vectorBase, float angleRotate)
+    {
+		double eulerAngle = Vector.angleToEuler(angleRotate);
+		return new Vector(
+			(float) (Math.Cos(eulerAngle) * vectorBase.x + (-Math.Sin(eulerAngle)) * vectorBase.y),
+			(float) (Math.Sin(eulerAngle) * vectorBase.x + Math.Cos(eulerAngle) * vectorBase.y)
+		);
+    }
+
+
     public override string ToString() => $"[x:{x}, y:{y}]";
 
     //public static implicit operator string(Vector a) => a.ToString();
