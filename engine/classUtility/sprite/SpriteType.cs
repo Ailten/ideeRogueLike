@@ -86,6 +86,7 @@ public enum SpriteType
 
     // --- FX.
     FX_turnOn,
-    FX_starHit
+    FX_starHit,
+    FX_shildBuf
 
 }
