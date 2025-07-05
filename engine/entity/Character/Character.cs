@@ -52,6 +52,9 @@ public class Character : Entity
     public virtual void makeDamage(Character target, int atk)
     {
         target.takeDamage(atk, this);
+
+        //make an FX star (and sound) for signal make damage.
+        FxStarHit.initOnlyOneFxAtTime(target.pos);
     }
 
     //apply damage to character.
@@ -65,9 +68,6 @@ public class Character : Entity
         }
 
         takeDamageToHP(atk, characterMakeAtk);
-
-        //make an FX star (and sound) for signal make damage.
-        new FxStarHit(this.pos);
     }
 
     //apply damage to shild.
@@ -111,6 +111,9 @@ public class Character : Entity
     protected virtual void takeShild(int shildIncrement, Character? characterGiveShild)
     {
         SP += shildIncrement;
+
+        //make an FX star (and sound) for gain shild.
+        FxShildBuf.initOnlyOneFxAtTime(this.pos);
     }
 
 

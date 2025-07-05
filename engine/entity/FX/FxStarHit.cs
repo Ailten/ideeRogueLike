@@ -13,6 +13,18 @@ public class FxStarHit : Fx
     }
 
 
+    private static bool isOneFxAleadyInstanciate = false;
+
+    // function for init one fx at time (cancel init if an fx of this type is already instanciate).
+    public static FxStarHit? initOnlyOneFxAtTime(Vector pos)
+    {
+        if (isOneFxAleadyInstanciate)
+            return null;
+        isOneFxAleadyInstanciate = true;
+        return new FxStarHit(pos);
+    }
+
+
     private static int amountOfStar = 5; //amount of star to spread.
     private static Vector directionStartSpreading = new(0, -1); //up.
     private static Vector distanceSpreadingRange = new(0f, 160f); //amount of pixels spreading in every direction.
@@ -23,7 +35,11 @@ public class FxStarHit : Fx
     {
         float i = this.getTimeI();
         if (i < 0f || i > 1f)
+        {
+            if (i > 1f)
+                isOneFxAleadyInstanciate = false;
             return;
+        }
 
         //draw sprite with effect based on time i.
 

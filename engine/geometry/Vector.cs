@@ -25,6 +25,13 @@ public struct Vector
     {
         return a * (1 - i) + b * i;
     }
+    // do the reverce process of a lerp.
+    public static float reverceLerpF(float start, float end, float between)
+    {
+        float dif = between - start;
+        float maxDif = end - start;
+        return dif / maxDif;
+    }
 
 
     //rotate a vector of an angle specifid.
