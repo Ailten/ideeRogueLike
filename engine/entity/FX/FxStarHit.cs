@@ -2,26 +2,17 @@ using Raylib_cs;
 
 public class FxStarHit : Fx
 {
+    private bool isOneFxAtTimeInstance = false;
 
-    public FxStarHit(Vector pos) : base(SpriteType.FX_starHit)
+    public FxStarHit(Vector pos, bool isOneFxAtTimeInstance = false) : base(SpriteType.FX_starHit)
     {
         this.pos = pos;
 
         this.encrage = new(0.5f, 0.5f);
 
-        this.setTimeAnimeDelay(0.5f);
-    }
+        this.setTimeAnimeDelay(0.3f);
 
-
-    private static bool isOneFxAleadyInstanciate = false;
-
-    // function for init one fx at time (cancel init if an fx of this type is already instanciate).
-    public static FxStarHit? initOnlyOneFxAtTime(Vector pos)
-    {
-        if (isOneFxAleadyInstanciate)
-            return null;
-        isOneFxAleadyInstanciate = true;
-        return new FxStarHit(pos);
+        this.isOneFxAtTimeInstance = isOneFxAtTimeInstance;
     }
 
 
@@ -37,7 +28,8 @@ public class FxStarHit : Fx
         if (i < 0f || i > 1f)
         {
             if (i > 1f)
-                isOneFxAleadyInstanciate = false;
+                if (this.isOneFxAtTimeInstance)
+                    FxManager.endFxOnqueue();
             return;
         }
 

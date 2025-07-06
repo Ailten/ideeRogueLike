@@ -9,7 +9,7 @@ public class FxTurnOn : Fx
 
         this.encrage = new(0.5f, 0.5f);
 
-        this.setTimeAnimeDelay(0.5f);
+        this.setTimeAnimeDelay(0.3f);
     }
 
 

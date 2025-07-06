@@ -2,25 +2,16 @@ using Raylib_cs;
 
 public class FxShildBuf : Fx
 {
-    public FxShildBuf(Vector pos) : base(SpriteType.FX_shildBuf)
+    private bool isOneFxAtTimeInstance = false;
+    public FxShildBuf(Vector pos, bool isOneFxAtTimeInstance = false) : base(SpriteType.FX_shildBuf)
     {
         this.pos = pos;
 
         this.encrage = new(0.5f, 0.5f);
 
-        this.setTimeAnimeDelay(0.5f);
-    }
+        this.setTimeAnimeDelay(0.3f);
 
-
-    private static bool isOneFxAleadyInstanciate = false;
-
-    // function for init one fx at time (cancel init if an fx of this type is already instanciate).
-    public static FxShildBuf? initOnlyOneFxAtTime(Vector pos)
-    {
-        if (isOneFxAleadyInstanciate)
-            return null;
-        isOneFxAleadyInstanciate = true;
-        return new FxShildBuf(pos);
+        this.isOneFxAtTimeInstance = isOneFxAtTimeInstance;
     }
 
 
@@ -31,7 +22,8 @@ public class FxShildBuf : Fx
         if (i < 0f || i > 1f)
         {
             if (i > 1f)
-                isOneFxAleadyInstanciate = false;
+                if (this.isOneFxAtTimeInstance)
+                    FxManager.endFxOnqueue();
             return;
         }
 
@@ -64,12 +56,14 @@ public class FxShildBuf : Fx
             );
         }
 
-        if (i <= 0.7f) //little shild.
-        {
-            float scaleFx = (i <= 0.5f?
-                Vector.lerpF(0.1f, 1.6f, Vector.reverceLerpF(0f, 0.5f, i)): //scale up.
-                Vector.lerpF(1.6f, 1.3f, Vector.reverceLerpF(0.5f, 0.7f, i)) //scale down.
+        if (true) //little shild.
+        { 
+            float scaleFx = (
+                (i <= 0.5f) ? Vector.lerpF(0.1f, 1.8f, Vector.reverceLerpF(0f, 0.5f, i)) : //scale up.
+                (i <= 0.7f) ? Vector.lerpF(1.8f, 1.6f, Vector.reverceLerpF(0.5f, 0.7f, i)) : //scale down.
+                1.3f
             );
+
             Vector sizeAtScreenScaled = sizeAtScreenBase * scaleFx;
             Vector origineFx = sizeAtScreenScaled * encrage * scale * CanvasManager.scaleCanvas;
 
@@ -87,7 +81,6 @@ public class FxShildBuf : Fx
                 Color.White //color (already white).
             );
         }
-        
     }
 
 }

@@ -1,12 +1,18 @@
 
 public static class FontManager
 {
+    public static Font getDefaultFont
+    {
+        get { return fonts[0] ?? throw new Exception("no fount instanciate !"); }
+    }
+
     private static List<Font> fonts = new();
 
     //init all sprite.
     public static void init()
     {
-        foreach(FontType fontType in Enum.GetValues(typeof(FontType))){
+        foreach (FontType fontType in Enum.GetValues(typeof(FontType)))
+        {
             new Font(fontType);
         }
     }
@@ -26,7 +32,8 @@ public static class FontManager
     //free all font alocated.
     public static void deinit()
     {
-        fonts.ForEach((f) => {
+        fonts.ForEach((f) =>
+        {
             f.deinit();
         });
     }

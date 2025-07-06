@@ -54,7 +54,7 @@ public class Character : Entity
         target.takeDamage(atk, this);
 
         //make an FX star (and sound) for signal make damage.
-        FxStarHit.initOnlyOneFxAtTime(target.pos);
+        FxManager.initOnQueue(FxType.FxStarHit, target.pos);
     }
 
     //apply damage to character.
@@ -73,13 +73,20 @@ public class Character : Entity
     //apply damage to shild.
     private void takeDamageShild(int atk)
     {
-        SP -= Math.Min(atk, SP);
+        int SPdecrement = Math.Min(atk, SP);
+
+        SP -= SPdecrement;
+
+        FxTextHit.initOnlyOneFxAtTime(this.pos, $"-{SPdecrement}", Color.Blue);
     }
 
     //apply damage to heath point.
     private void takeDamageToHP(int atk, Character? characterMakeAtk = null)
     {
-        HP -= Math.Min(atk, HP);
+        int HPdecrement = Math.Min(atk, HP);
+        HP -= HPdecrement;
+
+        FxTextHit.initOnlyOneFxAtTime(this.pos, $"-{HPdecrement}", Color.Red);
 
         if (HP <= 0)
         {
@@ -113,7 +120,9 @@ public class Character : Entity
         SP += shildIncrement;
 
         //make an FX star (and sound) for gain shild.
-        FxShildBuf.initOnlyOneFxAtTime(this.pos);
+        FxManager.initOnQueue(FxType.FxShildBuf, this.pos);
+
+        FxTextHit.initOnlyOneFxAtTime(this.pos, $"+{shildIncrement}", Color.Blue);
     }
 
 
