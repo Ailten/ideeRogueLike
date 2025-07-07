@@ -38,6 +38,7 @@ class Program
 
         //init all manager.
         CanvasManager.init("ideeRogueLike");
+        CanvasManager.setWindowIcon("gameIcon");
         UpdateManager.init();
         SpriteManager.init(); //include all sprite path.
         FontManager.init(); //include all font by enum.

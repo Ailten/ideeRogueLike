@@ -30,7 +30,7 @@ public static class CanvasManager
 
 
     //init CanvasManager : open a window, with name, size ...
-    public static void init(string nameWindow="window") 
+    public static void init(string nameWindow = "window")
     {
         Raylib.SetConfigFlags(ConfigFlags.ResizableWindow); //window can be resize.
         Raylib.InitWindow((int)sizeWindow.x, (int)sizeWindow.y, nameWindow); //init window.
@@ -80,21 +80,28 @@ public static class CanvasManager
 
     }
 
+    //set a sprite as icon window.
+    public static void setWindowIcon(string nameFileIcon)
+    {
+        Image iconForWindow = Raylib.LoadImage($"assets/sprite/{nameFileIcon}.png");
+        Raylib.SetWindowIcon(iconForWindow);
+    }
+
     //draw both black border (when window is not matching ratio).
     private static void drawBlackBorder()
     {
         Raylib.DrawRectangle(
-            rectBlackBorder[0], 
-            rectBlackBorder[1], 
-            rectBlackBorder[2], 
-            rectBlackBorder[3], 
+            rectBlackBorder[0],
+            rectBlackBorder[1],
+            rectBlackBorder[2],
+            rectBlackBorder[3],
             Color.Black
         );
         Raylib.DrawRectangle(
-            rectBlackBorder[4], 
-            rectBlackBorder[5], 
-            rectBlackBorder[6], 
-            rectBlackBorder[7], 
+            rectBlackBorder[4],
+            rectBlackBorder[5],
+            rectBlackBorder[6],
+            rectBlackBorder[7],
             Color.Black
         );
     }
