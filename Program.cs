@@ -9,7 +9,10 @@ class Program
     // (- add loot)
 
 
-    // window icone ?
+    // add description card for typeCard. -> need debug.
+
+
+    // window icone ? -> change icon.
 
 
     // weird bug : on a room with one slime : his disapear and TP on me next turn. -> need debug (rare ocurence).

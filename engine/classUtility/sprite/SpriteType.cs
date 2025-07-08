@@ -81,7 +81,7 @@ public enum SpriteType
     CardImg_WoodenSword,
     CardImg_WoodenShild,
     //-- placehoder last img.
-    CardImg_Meet,
+    CardImg_Meat,
 
 
     // --- FX.
@@ -89,4 +89,23 @@ public enum SpriteType
     FX_starHit,
     FX_shildBuf
 
+}
+
+public static class StaticSpriteType
+{
+    public static string getDescription(this SpriteType spriteType)
+    {
+        switch (spriteType)
+        {
+            case (SpriteType.CardImg_WoodenSword):
+                return ("Une simple épée de bois.");
+            case (SpriteType.CardImg_WoodenShild):
+                return ("Un simple bouclier de bois.");
+            case (SpriteType.CardImg_Meat):
+                return ("Une belle piece de viande juteuse.");
+            default:
+                return "";
+                //throw new Exception("SpriteType getDescription has no description for this spriteType !");
+        }
+    }
 }

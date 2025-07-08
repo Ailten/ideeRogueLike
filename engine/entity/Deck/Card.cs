@@ -214,8 +214,6 @@ public struct Card
                 Raylib_cs.Color.Black
             );
         }
-        ;
-
 
 
         // draw edition.

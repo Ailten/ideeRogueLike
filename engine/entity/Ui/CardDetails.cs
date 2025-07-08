@@ -58,10 +58,42 @@ public class CardDetails : Entity
             // draw back text.
             sizeText += padding * (text.Count(c => c == '\n') * 0.5f + 2);
             Raylib_cs.Raylib.DrawRectangle(
-                (int)posText.x, 
-                (int)posText.y, 
-                (int)sizeText.x, 
-                (int)sizeText.y, 
+                (int)posText.x,
+                (int)posText.y,
+                (int)sizeText.x,
+                (int)sizeText.y,
+                Raylib_cs.Color.Gray
+            );
+
+            // draw text (effect details).
+            posText += padding;
+            Raylib_cs.Raylib.DrawTextEx(
+                font: Card.font,
+                text: text,
+                position: posText,
+                fontSize: fontSizeText,
+                spacing: fontSpacingText,
+                Raylib_cs.Color.Black
+            );
+        }
+        else if (cardNN.cardIllu.getDescription() != "")
+        {
+
+            // get values for draw text description card (if has one).
+            string text = "Description: \n"+cardNN.cardIllu.getDescription();
+            Vector posText = posToDraw + (new Vector(1, 0) * (sizeAtScreenCard.x + 10));
+            float fontSizeText = Card.fontSizeShorter * scaleCards * CanvasManager.scaleCanvas;
+            float fontSpacingText = Card.fontSpacing * scaleCards * CanvasManager.scaleCanvas;
+            Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(Card.font, text, fontSizeText, fontSpacingText);
+            const float padding = 10;
+
+            // draw back text.
+            sizeText += padding * (text.Count(c => c == '\n') * 0.5f + 2);
+            Raylib_cs.Raylib.DrawRectangle(
+                (int)posText.x,
+                (int)posText.y,
+                (int)sizeText.x,
+                (int)sizeText.y,
                 Raylib_cs.Color.Gray
             );
 
