@@ -3,17 +3,13 @@
 class Program 
 {
     //TODO : fix bug card fight :
-    // - fx print hp of atk.
-    // - add text recap 3 last action in fight.
-    // (- add slime can hit by using theres own cards).
+    // (- add slime can hit by using theres own cards). -> make card splash can hit.
     // (- add loot)
 
 
-    // add description card for typeCard. -> need debug.
 
 
-    // window icone ? -> change icon.
-
+    // ~ add text recap 3 last action in fight.
 
     // weird bug : on a room with one slime : his disapear and TP on me next turn. -> need debug (rare ocurence).
     // bug in room generation : sometime door was behind an other door (un reachable) -> debug by adding a default cross cel always ear.

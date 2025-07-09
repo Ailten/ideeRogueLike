@@ -103,6 +103,17 @@ public class Character : Entity
         //execute death of every entity in turn has invoc by this one.
         TurnManager.getAllInvocOfACharacter(this).ForEach((c) => c.death());
 
+        if (characterMakeKill != null)
+        {
+            if(this.PO != 0)
+                characterMakeKill?.gainGold(this.PO);
+        }
+        else if (this.isAnInvoc)
+        {
+            if(this.PO != 0)
+                this.invokedBy?.gainGold(this.PO);
+        }
+
         //remove from list turn.
         TurnManager.removeCharacterInRoom(this);
 
@@ -125,6 +136,14 @@ public class Character : Entity
         FxTextHit.initOnlyOneFxAtTime(this.pos, $"+{shildIncrement}", Color.Blue);
     }
 
+    //gain Gold.
+    protected virtual void gainGold(int POIncrement)
+    {
+        this.PO += POIncrement;
+
+        FxTextHit.initOnlyOneFxAtTime(this.pos, $"{POIncrement}", Color.Gold);
+    }
+
 
     //do the turn of a character (event when it's the turn of this character) use for execute logic mobs.
     public virtual void turn() { }
@@ -133,6 +152,9 @@ public class Character : Entity
     public virtual void skipTurn()
     {
         if (TurnManager.getCharacterOfCurrentTurn().idEntity != idEntity) //can't skip turn if is not the turn of this entity.
+            return;
+
+        if (WalkManager.isWalking) //can't skip turn during walk.
             return;
 
         AP = APmax; //refill AP (for next turn).

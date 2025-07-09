@@ -176,6 +176,9 @@ public class Cel : Entity
             {
                 Card cardSelected = handUiPlayer.getCardSelected;
 
+                if (WalkManager.isWalking) //cancel action if during a walk.
+                    return;
+
                 if (cardSelected.APCost > characterTurn.AP) //cost AP card over range character.
                     return;
 

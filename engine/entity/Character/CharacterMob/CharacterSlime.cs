@@ -17,6 +17,10 @@ public class CharacterSlime : CharacterMob
         this.HPmax = 3;
         this.HP = HPmax;
 
+        //gold can be looted.
+        this.PO = RandomManager.rng.Next(0, 4);
+
+        //set deck.
         this.deck.pickCountByTurn = 1;
         this.deck.addCardToDeck(
             new Card(

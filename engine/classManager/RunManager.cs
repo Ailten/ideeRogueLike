@@ -36,6 +36,9 @@ public static class RunManager
         _rngSeed = new Random(seed);
         Console.WriteLine($"Seed : {seed}");
 
+        //set random seed to randomManager (used to event decide by player).
+        RandomManager.setRandomManagerSeed(seed);
+
         //time.
         timeStartRun = UpdateManager.timeFromStartGame;
 
@@ -57,8 +60,8 @@ public static class RunManager
     public static void activeAllCelOfARoom(bool editActiveCel)
     {
         activeAllCelOfARoom( //use param of current stage.
-            currentIndexStage, 
-            currentStage.currentIndexRoom, 
+            currentIndexStage,
+            currentStage.currentIndexRoom,
             editActiveCel
         );
     }

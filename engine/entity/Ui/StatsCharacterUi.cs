@@ -164,13 +164,10 @@ public class StatsCharacterUi : Entity
                 colorTextSP //color.
             );
 
-            //TODO : debug color SP and pos text SP (never try to add shild point of a character so text can be at wrong place).
-
         }
 
         if (character.PO != 0)
         {
-
             //pos at screen.
             Vector posAtScreen = new(0, 242);
             posAtScreen *= CanvasManager.scaleCanvas;
@@ -224,8 +221,6 @@ public class StatsCharacterUi : Entity
                 fontSpacingEval, //space between two letter.
                 colorTextPO //color.
             );
-
-            //TODO: debug gold print.
         }
 
 

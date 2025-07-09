@@ -22,12 +22,22 @@ public static class WalkManager
         indexWalkInPath = 0;
         timeStartWalk = UpdateManager.timeSpeedForAnime(RunLayer.layer.milisecInLevel);
         WalkManager.isDecreaseMP = isDecreaseMP;
+
+        if (TurnManager.getCharacterOfCurrentTurn().isInRedTeam) //disable ui button skip turn (if is a character player).
+        {
+            RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(true);
+        }
     }
 
     //end the current walk.
     public static void endWalk()
     {
         _isWalking = false;
+
+        if (TurnManager.getCharacterOfCurrentTurn().isInRedTeam) //enable ui button skip turn.
+        {
+            RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(false);
+        }
     }
 
     public static void updateWalk()
