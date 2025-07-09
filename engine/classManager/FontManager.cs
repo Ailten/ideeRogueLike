@@ -1,11 +1,6 @@
 
 public static class FontManager
 {
-    public static Font getDefaultFont
-    {
-        get { return fonts[0] ?? throw new Exception("no fount instanciate !"); }
-    }
-
     private static List<Font> fonts = new();
 
     //init all sprite.

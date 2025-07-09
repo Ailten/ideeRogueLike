@@ -98,7 +98,7 @@ public static class StaticSpriteType
         switch (spriteType)
         {
             case (SpriteType.CardImg_WoodenSword):
-                return ("Une simple épée de bois.");
+                return ("Une simple epee de bois.");
             case (SpriteType.CardImg_WoodenShild):
                 return ("Un simple bouclier de bois.");
             case (SpriteType.CardImg_Meat):

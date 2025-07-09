@@ -6,6 +6,7 @@ public class FxTextHit : Fx
     private bool isOneFxAtTimeInstance = false;
     private string txt = "";
     private Color colorTxt;
+    private static Font fontTxt = FontManager.getFontByFontType(FontType.IntensaFuente);
 
     public FxTextHit(Vector pos, string txt, Color colorTxt, bool isOneFxAtTimeInstance = false) : base(SpriteType.FX_starHit)
     {
@@ -76,14 +77,14 @@ public class FxTextHit : Fx
             Vector.lerpF(1f, 0.2f, Vector.lerpF(0.5f, 1f, i))
         );
 
-        Vector sizeText = Raylib.MeasureTextEx(FontManager.getDefaultFont, this.txt, fontSize, fontSpacingSize);
+        Vector sizeText = Raylib.MeasureTextEx(fontTxt, this.txt, fontSize, fontSpacingSize);
 
         Vector posText = posToDraw;
         posText += Vector.lerp(posLerpFx[0], posLerpFx[1], i) * CanvasManager.scaleCanvas * CameraManager.zoomCam; // lerp up.
         posText -= sizeText / 2; // center text.
 
         Raylib.DrawTextEx(
-            font: FontManager.getDefaultFont,
+            font: fontTxt,
             text: this.txt,
             position: posText,
             fontSize: fontSize,
