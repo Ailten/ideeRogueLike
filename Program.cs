@@ -8,6 +8,8 @@ class Program
 
     // room generation.
 
+    // some time button skip turn stay disable after play the last card of a fight.
+
 
     // ~ add text recap 3 last action in fight.
 

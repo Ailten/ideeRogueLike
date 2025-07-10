@@ -101,13 +101,12 @@ public class Stage
     //generate a random stage.
     public void generateStage()
     {
-
         _rngSeed = new Random(seed);
 
         currentIndexRoom = new(midWidthMax, midHeightMax);
 
-        if (rayonSpread == 1)
-        { //stage tuto.
+        if (rayonSpread == 1) //stage tuto.
+        {
 
             //TODO: hard code a stage tuto on another function.
 
@@ -134,9 +133,8 @@ public class Stage
             return;
         }
 
-        List<List<bool>> roomsBool = new();
-
         //generate default grid full of false.
+        List<List<bool>> roomsBool = new();
         for (int y = 0; y < heightMax; y++)
         {
             roomsBool.Add(new());
@@ -162,7 +160,7 @@ public class Stage
                     float rayonI = Math.Clamp((float)r / (rayonSpread - 1), 0f, 1f); //RNG.
                     int rngCeil = 999 - (int)(800 * rayonI);
                     int rngGet = rngSeed.Next(1000);
-                    bool isSafeCrossRoom = (distToCenterX == 0 || distToCenterY == 0) && dist < 2; //stay a cross room always print.
+                    bool isSafeCrossRoom = (distToCenterX == 0 || distToCenterY == 0) && dist <= 2; //stay a cross room always print.
                     if (rngGet >= rngCeil && !isSafeCrossRoom) //skip if cell rng say no.
                         continue;
 
@@ -182,16 +180,21 @@ public class Stage
 
         //list of border room (for special room).
         List<Vector> posForSpecialRoom = new();
+        int secureCountLoop = 0;
         while (posForSpecialRoom.Count != 8)
         {
-            int rngIndexX = rngSeed.Next(0, midWidthMax);
-            int rngIndexY = rngSeed.Next(0, midHeightMax);
+            secureCountLoop++; //security for infinit loop.
+            if (secureCountLoop >= 10000)
+                break;
+
+            int rngIndexX = rngSeed.Next(0, widthMax);
+            int rngIndexY = rngSeed.Next(0, heightMax);
 
             if (!roomsBool[rngIndexY][rngIndexX]) //not a room not valid by spreading rng.
                 continue;
             if (posForSpecialRoom.Contains(new(rngIndexX, rngIndexY))) //not a room already find for special room.
                 continue;
-            if (rngIndexX == 0 && rngIndexY == 0) //not the room spawn.
+            if (rngIndexX == midWidthMax && rngIndexY == midHeightMax) //not the room spawn.
                 continue;
 
             posForSpecialRoom.Add(new(rngIndexX, rngIndexY));

@@ -71,19 +71,19 @@ public class Room
                 break;
 
             case(1):
-                generateRoom(7);
+                generateRoom(4);
                 break;
 
             case(2):
-                generateRoom(7);
+                generateRoom(5);
                 break;
 
             case(3):
-                generateRoom(7);
+                generateRoom(5);
                 break;
 
             case(4):
-                generateRoom(7);
+                generateRoom(6);
                 break;
 
             case(5):
@@ -158,14 +158,13 @@ public class Room
                 int distToCenterX = Math.Abs(x - midWidthMax);
                 int distToCenterY = Math.Abs(y - midHeightMax);
                 float dist = (float) Math.Sqrt(
-                    Math.Pow(distToCenterX / rayonSpread, 2) +
-                    Math.Pow(distToCenterY / rayonSpread, 2)
+                    Math.Pow((float)distToCenterX / rayonSpread, 2) +
+                    Math.Pow((float)distToCenterY / rayonSpread, 2)
                 );
                 if(dist > 1) //skip if not the current circle target at this loop.
                     continue;
 
-                float rayonI = Math.Clamp(dist, 0f, 1f);
-                rayonI = rayonI / 2 + 0.5f; //adapt rayonI for randomise only the farest cells.
+                float rayonI = dist / 2 + 0.5f; //adapt rayonI for randomise only the farest cells.
                 int rngCeil = 999 - (int)(800 * rayonI); 
                 int rngGet = rngSeed.Next(1000);
                 bool isSafeCrossCel = ( //patern always cell valid.
@@ -181,10 +180,34 @@ public class Room
 
         //get door for other room.
         List<KeyValuePair<CelType, Vector>> posForDoor = new();
-        posForDoor.Add(new(CelType.CelDoor_up, new(midWidthMax, midHeightMax - rayonSpread)));
-        posForDoor.Add(new(CelType.CelDoor_right, new(midWidthMax + rayonSpread, midHeightMax)));
-        posForDoor.Add(new(CelType.CelDoor_down, new(midWidthMax, midHeightMax + rayonSpread)));
-        posForDoor.Add(new(CelType.CelDoor_left, new(midWidthMax - rayonSpread, midHeightMax)));
+        if (this.isARoomTop)
+            posForDoor.Add(new(CelType.CelDoor_up, new(midWidthMax, midHeightMax - rayonSpread)));
+        else
+        {
+            celsBool[midHeightMax - rayonSpread][midWidthMax] = false;
+            celsBool[midHeightMax - rayonSpread +1][midWidthMax] = false;
+        }
+        if (this.isARoomRight)
+            posForDoor.Add(new(CelType.CelDoor_right, new(midWidthMax + rayonSpread, midHeightMax)));
+        else
+        {
+            celsBool[midHeightMax][midWidthMax + rayonSpread] = false;
+            celsBool[midHeightMax][midWidthMax + rayonSpread -1] = false;
+        }
+        if(this.isARoomDown)
+            posForDoor.Add(new(CelType.CelDoor_down, new(midWidthMax, midHeightMax + rayonSpread)));
+        else
+        {
+            celsBool[midHeightMax + rayonSpread][midWidthMax] = false;
+            celsBool[midHeightMax + rayonSpread -1][midWidthMax] = false;
+        }
+        if(this.isARoomLeft)
+            posForDoor.Add(new(CelType.CelDoor_left, new(midWidthMax - rayonSpread, midHeightMax)));
+        else
+        {
+            celsBool[midHeightMax][midWidthMax - rayonSpread] = false;
+            celsBool[midHeightMax][midWidthMax - rayonSpread +1] = false;
+        }
 
         //add monster if is a normal type room.
         List<Vector> posCelForMobSpawner = new();

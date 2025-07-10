@@ -148,18 +148,21 @@ public static class TurnManager
             player.MP = player.MPmax;
             player.SP = 0;
 
+            //disable button skip turn.
+            RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(false);
+
         }
         else
         { //ennemy win the fight.
 
             //TODO. (game over screen).
 
+            //disable button skip turn.
+            RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(true);
+
         }
 
         cleanPoolDeadCharacter();
-
-        //disable button skip turn.
-        RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(true);
     }
 
     //make all invocation death.
