@@ -6,7 +6,7 @@ class Program
     // (- add slime can hit by using theres own cards). -> make card splash can hit.
     // (- add loot)
 
-
+    // room generation.
 
 
     // ~ add text recap 3 last action in fight.

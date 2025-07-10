@@ -102,6 +102,8 @@ public class Stage
 
         if(rayonSpread == 1){ //stage tuto.
 
+            //TODO: hard code a stage tuto on another function.
+
             rooms = new();
             for(int y=0; y<heightMax; y++){
                 rooms.Add(new());
@@ -134,76 +136,94 @@ public class Stage
         }
 
         //loop spreading, decreasing the amount of rng.
-        for(int r=0; r<rayonSpread; r++){
-	        for(int y=0; y<heightMax; y++){
-	        	for(int x=0; x<widthMax; x++){
+        for (int r = 0; r < rayonSpread; r++)
+        {
+            for (int y = 0; y < heightMax; y++)
+            {
+                for (int x = 0; x < widthMax; x++)
+                {
                     int distToCenterX = Math.Abs(x - midWidthMax);
                     int distToCenterY = Math.Abs(y - midHeightMax);
                     int dist = distToCenterX + distToCenterY;
-                    if(dist != r) //skip if not the current circle target at this loop.
+                    if (dist != r) //skip if not the current circle target at this loop.
                         continue;
 
-                    const int radiusSafe = 1; //RNG.
-                    float rayonI = Math.Clamp((float)(r-radiusSafe) / (rayonSpread-1-radiusSafe), 0f, 1f);
-                    int rngCeil = 1000 - (int)(800 * rayonI); 
+                    float rayonI = Math.Clamp((float)r / (rayonSpread - 1), 0f, 1f); //RNG.
+                    int rngCeil = 1000 - (int)(800 * rayonI);
                     int rngGet = rngSeed.Next(1000);
+                    bool isSafeCrossRoom = (distToCenterX == 0 || distToCenterY == 0) && dist < 2; //stay a cross room always print.
+                    if (rngGet > rngCeil && !isSafeCrossRoom) //skip if cell rng say no.
+                        continue;
 
-                    if(rngGet > rngCeil) //skip if cell rng say no.
-                        continue;
                     int countAdj = (
-                        ((y>0 && roomsBool[y-1][x])? 1: 0) +
-                        ((y<(heightMax-1) && roomsBool[y+1][x])? 1: 0) +
-                        ((x>0 && roomsBool[y][x-1])? 1: 0) +
-                        ((x<(widthMax-1) && roomsBool[y][x+1])? 1: 0)
+                        ((y > 0 && roomsBool[y - 1][x]) ? 1 : 0) +
+                        ((y < (heightMax - 1) && roomsBool[y + 1][x]) ? 1 : 0) +
+                        ((x > 0 && roomsBool[y][x - 1]) ? 1 : 0) +
+                        ((x < (widthMax - 1) && roomsBool[y][x + 1]) ? 1 : 0)
                     );
-                    if(countAdj < 1 && dist != 0) //skip if cell is not adjacent to another valid.
+                    if (countAdj == 0 && dist != 0) //skip if cell is not adjacent to another valid.
                         continue;
+
                     roomsBool[y][x] = true;
-	        	}
-	        }
+                }
+            }
         }
 
         //list of border room (for special room).
         List<Vector> posForSpecialRoom = new();
-        for(int y=0; y<heightMax; y++){
-        	for(int x=0; x<widthMax; x++){
-                if(!roomsBool[y][x]) //skip if not a room.
-                    continue;
-                int countAdj = (
-                    ((y>0 && roomsBool[y-1][x])? 1: 0) +
-                    ((y<(heightMax-1) && roomsBool[y+1][x])? 1: 0) +
-                    ((x>0 && roomsBool[y][x-1])? 1: 0) +
-                    ((x<(widthMax-1) && roomsBool[y][x+1])? 1: 0)
-                );
-                if(countAdj <= 2) //add in room can be special.
-                    posForSpecialRoom.Add(new(x, y));
-            }
+        while (posForSpecialRoom.Count != 8)
+        {
+            int rngIndexX = rngSeed.Next(0, midWidthMax);
+            int rngIndexY = rngSeed.Next(0, midHeightMax);
+            
+            if (!roomsBool[rngIndexY][rngIndexX]) //not a room not valid by spreading rng.
+                continue;
+            if (posForSpecialRoom.Contains(new(rngIndexX, rngIndexY))) //not a room already find for special room.
+                continue;
+            if (rngIndexX == 0 && rngIndexY == 0) //not the room spawn.
+                continue;
+
+            posForSpecialRoom.Add(new(rngIndexX, rngIndexY));
         }
-
-        //no need to verify if as anefor in list, until use 4 or less.
-
-        //random order the list.
-        posForSpecialRoom = posForSpecialRoom.OrderBy(_ => rngSeed.Next(0, 100) < 50).ToList();
 
         //cast roomBool into rooms.
         rooms = new();
         for(int y=0; y<heightMax; y++){
             rooms.Add(new());
         	for(int x=0; x<widthMax; x++){
-                if(!roomsBool[y][x]){ //no room.
+                if(!roomsBool[y][x]) //no room.
                     continue;
-                }
                 
-                int roomTypeIndex = 0; //eval room type.
-                for(int i=0; i<4; i++){
-                    if(i >= posForSpecialRoom.Count)
-                        break;
-                    if(posForSpecialRoom[i].x == x && posForSpecialRoom[i].y == y)
-                        roomTypeIndex = i + 1;
-                }
+                RoomType roomType = RoomType.Room; //eval room type.
 
-                if(y == midHeightMax && x == midWidthMax) //center room type.
-                    roomTypeIndex = (int)RoomType.Room_Center;
+                Vector posIndexCurrentRoom = new(x, y);
+                if (posForSpecialRoom.Contains(posIndexCurrentRoom))
+                {
+                    for (int i = 0; i < posForSpecialRoom.Count; i++)
+                    {
+                        bool isMatchIndexPos = (
+                            posForSpecialRoom[i].x == posIndexCurrentRoom.x &&
+                            posForSpecialRoom[i].y == posIndexCurrentRoom.y
+                        );
+                        if (isMatchIndexPos)
+                        {
+                            roomType = (
+                                (i == 0) ? RoomType.Room_Boss :
+                                (i == 1) ? RoomType.Room_Chest :
+                                (i == 2) ? RoomType.Room_Fusion :
+                                (i == 3) ? RoomType.Room_Boost :
+                                (i == 4) ? RoomType.Room :
+                                (i == 5) ? RoomType.Room :
+                                (i == 6) ? RoomType.Room :
+                                (i == 7) ? RoomType.Room :
+                                throw new Exception("posForSpecialRoom out of range RoomType cast !")
+                            );
+                            break;
+                        }
+                    }
+                }
+                else if(y == midHeightMax && x == midWidthMax) //center room type.
+                    roomType = RoomType.Room_Center;
 
         		rooms[rooms.Count-1].Add(
                     x,
@@ -213,7 +233,7 @@ public class Stage
                         (y<(heightMax-1) && roomsBool[y+1][x]), //is room down.
                         (x>0 && roomsBool[y][x-1]), //is room left.
                         stage, //stage.
-                        (RoomType)roomTypeIndex,
+                        roomType,
                         rngSeed.Next()
                     )
                 );
@@ -230,12 +250,14 @@ public class Stage
     {
         bool isFirstWalkOnThisRoom = !isContainInRoomsWalked(currentIndexRoom);
 
-        if(isFirstWalkOnThisRoom){
+        if (isFirstWalkOnThisRoom)
+        {
 
             roomsWalked.Add(currentIndexRoom); //add in list walked.
 
             //spawn mobs if has one in room.
-            if(currentRoomNN.isHasMob){
+            if (currentRoomNN.isHasMob)
+            {
 
                 //unable button skip turn.
                 RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(false);
@@ -247,7 +269,7 @@ public class Stage
                     Vector posIndexCel = currentRoomNN.getCelsByType(CelType.Cel_MobSpawner)[i].indexPosCel;
                     Character newMobSpawn = CharacterMob.init(spriteType, posIndexCel);
                     TurnManager.addCharacterInRoom(newMobSpawn);
-                    
+
                     if (i == currentRoomNN.typeMobToSpawn.Count - 1) //sort all entities zIndex when last mob are spawn.
                         EntityManager.sortAllEntities();
                 }
@@ -307,68 +329,5 @@ public class Stage
         rooms = new();
         roomsWalked = new(){ new(midWidthMax, midHeightMax) };
     }
-
-
-    /* --- demo JS.
-
-let stage = [];
-
-for(let y=0; y<15; y++){
-    stage.push([]);
-	for(let x=0; x<15; x++){
-		stage[stage.length-1].push(' ');
-	}
-}
-
-for(let i=0; i<5; i++){
-	for(let y=0; y<15; y++){
-		for(let x=0; x<15; x++){
-            let distToCenterX = Math.abs(x - 8);
-            let distToCenterY = Math.abs(y - 8);
-            let dist = distToCenterX + distToCenterY;
-            if(dist != i)
-                continue;
-            let rng = 100 - dist * 12;
-            if(Math.random() > rng/100)
-                continue;
-            let countAdj = (
-                ((stage[y-1][x] == '#')? 1: 0) +
-                ((stage[y+1][x] == '#')? 1: 0) +
-                ((stage[y][x-1] == '#')? 1: 0) +
-                ((stage[y][x+1] == '#')? 1: 0)
-            );
-            if(countAdj < 1 && dist != 0)
-                continue;
-            stage[y][x] = '#';
-		}
-	}
-}
-
-let printStage = '';
-for(let y=0; y<15; y++){
-    for(let x=0; x<15; x++){
-        printStage+=stage[y][x];
-    }
-    printStage+='\n';
-}
-console.log(printStage);
-    
-    */
-
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
-    //##############
 
 }
