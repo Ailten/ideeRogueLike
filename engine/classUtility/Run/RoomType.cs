@@ -1,14 +1,16 @@
 
 public enum RoomType
 {
-    Room = 0,
-    
-    Room_Boss = 1,
-    Room_Chest = 2,
-    Room_Fusion = 3,
-    Room_Boost = 4,
+    Room,
 
-    Room_Center = 5,
+    Room_Boss, //fight with a boss, allow to walk to next stage.
+    Room_Chest, //a chest contain a new card to add to deck.
+    Room_Fusion, //allow to merge two card.
+    Room_Boost, //send a boost permanent on the player.
+    Room_Duplicate, //allow to duplicate a card on your deck.
+    Room_Discard, //allow to delete a card from deck.
+
+    Room_Center,
 
     Room_Tuto
 }

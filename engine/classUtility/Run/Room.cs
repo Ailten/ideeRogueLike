@@ -102,6 +102,8 @@ public class Room
 
         if(roomType == RoomType.Room_Tuto){ //room tuto.
 
+            //TODO: generate rooms for tuto stage.
+
             cels = new();
             for(int y=0; y<heightMax; y++){
                 cels.Add(new());
@@ -140,9 +142,9 @@ public class Room
             return;
         }
 
-        List<List<bool>> celsBool = new();
 
         //generate default grid full of false.
+        List<List<bool>> celsBool = new();
         for(int y=0; y<heightMax; y++){
             celsBool.Add(new());
         	for(int x=0; x<widthMax; x++){
@@ -151,31 +153,34 @@ public class Room
         }
 
         //loop spreading, decreasing the amount of rng.
-        const int radiusSafe = 2; //rayon safe for generation cel.
-
         for(int r=0; r<rayonSpread; r++){
 	        for(int y=0; y<heightMax; y++){
 	        	for(int x=0; x<widthMax; x++){
                     int distToCenterX = Math.Abs(x - midWidthMax);
                     int distToCenterY = Math.Abs(y - midHeightMax);
-                    int dist = distToCenterX + distToCenterY; //Math.Max(distToCenterX, distToCenterY);
-                    if(dist != r) //skip if not the current circle target at this loop.
+                    float dist = (float) Math.Sqrt(
+                        distToCenterX * distToCenterX +
+                        distToCenterY * distToCenterY
+                    );
+                    if(dist > r) //skip if not the current circle target at this loop.
                         continue;
 
-                    float rayonI = Math.Clamp((float)(r-radiusSafe) / (rayonSpread-1-radiusSafe), 0f, 1f);
-                    int rngCeil = 1000 - (int)(800 * rayonI); 
+                    float rayonI = Math.Clamp((float)r / (rayonSpread-1), 0f, 1f);
+                    int rngCeil = 999 - (int)(800 * rayonI); 
                     int rngGet = rngSeed.Next(1000);
-
-                    if(rngGet >= rngCeil) //skip if cell rng say no.
+                    bool isSafeCrossCel = (distToCenterX == 0 || distToCenterY == 0) || dist < 2.75f; //patern always cell valid.
+                    if (rngGet >= rngCeil && !isSafeCrossCel) //skip if cell rng say no.
                         continue;
+
                     int countAdj = (
                         ((y>0 && celsBool[y-1][x])? 1: 0) +
                         ((y<(heightMax-1) && celsBool[y+1][x])? 1: 0) +
                         ((x>0 && celsBool[y][x-1])? 1: 0) +
                         ((x<(widthMax-1) && celsBool[y][x+1])? 1: 0)
                     );
-                    if(countAdj < 1 && dist != 0) //skip if cell is not adjacent to another valid.
+                    if(countAdj == 0 && dist != 0) //skip if cell is not adjacent to another valid.
                         continue;
+
                     celsBool[y][x] = true;
 	        	}
 	        }
