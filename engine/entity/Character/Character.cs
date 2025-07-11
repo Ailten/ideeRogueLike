@@ -105,12 +105,12 @@ public class Character : Entity
 
         if (characterMakeKill != null)
         {
-            if(this.PO != 0)
+            if (this.PO != 0)
                 characterMakeKill?.gainGold(this.PO);
         }
         else if (this.isAnInvoc)
         {
-            if(this.PO != 0)
+            if (this.PO != 0)
                 this.invokedBy?.gainGold(this.PO);
         }
 
@@ -242,7 +242,7 @@ public class Character : Entity
             return;
 
         // draw background life bare.
-            float borderSpacingPurcent = 5;
+        float borderSpacingPurcent = 5;
         float borderSpacingBrut = rectDest.size.x * (borderSpacingPurcent / 100);
         Rect rectDestBgLifeBar = new Rect(
             rectDest.posStart - (rectDest.size / 2) + borderSpacingBrut,
@@ -270,6 +270,16 @@ public class Character : Entity
         return (
             $"{this.spriteType.ToString().Substring("Character_".Length)}" +
             $"-(hp: {this.HP}/{this.HPmax})"
+        );
+    }
+
+
+    //get distance (brut) from other character.
+    public int getDistFrom(Character characterB)
+    {
+        return (
+            (int) Math.Abs(this.indexPosCel.x - characterB.indexPosCel.x) +
+            (int) Math.Abs(this.indexPosCel.y - characterB.indexPosCel.y)
         );
     }
 

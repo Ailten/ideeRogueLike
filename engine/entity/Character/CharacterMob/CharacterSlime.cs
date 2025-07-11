@@ -6,7 +6,7 @@ public class CharacterSlime : CharacterMob
     {
         //IA logic.
         this.logicState.Add(LogicState.chase);
-        //this.logicState.Add(LogicState.bigestHit); //TODO ! script the IA execution of mob hit. (and after, the draw card for player).
+        this.logicState.Add(LogicState.firstHit);
         this.logicState.Add(LogicState.skipTurn);
 
         //stats.

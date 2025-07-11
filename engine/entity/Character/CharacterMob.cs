@@ -31,7 +31,7 @@ public class CharacterMob : Character
         new MobType(SpriteType.Character_Slime, 10, false),
         new MobType(SpriteType.Character_Slime, 10, true),
     };
-    
+
     public CharacterMob(SpriteType spriteType, Vector posIndexCel) : base(spriteType, posIndexCel)
     {
         this.isInRedTeam = false;
@@ -41,13 +41,14 @@ public class CharacterMob : Character
     //instantiate a CharacterMob.
     public static CharacterMob init(SpriteType spriteType, Vector posIndexCel)
     {
-        switch(spriteType){
+        switch (spriteType)
+        {
 
-            case(SpriteType.Character_Slime):
+            case (SpriteType.Character_Slime):
                 return new CharacterSlime(spriteType, posIndexCel);
 
             //add heer new CharacterMob.
-                
+
             default:
                 throw new Exception("SpriteType has no CharacterMob match !");
 
@@ -56,15 +57,16 @@ public class CharacterMob : Character
 
 
     //pick a random type mob.
-    public static SpriteType generateRandomMobType(Room room, int dificulty, bool isBoss=false)
+    public static SpriteType generateRandomMobType(Room room, int dificulty, bool isBoss = false)
     {
         //filter list type mob (for math to condition param).
-        List<MobType> mobTypeFiltered = allMobTypes.Where((mt) => {
-            return mt.dificulty == dificulty && mt.isBoss == isBoss; 
+        List<MobType> mobTypeFiltered = allMobTypes.Where((mt) =>
+        {
+            return mt.dificulty == dificulty && mt.isBoss == isBoss;
         }).ToList();
 
         //error if none found after filter.
-        if(mobTypeFiltered.Count == 0)
+        if (mobTypeFiltered.Count == 0)
             throw new Exception("generateRandomMobType return a empty list filtered !");
 
         //return a random element in list filtered (only the spriteType).
@@ -80,12 +82,11 @@ public class CharacterMob : Character
             case (LogicState.skipTurn):
                 this.logicStateSkipTurn();
                 break;
-
             case (LogicState.chase):
                 this.logicStateChase();
                 break;
-
-            case (LogicState.bigestHit): //TODO.
+            case (LogicState.firstHit):
+                this.logicStateFirstHit();
                 break;
 
             default:
@@ -104,7 +105,8 @@ public class CharacterMob : Character
     }
     private void logicStateChase(int distanceAlowFromTarget = 1)
     {
-        if(targetOfState == null){
+        if (targetOfState == null)
+        {
 
             //get all oponents (sort by poxi).
             List<Character> oponents = TurnManager.getAllCharacters().Where((c) => //filter.
@@ -113,7 +115,8 @@ public class CharacterMob : Character
                 Vector.distance(this.pos, c.pos)
             ).ToList();
 
-            foreach(Character oponent in oponents){
+            foreach (Character oponent in oponents)
+            {
 
                 //walk to cel (if can).
                 PathFindingManager.evalAPath( //eval a pathfinding.
@@ -123,7 +126,7 @@ public class CharacterMob : Character
                     distanceAlowFromTarget //the distance alow to target for stop path.
                 );
 
-                if(!PathFindingManager.isPathValid)
+                if (!PathFindingManager.isPathValid)
                     continue;
 
                 this.targetOfState = oponent;
@@ -135,17 +138,47 @@ public class CharacterMob : Character
                 return;
             }
 
-            if(this.targetOfState == null){ //if no one oponent can be chase.
+            if (this.targetOfState == null)
+            { //if no one oponent can be chase.
                 this.nextLogicState();
                 return;
             }
 
         }
 
-        if(!WalkManager.isWalking){ //when the chase phase is end
+        if (!WalkManager.isWalking)
+        { //when the chase phase is end
             this.nextLogicState();
             return;
         }
+    }
+    private void logicStateFirstHit()
+    {
+        for (int i = 0; i < this.deck.cardsInHand.Count; i++)
+        {
+            Card currentCard = this.deck.cardsInHand[i];
+
+            if (currentCard.APCost > this.AP) //cost to mush ap.
+                continue;
+            if (!currentCard.effects.Select(e => e.Key).Contains(EffectCard.Hit)) //card has no effect "hit".
+                continue;
+
+            Character? target = TurnManager.getAllCharacters().Where(c =>
+            {
+                if (!c.isInRedTeam) //skip other mobs.
+                    return false;
+                int dist = this.getDistFrom(c);
+                if (dist < currentCard.distanceToUse.x || dist > currentCard.distanceToUse.y) //to close or to fare for use this card.
+                    return false;
+                return true;
+            }).OrderBy(c => c.isAPlayer).FirstOrDefault();
+            if (target == null)
+                continue;
+
+            this.useACardFromHand(i, target.indexPosCel); //play the card.
+        }
+
+        this.nextLogicState(); //move to next state.
     }
 
 }

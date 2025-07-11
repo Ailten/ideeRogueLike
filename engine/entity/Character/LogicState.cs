@@ -10,7 +10,7 @@ public enum LogicState
     //runForHelpAlly, //run to the closest ally.
     //runForHelpAllyVariousDistance, //run to the closest ally (at distance minimum to make the most long atk).
 
-    bigestHit,
+    firstHit, //execute the first card in hand who has at least one effect "hit" (and if the target is on the right dist).
     //tinnyestHit,
     //BigestSelfHelp,
     //TinnyestSelfHelp,

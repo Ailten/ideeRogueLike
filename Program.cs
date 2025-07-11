@@ -6,9 +6,7 @@ class Program
     // (- add slime can hit by using theres own cards). -> make card splash can hit.
     // (- add loot)
 
-    // room generation.
-
-    // some time button skip turn stay disable after play the last card of a fight.
+    // add special room.
 
 
     // ~ add text recap 3 last action in fight.
