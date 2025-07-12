@@ -12,6 +12,12 @@ public static class TurnManager
         get { return _isInFight; }
     }
 
+    private static int turnCount = 0;
+    public static int getTurnCount
+    {
+        get { return turnCount; }
+    }
+
 
     //reset manager.
     public static void reset()
@@ -28,13 +34,15 @@ public static class TurnManager
     {
         allCharacterInRoom.Add(newCharacter);
 
-        if(!isInFight)
+        if (!isInFight)
             verifyIfFightIsStart();
     }
     public static void addCharacterNextTo(Character newCharacter, Character characterBefore)
     {
-        for(int i = 0; i < allCharacterInRoom.Count; i++){
-            if(allCharacterInRoom[i].idEntity == characterBefore.idEntity){
+        for (int i = 0; i < allCharacterInRoom.Count; i++)
+        {
+            if (allCharacterInRoom[i].idEntity == characterBefore.idEntity)
+            {
                 allCharacterInRoom.Insert(i, newCharacter); //add at specific index.
                 return;
             }
@@ -45,8 +53,10 @@ public static class TurnManager
     //remove a character from list turn.
     public static void removeCharacterInRoom(Character character)
     {
-        for(int i = 0; i < allCharacterInRoom.Count; i++){
-            if(allCharacterInRoom[i].idEntity == character.idEntity){
+        for (int i = 0; i < allCharacterInRoom.Count; i++)
+        {
+            if (allCharacterInRoom[i].idEntity == character.idEntity)
+            {
 
                 allCharacterDead.Add(allCharacterInRoom[i]); //pool of dead character.
                 allCharacterInRoom[i].isActive = false;
@@ -56,7 +66,7 @@ public static class TurnManager
 
                 verifyIfFightIsEnd(); //check end fight.
 
-                if(i < indexCharacterTurn) //replace index at right place.
+                if (i < indexCharacterTurn) //replace index at right place.
                     moveCharacterIndex(-1);
                 return;
             }
@@ -65,9 +75,9 @@ public static class TurnManager
     }
 
     //move index character turn to next character.
-    public static void moveCharacterIndex(int movement=1)
+    public static void moveCharacterIndex(int movement = 1)
     {
-        indexCharacterTurn = (indexCharacterTurn + movement + allCharacterInRoom.Count) %allCharacterInRoom.Count;
+        indexCharacterTurn = (indexCharacterTurn + movement + allCharacterInRoom.Count) % allCharacterInRoom.Count;
     }
 
     //event call when a character skip his turn.
@@ -114,16 +124,21 @@ public static class TurnManager
     private static void verifyIfFightIsStart()
     {
         bool? teamFind = null;
-        foreach(Character c in allCharacterInRoom){
-            if(teamFind == null){ //first.
+        foreach (Character c in allCharacterInRoom)
+        {
+            if (teamFind == null)
+            { //first.
                 teamFind = c.isInRedTeam;
                 continue;
             }
-            if(c.isInRedTeam != teamFind){ //fight start.
+            if (c.isInRedTeam != teamFind)
+            { //fight start.
                 _isInFight = true;
 
                 getMainPlayerCharacter().deck.piocheOfStartTurn(); //pioche first hands of fight.
                 RunHudLayer.layer.cardHandListCardUi?.setListCard(getMainPlayerCharacter().deck.cardsInHand); //set card list hand to UI.
+
+                turnCount = 0; //reset turn count.
 
                 return;
             }
@@ -162,14 +177,17 @@ public static class TurnManager
 
         }
 
+        endAllStatusEffectByEndFight();
+
         cleanPoolDeadCharacter();
     }
 
     //make all invocation death.
     private static void deathAllInvoc()
     {
-        allCharacterInRoom.ForEach((c) => {
-            if(c.invokedBy != null)
+        allCharacterInRoom.ForEach((c) =>
+        {
+            if (c.invokedBy != null)
                 c.death();
         });
     }
@@ -177,7 +195,8 @@ public static class TurnManager
     //free every character dead in turn.
     private static void cleanPoolDeadCharacter()
     {
-        allCharacterDead.ForEach((c) => {
+        allCharacterDead.ForEach((c) =>
+        {
 
             RunLayer.layer.entities.Remove(c); //free entity from list layer.
 
@@ -188,7 +207,7 @@ public static class TurnManager
         allCharacterDead = new(); //reset list dead.
     }
 
-    
+
     //get entity of current turn.
     public static Character getCharacterOfCurrentTurn()
     {
@@ -221,6 +240,66 @@ public static class TurnManager
     public static List<Character> getAllCharacters()
     {
         return allCharacterInRoom;
+    }
+
+
+    // end status effect of all character (by skip turn character who apply skip turn).
+    public static void endAllStatusEffectBySkipTurn(int characterIdWhoApplyEffect)
+    {
+        allCharacterInRoom.ForEach(c =>
+        {
+            for (int i = c.statusEffects.Count - 1; i >= 0; i--)
+            {
+                if (c.statusEffects[i].getCharacterIdWhoApplyEffect != characterIdWhoApplyEffect)
+                    continue; // skip if not apply by the same character.
+                if (c.statusEffects[i].getTurnEnd != turnCount)
+                    continue; // not the turn who as to be destroy.
+
+                // drop the status effect.
+                c.statusEffects[i].eventWhenStatusEffectDisapear(isEndLifeEffect: true);
+                c.dropAStatusEffectByIndex(i);
+            }
+        });
+    }
+    // end status effect when fight end.
+    private static void endAllStatusEffectByEndFight()
+    {
+        allCharacterInRoom.ForEach(c =>
+        {
+            for (int i = c.statusEffects.Count - 1; i >= 0; i--)
+            {
+                if (c.statusEffects[i].getTurnEnd == -1)
+                    continue; // skip all effect apply for infinit turn.
+
+                // drop the status effect.
+                c.statusEffects[i].eventWhenStatusEffectDisapear(isEndOfFight: true);
+                c.dropAStatusEffectByIndex(i);
+            }
+        });
+    }
+    // end status effect of the character who die and all apply by this character.
+    public static void endAllStatusEffectWhenCharacterDie(Character characterWhoDie)
+    {
+        // end effect of him self.
+        for (int i = characterWhoDie.statusEffects.Count - 1; i >= 0; i--)
+        {
+            characterWhoDie.statusEffects[i].eventWhenStatusEffectDisapear(isCharacterWhoHasEffectDie: true);
+            characterWhoDie.dropAStatusEffectByIndex(i);
+        }
+        
+        // end effect of other character.
+        allCharacterInRoom.ForEach(c =>
+        {
+            for (int i = c.statusEffects.Count - 1; i >= 0; i--)
+            {
+                if (c.statusEffects[i].getCharacterIdWhoApplyEffect != characterWhoDie.idEntity)
+                    continue; // skip if not apply by the same character.
+
+                // drop the status effect.
+                c.statusEffects[i].eventWhenStatusEffectDisapear(isCharacterWhoApplyEffectDie: true);
+                c.dropAStatusEffectByIndex(i);
+            }
+        });
     }
 
 

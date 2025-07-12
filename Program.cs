@@ -3,21 +3,22 @@
 class Program 
 {
     //TODO : fix bug card fight :
-    // (- add slime can hit by using theres own cards). -> make card splash can hit.
-    // (- add loot)
+    // add special room. (pnj, text, choose option, ...).
+    // add boss first floor.
+    // ~ add loot mob.
 
-    // add special room.
+
+    // add statusEffect. -> upgrade it on a first vertion : upgrade damage fix based on collor card played.
 
 
     // ~ add text recap 3 last action in fight.
 
-    // weird bug : on a room with one slime : his disapear and TP on me next turn. -> need debug (rare ocurence).
-    // bug in room generation : sometime door was behind an other door (un reachable) -> debug by adding a default cross cel always ear.
-    // bug !!! can skip turn during a walk !!!!
+
+    // add a pause menu (back to game, back to main menu, ... other option).
 
 
-    // draw menu pause-button.
-
+    // make a save progression (a class with data for main progression : character unlock, mobs depeats, gold collected ... etc).
+    // -> use for success, progression, ...
 
 
     // json manager (for success, save, etc).
@@ -26,9 +27,9 @@ class Program
     // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).
     // - card, etc ...
 
-    // KeyboardManager. (for play more speed) (not now)
+    // KeyboardManager. (for play more speed) (not now) -> number key for card, and space for skip turn.
 
-    // input select seed.
+    // input select seed. -> menu with enter a number befor start run.
 
 
     public static void Main(string[] args)

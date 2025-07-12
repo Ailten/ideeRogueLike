@@ -33,6 +33,8 @@ public class Character : Entity
 
     public Deck deck = new(); //deck of all card.
 
+    public List<StatusEffect> statusEffects = new();
+
 
     public Character(SpriteType spriteType, Vector posIndexCel) : base(RunLayer.layer.idLayer, spriteType)
     {
@@ -114,6 +116,9 @@ public class Character : Entity
                 this.invokedBy?.gainGold(this.PO);
         }
 
+        // remove status effect (them self and apply to other).
+        TurnManager.endAllStatusEffectWhenCharacterDie(this);
+
         //remove from list turn.
         TurnManager.removeCharacterInRoom(this);
 
@@ -161,6 +166,8 @@ public class Character : Entity
         MP = MPmax; //refill MP.
 
         deck.discardOfEndTurn(); //drop full hands in cimetiere.
+
+        TurnManager.endAllStatusEffectBySkipTurn(this.idEntity); //end status effect.
 
         TurnManager.moveCharacterIndexToNextCharacter(); //switch to next entity turn.
     }
@@ -278,9 +285,16 @@ public class Character : Entity
     public int getDistFrom(Character characterB)
     {
         return (
-            (int) Math.Abs(this.indexPosCel.x - characterB.indexPosCel.x) +
-            (int) Math.Abs(this.indexPosCel.y - characterB.indexPosCel.y)
+            (int)Math.Abs(this.indexPosCel.x - characterB.indexPosCel.x) +
+            (int)Math.Abs(this.indexPosCel.y - characterB.indexPosCel.y)
         );
+    }
+
+
+    // remove a status effect.
+    public void dropAStatusEffectByIndex(int indexStatuSEffect)
+    {
+        this.statusEffects.RemoveAt(indexStatuSEffect);
     }
 
 }
