@@ -39,7 +39,7 @@ public static class StaticEffectCard
     }
 
     //execute an effect card.
-    public static void doEffectCard(this EffectCard effectCard, Character characterLauncher, Vector indexPosTarget, int effectValue, int indexCardHand)
+    public static void doEffectCard(this EffectCard effectCard, Character characterLauncher, Vector indexPosTarget, int effectValue, int indexCardHand, PackageRefCard? refCard = null)
     {
         Character? characterTarget = TurnManager.getCharacterAtIndexPos(indexPosTarget);
 
@@ -48,19 +48,19 @@ public static class StaticEffectCard
             case (EffectCard.Hit):
                 if (characterTarget == null)
                     return;
-                characterLauncher.makeDamage(characterTarget, effectValue);
+                characterLauncher.makeDamage(characterTarget, effectValue, refCard);
                 return;
 
             case (EffectCard.Shild):
                 if (characterTarget == null)
                     return;
-                characterLauncher.giveShild(characterTarget, effectValue);
+                characterLauncher.giveShild(characterTarget, effectValue, refCard);
                 return;
 
             case(EffectCard.Heal):
                 if (characterTarget == null)
                     return;
-                characterLauncher.giveHeal(characterTarget, effectValue);
+                characterLauncher.giveHeal(characterTarget, effectValue, refCard);
                 return;
 
             default:

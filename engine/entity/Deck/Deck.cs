@@ -110,13 +110,19 @@ public class Deck
         cardsInPioche.RemoveAll(_ => true);
     }
 
+    //destroy a card from hand.
+    public void destroyCardFromHand(int indexCard)
+    {
+        cardsInHand.RemoveAt(indexCard); //remove card use from hand.
+    }
+
 
     public override string ToString()
     {
         return $"d: \n" +
-        $"  pioc: [{string.Join(", ", this.cardsInPioche.Select(c=>c.ToString()))}]\n"+
-        $"  hand: [{string.Join(", ", this.cardsInHand.Select(c=>c.ToString()))}]\n"+
-        $"  defo: [{string.Join(", ", this.cardsInCimetier.Select(c=>c.ToString()))}]\n";
+        $"  pioc: [{string.Join(", ", this.cardsInPioche.Select(c => c.ToString()))}]\n" +
+        $"  hand: [{string.Join(", ", this.cardsInHand.Select(c => c.ToString()))}]\n" +
+        $"  defo: [{string.Join(", ", this.cardsInCimetier.Select(c => c.ToString()))}]\n";
     }
 
 }

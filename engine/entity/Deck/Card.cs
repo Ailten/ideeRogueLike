@@ -53,6 +53,8 @@ public struct Card
     //use a card in battle (do this effect).
     public void applyCardEffect(Character characterLauncher, Vector indexPosTarget, int indexCardHand)
     {
+        PackageRefCard refCard = new(characterLauncher, indexCardHand);
+
         //loop on every effect of the card.
         for (int i = 0; i < this.effects.Count; i++)
         {
@@ -63,7 +65,8 @@ public struct Card
                 characterLauncher: characterLauncher,
                 indexPosTarget: indexPosTarget,
                 effectValue: effectValue,
-                indexCardHand: indexCardHand
+                indexCardHand: indexCardHand,
+                refCard: refCard
             );
 
         }
@@ -272,9 +275,28 @@ public struct Card
         return (
             $"{cardIllu.ToString().Substring("CardImg_".Length)}" +
             $"-{cardColor}" +
-            $"{(cardEdition != CardEdition.Default ? "-"+cardEdition : "")}"
+            $"{(cardEdition != CardEdition.Default ? "-" + cardEdition : "")}"
         );
     }
 
 
+}
+
+
+// object use to refer a card when use (becose card is struct).
+public class PackageRefCard
+{
+    public Character character { get; set; }
+    public int indexCardHand { get; set; }
+
+    public PackageRefCard(Character character, int indexCardHand)
+    {
+        this.character = character;
+        this.indexCardHand = indexCardHand;
+    }
+
+    public Card getCard()
+    {
+        return this.character.deck.cardsInHand[this.indexCardHand];
+    }
 }

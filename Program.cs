@@ -8,7 +8,7 @@ class Program
     // ~ add loot mob.
 
 
-    // add statusEffect. -> upgrade it on a first vertion : upgrade damage fix based on collor card played.
+    // add the first statusEffect. -> add N damage make.
     // + status effect print ui, and button to change order.
 
     // details mobs when click on it, menu.

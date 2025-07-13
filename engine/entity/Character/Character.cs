@@ -51,29 +51,32 @@ public class Character : Entity
 
 
     //apply damage to another Character.
-    public virtual void makeDamage(Character target, int atk)
+    public virtual void makeDamage(Character target, int atk, PackageRefCard? refCard = null)
     {
-        target.takeDamage(atk, this);
+        target.takeDamage(atk, this, refCard);
 
         //make an FX star (and sound) for signal make damage.
         FxManager.initOnQueue(FxType.FxStarHit, target.pos);
     }
 
     //apply damage to character.
-    protected virtual void takeDamage(int atk, Character? characterMakeAtk = null)
+    protected virtual void takeDamage(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
     {
         if (SP > 0)
         {
             int damageAplyToSP = Math.Min(atk, SP);
             atk -= damageAplyToSP;
-            takeDamageShild(damageAplyToSP);
+            takeDamageShild(damageAplyToSP, refCard);
+
+            if (atk == 0)
+                return;
         }
 
-        takeDamageToHP(atk, characterMakeAtk);
+        takeDamageToHP(atk, characterMakeAtk, refCard);
     }
 
     //apply damage to shild.
-    private void takeDamageShild(int atk)
+    private void takeDamageShild(int atk, PackageRefCard? refCard = null)
     {
         int SPdecrement = Math.Min(atk, SP);
 
@@ -83,7 +86,7 @@ public class Character : Entity
     }
 
     //apply damage to heath point.
-    private void takeDamageToHP(int atk, Character? characterMakeAtk = null)
+    private void takeDamageToHP(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
     {
         int HPdecrement = Math.Min(atk, HP);
         HP -= HPdecrement;
@@ -92,12 +95,12 @@ public class Character : Entity
 
         if (HP <= 0)
         {
-            death(characterMakeAtk);
+            death(characterMakeAtk, refCard);
         }
     }
 
     //call when character dead.
-    public virtual void death(Character? characterMakeKill = null)
+    public virtual void death(Character? characterMakeKill = null, PackageRefCard? refCard = null)
     {
         //hidde.
         isActive = false;
@@ -126,12 +129,12 @@ public class Character : Entity
     }
 
     //give shild point.
-    public virtual void giveShild(Character target, int shildIncrement)
+    public virtual void giveShild(Character target, int shildIncrement, PackageRefCard? refCard = null)
     {
-        target.takeShild(shildIncrement, this);
+        target.takeShild(shildIncrement, this, refCard);
     }
     //give shild point.
-    protected virtual void takeShild(int shildIncrement, Character? characterGiveShild = null)
+    protected virtual void takeShild(int shildIncrement, Character? characterGiveShild = null, PackageRefCard? refCard = null)
     {
         SP += shildIncrement;
 
@@ -142,12 +145,12 @@ public class Character : Entity
     }
 
     //give heal to a target.
-    public virtual void giveHeal(Character target, int healIncrement)
+    public virtual void giveHeal(Character target, int healIncrement, PackageRefCard? refCard = null)
     {
-        target.takeHeal(healIncrement, this);
+        target.takeHeal(healIncrement, this, refCard);
     }
     //take heal.
-    protected virtual void takeHeal(int healIncrement, Character? characterGiveHeal = null)
+    protected virtual void takeHeal(int healIncrement, Character? characterGiveHeal = null, PackageRefCard? refCard = null)
     {
         int HPIncrement = Math.Min(healIncrement, this.HPmax - this.HP);
 
@@ -240,7 +243,7 @@ public class Character : Entity
     }
 
 
-    //use a card on another character.
+    //use a card on a pos.
     public void useACardFromHand(int indexCardFromHand, Vector indexPosTarget)
     {
         Card cardPlay = this.deck.cardsInHand[indexCardFromHand];
@@ -252,7 +255,10 @@ public class Character : Entity
 
         this.decreaseAP(cardPlay.APCost);
 
-        this.deck.pushCardFromHandIntoCimetier(indexCardFromHand);
+        if (cardPlay.cardEdition == CardEdition.Cracked)
+            this.deck.destroyCardFromHand(indexCardFromHand);
+        else
+            this.deck.pushCardFromHandIntoCimetier(indexCardFromHand);
     }
 
 
