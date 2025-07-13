@@ -101,6 +101,8 @@ public static class StaticSpriteType
                 return ("Une simple epee de bois.");
             case (SpriteType.CardImg_WoodenShild):
                 return ("Un simple bouclier de bois.");
+            case (SpriteType.CardImg_Splash):
+                return ("Un jet d'eau visqueu qui inflige des degats.");
             case (SpriteType.CardImg_Meat):
                 return ("Une belle piece de viande juteuse.");
             default:

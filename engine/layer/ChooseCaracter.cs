@@ -60,8 +60,10 @@ public class ChooseCaracter : Layer
                     RunLayer.layer.idLayer, //main game layer.
                     RunHudLayer.layer.idLayer //hud for stats in fight.
                 },
-                () => { //action to do during black screen transition.
+                () =>
+                { //action to do during black screen transition.
                     RunManager.buildNewRun();
+                    CardManager.initCards(); //init cards for pool.
                 }
             );
         };

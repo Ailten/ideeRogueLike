@@ -4,8 +4,8 @@ public enum EffectCard
     NoEffect, //no effect.
 
     Hit, //make damage to the target.
-    
-    Shild //add shild to the target.
+    Shild, //add shild to the target.
+    Heal //heal the hp target.
 }
 
 
@@ -27,6 +27,11 @@ public static class StaticEffectCard
                     "donne N points de bouclier a la cible.\n" +
                     "les points de bouclier protege les points de vie.\n" +
                     "les points de bouclier sont perdu en debut de tour."
+                );
+            case (EffectCard.Heal):
+                return ("- " + effectCard.ToString() + " :\n" +
+                    "soigne N points de vie a la cible.\n" +
+                    "les soin s'arrete au points de vie max."
                 );
             default:
                 return "cette effet n'a pas de description.";
@@ -50,6 +55,12 @@ public static class StaticEffectCard
                 if (characterTarget == null)
                     return;
                 characterLauncher.giveShild(characterTarget, effectValue);
+                return;
+
+            case(EffectCard.Heal):
+                if (characterTarget == null)
+                    return;
+                characterLauncher.giveHeal(characterTarget, effectValue);
                 return;
 
             default:

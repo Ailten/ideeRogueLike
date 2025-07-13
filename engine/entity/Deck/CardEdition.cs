@@ -24,18 +24,16 @@ public static class StaticCardEdition
         }
     }
 
-    public static CardEdition getRandomEdition()
+    public static CardEdition getRandomEdition(bool isOnlySpecialEdition = false ,int purcentChanceOfBeingSpecialEdition = 12)
     {
-        List<CardEdition> rangeEdition = new() {
-            CardEdition.Default,
-            CardEdition.Default,
-            CardEdition.Default,
-            CardEdition.Default,
-            CardEdition.Cracked,
-            CardEdition.Shinny
-        };
+        bool isSpecialEdition = (isOnlySpecialEdition)? true: (RandomManager.rng.Next(100) < purcentChanceOfBeingSpecialEdition);
+        if (!isSpecialEdition)
+            return CardEdition.Default;
 
-        int randomIndex = StaticCardColor.rand.Next(rangeEdition.Count);
-        return rangeEdition[randomIndex];
+        int rng = RandomManager.rng.Next(2);
+        return (
+            (rng == 0)? CardEdition.Cracked:
+            CardEdition.Shinny
+        );
     }
 }

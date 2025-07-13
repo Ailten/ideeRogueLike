@@ -33,28 +33,19 @@ public static class StaticCardColor
             return true;
         return cardColor == cardColorAsk;
     }
-    
-    private static Random? _rand = null;
-    public static Random rand
-    {
-        get
-        {
-            if (_rand == null)
-                _rand = new Random(RunManager.seed);
-            return _rand;
-        }
-    }
 
-    public static CardColor getRandomColor(bool isIncludePolyChrome = false)
+    public static CardColor getRandomColor(bool isIncludePolyChrome = false, int purcentChanceOfBeingPolyChrome = 12)
     {
-        List<CardColor> rangeColor = new() { CardColor.Blue, CardColor.Red, CardColor.Green };
-        if (isIncludePolyChrome){
-            rangeColor.AddRange(new CardColor[] { CardColor.Blue, CardColor.Red, CardColor.Green });
-            rangeColor.Add(CardColor.PolyChrome); // 1/7 rng.
-        }
-
-        int randomIndex = rand.Next(rangeColor.Count);
-        return rangeColor[randomIndex];
+        bool isPolyChrome = (isIncludePolyChrome)? false: (RandomManager.rng.Next(100) < purcentChanceOfBeingPolyChrome);
+        if (isPolyChrome)
+            return CardColor.PolyChrome;
+            
+        int rng = RandomManager.rng.Next(3);
+        return (
+            (rng == 0)? CardColor.Blue:
+            (rng == 1)? CardColor.Red:
+            CardColor.Green
+        );
     }
 
 }

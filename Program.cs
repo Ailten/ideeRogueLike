@@ -3,12 +3,19 @@
 class Program 
 {
     //TODO : fix bug card fight :
-    // add special room. (pnj, text, choose option, ...).
+    // add special room. (pnj, text, choose option, ...). -> coffre.
     // add boss first floor.
     // ~ add loot mob.
 
 
     // add statusEffect. -> upgrade it on a first vertion : upgrade damage fix based on collor card played.
+    // + status effect print ui, and button to change order.
+
+    // details mobs when click on it, menu.
+
+
+    // add fx battle when character is heal.
+    // add an ui for timeline in battle.
 
 
     // ~ add text recap 3 last action in fight.

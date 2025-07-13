@@ -131,7 +131,7 @@ public class Character : Entity
         target.takeShild(shildIncrement, this);
     }
     //give shild point.
-    protected virtual void takeShild(int shildIncrement, Character? characterGiveShild)
+    protected virtual void takeShild(int shildIncrement, Character? characterGiveShild = null)
     {
         SP += shildIncrement;
 
@@ -139,6 +139,23 @@ public class Character : Entity
         FxManager.initOnQueue(FxType.FxShildBuf, this.pos);
 
         FxTextHit.initOnlyOneFxAtTime(this.pos, $"+{shildIncrement}", Color.Blue);
+    }
+
+    //give heal to a target.
+    public virtual void giveHeal(Character target, int healIncrement)
+    {
+        target.takeHeal(healIncrement, this);
+    }
+    //take heal.
+    protected virtual void takeHeal(int healIncrement, Character? characterGiveHeal = null)
+    {
+        int HPIncrement = Math.Min(healIncrement, this.HPmax - this.HP);
+
+        HP += HPIncrement;
+
+        //TODO : fx heal.
+
+        FxTextHit.initOnlyOneFxAtTime(this.pos, $"+{healIncrement}", Color.Red);
     }
 
     //gain Gold.
