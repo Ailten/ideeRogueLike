@@ -3,26 +3,25 @@
 class Program 
 {
     //TODO : fix bug card fight :
-    // add special room. (pnj, text, choose option, ...). -> coffre.
-    // add boss first floor.
-    // ~ add loot mob.
-
-
-    // add the first statusEffect. -> add N damage make.
-    // + status effect print ui, and button to change order.
-
-    // details mobs when click on it, menu.
-
-
     // add fx battle when character is heal.
-    // add an ui for timeline in battle.
+    // add special room. -> coffre.
+    // add special room. -> fusion.
+    // add special room. -> discard.
+    // add a card "axe au loot" -> sprite & cardManager.
+    // add 2e mob for first floor. -> flame. //apply effect "burn".
+    // add 3e mob for first floor. -> rock. //no MP, but hit 4.
+    // add boss first floor. -> king slime.
+    // add statusEffect. -> add N damage make for M color card.
+    // add statusEffect. -> reduce N damage taked by M color card.
+    // add StatusEffectManager. -> for generate a statusEffect random (like cardManager).
+    // add status effect print ui -> ui list<statusEffect> with button to change order.
+    // add details mobs when click on it, menu.
+    // add timeLineBattleUi -> for timeline in battle.
 
-
-    // ~ add text recap 3 last action in fight.
 
 
     // add a pause menu (back to game, back to main menu, ... other option).
-
+    
 
     // make a save progression (a class with data for main progression : character unlock, mobs depeats, gold collected ... etc).
     // -> use for success, progression, ...

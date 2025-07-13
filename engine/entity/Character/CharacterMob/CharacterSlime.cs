@@ -25,14 +25,14 @@ public class CharacterSlime : CharacterMob
         this.deck.addCardToDeck(
             new Card(
                 cardIllu: SpriteType.CardImg_Splash,
-                cardColor: StaticCardColor.getRandomColor(),
+                cardColor: CardColor.Blue,
                 cardEdition: CardEdition.Default,
                 APCost: 1,
                 distanceToUse: new(1, 1),
                 effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 1)
             ),
             amountOfCardAdd: 3,
-            isSameColor: false
+            isSameColor: true
         );
     }
 
