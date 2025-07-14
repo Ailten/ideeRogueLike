@@ -25,9 +25,7 @@ public static class CardManager
             distanceToUse: new(0, 0),
             effect: new KeyValuePair<EffectCard, int>(EffectCard.Shild, 2)
         ));
-
-        rareCard = new();
-        rareCard.Add(new Card(
+        communCard.Add(new Card(
             cardIllu: SpriteType.CardImg_Splash,
             cardColor: CardColor.Red,
             cardEdition: CardEdition.Default,
@@ -35,7 +33,7 @@ public static class CardManager
             distanceToUse: new(2, 2),
             effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 4)
         ));
-        rareCard.Add(new Card(
+        communCard.Add(new Card(
             cardIllu: SpriteType.CardImg_Meat,
             cardColor: CardColor.Red,
             cardEdition: CardEdition.Default,
@@ -43,11 +41,13 @@ public static class CardManager
             distanceToUse: new(0, 0),
             effect: new KeyValuePair<EffectCard, int>(EffectCard.Heal, 6)
         ));
+
+        rareCard = new();
     }
 
     public static Card generateARandomCard()
     {
-        bool isARareCard = RandomManager.rng.Next(1000) < 120;
+        bool isARareCard = (rareCard.Count == 0)? false: RandomManager.rng.Next(1000) < 120;
         int indexCardPick = RandomManager.rng.Next(
             (isARareCard)? rareCard.Count: communCard.Count
         );
