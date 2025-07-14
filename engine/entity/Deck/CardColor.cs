@@ -36,7 +36,7 @@ public static class StaticCardColor
 
     public static CardColor getRandomColor(bool isIncludePolyChrome = false, int purcentChanceOfBeingPolyChrome = 12)
     {
-        bool isPolyChrome = (isIncludePolyChrome)? false: (RandomManager.rng.Next(100) < purcentChanceOfBeingPolyChrome);
+        bool isPolyChrome = (!isIncludePolyChrome)? false: (RandomManager.rng.Next(100) < purcentChanceOfBeingPolyChrome);
         if (isPolyChrome)
             return CardColor.PolyChrome;
             

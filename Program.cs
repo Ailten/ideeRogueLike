@@ -19,6 +19,7 @@ class Program
     // add timeLineBattleUi -> for timeline in battle.
 
 
+    // debug : some time room has no mob ??
 
     // add a pause menu (back to game, back to main menu, ... other option).
 

@@ -109,6 +109,10 @@ public static class RunManager
     {
         return getCel(celPosIndex) ?? throw new Exception("Cel not found !");
     }
+    public static Cel getCelNNCenter()
+    {
+        return getCelNN(new(Room.midWidthMax, Room.midHeightMax));
+    }
 
     //get stage by index.
     public static Stage getStage(int indexStage)

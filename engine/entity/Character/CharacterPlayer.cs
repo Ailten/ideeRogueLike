@@ -26,11 +26,11 @@ public class CharacterPlayer : Character
 
 
     //call when character dead.
-    public override void death(Character? characterMakeKill = null)
+    public override void death(Character? characterMakeKill = null, PackageRefCard? refCard = null)
     {
         if (!isAPlayer)
         {
-            base.death(characterMakeKill);
+            base.death(characterMakeKill, refCard);
             return;
         }
 

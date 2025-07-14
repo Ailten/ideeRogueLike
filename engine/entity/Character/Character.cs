@@ -156,9 +156,10 @@ public class Character : Entity
 
         HP += HPIncrement;
 
-        //TODO : fx heal.
+        //make an FX heart (and sound) for gain HP healed.
+        FxManager.initOnQueue(FxType.FxHeartHeal, this.pos);
 
-        FxTextHit.initOnlyOneFxAtTime(this.pos, $"+{healIncrement}", Color.Red);
+        FxTextHit.initOnlyOneFxAtTime(this.pos, $"+{HPIncrement}", Color.Red);
     }
 
     //gain Gold.

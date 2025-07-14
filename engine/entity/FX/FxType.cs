@@ -6,7 +6,8 @@ public enum FxType
 
     // fx during battle.
     FxStarHit,
-    FxShildBuf
+    FxShildBuf,
+    FxHeartHeal
 }
 
 public static class StaticFxType
@@ -19,6 +20,8 @@ public static class StaticFxType
                 return new FxStarHit(pos, true);
             case (FxType.FxShildBuf):
                 return new FxShildBuf(pos, true);
+            case(FxType.FxHeartHeal):
+                return new FxHeartHeal(pos, true);
 
             default:
                 throw new Exception("initAnFx FxType not instanciable !");

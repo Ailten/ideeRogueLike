@@ -166,6 +166,11 @@ public static class TurnManager
             //disable button skip turn.
             RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(false);
 
+            if (RunManager.currentRoom?.roomType == RoomType.Room_Boss) //if is a room boss, spawn roope for next stage.
+            {
+                RunManager.getCelNNCenter().celType = CelType.Cel_NextStage; //spawn roope on cel center of room.
+            }
+
         }
         else
         { //ennemy win the fight.

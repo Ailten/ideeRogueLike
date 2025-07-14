@@ -243,10 +243,8 @@ public class Room
         }
         else if (roomType == RoomType.Room_Boss) // spawner for boss.
         {
-
             posCelForMobSpawner.Add(new Vector(midWidthMax, midHeightMax));
             typeMobToSpawn.Add(CharacterMob.generateRandomMobType(this, stage, true));
-
         }
 
         //TODO: else if for other type special room.
