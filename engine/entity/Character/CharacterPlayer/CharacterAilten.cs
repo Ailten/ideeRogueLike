@@ -36,19 +36,6 @@ public class CharacterAilten : CharacterPlayer
             amountOfCardAdd: 4,
             isSameColor: false
         );
-
-        this.deck.addCardToDeck( //for test..
-            new Card(
-                cardIllu: SpriteType.CardImg_Meat,
-                cardColor: StaticCardColor.getRandomColor(),
-                cardEdition: CardEdition.Default,
-                APCost: 1,
-                distanceToUse: new(0, 0),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.Heal, 2)
-            ),
-            amountOfCardAdd: 1,
-            isSameColor: false
-        );
     }
 
 }

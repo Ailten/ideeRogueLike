@@ -3,7 +3,6 @@
 class Program 
 {
     //TODO : fix bug card fight :
-    // add fx battle when character is heal.  -- debug card meat and fx heal.
     // add special room. -> coffre.
     // add special room. -> fusion.
     // add special room. -> discard.
