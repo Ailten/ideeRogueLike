@@ -255,7 +255,13 @@ public class Cel : Entity
 
             //up to next stage.
             case(CelType.Cel_NextStage):
-                if(characterStep.isAPlayer){ //only if is a player.
+                if (characterStep.isAPlayer) { //only if is a player.
+
+                    if (RunManager.isLastStage) {
+                        //TODO: transition end run, win.
+                        return;
+                    }
+
                     LayerManager.transition(() => { //transition layer.
                         characterStep.moveTo(new( //move player to center pos room.
                             Room.midWidthMax,
@@ -263,6 +269,7 @@ public class Cel : Entity
                         ), false);
                         RunManager.switchToNextStage();
                     });
+                    
                 }
                 return;
 

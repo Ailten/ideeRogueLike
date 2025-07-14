@@ -24,6 +24,12 @@ public static class RunManager
         get { return currentStage.currentRoom; }
     }
 
+    public static bool isLastStage
+    {
+        get { return currentIndexStage == stages.Count - 1; }
+    }
+
+
     public static void buildNewRun()
     {
         Random rng = new Random(DateTime.Now.Millisecond);
@@ -77,6 +83,9 @@ public static class RunManager
         currentStage.destroyStage(); //destroy last stage.
 
         currentIndexStage += 1; //go to next stage.
+
+        if (currentIndexStage >= stages.Count) // end of run, win.
+            throw new Exception("switchToNextStage next stage is out of range !");
 
         currentStage.generateStage(); //generate new stage.
         activeAllCelOfARoom(true); //active current room (in next stage).
