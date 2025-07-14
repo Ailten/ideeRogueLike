@@ -9,6 +9,7 @@ public static class CardManager
     public static void initCards()
     {
         communCard = new();
+        /*/ --- not include default wooden card ---
         communCard.Add(new Card(
             cardIllu: SpriteType.CardImg_WoodenSword,
             cardColor: CardColor.Red,
@@ -25,7 +26,8 @@ public static class CardManager
             distanceToUse: new(0, 0),
             effect: new KeyValuePair<EffectCard, int>(EffectCard.Shild, 2)
         ));
-        communCard.Add(new Card(
+        //*/
+        communCard.Add(new Card( //condition when kill 10 slimes.
             cardIllu: SpriteType.CardImg_Splash,
             cardColor: CardColor.Red,
             cardEdition: CardEdition.Default,

@@ -111,4 +111,21 @@ public static class StaticSpriteType
                 //throw new Exception("SpriteType getDescription has no description for this spriteType !");
         }
     }
+
+    public static string getCardName(this SpriteType spriteType)
+    {
+        switch (spriteType)
+        {
+            case (SpriteType.CardImg_WoodenSword):
+                return ("Epee de bois");
+            case (SpriteType.CardImg_WoodenShild):
+                return ("Bouclier de bois");
+            case (SpriteType.CardImg_Splash):
+                return ("Splash");
+            case (SpriteType.CardImg_Meat):
+                return ("Viande batue");
+            default:
+                return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.
+        }
+    }
 }

@@ -14,10 +14,6 @@ public struct Card
 
     public List<KeyValuePair<EffectCard, int>> effects; //all effects of a card (with an int of value).
     private static int maxEffectByCard = 5;
-    public string getNameCard
-    {
-        get { return cardIllu.ToString().Substring("CardImg_".Length); }
-    }
     public string getPorteeToUseStr
     {
         get { return Math.Round(distanceToUse.x).ToString() + "~" + Math.Round(distanceToUse.y).ToString(); }
@@ -184,7 +180,7 @@ public struct Card
         );
 
         // draw text (name card).
-        text = this.getNameCard;
+        text = this.cardIllu.getCardName();
         posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posName * scale * CanvasManager.scaleCanvas);
         sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
 
