@@ -19,11 +19,10 @@ class Program
 
     //use sprite mobs (flame, rock, kingSlime, kingFlame, kingRock).
     //use sprite card axe au loot, flame, rock.
-    //use sprite cel coffre, fusion, discard.
+    //use sprite cel coffre, fusion, discard, duplicate, boost.
 
 
-    // debug : some time room has no mob ??
-    // ? consoleManager for combat ?
+    // ? consoleManager for combat print line ?
 
     // add a pause menu (back to game, back to main menu, ... other option).
 

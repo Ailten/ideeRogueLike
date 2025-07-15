@@ -420,6 +420,11 @@ public class Room
                 return SpriteType.MiniMapUI_RoomBoost;
             case(RoomType.Room_Fusion):
                 return SpriteType.MiniMapUI_RoomFusion;
+            case(RoomType.Room_Discard):
+                return SpriteType.MiniMapUI_RoomDiscard;
+            case(RoomType.Room_Duplicate):
+                return SpriteType.MiniMapUI_RoomDuplicate;
+
             default:
                 return null;
         }

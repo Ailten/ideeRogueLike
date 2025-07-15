@@ -49,6 +49,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.MiniMapUI_RoomBoss, new Vector(418, 64), new Vector(16, 16));
         s.addSpriteType(SpriteType.MiniMapUI_RoomBoost, new Vector(370, 80), new Vector(16, 16)); //line mini map.
         s.addSpriteType(SpriteType.MiniMapUI_RoomFusion, new Vector(386, 80), new Vector(16, 16));
+        s.addSpriteType(SpriteType.MiniMapUI_RoomDiscard, new Vector(402, 80), new Vector(16, 16));
+        s.addSpriteType(SpriteType.MiniMapUI_RoomDuplicate, new Vector(418, 80), new Vector(16, 16));
 
         s.addSpriteType(SpriteType.HudHP, new Vector(0, 0), new Vector(219, 246));
         s.addSpriteType(SpriteType.HudSP, new Vector(220, 0), new Vector(149, 110));
@@ -82,6 +84,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Cel_Coffre, new Vector(384, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_Fusion, new Vector(0, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_Discard, new Vector(128, 256), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Cel_Boost, new Vector(256, 256), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Cel_Duplicate, new Vector(384, 256), new Vector(126, 126));
 
         s = new Sprite("Card");
         s.addSpriteType(SpriteType.CardBG_Blue, new Vector(0, 0), new Vector(219, 322)); // -- encrage : (0.5f, 0.5f).

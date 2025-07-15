@@ -52,6 +52,9 @@ public enum SpriteType
     MiniMapUI_RoomBoss,
     MiniMapUI_RoomBoost,
     MiniMapUI_RoomFusion,
+    MiniMapUI_RoomDiscard,
+    MiniMapUI_RoomDuplicate,
+
 
 
     // --- Characters.
@@ -75,6 +78,8 @@ public enum SpriteType
     Cel_Coffre,
     Cel_Fusion,
     Cel_Discard,
+    Cel_Duplicate,
+    Cel_Boost,
 
 
     // --- Card.
