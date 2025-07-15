@@ -93,8 +93,10 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_Splash, new Vector(0, 323), new Vector(219, 125)); // -- encrage : (0.5f, 0.952f).
         s.addSpriteType(SpriteType.CardImg_WoodenSword, new Vector(220, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_WoodenShild, new Vector(440, 323), new Vector(219, 125));
-        //-- placeholder last img.
+        s.addSpriteType(SpriteType.CardImg_Flame, new Vector(220, 449), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Rock, new Vector(440, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Meat, new Vector(0, 449), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_AxeOLoot, new Vector(0, 575), new Vector(219, 125));
 
         s = new Sprite("FX");
         s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));

@@ -85,8 +85,10 @@ public enum SpriteType
     CardImg_Splash,
     CardImg_WoodenSword,
     CardImg_WoodenShild,
-    //-- placehoder last img.
+    CardImg_Flame,
+    CardImg_Rock,
     CardImg_Meat,
+    CardImg_AxeOLoot,
 
 
     // --- FX.
