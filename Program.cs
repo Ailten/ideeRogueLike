@@ -19,6 +19,7 @@ class Program
 
 
     // debug : some time room has no mob ??
+    // ? consoleManager for combat ?
 
     // add a pause menu (back to game, back to main menu, ... other option).
 
