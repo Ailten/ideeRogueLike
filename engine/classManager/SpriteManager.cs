@@ -79,6 +79,9 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Cel_CenterRoom, new Vector(0, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_Selectable, new Vector(128, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_DoorToNextRoomLock, new Vector(256, 128), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Cel_Coffre, new Vector(384, 128), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Cel_Fusion, new Vector(0, 256), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Cel_Discard, new Vector(128, 256), new Vector(126, 126));
 
         s = new Sprite("Card");
         s.addSpriteType(SpriteType.CardBG_Blue, new Vector(0, 0), new Vector(219, 322)); // -- encrage : (0.5f, 0.5f).
