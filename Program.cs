@@ -17,6 +17,8 @@ class Program
     // add details mobs when click on it, menu.
     // add timeLineBattleUi -> for timeline in battle.
 
+    //use sprite mobs (flame, rock, kingSlime, kingFlame, kingRock).
+
 
     // debug : some time room has no mob ??
     // ? consoleManager for combat ?

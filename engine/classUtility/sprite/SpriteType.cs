@@ -57,6 +57,11 @@ public enum SpriteType
     // --- Characters.
     Character_Ailten,
     Character_Slime,
+    Character_Flame,
+    Character_Rock,
+    Character_KingSlime,
+    Character_KingFlame,
+    Character_KingRock,
 
 
     // --- Dungeons.

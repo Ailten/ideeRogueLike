@@ -65,6 +65,11 @@ public static class SpriteManager
         s = new Sprite("Characters");
         s.addSpriteType(SpriteType.Character_Ailten, new Vector(0, 0), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Slime, new Vector(128, 0), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Flame, new Vector(256, 0), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Rock, new Vector(384, 0), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_KingSlime, new Vector(128, 128), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_KingFlame, new Vector(256, 128), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_KingRock, new Vector(384, 128), new Vector(126, 126));
 
         s = new Sprite("DungeonCels");
         s.addSpriteType(SpriteType.Cel, new Vector(0, 0), new Vector(126, 126));
