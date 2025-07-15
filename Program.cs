@@ -18,6 +18,7 @@ class Program
     // add timeLineBattleUi -> for timeline in battle.
 
     //use sprite mobs (flame, rock, kingSlime, kingFlame, kingRock).
+    //use sprite card axe au loot.
 
 
     // debug : some time room has no mob ??
