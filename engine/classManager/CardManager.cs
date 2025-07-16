@@ -51,6 +51,14 @@ public static class CardManager
             distanceToUse: new(1, 1),
             effect: new KeyValuePair<EffectCard, int>(EffectCard.MPHit, 1)
         ));
+        communCard.Add(new Card( //condition when kill 10 flame.
+            cardIllu: SpriteType.CardImg_Flame,
+            cardColor: CardColor.Red,
+            cardEdition: CardEdition.Default,
+            APCost: 1,
+            distanceToUse: new(1, 1),
+            effect: new KeyValuePair<EffectCard, int>(EffectCard.Burn, 3)
+        ));
 
         rareCard = new();
     }

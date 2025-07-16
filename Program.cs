@@ -23,6 +23,8 @@ class Program
 
     // add a special room for "boost a card effect".
 
+    // debug flame, and rock (mobs and card).
+
 
     // ? consoleManager for combat print line ?
 
