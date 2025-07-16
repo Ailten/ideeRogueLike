@@ -7,6 +7,7 @@ public enum EffectCard
     Shild, //add shild to the target.
     Heal, //heal the hp target.
     MPHit, //cast all mp launcher for aply damage to the target.
+    Burn, //apply effect burn to target.
 }
 
 
@@ -38,6 +39,12 @@ public static class StaticEffectCard
                 return ("- " + effectCard.ToString() + " :\n" +
                     "draine tout les MP du lanceur.\n" +
                     "chaque MP converti inflige N degats."
+                );
+            case (EffectCard.Burn):
+                return ("- " + effectCard.ToString() + " :\n" +
+                    "applique l effet Burn.\n" +
+                    "inflige 1 degat a la fin du tour de la cible.\n" +
+                    "dure N tour."
                 );
             default:
                 return "cette effet n'a pas de description.";
@@ -75,6 +82,17 @@ public static class StaticEffectCard
                 if (characterTarget == null)
                     return;
                 characterLauncher.makeDamage(characterTarget, damage, refCard);
+                return;
+
+            case(EffectCard.Burn):
+                if (characterTarget == null)
+                    return;
+                characterTarget.statusEffects.Add(new Burn(
+                    characterTarget.idEntity,
+                    characterLauncher.idEntity,
+                    effectValue,
+                    1
+                ));
                 return;
 
             default:

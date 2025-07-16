@@ -12,6 +12,7 @@ public class CharacterMob : Character
 
         new MobType(SpriteType.Character_Slime, 1, false), //stage 1.
         new MobType(SpriteType.Character_Rock, 1, false),
+        new MobType(SpriteType.Character_Flame, 1, false),
         new MobType(SpriteType.Character_Slime, 1, true),
 
         // TODO : make a proper boss, and other dificulty mob.
@@ -42,6 +43,8 @@ public class CharacterMob : Character
                 return new CharacterSlime(posIndexCel);
             case (SpriteType.Character_Rock):
                 return new CharacterRock(posIndexCel);
+            case (SpriteType.Character_Flame):
+                return new CharacterFlame(posIndexCel);
 
             //add heer new CharacterMob.
 
@@ -83,6 +86,9 @@ public class CharacterMob : Character
                 break;
             case (LogicState.firstHit):
                 this.logicStateFirstHit();
+                break;
+            case (LogicState.firstCardPlayableOponent):
+                this.logicStateFirstCardPlayableOponent();
                 break;
 
             default:
@@ -172,6 +178,36 @@ public class CharacterMob : Character
                 continue;
 
             this.useACardFromHand(i, target.indexPosCel); //play the card.
+            break;
+        }
+
+        this.nextLogicState(); //move to next state.
+    }
+    private void logicStateFirstCardPlayableOponent()
+    {
+        for (int i = 0; i < this.deck.cardsInHand.Count; i++)
+        {
+            Card currentCard = this.deck.cardsInHand[i];
+
+            if (currentCard.APCost > this.AP) //cost to mush ap.
+                continue;
+            if (currentCard.distanceToUse.x == 0) //is a cart usable on it self.
+                continue;
+
+            Character? target = TurnManager.getAllCharacters().Where(c =>
+            {
+                if (!c.isInRedTeam) //skip other mobs.
+                    return false;
+                int dist = this.getDistFrom(c);
+                if (dist < currentCard.distanceToUse.x || dist > currentCard.distanceToUse.y) //to close or to fare for use this card.
+                    return false;
+                return true;
+            }).OrderBy(c => c.isAPlayer).FirstOrDefault();
+            if (target == null)
+                continue;
+
+            this.useACardFromHand(i, target.indexPosCel); //play the card.
+            break;
         }
 
         this.nextLogicState(); //move to next state.
