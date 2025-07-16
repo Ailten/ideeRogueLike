@@ -5,7 +5,8 @@ public enum EffectCard
 
     Hit, //make damage to the target.
     Shild, //add shild to the target.
-    Heal //heal the hp target.
+    Heal, //heal the hp target.
+    MPHit, //cast all mp launcher for aply damage to the target.
 }
 
 
@@ -32,6 +33,11 @@ public static class StaticEffectCard
                 return ("- " + effectCard.ToString() + " :\n" +
                     "soigne N points de vie a la cible.\n" +
                     "les soin s'arrete au points de vie max."
+                );
+            case (EffectCard.MPHit):
+                return ("- " + effectCard.ToString() + " :\n" +
+                    "draine tout les MP du lanceur.\n" +
+                    "chaque MP converti inflige N degats."
                 );
             default:
                 return "cette effet n'a pas de description.";
@@ -61,6 +67,14 @@ public static class StaticEffectCard
                 if (characterTarget == null)
                     return;
                 characterLauncher.giveHeal(characterTarget, effectValue, refCard);
+                return;
+
+            case(EffectCard.MPHit):
+                int damage = characterLauncher.MP * effectValue;
+                characterLauncher.decreaseMP(characterLauncher.MP);
+                if (characterTarget == null)
+                    return;
+                characterLauncher.makeDamage(characterTarget, damage, refCard);
                 return;
 
             default:

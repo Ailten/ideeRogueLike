@@ -1,18 +1,17 @@
 
-public class CharacterSlime : CharacterMob
+public class CharacterRock : CharacterMob
 {
 
-    public CharacterSlime(Vector posIndexCel) : base(SpriteType.Character_Slime, posIndexCel)
+    public CharacterRock(Vector posIndexCel) : base(SpriteType.Character_Rock, posIndexCel)
     {
         //IA logic.
-        this.logicState.Add(LogicState.chase);
         this.logicState.Add(LogicState.firstHit);
         this.logicState.Add(LogicState.skipTurn);
 
         //stats.
-        this.MPmax = 1;
+        this.MPmax = 0;
         this.MP = MPmax;
-        this.APmax = 1;
+        this.APmax = 3;
         this.AP = APmax;
         this.HPmax = 3;
         this.HP = HPmax;
@@ -24,12 +23,12 @@ public class CharacterSlime : CharacterMob
         this.deck.pickCountByTurn = 1;
         this.deck.addCardToDeck(
             new Card(
-                cardIllu: SpriteType.CardImg_Splash,
-                cardColor: CardColor.Blue,
+                cardIllu: SpriteType.CardImg_Rock,
+                cardColor: CardColor.Green,
                 cardEdition: CardEdition.Default,
-                APCost: 1,
-                distanceToUse: new(1, 2),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 1)
+                APCost: 3,
+                distanceToUse: new(1, 1),
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 6)
             ),
             amountOfCardAdd: 3,
             isSameColor: true

@@ -27,14 +27,6 @@ public static class CardManager
             effect: new KeyValuePair<EffectCard, int>(EffectCard.Shild, 2)
         ));
         //*/
-        communCard.Add(new Card( //condition when kill 10 slimes.
-            cardIllu: SpriteType.CardImg_Splash,
-            cardColor: CardColor.Red,
-            cardEdition: CardEdition.Default,
-            APCost: 2,
-            distanceToUse: new(2, 2),
-            effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 4)
-        ));
         communCard.Add(new Card(
             cardIllu: SpriteType.CardImg_Meat,
             cardColor: CardColor.Red,
@@ -42,6 +34,22 @@ public static class CardManager
             APCost: 2,
             distanceToUse: new(0, 0),
             effect: new KeyValuePair<EffectCard, int>(EffectCard.Heal, 6)
+        ));
+        communCard.Add(new Card( //condition when kill 10 slimes.
+            cardIllu: SpriteType.CardImg_Splash,
+            cardColor: CardColor.Blue,
+            cardEdition: CardEdition.Default,
+            APCost: 2,
+            distanceToUse: new(2, 2),
+            effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 3)
+        ));
+        communCard.Add(new Card( //condition when kill 10 rock.
+            cardIllu: SpriteType.CardImg_Rock,
+            cardColor: CardColor.Green,
+            cardEdition: CardEdition.Default,
+            APCost: 1,
+            distanceToUse: new(1, 1),
+            effect: new KeyValuePair<EffectCard, int>(EffectCard.MPHit, 1)
         ));
 
         rareCard = new();

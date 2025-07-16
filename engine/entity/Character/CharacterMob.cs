@@ -7,7 +7,11 @@ public class CharacterMob : Character
     private Character? targetOfState = null;
 
     private static List<MobType> allMobTypes = new(){ //list of all mob type and their dificulty.
-        new MobType(SpriteType.Character_Slime, 1, false),
+
+        //stage 0 (tuto).
+
+        new MobType(SpriteType.Character_Slime, 1, false), //stage 1.
+        new MobType(SpriteType.Character_Rock, 1, false),
         new MobType(SpriteType.Character_Slime, 1, true),
 
         // TODO : make a proper boss, and other dificulty mob.
@@ -19,17 +23,7 @@ public class CharacterMob : Character
         new MobType(SpriteType.Character_Slime, 4, false),
         new MobType(SpriteType.Character_Slime, 4, true),
         new MobType(SpriteType.Character_Slime, 5, false),
-        new MobType(SpriteType.Character_Slime, 5, true),
-        new MobType(SpriteType.Character_Slime, 6, false),
-        new MobType(SpriteType.Character_Slime, 6, true),
-        new MobType(SpriteType.Character_Slime, 7, false),
-        new MobType(SpriteType.Character_Slime, 7, true),
-        new MobType(SpriteType.Character_Slime, 8, false),
-        new MobType(SpriteType.Character_Slime, 8, true),
-        new MobType(SpriteType.Character_Slime, 9, false),
-        new MobType(SpriteType.Character_Slime, 9, true),
-        new MobType(SpriteType.Character_Slime, 10, false),
-        new MobType(SpriteType.Character_Slime, 10, true),
+        new MobType(SpriteType.Character_Slime, 5, true)
     };
 
     public CharacterMob(SpriteType spriteType, Vector posIndexCel) : base(spriteType, posIndexCel)
@@ -45,7 +39,9 @@ public class CharacterMob : Character
         {
 
             case (SpriteType.Character_Slime):
-                return new CharacterSlime(spriteType, posIndexCel);
+                return new CharacterSlime(posIndexCel);
+            case (SpriteType.Character_Rock):
+                return new CharacterRock(posIndexCel);
 
             //add heer new CharacterMob.
 

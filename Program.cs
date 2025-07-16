@@ -17,8 +17,8 @@ class Program
     // add details mobs when click on it, menu.
     // add timeLineBattleUi -> for timeline in battle.
 
-    //use sprite mobs (flame, rock, kingSlime, kingFlame, kingRock).
-    //use sprite card axe au loot, flame, rock.
+    //use sprite mobs (flame, kingSlime, kingFlame, kingRock).
+    //use sprite card axe au loot, flame.
     //use sprite cel coffre, fusion, discard, duplicate, boost.
 
 
