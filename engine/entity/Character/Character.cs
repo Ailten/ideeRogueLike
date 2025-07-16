@@ -179,9 +179,11 @@ public class Character : Entity
     {
         if (TurnManager.getCharacterOfCurrentTurn().idEntity != idEntity) //can't skip turn if is not the turn of this entity.
             return;
-
         if (WalkManager.isWalking) //can't skip turn during walk.
             return;
+
+        //status effect when end turn.
+        this.statusEffects.ForEach(se => se.eventWhenTargetEndTurn());
 
         AP = APmax; //refill AP (for next turn).
         MP = MPmax; //refill MP.
@@ -196,6 +198,9 @@ public class Character : Entity
     //make turn start for the character.
     public virtual void startTurn()
     {
+        //status effect when start turn.
+        this.statusEffects.ForEach(se => se.eventWhenTargetStartTurn());
+
         SP = 0; //reset shild.
 
         deck.piocheOfStartTurn();

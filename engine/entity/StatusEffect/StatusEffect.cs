@@ -6,7 +6,7 @@ public class StatusEffect
     private int turnEnd;
     private int characterIdWhoApplyEffect;
     private int characterIdWhoHasEffect;
-    
+
     public int getTurnEnd
     {
         get { return turnEnd; }
@@ -20,17 +20,17 @@ public class StatusEffect
         get { return characterIdWhoHasEffect; }
     }
 
-    private Character? getCharacterWhoApplyEffect
+    protected Character? getCharacterWhoApplyEffect
     {
-        get{ return TurnManager.getAllCharacters().FirstOrDefault(c => c.idEntity == this.characterIdWhoApplyEffect); }
+        get { return TurnManager.getAllCharacters().FirstOrDefault(c => c.idEntity == this.characterIdWhoApplyEffect); }
     }
-    private Character getCharacterHasApplyEffect
+    protected Character getCharacterHasEffect
     {
-        get{ return TurnManager.getAllCharacters().Find(c => c.idEntity == this.characterIdWhoHasEffect) ?? throw new Exception("CharacterHasApplyEffect has not found in TurnManager !"); }
+        get { return TurnManager.getAllCharacters().Find(c => c.idEntity == this.characterIdWhoHasEffect) ?? throw new Exception("CharacterHasApplyEffect has not found in TurnManager !"); }
     }
 
 
-    public StatusEffect(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1,  int turnLife = -1)
+    public StatusEffect(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1)
     {
         this.turnStart = TurnManager.getTurnCount;
         this.turnEnd = (turnLife == -1) ? turnLife : this.turnStart + turnLife;
@@ -46,8 +46,12 @@ public class StatusEffect
         bool isEndOfFight = false, //implemented.
         bool isCharacterWhoHasEffectDie = false,
         bool isCharacterWhoApplyEffectDie = false
-    )
-    { }
+    ){}
+
+    // event call when target start turn.
+    public void eventWhenTargetStartTurn(){}
+    // event call when target end turn.
+    public virtual void eventWhenTargetEndTurn(){}
 
 
 }

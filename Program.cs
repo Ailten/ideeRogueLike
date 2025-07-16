@@ -21,6 +21,8 @@ class Program
     //use sprite card axe au loot, flame.
     //use sprite cel coffre, fusion, discard, duplicate, boost.
 
+    // add a special room for "boost a card effect".
+
 
     // ? consoleManager for combat print line ?
 
