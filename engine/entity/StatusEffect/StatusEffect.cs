@@ -6,10 +6,15 @@ public class StatusEffect
     private int turnEnd;
     private int characterIdWhoApplyEffect;
     private int characterIdWhoHasEffect;
+    private SpriteType spriteType;
 
     public int getTurnEnd
     {
         get { return turnEnd; }
+    }
+    public int getTurnUntilEnd
+    {
+        get { return turnEnd - TurnManager.getTurnCount; }
     }
     public int getCharacterIdWhoApplyEffect
     {
@@ -29,14 +34,27 @@ public class StatusEffect
         get { return TurnManager.getAllCharacters().Find(c => c.idEntity == this.characterIdWhoHasEffect) ?? throw new Exception("CharacterHasApplyEffect has not found in TurnManager !"); }
     }
 
-
-    public StatusEffect(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1)
+    public SpriteType GetSpriteType
     {
+        get { return spriteType; }
+    }
+
+
+    public StatusEffect(SpriteType spriteType, int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1)
+    {
+        this.spriteType = spriteType;
+
         this.turnStart = TurnManager.getTurnCount;
         this.turnEnd = (turnLife == -1) ? turnLife : this.turnStart + turnLife;
 
         this.characterIdWhoHasEffect = characterIdWhoHasEffect;
         this.characterIdWhoApplyEffect = characterIdWhoApplyEffect;
+    }
+
+    // description of effect.
+    protected virtual string getDescription()
+    {
+        throw new Exception("StatusEffect has no description overided !");
     }
 
 
@@ -46,7 +64,8 @@ public class StatusEffect
         bool isEndOfFight = false, //implemented.
         bool isCharacterWhoHasEffectDie = false,
         bool isCharacterWhoApplyEffectDie = false
-    ){}
+    )
+    { }
 
     // event call when target start turn.
     public void eventWhenTargetStartTurn(){}

@@ -110,6 +110,11 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.FX_heartHeal, new Vector(0, 64), new Vector(63, 62));
         s.addSpriteType(SpriteType.FX_starHit, new Vector(64, 0), new Vector(126, 126));
         s.addSpriteType(SpriteType.FX_shildBuf, new Vector(191, 0), new Vector(126, 126));
+        s.addSpriteType(SpriteType.StatusEffect_turnBG, new Vector(318, 0), new Vector(32, 32)); //little spirte ui.
+        s.addSpriteType(SpriteType.StatusEffect_arrowRightTimeLine, new Vector(318, 33), new Vector(32, 32));
+        s.addSpriteType(SpriteType.StatusEffect_arrowLeftStatusEffect, new Vector(318, 66), new Vector(32, 16));
+        s.addSpriteType(SpriteType.StatusEffect_BGStatusEffect, new Vector(0, 127), new Vector(63, 63)); //second line.
+        s.addSpriteType(SpriteType.StatusEffect_Burn, new Vector(64, 127), new Vector(63, 63));
 
     }
 

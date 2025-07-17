@@ -3,12 +3,13 @@
 class Program 
 {
     //TODO : fix bug card fight :
+
+    // debug flame, and rock (mobs and card).
+    
     // add special room. -> coffre.
     // add special room. -> fusion.
     // add special room. -> discard.
     // add a card "axe au loot" -> sprite & cardManager.
-    // add 2e mob for first floor. -> flame. //apply effect "burn".  -- (effect can be stack)
-    // add 3e mob for first floor. -> rock. //no MP, but hit 4.
     // add boss first floor. -> king slime.
     // add statusEffect. -> add N damage make for M color card.
     // add statusEffect. -> reduce N damage taked by M color card.
@@ -23,7 +24,7 @@ class Program
 
     // add a special room for "boost a card effect".
 
-    // debug flame, and rock (mobs and card).
+    // add sprite effect Burn.
 
 
     // ? consoleManager for combat print line ?

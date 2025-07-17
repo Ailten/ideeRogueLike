@@ -103,7 +103,16 @@ public enum SpriteType
     FX_turnOn,
     FX_heartHeal,
     FX_starHit,
-    FX_shildBuf
+    FX_shildBuf,
+
+
+    // --- StatusEffect.
+    StatusEffect_turnBG,
+    StatusEffect_arrowRightTimeLine,
+    StatusEffect_arrowLeftStatusEffect,
+    StatusEffect_BGStatusEffect,
+
+    StatusEffect_Burn
 
 }
 
