@@ -19,7 +19,6 @@ class Program
     // add timeLineBattleUi -> for timeline in battle.
 
     //use sprite mobs (kingSlime, kingFlame, kingRock).
-    //use sprite card "axe au loot".
     //use sprite cel coffre, fusion, discard, duplicate, boost.
 
     // add a special room for "boost card effect".
