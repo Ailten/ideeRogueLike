@@ -113,6 +113,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_turnBG, new Vector(318, 0), new Vector(32, 32)); //little spirte ui.
         s.addSpriteType(SpriteType.StatusEffect_arrowRightTimeLine, new Vector(318, 33), new Vector(32, 32));
         s.addSpriteType(SpriteType.StatusEffect_arrowLeftStatusEffect, new Vector(318, 66), new Vector(32, 16));
+        s.addSpriteType(SpriteType.StatusEffect_BGTimeLineCharacterBlue, new Vector(351, 0), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_BGTimeLineCharacterRed, new Vector(415, 0), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_BGStatusEffect, new Vector(0, 127), new Vector(63, 63)); //second line.
         s.addSpriteType(SpriteType.StatusEffect_Burn, new Vector(64, 127), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_MoneyLoot, new Vector(128, 127), new Vector(63, 63));
