@@ -19,7 +19,7 @@ public class RunHudLayer : Layer
         StatsCharacterUi statsCharacterUI = new StatsCharacterUi(idLayer); //sprite of HP and SP player.
 
         MiniMapUi miniMapUi = new MiniMapUi(idLayer); //mini map.
-        miniMapUi.pos = new(1280, 0);
+        miniMapUi.pos = new(240, 355);
 
         SkipTurnBackUi skipTurnBackUi = new SkipTurnBackUi(idLayer); //background ui for skip turn button.
         skipTurnBackUi.pos = CanvasManager.sizeWindow;

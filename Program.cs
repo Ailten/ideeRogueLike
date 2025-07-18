@@ -5,7 +5,7 @@ class Program
     //TODO : fix bug card fight :
 
     // debug flame, and rock (mobs and card).
-    
+
     // add special room. -> coffre.
     // add special room. -> fusion.
     // add special room. -> discard.
@@ -18,13 +18,13 @@ class Program
     // add details mobs when click on it, menu.
     // add timeLineBattleUi -> for timeline in battle.
 
-    //use sprite mobs (flame, kingSlime, kingFlame, kingRock).
-    //use sprite card axe au loot, flame.
+    //use sprite mobs (kingSlime, kingFlame, kingRock).
+    //use sprite card axe au loot.
     //use sprite cel coffre, fusion, discard, duplicate, boost.
 
     // add a special room for "boost a card effect".
-
-    // add sprite effect Burn.
+    
+    // draw time line, pause border, and status effect.
 
 
     // ? consoleManager for combat print line ?
