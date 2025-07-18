@@ -108,6 +108,9 @@ public class Character : Entity
         //execute death of every entity in turn has invoc by this one.
         TurnManager.getAllInvocOfACharacter(this).ForEach((c) => c.death());
 
+        // remove status effect (them self and apply to other).
+        TurnManager.endAllStatusEffectWhenCharacterDie(this);
+
         if (characterMakeKill != null)
         {
             if (this.PO != 0)
@@ -118,9 +121,6 @@ public class Character : Entity
             if (this.PO != 0)
                 this.invokedBy?.gainGold(this.PO);
         }
-
-        // remove status effect (them self and apply to other).
-        TurnManager.endAllStatusEffectWhenCharacterDie(this);
 
         //remove from list turn.
         TurnManager.removeCharacterInRoom(this);

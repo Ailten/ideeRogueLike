@@ -112,7 +112,8 @@ public enum SpriteType
     StatusEffect_arrowLeftStatusEffect,
     StatusEffect_BGStatusEffect,
 
-    StatusEffect_Burn
+    StatusEffect_Burn,
+    StatusEffect_MoneyLoot
 
 }
 

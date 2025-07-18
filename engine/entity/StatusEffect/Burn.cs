@@ -15,14 +15,11 @@ public class Burn : StatusEffect
             $"- {this.GetType().ToString()} :\n" +
             "inflige 1 degat a la fin du tour de la cible."
         );
-        // TODO: dure N tour(s).
-        // TODO: (lance par X).
-        // TODO: applique a Y.
     }
 
 
     public override void eventWhenTargetEndTurn()
     {
-        this.getCharacterWhoApplyEffect?.makeDamage(this.getCharacterHasEffect, this.damage);
+        this.getCharacterWhoApplyEffect?.makeDamage(this.getCharacterWhoHasEffect, this.damage);
     }
 }

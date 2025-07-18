@@ -29,7 +29,7 @@ public class StatusEffect
     {
         get { return TurnManager.getAllCharacters().FirstOrDefault(c => c.idEntity == this.characterIdWhoApplyEffect); }
     }
-    protected Character getCharacterHasEffect
+    protected Character getCharacterWhoHasEffect
     {
         get { return TurnManager.getAllCharacters().Find(c => c.idEntity == this.characterIdWhoHasEffect) ?? throw new Exception("CharacterHasApplyEffect has not found in TurnManager !"); }
     }
@@ -59,9 +59,9 @@ public class StatusEffect
 
 
     // event call when effect end life.
-    public void eventWhenStatusEffectDisapear(
-        bool isEndLifeEffect = false, //implemented.
-        bool isEndOfFight = false, //implemented.
+    public virtual void eventWhenStatusEffectDisapear(
+        bool isEndLifeEffect = false,
+        bool isEndOfFight = false,
         bool isCharacterWhoHasEffectDie = false,
         bool isCharacterWhoApplyEffectDie = false
     )
