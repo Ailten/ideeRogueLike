@@ -24,7 +24,6 @@ public class MiniMapUi : Entity
 
         if (CanvasManager.isDebug)
         {
-            Console.WriteLine(new Vector(Stage.widthMax, Stage.heightMax) * sizeTileWidth);
             Raylib_cs.Raylib.DrawRectangleLinesEx( // draw rect of full mini map ui.
                 new Rect(
                     posToDraw - new Vector(Stage.widthMax * sizeTileWidth, 0),

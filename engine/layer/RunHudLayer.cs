@@ -23,7 +23,8 @@ public class RunHudLayer : Layer
 
         SkipTurnBackUi skipTurnBackUi = new SkipTurnBackUi(idLayer); //background ui for skip turn button.
         skipTurnBackUi.pos = CanvasManager.sizeWindow;
-        skipTurnBackUi.isLeftSPriteTo = true;
+        skipTurnBackUi.isLeftSpriteTo = true;
+        skipTurnBackUi.isTopRightSpriteTo = true;
 
         this.buttonSkipTurn = new ButtonSkipTurnUi(idLayer); //button skip turn.
         this.buttonSkipTurn.pos = CanvasManager.sizeWindow - new Vector(195, 60);
