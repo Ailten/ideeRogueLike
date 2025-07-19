@@ -92,6 +92,9 @@ public class RunHudLayer : Layer
         cardHandListCardUi.isMakeReOrdered = false;
         cardHandListCardUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInHand); //link card hands list to list UI.
 
+        this.statusEffectUi = new StatusEffectUi(idLayer);
+        this.statusEffectUi.pos.x = 710;
+        this.statusEffectUi.setAmountOfEffectPrint(5);
 
 
         base.active();
@@ -127,6 +130,8 @@ public class RunHudLayer : Layer
         get { return cardHandListCardUi ?? throw new Exception("RunHudLayer.cardHandListCardUi is null !"); }
     }
 
+    public StatusEffectUi? statusEffectUi = null;
+
 
     public override void update()
     {
@@ -141,6 +146,7 @@ public class RunHudLayer : Layer
         this.buttonSkipTurn = null;
         this.elementsInMenuCardUi = new();
         this.cardHandListCardUi = null;
+        this.statusEffectUi = null;
 
         base.unActive();
     }
