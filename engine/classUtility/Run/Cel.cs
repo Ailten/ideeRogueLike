@@ -75,7 +75,6 @@ public class Cel : Entity
 
         switch(celtype){
 
-            //door.
             case(CelType.CelDoor_up):
             case(CelType.CelDoor_right):
             case(CelType.CelDoor_down):
@@ -84,17 +83,14 @@ public class Cel : Entity
                     return SpriteType.Cel_DoorToNextRoomLock; //mark as door lock when in fight.
                 return SpriteType.Cel_DoorToNextRoom;
 
-            //rope.
             case(CelType.Cel_NextStage):
                 return SpriteType.Cel_RopeToNextStage;
-
-            //mobSpawner.
             case(CelType.Cel_MobSpawner):
                 return SpriteType.Cel_Invocation;
-
-            //center room cel.
             case(CelType.Cel_CenterRoom):
                 return SpriteType.Cel_CenterRoom;
+            case(CelType.Cel_Coffre):
+                return SpriteType.Cel_Coffre;
 
             default:
                 throw new Exception("SpriteType no match for CelType !");
@@ -271,6 +267,13 @@ public class Cel : Entity
                     });
                     
                 }
+                return;
+
+            //walk to a chest.
+            case(CelType.Cel_Coffre):
+
+                // TODO: do something when walk on chest cel.
+                
                 return;
 
             default:

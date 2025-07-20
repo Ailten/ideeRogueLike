@@ -25,6 +25,8 @@ class Program
     
     // draw time line, pause border, and status effect.
 
+    // time line prio !.
+
 
     // ? consoleManager for combat print line ?
 

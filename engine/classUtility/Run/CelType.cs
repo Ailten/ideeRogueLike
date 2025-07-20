@@ -17,7 +17,8 @@ public enum CelType
     Cel_CenterRoom,
 
 
-    Cel_MobSpawner
+    Cel_MobSpawner,
+    Cel_Coffre
 
     
 }

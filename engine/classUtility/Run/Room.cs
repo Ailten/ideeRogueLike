@@ -273,8 +273,14 @@ public class Room
                     }
                 }
 
-                if(celType == CelType.Cel && roomType==RoomType.Room_Center && x==midWidthMax && y==midHeightMax){
+                bool isCenterRoomCel = (x == midWidthMax && y == midHeightMax);
+                if (celType == CelType.Cel && roomType == RoomType.Room_Center && isCenterRoomCel)
+                {
                     celType = CelType.Cel_CenterRoom; //print center room for spawn stage cel.
+                }
+                else if (celType == CelType.Cel && roomType == RoomType.Room_Chest && isCenterRoomCel)
+                {
+                    celType = CelType.Cel_Coffre; //print chest cel.
                 }
 
                 //instancie cel.
