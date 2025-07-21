@@ -112,6 +112,7 @@ public enum SpriteType
     StatusEffect_arrowLeftStatusEffect,
     StatusEffect_BGTimeLineCharacterBlue,
     StatusEffect_BGTimeLineCharacterRed,
+    StatusEffect_TimeLineDelimiterTurn,
     StatusEffect_BGStatusEffect,
 
     StatusEffect_Burn,

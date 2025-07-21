@@ -22,10 +22,12 @@ class Program
     //use sprite cel coffre, fusion, discard, duplicate, boost.
 
     // add a special room for "boost card effect".
-    
+
     // draw time line, pause border, and status effect.
 
     // time line prio !.
+
+    // edit sprite bar turn time line.
 
 
     // ? consoleManager for combat print line ?

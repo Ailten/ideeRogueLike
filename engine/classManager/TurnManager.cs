@@ -4,6 +4,10 @@ public static class TurnManager
 
     private static List<Character> allCharacterInRoom = new();
     private static int indexCharacterTurn = 0;
+    public static int getIndexCharacterTurn
+    {
+        get { return indexCharacterTurn; }
+    }
 
     private static List<Character> allCharacterDead = new();
     private static bool _isInFight = false;

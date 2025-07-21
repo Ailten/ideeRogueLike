@@ -51,6 +51,9 @@ public class StatusEffectUi : Entity
 
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
+        if (this.listEffect.Count == 0)
+            return;
+
         // print scroll bar.
         bool isScrollBarEnable = (listEffect.Count > amountOfEffectPrint);
         if (isScrollBarEnable)
