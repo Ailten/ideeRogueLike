@@ -93,8 +93,8 @@ public class RunHudLayer : Layer
         cardHandListCardUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInHand); //link card hands list to list UI.
 
         this.statusEffectUi = new StatusEffectUi(idLayer); // status effect ui.
-        this.statusEffectUi.pos.x = 710;
-        this.statusEffectUi.setAmountOfEffectPrint(5);
+        this.statusEffectUi.pos = new(380, 5);
+        this.statusEffectUi.setWidthSize(720);
 
         TimeLineUi timeLineUi = new TimeLineUi(idLayer); // time line ui.
         timeLineUi.pos = new(CanvasManager.sizeWindow.x, 110);

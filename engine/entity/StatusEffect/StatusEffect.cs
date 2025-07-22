@@ -7,6 +7,8 @@ public class StatusEffect
     private int characterIdWhoApplyEffect;
     private int characterIdWhoHasEffect;
     private SpriteType spriteType;
+    private int idEffect;
+    private static int idEffectCount = 0;
 
     public int getTurnEnd
     {
@@ -39,6 +41,11 @@ public class StatusEffect
         get { return spriteType; }
     }
 
+    public int getIdEffect
+    {
+        get { return this.idEffect; }
+    }
+
 
     public StatusEffect(SpriteType spriteType, int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1)
     {
@@ -49,6 +56,8 @@ public class StatusEffect
 
         this.characterIdWhoHasEffect = characterIdWhoHasEffect;
         this.characterIdWhoApplyEffect = characterIdWhoApplyEffect;
+
+        this.idEffect = idEffectCount++;
     }
 
     // description of effect.

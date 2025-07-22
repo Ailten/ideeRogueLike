@@ -25,9 +25,12 @@ class Program
 
     // draw time line, pause border, and status effect.
 
-    // time line prio !.
 
-    // edit sprite bar turn time line.
+    // status effect list ui, new methode ! (like card list)
+    // -> todo : remove debug comment on burn at end test.
+    // -> todo : draw description effect selected. (maybe an entity ui only for description effect (for catch click)).
+    
+    // debug scan window pos word camera is replaced. ~
 
 
     // ? consoleManager for combat print line ?

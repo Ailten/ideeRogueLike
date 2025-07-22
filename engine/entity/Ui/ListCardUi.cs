@@ -54,9 +54,11 @@ public class ListCardUi : Entity
     public void updateGeometryTriggerBasedOnSizeListCard()
     {
         if(this.listCard.Count == 0){ //no colide area when no card in UI.
+            this.isActive = false;
             this.geometryTrigger = null;
             return;
         }
+        this.isActive = true;
         this.geometryTrigger = new Rect(new Vector(0, 0), this.sizeListCard);
     }
 
@@ -148,18 +150,12 @@ public class ListCardUi : Entity
         //eval size at screen.
         Vector sizeAtScreen = this.sizeListCard * this.scale * CanvasManager.scaleCanvas;
 
-        //rect dest of full entity.
-        Rect rectDest = new Rect(
-            new Vector(posAtScreen.x, posAtScreen.y),
-            new Vector(sizeAtScreen.x, sizeAtScreen.y)
-        );
-
         //size at screen of a card.
         Vector sizeAtScreenCard = Card.cardSize * this.scaleCards * CanvasManager.scaleCanvas;
 
         //position of start and end position card at screen.
-        Vector posStart = rectDest.posStart + (sizeAtScreenCard * 0.5f);
-        Vector posEnd = rectDest.posStart + rectDest.size - (sizeAtScreenCard * 0.5f);
+        Vector posStart = posAtScreen + (sizeAtScreenCard * 0.5f);
+        Vector posEnd = posAtScreen + sizeAtScreen - (sizeAtScreenCard * 0.5f);
 
         //replacement up when a card is selected.
         Vector upPosWhenSelected = new Vector(0, -1 * this.upCardWhenSelected * CanvasManager.scaleCanvas);

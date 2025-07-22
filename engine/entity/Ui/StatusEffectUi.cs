@@ -2,6 +2,11 @@
 public class StatusEffectUi : Entity
 {
     private List<StatusEffect> listEffect = new();
+    private int indexEffectSelected = -1;
+    public bool isEffectSelected
+    {
+        get { return this.indexEffectSelected >= 0; }
+    }
 
     public StatusEffectUi(int idLayer) : base(idLayer, SpriteType.none)
     {
@@ -13,101 +18,316 @@ public class StatusEffectUi : Entity
     }
 
 
-    private int amountOfEffectPrint;
-    private int indexPosScrollBar = 0;
-
-
-    private static Vector statusEffectSize = new(63, 63);
-    private static Vector arrowLeftSize = new(32, 16);
-    private static float widthSizeSpacing = 20;
-    private static float heightSizeSpacing = 10;
-    private static float heightArrowLeft = 16;
-
+    private float widthSizeGeometry;
+    private int maxEffectPrint;
+    private bool isOverEffectCount
+    {
+        get { return this.listEffect.Count > this.maxEffectPrint; }
+    }
 
     // set size.
-    public void setAmountOfEffectPrint(int amountEffect)
+    public void setWidthSize(float widthSize)
     {
-        this.amountOfEffectPrint = amountEffect;
-
-        this.geometryTrigger = new Rect(
-            new(0, 0),
-            new(
-                (statusEffectSize.x * amountEffect) + (widthSizeSpacing * Math.Max(0, amountEffect - 1)),
-                statusEffectSize.y + heightArrowLeft + (heightSizeSpacing * 1)
-            )
-        );
-
-        this.indexPosScrollBar = 0;
+        this.widthSizeGeometry = widthSize;
+        this.evalAmountOfEffectPrintable();
+        this.resetSelection();
+        this.updateGeometryTriggerBasedOnList();
     }
 
     // set list effect.
     public void setListEffect(List<StatusEffect> listEffect)
     {
         this.listEffect = listEffect;
+        this.resetSelection();
+        this.updateGeometryTriggerBasedOnList();
+    }
 
-        this.indexPosScrollBar = 0;
+    private void resetSelection()
+    {
+        this.indexEffectSelected = -1;
+        this.geometryTriggerSecond = null;
+    }
+
+    private void updateGeometryTriggerBasedOnList()
+    {
+        bool isEmpty = (this.listEffect.Count == 0);
+        this.isActive = !isEmpty;
+
+        this.geometryTrigger = new Rect(
+            new(0, 0),
+            new(
+                (
+                    (this.isOverEffectCount) ? this.widthSizeGeometry :
+                    (statusEffectSize.x + widthSizeSpacing) * (this.listEffect.Count - 1) + statusEffectSize.x
+                ),
+                statusEffectSize.y
+            )
+        );
+
+        if (isEmpty || !isEffectSelected)
+            this.geometryTriggerSecond = null;
+        else
+        {
+            float posStartX = (isOverEffectCount ?
+                Vector.lerpF(0, widthSizeGeometry, (float)this.indexEffectSelected / this.listEffect.Count) :
+                (statusEffectSize.x + widthSizeSpacing) * this.indexEffectSelected
+            );
+            float sizeY = heightSizeDownSelected + heightSizeSpacing + arrowLeftSize.y;
+
+            this.geometryTriggerSecond = new Rect( // set geometry trigger second (for click button left/right).
+                new Vector(posStartX, statusEffectSize.y),
+                new Vector(statusEffectSize.x, sizeY)
+            );
+        }
+    }
+
+    private void evalAmountOfEffectPrintable()
+    {
+        this.maxEffectPrint = 0; //default zero.
+        float widthSizeCroped = this.widthSizeGeometry;
+        if (widthSizeCroped > statusEffectSize.x)
+        {
+            this.maxEffectPrint++; //first effect.
+            widthSizeCroped -= statusEffectSize.x;
+
+            float effectAndSpacingWidth = statusEffectSize.x + widthSizeSpacing;
+            while (true)
+            {
+                if (widthSizeCroped < effectAndSpacingWidth)
+                    break;
+                this.maxEffectPrint++; //two or more effect (with spacing bewteen eatch).
+                widthSizeCroped -= effectAndSpacingWidth;
+            }
+        }
     }
 
 
+    private static Vector statusEffectSize = new(63, 63);
+    private static Vector arrowLeftSize = new(32, 16);
+    private static float widthSizeSpacing = 10;
+    private static float heightSizeSpacing = 10;
+    private static float heightSizeDownSelected = 20;
+
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
+        // skip draw if no effect.
         if (this.listEffect.Count == 0)
             return;
 
-        // print scroll bar.
-        bool isScrollBarEnable = (listEffect.Count > amountOfEffectPrint);
-        if (isScrollBarEnable)
+        // set basic data for draw.
+        Sprite spriteEffect = SpriteManager.findBySpriteType(SpriteType.StatusEffect_BGStatusEffect) ?? throw new Exception("Sprite not found !");
+
+        // get Rect to draw.
+        List<Rect> effectsArrea = this.getEffectsArrea();
+
+        // draw arrow effect selected (and description).
+        if (this.isEffectSelected)
         {
-            // TODO : draw horizontal scroll bar.
+            // draw arrow left/right.
+            Rect arrowSource = spriteEffect.getSpriteTileBySpriteType(SpriteType.StatusEffect_arrowLeftStatusEffect).getRectSource();
+            if (this.indexEffectSelected != 0) {
+                Raylib_cs.Raylib.DrawTexturePro( // draw bg effect.
+                    texture: spriteEffect.texture,
+                    source: arrowSource,
+                    dest: effectsArrea[effectsArrea.Count - 2],
+                    origine,
+                    rotate,
+                    Raylib_cs.Color.White
+                );
+            }
+            if (this.indexEffectSelected != this.listEffect.Count - 1) {
+                arrowSource.size.x *= -1;
+                Raylib_cs.Raylib.DrawTexturePro( // draw bg effect.
+                    texture: spriteEffect.texture,
+                    source: arrowSource,
+                    dest: effectsArrea[effectsArrea.Count - 1],
+                    origine,
+                    rotate,
+                    Raylib_cs.Color.White
+                );
+            }
+
+            effectsArrea.RemoveRange(effectsArrea.Count - 2, 2); //remove.
+
+            // TODO : draw description effect selected.
         }
 
-        // print effects.
-        Sprite spriteEffect = SpriteManager.findBySpriteType(SpriteType.StatusEffect_BGStatusEffect) ?? throw new Exception("Sprite not found !");
-        Vector statusEffectSizeScaled = statusEffectSize * scale * CanvasManager.scaleCanvas;
-        Vector leftArrowSizeScaled = arrowLeftSize * scale * CanvasManager.scaleCanvas;
-        float widthSizeSpacingScaled = widthSizeSpacing * scale.x * CanvasManager.scaleCanvas;
-        float heightSizeSpacingScaled = heightSizeSpacing * scale.y * CanvasManager.scaleCanvas;
-        float heightArrowLeftScaled = heightArrowLeft * scale.y * CanvasManager.scaleCanvas;
-
-        for (int i = 0; i < amountOfEffectPrint; i++)
+        // draw effects.
+        for (int i = 0; i < effectsArrea.Count; i++)
         {
-            int indexEffect = indexPosScrollBar + i;
-            if (indexEffect >= this.listEffect.Count)
-                continue;
-            StatusEffect effect = this.listEffect[indexEffect];
+            Rect currentRect = effectsArrea[i];
+            StatusEffect currentEffect = this.listEffect[i];
 
-            // draw back effect.
-            Rect rectDestDraw = new(
-                posToDraw + new Vector((widthSizeSpacingScaled + statusEffectSizeScaled.x) * i, 0),
-                statusEffectSizeScaled
-            );
-
-            Raylib_cs.Raylib.DrawTexturePro(
+            Raylib_cs.Raylib.DrawTexturePro( // draw bg effect.
                 texture: spriteEffect.texture,
                 source: spriteEffect.getSpriteTileBySpriteType(SpriteType.StatusEffect_BGStatusEffect).getRectSource(),
-                dest: rectDestDraw,
+                dest: currentRect,
                 origine,
                 rotate,
                 Raylib_cs.Color.White
             );
-            Raylib_cs.Raylib.DrawTexturePro(
+            Raylib_cs.Raylib.DrawTexturePro( // draw effect.
                 texture: spriteEffect.texture,
-                source: spriteEffect.getSpriteTileBySpriteType(effect.GetSpriteType).getRectSource(),
-                dest: rectDestDraw,
+                source: spriteEffect.getSpriteTileBySpriteType(currentEffect.GetSpriteType).getRectSource(),
+                dest: currentRect,
                 origin: origine,
                 rotation: 0,
                 Raylib_cs.Color.White
             );
+        }
+    }
 
-            // TODO : draw sphere turn until end effect.
 
-            // TODO : draw arrow left and right.
+    // click event for select/unselect and move left/right.
+    public override void eventMouseClick(bool isLeftClick, bool isClickDown)
+    {
+        if (isClickDown)
+            return;
+
+        List<Rect> effectsArrea = getEffectsArrea();
+
+        // click arrow left/right.
+        if (this.isEffectSelected)
+        {
+            // verify match click both arrow.
+            bool isClickArrowLeft = ColideManager.isPosIsInRect(
+                MouseManager.getPosMouseAtScreen,
+                effectsArrea[effectsArrea.Count - 2]
+            );
+            bool isClickArrowRight = ColideManager.isPosIsInRect(
+                MouseManager.getPosMouseAtScreen,
+                effectsArrea[effectsArrea.Count - 1]
+            );
+            if (isClickArrowLeft || isClickArrowRight)
+            {
+                int indexDestination = indexEffectSelected + (isClickArrowLeft ? -1 : 1);
+
+                if (indexDestination < 0 || indexDestination > this.listEffect.Count - 1)
+                    return; // try to replace effect selected out of range list.
+
+                StatusEffect tempon = this.listEffect[this.indexEffectSelected]; //switch.
+                this.listEffect[this.indexEffectSelected] = this.listEffect[indexDestination];
+                this.listEffect[indexDestination] = tempon;
+
+                this.indexEffectSelected = indexDestination; //replace select.
+                this.updateGeometryTriggerBasedOnList();
+
+                return;
+            }
+
+            effectsArrea.RemoveRange(effectsArrea.Count - 2, 2); //remove.
         }
 
-        // print details effect selected.
-        // TODO : print details effect selected.
+        // click effects.
+        for (int i = effectsArrea.Count - 1; i >= 0; i--)
+        {
+            // verify match click effect.
+            bool isClickOnCurrentEffect = ColideManager.isPosIsInRect(
+                MouseManager.getPosMouseAtScreen,
+                effectsArrea[i]
+            );
+            if (!isClickOnCurrentEffect)
+                continue;
+
+            // select/unselect effect.
+            if (this.indexEffectSelected == i)
+            {
+                this.resetSelection();
+                this.updateGeometryTriggerBasedOnList();
+            }
+            else
+            {
+                this.indexEffectSelected = i;
+                this.updateGeometryTriggerBasedOnList();
+            }
+
+            return;
+
+        }
+
 
     }
 
+
+    private List<Rect> getEffectsArrea()
+    {
+        // case with no effect on list.
+        if (listEffect.Count == 0)
+            return new();
+
+        List<Rect> output = new();
+        Rect? buttonLeft = null, buttonRight = null;
+        Vector posAtScreen = this.pos * CanvasManager.scaleCanvas + CanvasManager.posDecalCanvas;
+        Vector statusEffectSizeScaled = statusEffectSize * this.scale * CanvasManager.scaleCanvas;
+
+        if (this.isOverEffectCount)
+        {
+            float posLastEffect = (widthSizeGeometry - statusEffectSize.x) * this.scale.x * CanvasManager.scaleCanvas;
+
+            for (int i = 0; i < this.listEffect.Count; i++)
+            {
+                float interpolation = (float)i / (this.listEffect.Count - 1);
+
+                Vector posStart = posAtScreen;
+                posStart.x += Vector.lerpF(0, posLastEffect, interpolation);
+
+                // if current effect is selected make button left/right.
+                if (i == this.indexEffectSelected)
+                    getButtonArea(ref posStart, ref buttonLeft, ref buttonRight, statusEffectSizeScaled);
+
+                output.Add(new Rect(
+                    posStart,
+                    statusEffectSizeScaled
+                ));
+            }
+        }
+        else
+        {
+            Vector widthSizeSpacingAndEffect = new Vector(statusEffectSize.x + widthSizeSpacing, 0);
+            widthSizeSpacingAndEffect = widthSizeSpacingAndEffect * CanvasManager.scaleCanvas + CanvasManager.posDecalCanvas;
+
+            for (int i = 0; i < this.listEffect.Count; i++)
+            {
+                Vector posStart = posAtScreen + widthSizeSpacingAndEffect * i;
+
+                // if current effect is selected make button left/right.
+                if (i == this.indexEffectSelected)
+                    getButtonArea(ref posStart, ref buttonLeft, ref buttonRight, statusEffectSizeScaled);
+
+                output.Add(new Rect(
+                    posStart,
+                    statusEffectSizeScaled
+                ));
+            }
+        }
+
+        // add button left and right att end (if as one init).
+        if (buttonLeft is not null && buttonRight is not null)
+        {
+            output.Add(buttonLeft ?? throw new Exception("Rect is null !"));
+            output.Add(buttonRight ?? throw new Exception("Rect is null !"));
+        }
+
+        return output;
+    }
+    private void getButtonArea(ref Vector posStart, ref Rect? buttonLeft, ref Rect? buttonRight, Vector statusEffectSizeScaled)
+    {
+        Vector arrowLeftSizeScaled = arrowLeftSize * this.scale.y * CanvasManager.scaleCanvas;
+        float heightSizeDownSelectedScaled = heightSizeDownSelected * this.scale.y * CanvasManager.scaleCanvas;
+        float heightSizeSpacingScaled = heightSizeSpacing * this.scale.y * CanvasManager.scaleCanvas;
+
+        posStart.y += heightSizeDownSelectedScaled; // replace down effect area.
+
+        float posStartYButton = statusEffectSizeScaled.y + heightSizeDownSelectedScaled + heightSizeSpacingScaled;
+
+        buttonLeft = new Rect(
+            new Vector(posStart.x, posStartYButton),
+            arrowLeftSizeScaled
+        );
+        buttonRight = new Rect(
+            new Vector(posStart.x + statusEffectSizeScaled.x - arrowLeftSizeScaled.x, posStartYButton),
+            arrowLeftSizeScaled
+        );
+    }
 
 }
