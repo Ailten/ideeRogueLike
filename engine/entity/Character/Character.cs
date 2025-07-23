@@ -34,6 +34,10 @@ public class Character : Entity
     public Deck deck = new(); //deck of all card.
 
     public List<StatusEffect> statusEffects = new();
+    public string getName
+    {
+        get{ return this.spriteType.ToString().Substring("Character_".Length); }
+    }
 
 
     public Character(SpriteType spriteType, Vector posIndexCel) : base(RunLayer.layer.idLayer, spriteType)

@@ -107,6 +107,9 @@ public class StatusEffectUi : Entity
     private static float widthSizeSpacing = 10;
     private static float heightSizeSpacing = 10;
     private static float heightSizeDownSelected = 20;
+    private static Font fontDescription = FontManager.getFontByFontType(FontType.IntensaFuente);
+    private static float fontSize = 20f;
+    public static float fontSpacing = 2f;
 
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
@@ -125,7 +128,8 @@ public class StatusEffectUi : Entity
         {
             // draw arrow left/right.
             Rect arrowSource = spriteEffect.getSpriteTileBySpriteType(SpriteType.StatusEffect_arrowLeftStatusEffect).getRectSource();
-            if (this.indexEffectSelected != 0) {
+            if (this.indexEffectSelected != 0)
+            {
                 Raylib_cs.Raylib.DrawTexturePro( // draw bg effect.
                     texture: spriteEffect.texture,
                     source: arrowSource,
@@ -135,7 +139,8 @@ public class StatusEffectUi : Entity
                     Raylib_cs.Color.White
                 );
             }
-            if (this.indexEffectSelected != this.listEffect.Count - 1) {
+            if (this.indexEffectSelected != this.listEffect.Count - 1)
+            {
                 arrowSource.size.x *= -1;
                 Raylib_cs.Raylib.DrawTexturePro( // draw bg effect.
                     texture: spriteEffect.texture,
@@ -147,9 +152,34 @@ public class StatusEffectUi : Entity
                 );
             }
 
-            effectsArrea.RemoveRange(effectsArrea.Count - 2, 2); //remove.
+            // draw description effect selected.
+            string textDescription = this.listEffect[this.indexEffectSelected].getDescription();
+            float fontSizeText = fontSize * CanvasManager.scaleCanvas;
+            float fontSpacingText = fontSpacing * CanvasManager.scaleCanvas;
+            const float padding = 10;
+            Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(fontDescription, textDescription, fontSizeText, fontSpacingText);
+            sizeText += padding * (textDescription.Count(c => c == '\n') * 0.5f + 2);
+            float posStartBGTextY = effectsArrea[effectsArrea.Count - 2].posStart.y + effectsArrea[effectsArrea.Count - 2].size.y + padding;
+            Raylib_cs.Raylib.DrawRectangle( // draw back text.
+                (int)posToDraw.x,
+                (int)posStartBGTextY,
+                (int)sizeText.x,
+                (int)sizeText.y,
+                Raylib_cs.Color.Gray
+            );
 
-            // TODO : draw description effect selected.
+            // draw text (effect details).
+            Vector posText = new Vector(posToDraw.x, posStartBGTextY) + padding;
+            Raylib_cs.Raylib.DrawTextEx(
+                font: fontDescription,
+                text: textDescription,
+                position: posText,
+                fontSize: fontSizeText,
+                spacing: fontSpacingText,
+                Raylib_cs.Color.Black
+            );
+
+            effectsArrea.RemoveRange(effectsArrea.Count - 2, 2); //remove.
         }
 
         // draw effects.

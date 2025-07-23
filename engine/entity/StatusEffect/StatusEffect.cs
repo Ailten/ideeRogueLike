@@ -16,7 +16,7 @@ public class StatusEffect
     }
     public int getTurnUntilEnd
     {
-        get { return turnEnd - TurnManager.getTurnCount; }
+        get { return (turnEnd >= 0? turnEnd - TurnManager.getTurnCount: -1); }
     }
     public int getCharacterIdWhoApplyEffect
     {
@@ -61,9 +61,20 @@ public class StatusEffect
     }
 
     // description of effect.
-    protected virtual string getDescription()
+    public virtual string getDescription()
     {
         throw new Exception("StatusEffect has no description overided !");
+    }
+    protected string getDescriptionTurn()
+    {
+        Character? whoApply = getCharacterWhoApplyEffect;
+        string nameWhoApply = (whoApply is not null ? whoApply.getName : "---");
+        string turnUntil = (getTurnUntilEnd >= 0 ? getTurnUntilEnd.ToString()+"T" : "infini");
+        return (
+            $"- cible : {getCharacterWhoHasEffect.getName}, " +
+            $"par : {nameWhoApply}, " +
+            $"dure : {turnUntil}"
+        );
     }
 
 

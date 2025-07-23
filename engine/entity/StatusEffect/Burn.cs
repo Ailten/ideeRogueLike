@@ -9,11 +9,12 @@ public class Burn : StatusEffect
         this.damage = damage;
     }
 
-    protected override string getDescription()
+    public override string getDescription()
     {
         return (
             $"- {this.GetType().ToString()} :\n" +
-            "inflige 1 degat a la fin du tour de la cible."
+            "inflige 1 degat a la fin du tour de la cible.\n"+
+            this.getDescriptionTurn()
         );
     }
 

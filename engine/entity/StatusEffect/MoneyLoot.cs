@@ -9,11 +9,12 @@ public class MoneyLoot : StatusEffect
         this.money = money;
     }
 
-    protected override string getDescription()
+    public override string getDescription()
     {
         return (
             $"- {this.GetType().ToString()} :\n" +
-            $"donne {this.money} en plus."
+            $"donne {this.money} en plus.\n"+
+            this.getDescriptionTurn()
         );
     }
 

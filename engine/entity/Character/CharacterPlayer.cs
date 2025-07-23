@@ -14,7 +14,7 @@ public class CharacterPlayer : Character
         {
 
             case (SpriteType.Character_Ailten):
-                return new CharacterAilten(spriteType, posIndexCel);
+                return new CharacterAilten(posIndexCel);
 
             //add heer other CharacterPlayer.
 

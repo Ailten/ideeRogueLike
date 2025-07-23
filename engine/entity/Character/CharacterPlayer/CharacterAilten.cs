@@ -2,7 +2,7 @@
 public class CharacterAilten : CharacterPlayer
 {
 
-    public CharacterAilten(SpriteType spriteType, Vector posIndexCel) : base(spriteType, posIndexCel)
+    public CharacterAilten(Vector posIndexCel) : base(SpriteType.Character_Ailten, posIndexCel)
     {
         this.MPmax = 3;
         this.MP = MPmax;
