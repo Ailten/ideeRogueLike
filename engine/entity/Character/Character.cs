@@ -34,9 +34,9 @@ public class Character : Entity
     public Deck deck = new(); //deck of all card.
 
     public List<StatusEffect> statusEffects = new();
-    public string getName
+    public virtual string getName
     {
-        get{ return this.spriteType.ToString().Substring("Character_".Length); }
+        get{ return this.GetType().ToString().Substring("Character".Length); }
     }
 
 

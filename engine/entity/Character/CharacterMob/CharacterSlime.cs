@@ -1,7 +1,6 @@
 
 public class CharacterSlime : CharacterMob
 {
-
     public CharacterSlime(Vector posIndexCel) : base(SpriteType.Character_Slime, posIndexCel)
     {
         //IA logic.

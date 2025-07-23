@@ -1,7 +1,6 @@
 
 public class CharacterFlame : CharacterMob
 {
-    
     public CharacterFlame(Vector posIndexCel) : base(SpriteType.Character_Flame, posIndexCel)
     {
         //IA logic.

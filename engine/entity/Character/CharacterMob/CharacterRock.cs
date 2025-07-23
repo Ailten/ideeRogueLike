@@ -1,7 +1,6 @@
 
 public class CharacterRock : CharacterMob
 {
-
     public CharacterRock(Vector posIndexCel) : base(SpriteType.Character_Rock, posIndexCel)
     {
         //IA logic.
