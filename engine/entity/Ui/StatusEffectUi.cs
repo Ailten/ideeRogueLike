@@ -156,7 +156,7 @@ public class StatusEffectUi : Entity
             string textDescription = this.listEffect[this.indexEffectSelected].getDescription();
             float fontSizeText = fontSize * CanvasManager.scaleCanvas;
             float fontSpacingText = fontSpacing * CanvasManager.scaleCanvas;
-            const float padding = 10;
+            float padding = heightSizeSpacing * this.scale.y * CanvasManager.scaleCanvas;
             Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(fontDescription, textDescription, fontSizeText, fontSpacingText);
             sizeText += padding * (textDescription.Count(c => c == '\n') * 0.5f + 2);
             float posStartBGTextY = effectsArrea[effectsArrea.Count - 2].posStart.y + effectsArrea[effectsArrea.Count - 2].size.y + padding;
@@ -314,7 +314,7 @@ public class StatusEffectUi : Entity
         else
         {
             Vector widthSizeSpacingAndEffect = new Vector(statusEffectSize.x + widthSizeSpacing, 0);
-            widthSizeSpacingAndEffect = widthSizeSpacingAndEffect * CanvasManager.scaleCanvas + CanvasManager.posDecalCanvas;
+            widthSizeSpacingAndEffect = widthSizeSpacingAndEffect * CanvasManager.scaleCanvas;
 
             for (int i = 0; i < this.listEffect.Count; i++)
             {
@@ -348,7 +348,10 @@ public class StatusEffectUi : Entity
 
         posStart.y += heightSizeDownSelectedScaled; // replace down effect area.
 
-        float posStartYButton = statusEffectSizeScaled.y + heightSizeDownSelectedScaled + heightSizeSpacingScaled;
+        float posStartYButton = (
+            statusEffectSizeScaled.y + heightSizeDownSelectedScaled +
+            heightSizeSpacingScaled + CanvasManager.posDecalCanvas.y
+        );
 
         buttonLeft = new Rect(
             new Vector(posStart.x, posStartYButton),
