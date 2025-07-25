@@ -12,10 +12,14 @@ public class Burn : StatusEffect
     public override string getDescription()
     {
         return (
-            $"- {this.GetType().ToString()} :\n" +
+            $"- {this.getName()} :\n" +
             "inflige 1 degat a la fin du tour de la cible.\n"+
             this.getDescriptionTurn()
         );
+    }
+    protected override string getName()
+    {
+        return "Brulure";
     }
 
 

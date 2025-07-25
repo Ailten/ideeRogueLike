@@ -76,6 +76,10 @@ public class StatusEffect
             $"dure : {turnUntil}"
         );
     }
+    protected virtual string getName()
+    {
+        return "No name";
+    }
 
 
     // event call when effect end life.
