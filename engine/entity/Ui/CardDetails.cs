@@ -53,7 +53,7 @@ public class CardDetails : Entity
             float fontSizeText = Card.fontSizeShorter * scaleCards * CanvasManager.scaleCanvas;
             float fontSpacingText = Card.fontSpacing * scaleCards * CanvasManager.scaleCanvas;
             Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(Card.font, text, fontSizeText, fontSpacingText);
-            const float padding = 10;
+            float padding = 10 * scaleCards * CanvasManager.scaleCanvas;
 
             // draw back text.
             sizeText += padding * (text.Count(c => c == '\n') * 0.5f + 2);
@@ -152,15 +152,6 @@ public class CardDetails : Entity
         //pos screen of full entity.
         Vector posAtScreen = this.pos * CanvasManager.scaleCanvas + CanvasManager.posDecalCanvas;
 
-        //eval size at screen.
-        Vector sizeAtScreen = this.size * this.scale * CanvasManager.scaleCanvas;
-
-        //rect dest of full entity.
-        Rect rectDest = new Rect(
-            new Vector(posAtScreen.x, posAtScreen.y),
-            new Vector(sizeAtScreen.x, sizeAtScreen.y)
-        );
-
         //size at screen of a card.
         Vector sizeAtScreenCard = Card.cardSize * this.scaleCards * CanvasManager.scaleCanvas;
 
@@ -181,6 +172,10 @@ public class CardDetails : Entity
             Vector posText = posAtScreen + (Card.posEffects[i] * this.scaleCards * CanvasManager.scaleCanvas);
             Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(Card.font, effectsStr[i], fontSizeText, fontSpacingText);
             posText -= (sizeText * encrageText);
+
+            // edit : make the rect width match 100% card width.
+            posText.x = posAtScreen.x;
+            sizeText.x = sizeAtScreenCard.x;
 
             output.Add(new Rect(posText, sizeText));
         }
