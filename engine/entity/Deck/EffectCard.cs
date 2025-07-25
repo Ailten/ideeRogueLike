@@ -8,12 +8,35 @@ public enum EffectCard
     Heal, //heal the hp target.
     MPHit, //cast all mp launcher for aply damage to the target.
     Burn, //apply effect burn to target.
-    MoneyLoot, //up gold of target.
+    MoneyLoot //up gold of target.
 }
 
 
 public static class StaticEffectCard
 {
+    public static string getName(this EffectCard effectCard)
+    {
+        switch (effectCard)
+        {
+            case (EffectCard.NoEffect):
+                return "Aucun effet";
+            case (EffectCard.Hit):
+                return "Attaque";
+            case (EffectCard.Shild):
+                return "Bouclier";
+            case (EffectCard.Heal):
+                return "Soin";
+            case (EffectCard.MPHit):
+                return "Attaque MP";
+            case (EffectCard.Burn):
+                return "Brulure";
+            case (EffectCard.MoneyLoot):
+                return "Chercheur d or";
+            default:
+                return "No name";
+        }
+    }
+
     public static string getDetails(this EffectCard effectCard)
     {
         switch (effectCard)
@@ -21,34 +44,34 @@ public static class StaticEffectCard
             case (EffectCard.NoEffect):
                 return "ne fait rien.";
             case (EffectCard.Hit):
-                return ($"- {effectCard.ToString()} :\n" +
+                return ($"- {effectCard.getName()} :\n" +
                     "effectue N points de degat a la cible.\n" +
                     "arrivé a 0 points de vie, la cible meure."
                 );
             case (EffectCard.Shild):
-                return ($"- {effectCard.ToString()} :\n" +
+                return ($"- {effectCard.getName()} :\n" +
                     "donne N points de bouclier a la cible.\n" +
                     "les points de bouclier protege les points de vie.\n" +
                     "les points de bouclier sont perdu en debut de tour."
                 );
             case (EffectCard.Heal):
-                return ($"- {effectCard.ToString()} :\n" +
+                return ($"- {effectCard.getName()} :\n" +
                     "soigne N points de vie a la cible.\n" +
                     "les soin s'arrete au points de vie max."
                 );
             case (EffectCard.MPHit):
-                return ($"- {effectCard.ToString()} :\n" +
+                return ($"- {effectCard.getName()} :\n" +
                     "draine tout les MP du lanceur.\n" +
                     "chaque MP converti inflige N degats."
                 );
             case (EffectCard.Burn):
-                return ($"- {effectCard.ToString()} :\n" +
+                return ($"- {effectCard.getName()} :\n" +
                     $"applique l effet Burn.\n" +
                     "inflige 1 degat a la fin du tour de la cible.\n" +
                     "dure N tour."
                 );
             case (EffectCard.MoneyLoot):
-                return ("- " + effectCard.ToString() + " :\n" +
+                return ("- " + effectCard.getName() + " :\n" +
                     "applique l effet MoneyLoot.\n" +
                     "donne N piece d'or en plus a la mort de la cible.\n" +
                     "dure 0 tour."

@@ -29,7 +29,6 @@ class Program
     // status effect list ui, new methode ! (like card list)
     // -> todo : remove debug comment on burn at end test.
     // -> todo : maybe print the dot turn on the sprit effect.
-    // -> todo : debug scale window move effect selected.
     // -> todo : cardEffect name and statusEffect name whould be have a french vertion print.
     
     // debug scan window pos word camera is replaced. ~
