@@ -195,8 +195,8 @@ public struct Card
 
         // draw text (effects).
         List<string> effectsStr = ((effects.Count == 0) ?
-            new List<string>() { "(no-effect)" } :
-            effects.Select(e => "- " + e.Key.ToString() + " (" + e.Value.ToString() + ")").ToList()
+            new List<string>() { EffectCard.NoEffect.getName() } :
+            effects.Select(e => "- " + e.Key.getName() + " (" + e.Value.ToString() + ")").ToList()
         );
         for (int i = 0; i < effectsStr.Count; i++)
         {

@@ -46,7 +46,7 @@ public static class StaticEffectCard
             case (EffectCard.Hit):
                 return ($"- {effectCard.getName()} :\n" +
                     "effectue N points de degat a la cible.\n" +
-                    "arrivé a 0 points de vie, la cible meure."
+                    "arrive a 0 points de vie, la cible meure."
                 );
             case (EffectCard.Shild):
                 return ($"- {effectCard.getName()} :\n" +
@@ -57,7 +57,7 @@ public static class StaticEffectCard
             case (EffectCard.Heal):
                 return ($"- {effectCard.getName()} :\n" +
                     "soigne N points de vie a la cible.\n" +
-                    "les soin s'arrete au points de vie max."
+                    "les soin s arrete au points de vie max."
                 );
             case (EffectCard.MPHit):
                 return ($"- {effectCard.getName()} :\n" +
@@ -73,7 +73,7 @@ public static class StaticEffectCard
             case (EffectCard.MoneyLoot):
                 return ("- " + effectCard.getName() + " :\n" +
                     "applique l effet MoneyLoot.\n" +
-                    "donne N piece d'or en plus a la mort de la cible.\n" +
+                    "donne N piece d or en plus a la mort de la cible.\n" +
                     "dure 0 tour."
                 );
             default:
