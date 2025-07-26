@@ -91,6 +91,13 @@ public static class TurnManager
         getCharacterOfCurrentTurn().startTurn(); //call event start turn.
     }
 
+    // edit turn count if is a new table turn.
+    public static void turnCountEdit()
+    {
+        if (indexCharacterTurn == allCharacterInRoom.Count - 1)
+            turnCount++;
+    }
+
     //get a list of all invoc of a specific character.
     public static List<Character> getAllInvocOfACharacter(Character characterInovcator)
     {
@@ -261,8 +268,10 @@ public static class TurnManager
             {
                 if (c.statusEffects[i].getCharacterIdWhoApplyEffect != characterIdWhoApplyEffect)
                     continue; // skip if not apply by the same character.
-                if (c.statusEffects[i].getTurnEnd != turnCount)
-                    continue; // not the turn who as to be destroy.
+                if (c.statusEffects[i].getTurnEnd == -1)
+                    continue; // effect infinit.
+                if (c.statusEffects[i].getTurnEnd > turnCount)
+                    continue; // effect life turn is not expired.
 
                 // drop the status effect.
                 c.statusEffects[i].eventWhenStatusEffectDisapear(isEndLifeEffect: true);

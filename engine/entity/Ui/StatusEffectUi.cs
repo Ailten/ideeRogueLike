@@ -119,6 +119,8 @@ public class StatusEffectUi : Entity
 
         // set basic data for draw.
         Sprite spriteEffect = SpriteManager.findBySpriteType(SpriteType.StatusEffect_BGStatusEffect) ?? throw new Exception("Sprite not found !");
+        float fontSizeText = fontSize * CanvasManager.scaleCanvas;
+        float fontSpacingText = fontSpacing * CanvasManager.scaleCanvas;
 
         // get Rect to draw.
         List<Rect> effectsArrea = this.getEffectsArrea();
@@ -154,8 +156,6 @@ public class StatusEffectUi : Entity
 
             // draw description effect selected.
             string textDescription = this.listEffect[this.indexEffectSelected].getDescription();
-            float fontSizeText = fontSize * CanvasManager.scaleCanvas;
-            float fontSpacingText = fontSpacing * CanvasManager.scaleCanvas;
             float padding = heightSizeSpacing * this.scale.y * CanvasManager.scaleCanvas;
             Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(fontDescription, textDescription, fontSizeText, fontSpacingText);
             sizeText += padding * (textDescription.Count(c => c == '\n') * 0.5f + 2);
@@ -192,8 +192,8 @@ public class StatusEffectUi : Entity
                 texture: spriteEffect.texture,
                 source: spriteEffect.getSpriteTileBySpriteType(SpriteType.StatusEffect_BGStatusEffect).getRectSource(),
                 dest: currentRect,
-                origine,
-                rotate,
+                origin: origine,
+                rotation: rotate,
                 Raylib_cs.Color.White
             );
             Raylib_cs.Raylib.DrawTexturePro( // draw effect.
@@ -204,6 +204,38 @@ public class StatusEffectUi : Entity
                 rotation: 0,
                 Raylib_cs.Color.White
             );
+
+            // draw turn until end in bulle.
+            if (currentEffect.getTurnUntilEnd != -1)
+            {
+                Vector sizeTurnIcon = currentRect.size / 2;
+                Vector posStartTurnIcon = currentRect.posStart + new Vector(currentRect.size.x, 0); // corner right.
+                posStartTurnIcon.x -= sizeTurnIcon.x * 0.666f;
+                posStartTurnIcon.y -= sizeTurnIcon.y * 0.333f;
+                Rect destTurnIcon = new Rect(posStartTurnIcon, sizeTurnIcon);
+                Raylib_cs.Raylib.DrawTexturePro( // draw bg turn icon.
+                    texture: spriteEffect.texture,
+                    source: spriteEffect.getSpriteTileBySpriteType(SpriteType.StatusEffect_turnBG).getRectSource(),
+                    dest: destTurnIcon,
+                    origin: origine,
+                    rotation: 0,
+                    Raylib_cs.Color.White
+                );
+
+                // draw text.
+                string textTurn = $"{currentEffect.getTurnUntilEnd}T";
+                Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(fontDescription, textTurn, fontSizeText, fontSpacingText);
+                Vector posStartTextTurn = destTurnIcon.posStart + destTurnIcon.size / 2; // center backgrond turn icon.
+                posStartTextTurn -= sizeText / 2;
+                Raylib_cs.Raylib.DrawTextEx(
+                    font: fontDescription,
+                    text: textTurn,
+                    position: posStartTextTurn,
+                    fontSize: fontSizeText,
+                    spacing: fontSpacingText,
+                    Raylib_cs.Color.Black
+                );
+            }
         }
     }
 

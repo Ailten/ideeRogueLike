@@ -4,7 +4,7 @@ public class Burn : StatusEffect
     private int damage;
 
     public Burn(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, int damage) :
-    base(SpriteType.StatusEffect_Burn, characterIdWhoHasEffect, characterIdWhoApplyEffect, -1) //turnLife //debug.
+    base(SpriteType.StatusEffect_Burn, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.damage = damage;
     }
@@ -13,7 +13,7 @@ public class Burn : StatusEffect
     {
         return (
             $"- {this.getName()} :\n" +
-            "inflige 1 degat a la fin du tour de la cible.\n"+
+            $"inflige {this.damage} degat a la fin du tour de la cible.\n"+
             this.getDescriptionTurn()
         );
     }
@@ -25,7 +25,6 @@ public class Burn : StatusEffect
 
     public override void eventWhenTargetEndTurn()
     {
-        //debug.
-        //this.getCharacterWhoApplyEffect?.makeDamage(this.getCharacterWhoHasEffect, this.damage);
+        this.getCharacterWhoApplyEffect?.makeDamage(this.getCharacterWhoHasEffect, this.damage);
     }
 }
