@@ -19,6 +19,9 @@ public struct Card
         get { return Math.Round(distanceToUse.x).ToString() + "~" + Math.Round(distanceToUse.y).ToString(); }
     }
 
+    public uint idCard;
+    private static uint idCardCount = 0;
+
 
     //default constructor.
     public Card(SpriteType cardIllu, CardColor? cardColor = null, CardEdition cardEdition = CardEdition.Default, int APCost = 0, Vector distanceToUse = new(), List<KeyValuePair<EffectCard, int>>? effects = null)
@@ -30,6 +33,7 @@ public struct Card
         this.distanceToUse = distanceToUse;
         this.effects = effects ?? new();
         //size card : 219, 322;
+        this.idCard = idCardCount++;
     }
 
     //constructor with single effect.
@@ -43,6 +47,7 @@ public struct Card
         this.effects = new();
         if (effect != null)
             this.effects.Add(effect ?? throw new Exception("Card effect is null !"));
+        this.idCard = idCardCount++;
     }
 
 
@@ -273,6 +278,15 @@ public struct Card
             $"-{cardColor}" +
             $"{(cardEdition != CardEdition.Default ? "-" + cardEdition : "")}"
         );
+    }
+
+    public static bool operator ==(Card A, Card B)
+    {
+        return (A.idCard == B.idCard);
+    }
+    public static bool operator!=(Card A, Card B)
+    {
+        return (A.idCard != B.idCard);
     }
 
 

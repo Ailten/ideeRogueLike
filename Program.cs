@@ -26,10 +26,10 @@ class Program
     // draw time line, pause border, and status effect.
 
 
-    // status effect list ui, new methode ! (like card list)
-    // -> todo : maybe print the dot turn on the sprit effect.
-    
     // debug scan window pos word camera is replaced. ~
+
+    // draw details for one card : when right click on card from hand.
+
 
 
     // ? consoleManager for combat print line ?

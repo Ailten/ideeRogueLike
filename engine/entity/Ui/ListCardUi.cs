@@ -43,17 +43,38 @@ public class ListCardUi : Entity
         this.unselectCard();
         this.updateGeometryTriggerBasedOnSizeListCard();
     }
+    //set list and reset selectoned card (but set if is make re order list).
+    public void setListCard(List<Card> listCard, bool isReOrder)
+    {
+        bool backupReOrder = this.isMakeReOrdered;
+        this.isMakeReOrdered = isReOrder;
+        setListCard(listCard);
+        this.isMakeReOrdered = backupReOrder;
+    }
     //unselect the card selected.
     public void unselectCard()
     {
         this.indexCardSelected = -1;
         this.geometryTriggerSecond = null;
     }
+    //make selection on a card send.
+    public void selectCardOnList(Card cardSelected)
+    {
+        for (int i = 0; i < listCard.Count; i++)
+        {
+            if (listCard[i] == cardSelected)
+            {
+                this.indexCardSelected = i;
+                return;
+            }
+        }
+    }
 
     //set rect geometryTrigger with custom size.
     public void updateGeometryTriggerBasedOnSizeListCard()
     {
-        if(this.listCard.Count == 0){ //no colide area when no card in UI.
+        if (this.listCard.Count == 0)
+        { //no colide area when no card in UI.
             this.isActive = false;
             this.geometryTrigger = null;
             return;
@@ -110,14 +131,12 @@ public class ListCardUi : Entity
                 bool isAnUndoClick = this.indexCardSelected == i;
                 if (isAnUndoClick)
                 {
-                    unClickOnCard(listCard[i], isLeftClick);
                     this.unselectCard(); //set index to -1 and reset second geometry trigger.
+                    unClickOnCard(listCard[i], isLeftClick);
                     return;
                 }
                 
                 this.indexCardSelected = i;
-
-                clickOnCard(listCard[i], isLeftClick);
 
                 Vector sizeTriggerSecond = new Vector(
                     Card.cardSize.x * this.scaleCards
@@ -130,6 +149,8 @@ public class ListCardUi : Entity
                     posStart: this.geometryTriggerNN.posStart + new Vector(leftCardReplace, -this.upCardWhenSelected),
                     size: new Vector(widthCard, this.upCardWhenSelected)
                 );
+
+                clickOnCard(listCard[i], isLeftClick);
                 
                 return;
             }

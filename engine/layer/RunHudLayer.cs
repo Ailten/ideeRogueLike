@@ -91,6 +91,19 @@ public class RunHudLayer : Layer
         cardHandListCardUi.upCardWhenSelected = 65f;
         cardHandListCardUi.isMakeReOrdered = false;
         cardHandListCardUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInHand); //link card hands list to list UI.
+        cardHandListCardUi.clickOnCard = (cardClicked, isLeftClick) =>
+        {
+            if (!isLeftClick) // print details card hand. 
+            {
+                List<Card> cardToPrint = TurnManager.getMainPlayerCharacter().deck.cardsInHand;
+                RunHudLayer.layer.setListCardToMenuCardUi(cardToPrint, isReOrder: false);
+                RunHudLayer.layer.setCardSelectedToMenuCardUi(cardClicked);
+                RunHudLayer.layer.selectCardOnListToMenuCardUi(cardClicked);
+                RunHudLayer.layer.activeMenuCardUi(true);
+
+                cardHandListCardUi.unselectCard(); //unselect card.
+            }
+        };
 
         this.statusEffectUi = new StatusEffectUi(idLayer); // status effect ui.
         this.statusEffectUi.pos = new(380, 5);
@@ -122,10 +135,22 @@ public class RunHudLayer : Layer
             (e as ListCardUi)?.setListCard(listCardToPrint);
         }
     }
+    public void setListCardToMenuCardUi(List<Card> listCardToPrint, bool isReOrder)
+    {
+        foreach (Entity e in elementsInMenuCardUi){
+            (e as ListCardUi)?.setListCard(listCardToPrint, isReOrder);
+        }
+    }
     public void setCardSelectedToMenuCardUi(Card? cardSelected)
     {
         foreach (Entity e in elementsInMenuCardUi){
             (e as CardDetails)?.setListCard(cardSelected);
+        }
+    }
+    public void selectCardOnListToMenuCardUi(Card cardSelected)
+    {
+        foreach (Entity e in elementsInMenuCardUi){
+            (e as ListCardUi)?.selectCardOnList(cardSelected);
         }
     }
     public ListCardUi? cardHandListCardUi;
