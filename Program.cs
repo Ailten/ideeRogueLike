@@ -23,18 +23,10 @@ class Program
 
     // add a special room for "boost card effect".
 
-    // draw time line, pause border, and status effect.
 
-
-    // debug scan window pos word camera is replaced. ~
-
-    // draw details for one card : when right click on card from hand.
-
-
-
-    // ? consoleManager for combat print line ?
 
     // add a pause menu (back to game, back to main menu, ... other option).
+    // -> make button ui pause.
 
 
     // make a save progression (a class with data for main progression : character unlock, mobs depeats, gold collected ... etc).
@@ -46,10 +38,13 @@ class Program
     // make tuto : (not now)
     // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).
     // - card, etc ...
+    // - explain monster, type room.
 
     // KeyboardManager. (for play more speed) (not now) -> number key for card, and space for skip turn.
 
     // input select seed. -> menu with enter a number befor start run.
+
+    // ? consoleManager for combat print line ?
 
 
     public static void Main(string[] args)
