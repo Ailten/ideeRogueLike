@@ -44,11 +44,6 @@ public static class CameraManager
         const float zoomCamMax = 2.0f;
         editedZoom = Math.Clamp(editedZoom, zoomCamMin, zoomCamMax);
 
-        float difEdit = _zoomCam - editedZoom; // edit pos for scale center (aproximation).
-        difEdit = (float)Math.Pow(difEdit, 2);
-        difEdit *= _zoomCam * 0.2f;
-        _posCam += CanvasManager.sizeWindow * difEdit * (edit > 0f? 1: -1);
-
         _zoomCam = editedZoom;
     }
 
