@@ -18,8 +18,8 @@ class Program
     // add details mobs when click on it, menu.
     // add timeLineBattleUi -> for timeline in battle.
 
-    //use sprite mobs (kingSlime, kingFlame, kingRock).
-    //use sprite cel coffre, fusion, discard, duplicate, boost.
+    // use sprite mobs (kingSlime, kingFlame, kingRock).
+    // use sprite cel coffre, fusion, discard, duplicate, boost.
 
     // add a special room for "boost card effect".
 
@@ -57,6 +57,8 @@ class Program
         UpdateManager.init();
         SpriteManager.init(); //include all sprite path.
         FontManager.init(); //include all font by enum.
+        SaveManager.timePlayStart(); //start timer for open window.
+        SaveManager.loadFileSave(); //load file save default.
 
         //active all layers for start window.
         MainMenu.layer.active();
@@ -98,6 +100,9 @@ class Program
             }
 
         }
+
+        //save.
+        SaveManager.saveFileSave();
 
         //deinit all.
         LayerManager.deinit(); //un active all layer.

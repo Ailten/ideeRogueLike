@@ -52,12 +52,16 @@ public static class RunManager
         currentIndexStage = 0;
         stages = new();
         const int quantityStage = 6;
-        for(int i=0; i<quantityStage; i++){
+        for (int i = 0; i < quantityStage; i++)
+        {
             stages.Add(new Stage(i, rngSeed.Next()));
         }
 
         //load first stage.
         stages[0].generateStage();
+
+        //increase count run save.
+        SaveManager.increaseRunCount();
 
     }
 
