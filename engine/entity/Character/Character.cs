@@ -192,6 +192,11 @@ public class Character : Entity
     //gain Gold.
     protected virtual void gainGold(int POIncrement)
     {
+        // todo: apply list effect.
+
+        if (this.isAPlayer)
+            SaveManager.increaseCoinTaked(POIncrement);
+
         this.PO += POIncrement;
 
         FxTextHit.initOnlyOneFxAtTime(this.pos, $"{POIncrement}", Color.Gold);

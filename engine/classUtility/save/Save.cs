@@ -2,15 +2,16 @@
 [Serializable()] 
 public class Save
 {
-    public TimeSpan timePlayed { get; set; } //amount of time played. [V]
-    private int runCount { get; set; } //amount of run start. [V]
-    public ulong damageMaked { get; set; } //amount of damage maked. [V]
-    public uint healMaked { get; set; } //amount of heal maked. [V]
-    public uint shildMaked { get; set; } //amount of shild maked. [V]
-    public ulong damageTaked { get; set; } //amount of damage taked. [V]
+    public TimeSpan timePlayed { get; set; } //amount of time played.
+    private int runCount { get; set; } //amount of run start.
+    public ulong damageMaked { get; set; } //amount of damage maked.
+    public uint healMaked { get; set; } //amount of heal maked.
+    public uint shildMaked { get; set; } //amount of shild maked.
+    public ulong damageTaked { get; set; } //amount of damage taked.
+    public uint coinTaked { get; set; } //amount of coin taked.
     public uint cardPlayed { get; set; } //amount of card played.
     public List<Succes> succes { get; set; } //stock eatch succes already unlocked.
-    public Dictionary<string, int> characterKilled { get; set; } //amount of kill on eatch characters type. [V]
+    public Dictionary<string, int> characterKilled { get; set; } //amount of kill on eatch characters type.
 
 
     public Save()
@@ -70,6 +71,11 @@ public class Save
     {
         damageTaked += (ulong)amountIncrease;
         return damageTaked;
+    }
+    public uint increaseCoinTaked(int amountIncrease)
+    {
+        coinTaked += (uint)amountIncrease;
+        return coinTaked;
     }
     public uint increaseCardPlayed()
     {

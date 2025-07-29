@@ -16,6 +16,7 @@ public static class SaveManager
     public static uint increaseHealMaked(int statsIncrease) => currentSave.increaseHealMaked(statsIncrease);
     public static uint increaseShildMaked(int statsIncrease) => currentSave.increaseShildMaked(statsIncrease);
     public static ulong increaseDamageTaked(int statsIncrease) => currentSave.increaseDamageTaked(statsIncrease);
+    public static ulong increaseCoinTaked(int statsIncrease) => currentSave.increaseCoinTaked(statsIncrease);
     public static uint increaseCardPlayed() => currentSave.increaseCardPlayed();
 
 
