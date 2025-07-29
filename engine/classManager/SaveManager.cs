@@ -10,30 +10,50 @@ public static class SaveManager
     // remap function of save.
     public static bool tryAddSucces(Succes succesToAdd) => currentSave.tryAddSucces(succesToAdd);
     public static bool isHasSucces(Succes succesToAsk) => currentSave.isHasSucces(succesToAsk);
-    public static void increaseRunCount() => currentSave.increaseRunCount();
+    public static int increaseRunCount() => currentSave.increaseRunCount();
     public static int increaseKillCount(Type typeMobKilled) => currentSave.increaseKillCount(typeMobKilled);
     public static ulong increaseDamageMaked(uint statsIncrease) => currentSave.increaseDamageMaked(statsIncrease);
     public static uint increaseHealMaked(uint statsIncrease) => currentSave.increaseHealMaked(statsIncrease);
     public static uint increaseShildMaked(uint statsIncrease) => currentSave.increaseShildMaked(statsIncrease);
-    
 
 
-    // load and save one file.
-    public static void loadFileSave(string nameFileSave = "01")
+
+    // load and save one file (return true if it's work).
+    private static JsonSerializerOptions jsonOption = new JsonSerializerOptions { WriteIndented = true };
+    public static bool loadFileSave(string nameFileSave = "01")
     {
         currentNameFile = nameFileSave;
 
         string path = $"assets/save/{nameFileSave}.json";
 
         string jsonStr = ""; // read from file.
-        using (StreamReader sr = File.OpenText(path))
+        try
         {
-            string? s;
-            while ((s = sr.ReadLine()) != null)
-                jsonStr += s;
+            if (!File.Exists(path)) // if file not exist, create it.
+                File.Create(path);
+
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string? s;
+                while ((s = sr.ReadLine()) != null)
+                    jsonStr += s;
+            }
+
+            if (jsonStr == "")
+                currentSave = new();
+            else
+                currentSave = JsonSerializer.Deserialize<Save>(jsonStr, jsonOption) ?? throw new Exception("SaveManager fail to load json !");
+        }
+        catch (JsonException e) // file contend is not matching canvas of json.
+        {
+            return false;
+        }
+        catch (Exception e) // unexcepted reason exception.
+        {
+            return false;
         }
 
-        currentSave = JsonSerializer.Deserialize<Save>(jsonStr) ?? throw new Exception("SaveManager fail to load json !");
+        return true;
     }
     public static void saveFileSave(string? nameFileSave = null)
     {
@@ -43,7 +63,10 @@ public static class SaveManager
         timePlayStart();
 
         string path = $"assets/save/{nameFileSave}.json"; // set param for write.
-        string jsonStr = JsonSerializer.Serialize(currentSave);
+        string jsonStr = JsonSerializer.Serialize<Save>(currentSave, jsonOption);
+
+        if (!File.Exists(path)) // create file if not exist.
+            File.Create(path);
 
         using (var sw = new StreamWriter(path)) // write on file.
         {

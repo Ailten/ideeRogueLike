@@ -1,13 +1,25 @@
 
 public class Save
 {
-    public TimeSpan timePlayed; //amount of time played.
-    public int runCount = 0; //amount of run start.
-    public ulong damageMaked = 0; //amount of damage maked.
-    public uint healMaked = 0; //amount of heal maked.
-    public uint shildMaked = 0; //amount of shild maked.
-    private List<Succes> succes = new();
-    private Dictionary<Type, int> CharacterKilled = new();
+    public TimeSpan timePlayed { get; set; } //amount of time played.
+    public int runCount { get; set; } //amount of run start.
+    public ulong damageMaked { get; set; } //amount of damage maked.
+    public uint healMaked { get; set; } //amount of heal maked.
+    public uint shildMaked { get; set; } //amount of shild maked.
+    public List<Succes> succes { get; set; }
+    public Dictionary<Type, int> CharacterKilled { get; set; }
+
+
+    public Save()
+    {
+        this.timePlayed = new();
+        this.runCount = 0;
+        this.damageMaked = 0;
+        this.healMaked = 0;
+        this.shildMaked = 0;
+        this.succes = new();
+        this.CharacterKilled = new();
+    }
 
 
     // try to add a succes to succesSave, return if the add work.
@@ -25,9 +37,9 @@ public class Save
     }
 
     // increase run count.
-    public void increaseRunCount()
+    public int increaseRunCount()
     {
-        runCount++;
+        return ++runCount;
     }
 
     // increase kill count character.
