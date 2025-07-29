@@ -31,9 +31,7 @@ class Program
 
     // make a save progression (a class with data for main progression : character unlock, mobs depeats, gold collected ... etc).
     // -> use for success, progression, ...
-
-
-    // json manager (for success, save, etc).
+    // -> save damage maked, shild, heal.
 
     // make tuto : (not now)
     // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).

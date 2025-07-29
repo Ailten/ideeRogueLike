@@ -1,22 +1,18 @@
 
 public class Save
 {
-    public TimeSpan timePlayed { get; set; } //amount of time played.
-    public int runCount { get; set; } //amount of run start.
-    public ulong damageMaked { get; set; } //amount of damage maked.
-    public uint healMaked { get; set; } //amount of heal maked.
-    public uint shildMaked { get; set; } //amount of shild maked.
-    public List<Succes> succes { get; set; }
-    public Dictionary<Type, int> CharacterKilled { get; set; }
+    public TimeSpan timePlayed { get; set; } //amount of time played. [V]
+    public int runCount { get; set; } //amount of run start. [V]
+    public ulong damageMaked { get; set; } //amount of damage maked. [V]
+    public uint healMaked { get; set; } //amount of heal maked. [V]
+    public uint shildMaked { get; set; } //amount of shild maked. [V]
+    public uint cardPlayed { get; set; } //amount of card played.
+    public List<Succes> succes { get; set; } //stock eatch succes already unlocked.
+    public Dictionary<Type, int> CharacterKilled { get; set; } //amount of kill on eatch characters type. [V]
 
 
     public Save()
     {
-        this.timePlayed = new();
-        this.runCount = 0;
-        this.damageMaked = 0;
-        this.healMaked = 0;
-        this.shildMaked = 0;
         this.succes = new();
         this.CharacterKilled = new();
     }
@@ -53,20 +49,24 @@ public class Save
     }
 
     // increase stats count maked.
-    public ulong increaseDamageMaked(uint amountIncrease)
+    public ulong increaseDamageMaked(int amountIncrease)
     {
         damageMaked += (ulong)amountIncrease;
         return damageMaked;
     }
-    public uint increaseHealMaked(uint amountIncrease)
+    public uint increaseHealMaked(int amountIncrease)
     {
-        healMaked += amountIncrease;
+        healMaked += (uint)amountIncrease;
         return healMaked;
     }
-    public uint increaseShildMaked(uint amountIncrease)
+    public uint increaseShildMaked(int amountIncrease)
     {
-        shildMaked += amountIncrease;
+        shildMaked += (uint)amountIncrease;
         return shildMaked;
+    }
+    public uint increaseCardPlayed()
+    {
+        return ++cardPlayed;
     }
 
 }

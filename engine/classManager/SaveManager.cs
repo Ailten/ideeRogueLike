@@ -12,9 +12,10 @@ public static class SaveManager
     public static bool isHasSucces(Succes succesToAsk) => currentSave.isHasSucces(succesToAsk);
     public static int increaseRunCount() => currentSave.increaseRunCount();
     public static int increaseKillCount(Type typeMobKilled) => currentSave.increaseKillCount(typeMobKilled);
-    public static ulong increaseDamageMaked(uint statsIncrease) => currentSave.increaseDamageMaked(statsIncrease);
-    public static uint increaseHealMaked(uint statsIncrease) => currentSave.increaseHealMaked(statsIncrease);
-    public static uint increaseShildMaked(uint statsIncrease) => currentSave.increaseShildMaked(statsIncrease);
+    public static ulong increaseDamageMaked(int statsIncrease) => currentSave.increaseDamageMaked(statsIncrease);
+    public static uint increaseHealMaked(int statsIncrease) => currentSave.increaseHealMaked(statsIncrease);
+    public static uint increaseShildMaked(int statsIncrease) => currentSave.increaseShildMaked(statsIncrease);
+    public static uint increaseCardPlayed() => currentSave.increaseCardPlayed();
 
 
 

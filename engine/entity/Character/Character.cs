@@ -66,6 +66,8 @@ public class Character : Entity
     //apply damage to character.
     protected virtual void takeDamage(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
     {
+        // todo: apply effects list.
+
         if (SP > 0)
         {
             int damageAplyToSP = Math.Min(atk, SP);
@@ -92,10 +94,15 @@ public class Character : Entity
     //apply damage to heath point.
     private void takeDamageToHP(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
     {
-        int HPdecrement = Math.Min(atk, HP);
-        HP -= HPdecrement;
+        // todo: apply effect list.
 
-        FxTextHit.initOnlyOneFxAtTime(this.pos, $"-{HPdecrement}", Color.Red);
+        if (characterMakeAtk?.isInRedTeam ?? false) //increase damage maked on stats save.
+            SaveManager.increaseDamageMaked(atk);
+
+        int atkClamped = Math.Min(atk, HP);
+        HP -= atkClamped;
+
+        FxTextHit.initOnlyOneFxAtTime(this.pos, $"-{atk}", Color.Red);
 
         if (HP <= 0)
         {
@@ -106,6 +113,11 @@ public class Character : Entity
     //call when character dead.
     public virtual void death(Character? characterMakeKill = null, PackageRefCard? refCard = null)
     {
+        // todo: apply effects list.
+
+        if (characterMakeKill?.isInRedTeam ?? false) //increase kill count on stats save.
+            SaveManager.increaseKillCount(this.GetType());
+
         //hidde.
         isActive = false;
 
@@ -140,6 +152,11 @@ public class Character : Entity
     //give shild point.
     protected virtual void takeShild(int shildIncrement, Character? characterGiveShild = null, PackageRefCard? refCard = null)
     {
+        // todo: apply effect list.
+
+        if (characterGiveShild?.isInRedTeam ?? false) //increase damage maked on stats save.
+            SaveManager.increaseShildMaked(shildIncrement);
+
         SP += shildIncrement;
 
         //make an FX star (and sound) for gain shild.
@@ -156,14 +173,18 @@ public class Character : Entity
     //take heal.
     protected virtual void takeHeal(int healIncrement, Character? characterGiveHeal = null, PackageRefCard? refCard = null)
     {
-        int HPIncrement = Math.Min(healIncrement, this.HPmax - this.HP);
+        // todo: apply effect list.
 
-        HP += HPIncrement;
+        if (characterGiveHeal?.isInRedTeam ?? false) //increase heal maked on stats save.
+            SaveManager.increaseHealMaked(healIncrement);
+
+        int healClamped = Math.Min(healIncrement, this.HPmax - this.HP);
+        HP += healClamped;
 
         //make an FX heart (and sound) for gain HP healed.
         FxManager.initOnQueue(FxType.FxHeartHeal, this.pos);
 
-        FxTextHit.initOnlyOneFxAtTime(this.pos, $"+{HPIncrement}", Color.Red);
+        FxTextHit.initOnlyOneFxAtTime(this.pos, $"+{healIncrement}", Color.Red);
     }
 
     //gain Gold.
