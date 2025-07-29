@@ -6,15 +6,16 @@ public class Save
     public ulong damageMaked { get; set; } //amount of damage maked. [V]
     public uint healMaked { get; set; } //amount of heal maked. [V]
     public uint shildMaked { get; set; } //amount of shild maked. [V]
+    public ulong damageTaked { get; set; } //amount of damage taked. [V]
     public uint cardPlayed { get; set; } //amount of card played.
     public List<Succes> succes { get; set; } //stock eatch succes already unlocked.
-    public Dictionary<Type, int> CharacterKilled { get; set; } //amount of kill on eatch characters type. [V]
+    public Dictionary<string, int> characterKilled { get; set; } //amount of kill on eatch characters type. [V]
 
 
     public Save()
     {
         this.succes = new();
-        this.CharacterKilled = new();
+        this.characterKilled = new();
     }
 
 
@@ -39,12 +40,12 @@ public class Save
     }
 
     // increase kill count character.
-    public int increaseKillCount(Type typeMobKilled)
+    public int increaseKillCount(string nameMobKilled)
     {
-        if (CharacterKilled.ContainsKey(typeMobKilled))
-            return ++CharacterKilled[typeMobKilled];
+        if (characterKilled.ContainsKey(nameMobKilled))
+            return ++characterKilled[nameMobKilled];
 
-        CharacterKilled.Add(typeMobKilled, 1);
+        characterKilled.Add(nameMobKilled, 1);
         return 1;
     }
 
@@ -63,6 +64,11 @@ public class Save
     {
         shildMaked += (uint)amountIncrease;
         return shildMaked;
+    }
+    public ulong increaseDamageTaked(int amountIncrease)
+    {
+        damageTaked += (ulong)amountIncrease;
+        return damageTaked;
     }
     public uint increaseCardPlayed()
     {

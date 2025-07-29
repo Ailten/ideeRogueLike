@@ -98,6 +98,8 @@ public class Character : Entity
 
         if (characterMakeAtk?.isInRedTeam ?? false) //increase damage maked on stats save.
             SaveManager.increaseDamageMaked(atk);
+        if (this.isAPlayer) //increase damage taked on stats save.
+            SaveManager.increaseDamageTaked(atk);
 
         int atkClamped = Math.Min(atk, HP);
         HP -= atkClamped;
@@ -116,7 +118,7 @@ public class Character : Entity
         // todo: apply effects list.
 
         if (characterMakeKill?.isInRedTeam ?? false) //increase kill count on stats save.
-            SaveManager.increaseKillCount(this.GetType());
+            SaveManager.increaseKillCount(this.getName);
 
         //hidde.
         isActive = false;

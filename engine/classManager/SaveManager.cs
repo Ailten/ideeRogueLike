@@ -11,10 +11,11 @@ public static class SaveManager
     public static bool tryAddSucces(Succes succesToAdd) => currentSave.tryAddSucces(succesToAdd);
     public static bool isHasSucces(Succes succesToAsk) => currentSave.isHasSucces(succesToAsk);
     public static int increaseRunCount() => currentSave.increaseRunCount();
-    public static int increaseKillCount(Type typeMobKilled) => currentSave.increaseKillCount(typeMobKilled);
+    public static int increaseKillCount(string nameMobKilled) => currentSave.increaseKillCount(nameMobKilled);
     public static ulong increaseDamageMaked(int statsIncrease) => currentSave.increaseDamageMaked(statsIncrease);
     public static uint increaseHealMaked(int statsIncrease) => currentSave.increaseHealMaked(statsIncrease);
     public static uint increaseShildMaked(int statsIncrease) => currentSave.increaseShildMaked(statsIncrease);
+    public static ulong increaseDamageTaked(int statsIncrease) => currentSave.increaseDamageTaked(statsIncrease);
     public static uint increaseCardPlayed() => currentSave.increaseCardPlayed();
 
 
@@ -44,6 +45,7 @@ public static class SaveManager
                 currentSave = new();
             else
                 currentSave = JsonSerializer.Deserialize<Save>(jsonStr, jsonOption) ?? throw new Exception("SaveManager fail to load json !");
+              
         }
         catch (JsonException e) // file contend is not matching canvas of json.
         {
