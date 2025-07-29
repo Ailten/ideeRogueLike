@@ -1,14 +1,14 @@
 {
-  "timePlayed": "00:00:57.8262139",
-  "runCount": 2,
-  "damageMaked": 24,
+  "timePlayed": "00:01:21.1954158",
+  "damageMaked": 36,
   "healMaked": 0,
   "shildMaked": 0,
   "damageTaked": 1,
-  "cardPlayed": 12,
+  "cardPlayed": 18,
   "succes": [],
   "characterKilled": {
-    "Rock": 2,
-    "Flame": 1
+    "Rock": 4,
+    "Flame": 1,
+    "Slime": 1
   }
 }

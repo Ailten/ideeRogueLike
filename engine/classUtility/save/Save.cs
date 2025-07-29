@@ -1,8 +1,9 @@
 
+[Serializable()] 
 public class Save
 {
     public TimeSpan timePlayed { get; set; } //amount of time played. [V]
-    public int runCount { get; set; } //amount of run start. [V]
+    private int runCount { get; set; } //amount of run start. [V]
     public ulong damageMaked { get; set; } //amount of damage maked. [V]
     public uint healMaked { get; set; } //amount of heal maked. [V]
     public uint shildMaked { get; set; } //amount of shild maked. [V]

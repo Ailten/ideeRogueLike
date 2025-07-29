@@ -31,7 +31,11 @@ class Program
 
     // make a save progression (a class with data for main progression : character unlock, mobs depeats, gold collected ... etc).
     // -> use for success, progression, ...
-    // -> save damage maked, shild, heal.
+    // -> att the end of the run, make verify succes unlock, add on save, do the save on file.
+    // -> make cardPool adapt on succes unlocked.
+    // -> make option change save emplacement.
+    // -> make print purcent progress success on main menu.
+    // -> make end run screen with success unlocked during the run.
 
     // make tuto : (not now)
     // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).
