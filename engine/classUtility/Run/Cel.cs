@@ -256,7 +256,7 @@ public class Cel : Entity
                 if (characterStep.isAPlayer) { //only if is a player.
 
                     if (RunManager.isLastStage) {
-                        //TODO: transition end run, win.
+                        RunManager.endRun(false); // event end run.
                         return;
                     }
 

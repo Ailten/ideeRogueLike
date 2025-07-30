@@ -37,6 +37,11 @@ class Program
     // -> make print purcent progress success on main menu.
     // -> make end run screen with success unlocked during the run.
 
+    // event run is end (die player on fight, or reach the upper level stage).
+    // -> end run screen (ui).
+    // -> back to main menu.
+    // -> make save file.
+
     // make tuto : (not now)
     // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).
     // - card, etc ...

@@ -108,9 +108,10 @@ public static class RunManager
 
 
     //get cel by index pos (in current stage, in current room).
-    public static Cel? getCel(Vector celPosIndex, bool isCanBeNull=true)
+    public static Cel? getCel(Vector celPosIndex, bool isCanBeNull = true)
     {
-        if(currentRoom == null){
+        if (currentRoom == null)
+        {
             return null;
         }
 
@@ -131,6 +132,19 @@ public static class RunManager
     public static Stage getStage(int indexStage)
     {
         return stages[indexStage];
+    }
+
+
+    // event run end.
+    public static void endRun(bool isWinByPlayer)
+    {
+        // todo: unload all character in turnManager.
+        // unload all cel loaded.
+        // clean all runManager instance cascade (stages, rooms, cels).
+
+        // print an UI screen WIN or LOOSE.
+        // with button back to main menu.
+        // and all new success unlocked during this run.
     }
 
 }

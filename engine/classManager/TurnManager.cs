@@ -186,10 +186,11 @@ public static class TurnManager
         else
         { //ennemy win the fight.
 
-            //TODO. (game over screen).
-
             //disable button skip turn.
             RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(true);
+
+            // event end run.
+            RunManager.endRun(false);
 
         }
 
