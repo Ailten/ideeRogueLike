@@ -30,7 +30,7 @@ public class EndRunLayer : Layer
     public void setIsRunWin(bool isRunWin) => this.isRunWin = isRunWin;
     public void setSeedRunEnd(int seedRunEnd) => this.seedRunEnd = seedRunEnd;
     public void setSuccesUnlockDuringTheRun(List<Succes> succesUnlockDuringTheRun) => this.succesUnlockDuringTheRun = succesUnlockDuringTheRun;
-
+    public void setTimeInRun(int timeInRun) => this.timeInRun = timeInRun;
 
     public override void update()
     {

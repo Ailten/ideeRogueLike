@@ -156,7 +156,10 @@ public static class RunManager
         int seedPlayed = _seed; // get seed.
         int timeInRun = timeStartRun - UpdateManager.timeFromStartGame; // get time.
 
-        // and all new success unlocked during this run.
+        // add succes unlock and save.
+        SaveManager.addSucces(succesUnlocked);
+        SaveManager.saveFileSave();
+
 
         TurnManager.reset(); //free characters from turnManager.
         RunManager.destroyRun(); //free stages list (recursively).

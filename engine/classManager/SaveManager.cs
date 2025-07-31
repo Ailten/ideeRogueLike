@@ -23,6 +23,8 @@ public static class SaveManager
     public static ulong increaseCoinTaked(int statsIncrease) => currentSave.increaseCoinTaked(statsIncrease);
     public static uint increaseCardPlayed() => currentSave.increaseCardPlayed();
 
+    // add many succes to the list save.
+    public static void addSucces(List<Succes> succesToAdd) => currentSave.succes.AddRange(succesToAdd);
 
 
     // load and save one file (return true if it's work).
