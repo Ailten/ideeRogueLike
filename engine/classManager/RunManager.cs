@@ -152,17 +152,26 @@ public static class RunManager
             .Where(s => !SaveManager.getSave.succes.Contains(s)).ToList() // drop all succes already unlocked.
             .Where(s => s.isUnlocked()).ToList(); // drop all succes with condition unlock not reach.
 
-        // get seed.
-        int seedPlayed = _seed;
+        // get params from run.
+        int seedPlayed = _seed; // get seed.
+        int timeInRun = timeStartRun - UpdateManager.timeFromStartGame; // get time.
 
-        // print an UI screen WIN or LOOSE.
-        // with button back to main menu.
         // and all new success unlocked during this run.
 
         TurnManager.reset(); //free characters from turnManager.
         RunManager.destroyRun(); //free stages list (recursively).
 
-        //transition UI scene (RunLayer, RunHudLayer -> EndRunLayer) by sending values to print.
+        // send value to layer EndRunLayer.
+        EndRunLayer.layer.setIsRunWin(isWinByPlayer);
+        EndRunLayer.layer.setSeedRunEnd(seedPlayed);
+        EndRunLayer.layer.setSuccesUnlockDuringTheRun(succesUnlocked);
+        EndRunLayer.layer.setSeedRunEnd(timeInRun);
+
+        // transition layer (RunLayer, RunHudLayer -> EndRunLayer).
+        LayerManager.transition(
+            idLevelEnd: new int[] { RunLayer.layer.idLayer, RunHudLayer.layer.idLayer },
+            idLevelStart: new int[] { EndRunLayer.layer.idLayer }
+        );
     }
 
 }
