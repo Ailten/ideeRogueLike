@@ -154,7 +154,8 @@ public static class RunManager
 
         // get params from run.
         int seedPlayed = _seed; // get seed.
-        int timeInRun = timeStartRun - UpdateManager.timeFromStartGame; // get time.
+        long timeInRunTick = (long)(timeStartRun - UpdateManager.timeFromStartGame) * 10000; // get time.
+        TimeSpan timeInRun = new TimeSpan(ticks: timeInRunTick);
 
         // add succes unlock and save.
         SaveManager.addSucces(succesUnlocked);
@@ -168,7 +169,7 @@ public static class RunManager
         EndRunLayer.layer.setIsRunWin(isWinByPlayer);
         EndRunLayer.layer.setSeedRunEnd(seedPlayed);
         EndRunLayer.layer.setSuccesUnlockDuringTheRun(succesUnlocked);
-        EndRunLayer.layer.setSeedRunEnd(timeInRun);
+        EndRunLayer.layer.setTimeInRun(timeInRun);
 
         // transition layer (RunLayer, RunHudLayer -> EndRunLayer).
         LayerManager.transition(

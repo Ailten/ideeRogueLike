@@ -24,13 +24,14 @@ public class EndRunLayer : Layer
     private bool isRunWin;
     private int seedRunEnd;
     private List<Succes> succesUnlockDuringTheRun = new();
-    private int timeInRun;
+    private TimeSpan timeInRun;
 
     // set params for print end run layer.
     public void setIsRunWin(bool isRunWin) => this.isRunWin = isRunWin;
     public void setSeedRunEnd(int seedRunEnd) => this.seedRunEnd = seedRunEnd;
     public void setSuccesUnlockDuringTheRun(List<Succes> succesUnlockDuringTheRun) => this.succesUnlockDuringTheRun = succesUnlockDuringTheRun;
-    public void setTimeInRun(int timeInRun) => this.timeInRun = timeInRun;
+    public void setTimeInRun(TimeSpan timeInRun) => this.timeInRun = timeInRun;
+
 
     public override void update()
     {
