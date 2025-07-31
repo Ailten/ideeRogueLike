@@ -46,7 +46,7 @@ public class EndRunLayer : Layer
         isRunWin = false;
         seedRunEnd = 0;
         succesUnlockDuringTheRun = new();
-        timeInRun = 0;
+        timeInRun = new();
 
         base.unActive();
     }

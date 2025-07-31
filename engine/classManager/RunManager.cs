@@ -154,8 +154,8 @@ public static class RunManager
 
         // get params from run.
         int seedPlayed = _seed; // get seed.
-        long timeInRunTick = (long)(timeStartRun - UpdateManager.timeFromStartGame) * 10000; // get time.
-        TimeSpan timeInRun = new TimeSpan(ticks: timeInRunTick);
+        int timeInRunMilisec = timeStartRun - UpdateManager.timeFromStartGame; // get time.
+        TimeSpan timeInRun = UpdateManager.convertMilisecToTimeSpan(timeInRunMilisec);
 
         // add succes unlock and save.
         SaveManager.addSucces(succesUnlocked);

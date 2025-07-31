@@ -7,18 +7,18 @@ public static class UpdateManager
     private static int FPS = 30; //frame per seconde.
     private static int milisecByFrame
     {
-        get { return 1000 / FPS ; }
+        get { return 1000 / FPS; }
     }
     private static Stopwatch stopwatchForFrameRate = new Stopwatch();
     private static int _deltaTime = 0; //time (in milisec) from last frame.
     public static int deltaTime
     {
-        get { return _deltaTime ; }
+        get { return _deltaTime; }
     }
     private static int _timeFromStartGame = 0; //miliseconde from start the game.
     public static int timeFromStartGame
     {
-        get { return _timeFromStartGame ; }
+        get { return _timeFromStartGame; }
     }
 
     public static int timeSpeed = 1;
@@ -52,11 +52,11 @@ public static class UpdateManager
         Thread.Sleep(milisecByFrame - milisecFromLastUpdate);
 
         //adapt amount of frame skip, include frame sleep.
-        frameSkip++; 
+        frameSkip++;
 
         //actualise the delta time.
         _deltaTime = milisecByFrame * frameSkip;
-        
+
         //increase time from start game.
         _timeFromStartGame += deltaTime;
 
@@ -70,5 +70,13 @@ public static class UpdateManager
     public static int timeSpeedForAnime(int timeBase)
     {
         return timeBase * timeSpeed;
+    }
+
+
+    // cast miliesecond int into timeSpan.
+    public static TimeSpan convertMilisecToTimeSpan(int TimeMilisec)
+    {
+        long timeTicks = (long)(TimeMilisec) * 10000; // get time on 100-nanosec.
+        return new TimeSpan(ticks: timeTicks);
     }
 }

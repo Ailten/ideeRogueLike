@@ -56,10 +56,12 @@ public static class SaveManager
         }
         catch (JsonException e) // file contend is not matching canvas of json.
         {
+            Console.WriteLine($"error during load save : {e.Message}");
             return false;
         }
         catch (Exception e) // unexcepted reason exception.
         {
+            Console.WriteLine($"error during load save : {e.Message}");
             return false;
         }
 
