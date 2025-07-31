@@ -119,6 +119,16 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_BGStatusEffect, new Vector(0, 127), new Vector(63, 63)); //second line.
         s.addSpriteType(SpriteType.StatusEffect_Burn, new Vector(64, 127), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_MoneyLoot, new Vector(128, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageAddBoostRed, new Vector(192, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageAddBoostBlue, new Vector(256, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageAddBoostGreen, new Vector(320, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageAddBoostShiny, new Vector(384, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_APBoost, new Vector(448, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostRed, new Vector(192, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostBlue, new Vector(256, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostGreen, new Vector(320, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostShiny, new Vector(384, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_APBoost, new Vector(448, 127), new Vector(63, 63));
 
     }
 

@@ -57,6 +57,9 @@ public class Character : Entity
     //apply damage to another Character.
     public virtual void makeDamage(Character target, int atk, PackageRefCard? refCard = null)
     {
+        // apply status effect.
+        this.statusEffects.ForEach(se => se.eventWhenTargetMakeDamage(ref target, ref atk, ref refCard));
+
         target.takeDamage(atk, this, refCard);
 
         //make an FX star (and sound) for signal make damage.

@@ -116,7 +116,17 @@ public enum SpriteType
     StatusEffect_BGStatusEffect,
 
     StatusEffect_Burn,
-    StatusEffect_MoneyLoot
+    StatusEffect_MoneyLoot,
+    StatusEffect_DamageAddBoostRed,
+    StatusEffect_DamageAddBoostBlue,
+    StatusEffect_DamageAddBoostGreen,
+    StatusEffect_DamageAddBoostShiny,
+    StatusEffect_APBoost,
+    StatusEffect_DamageMultiplyBoostRed,
+    StatusEffect_DamageMultiplyBoostBlue,
+    StatusEffect_DamageMultiplyBoostGreen,
+    StatusEffect_DamageMultiplyBoostShiny,
+    StatusEffect_MPBoost
 
 }
 

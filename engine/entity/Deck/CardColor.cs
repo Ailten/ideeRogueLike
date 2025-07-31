@@ -36,16 +36,33 @@ public static class StaticCardColor
 
     public static CardColor getRandomColor(bool isIncludePolyChrome = false, int purcentChanceOfBeingPolyChrome = 12)
     {
-        bool isPolyChrome = (!isIncludePolyChrome)? false: (RandomManager.rng.Next(100) < purcentChanceOfBeingPolyChrome);
+        bool isPolyChrome = (!isIncludePolyChrome) ? false : (RandomManager.rng.Next(100) < purcentChanceOfBeingPolyChrome);
         if (isPolyChrome)
             return CardColor.PolyChrome;
-            
+
         int rng = RandomManager.rng.Next(3);
         return (
-            (rng == 0)? CardColor.Blue:
-            (rng == 1)? CardColor.Red:
+            (rng == 0) ? CardColor.Blue :
+            (rng == 1) ? CardColor.Red :
             CardColor.Green
         );
+    }
+
+    public static string getName(this CardColor color)
+    {
+        switch (color)
+        {
+            case (CardColor.Blue):
+                return "bleu";
+            case (CardColor.Red):
+                return "rouge";
+            case (CardColor.Green):
+                return "vert";
+            case (CardColor.PolyChrome):
+                return "multicolor";
+            default:
+                throw new Exception("CardColor has no name !");
+        }
     }
 
 }

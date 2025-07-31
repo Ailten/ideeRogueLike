@@ -24,7 +24,10 @@ class Program
     // add a special room for "boost card effect".
 
 
-    // make win screen.
+    // make a pool of status effect.
+
+
+    // make win/loose screen (end run).
 
 
     // add traps effect (on a card).

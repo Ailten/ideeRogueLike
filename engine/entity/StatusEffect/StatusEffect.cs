@@ -6,7 +6,7 @@ public class StatusEffect
     private int turnEnd;
     private int characterIdWhoApplyEffect;
     private int characterIdWhoHasEffect;
-    private SpriteType spriteType;
+    protected SpriteType spriteType;
     private int idEffect;
     private static int idEffectCount = 0;
 
@@ -16,7 +16,7 @@ public class StatusEffect
     }
     public int getTurnUntilEnd
     {
-        get { return (turnEnd >= 0? turnEnd - TurnManager.getTurnCount: -1); }
+        get { return (turnEnd >= 0 ? turnEnd - TurnManager.getTurnCount : -1); }
     }
     public int getCharacterIdWhoApplyEffect
     {
@@ -69,7 +69,7 @@ public class StatusEffect
     {
         Character? whoApply = getCharacterWhoApplyEffect;
         string nameWhoApply = (whoApply is not null ? whoApply.getName : "---");
-        string turnUntil = (getTurnUntilEnd >= 0 ? getTurnUntilEnd.ToString()+"T" : "infini");
+        string turnUntil = (getTurnUntilEnd >= 0 ? getTurnUntilEnd.ToString() + "T" : "infini");
         return (
             $"- cible : {getCharacterWhoHasEffect.getName}, " +
             $"par : {nameWhoApply}, " +
@@ -92,9 +92,11 @@ public class StatusEffect
     { }
 
     // event call when target start turn.
-    public void eventWhenTargetStartTurn(){}
+    public void eventWhenTargetStartTurn() { }
     // event call when target end turn.
-    public virtual void eventWhenTargetEndTurn(){}
+    public virtual void eventWhenTargetEndTurn() { }
+    // event call when target make damage.
+    public virtual void eventWhenTargetMakeDamage(ref Character target, ref int atk, ref PackageRefCard? refCard) { }
 
 
 }

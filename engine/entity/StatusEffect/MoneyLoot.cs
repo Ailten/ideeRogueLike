@@ -7,6 +7,8 @@ public class MoneyLoot : StatusEffect
     base(SpriteType.StatusEffect_MoneyLoot, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.money = money;
+
+        this.getCharacterWhoHasEffect.PO += this.money;
     }
 
     public override string getDescription()
@@ -29,9 +31,9 @@ public class MoneyLoot : StatusEffect
         bool isCharacterWhoHasEffectDie = false,
         bool isCharacterWhoApplyEffectDie = false)
     {
-        if (isCharacterWhoHasEffectDie)
+        if (isEndLifeEffect || isEndOfFight || isCharacterWhoApplyEffectDie) // cancel effect.
         {
-            this.getCharacterWhoHasEffect.PO += this.money;
+            this.getCharacterWhoHasEffect.PO -= this.money;
         }
     }
 
