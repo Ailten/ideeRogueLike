@@ -30,6 +30,7 @@ public static class TurnManager
         indexCharacterTurn = 0;
         allCharacterDead = new();
         _isInFight = false;
+        turnCount = 0;
     }
 
 

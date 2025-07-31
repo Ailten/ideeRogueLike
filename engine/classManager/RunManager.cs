@@ -65,6 +65,14 @@ public static class RunManager
 
     }
 
+    // free last stage.
+    public static void destroyRun()
+    {
+        //destroy all stage not already destroyed.
+        stages.Where(s => s.rooms.Count > 0).ToList().ForEach(s => s.destroyStage());
+        stages = new();
+    }
+
 
     //active all entity cel of a specific room.
     public static void activeAllCelOfARoom(bool editActiveCel)
@@ -138,13 +146,23 @@ public static class RunManager
     // event run end.
     public static void endRun(bool isWinByPlayer)
     {
-        // todo: unload all character in turnManager.
-        // unload all cel loaded.
-        // clean all runManager instance cascade (stages, rooms, cels).
+        // eval all new succes unlocked during this run.
+        List<Succes> succesUnlocked = Enum.GetValues(typeof(Succes)) // get all value enum on array.
+            .Cast<Succes>().ToList() // cast list.
+            .Where(s => !SaveManager.getSave.succes.Contains(s)).ToList() // drop all succes already unlocked.
+            .Where(s => s.isUnlocked()).ToList(); // drop all succes with condition unlock not reach.
+
+        // get seed.
+        int seedPlayed = _seed;
 
         // print an UI screen WIN or LOOSE.
         // with button back to main menu.
         // and all new success unlocked during this run.
+
+        TurnManager.reset(); //free characters from turnManager.
+        RunManager.destroyRun(); //free stages list (recursively).
+
+        //transition UI scene (RunLayer, RunHudLayer -> EndRunLayer) by sending values to print.
     }
 
 }

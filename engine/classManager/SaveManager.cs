@@ -8,6 +8,10 @@ public static class SaveManager
 
 
     // remap function of save.
+    public static Save getSave
+    {
+        get{ return currentSave; }
+    }
     public static bool tryAddSucces(Succes succesToAdd) => currentSave.tryAddSucces(succesToAdd);
     public static bool isHasSucces(Succes succesToAsk) => currentSave.isHasSucces(succesToAsk);
     public static int increaseRunCount() => currentSave.increaseRunCount();

@@ -3,7 +3,7 @@
 public class Save
 {
     public TimeSpan timePlayed { get; set; } //amount of time played.
-    private int runCount { get; set; } //amount of run start.
+    public int runCount { get; set; } //amount of run start.
     public ulong damageMaked { get; set; } //amount of damage maked.
     public uint healMaked { get; set; } //amount of heal maked.
     public uint shildMaked { get; set; } //amount of shild maked.

@@ -24,6 +24,18 @@ class Program
     // add a special room for "boost card effect".
 
 
+    // make win screen.
+
+
+    // add traps effect (on a card).
+    // -> when a fight is end : delete effect Cel apply by a character (like traps).
+
+    // add card Darunya Neko. ?
+    // add card Lune Alliee. ?
+    // add card Blac a siable. ?
+    // add card Batte Bulle. ?
+
+
 
     // add a pause menu (back to game, back to main menu, ... other option).
     // -> make button ui pause.
