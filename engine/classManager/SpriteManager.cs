@@ -64,6 +64,9 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.SkipTurnBack, new Vector(676, 0), new Vector(269, 126));
         s.addSpriteType(SpriteType.DeckIcon, new Vector(306, 111), new Vector(115, 99));
 
+        s.addSpriteType(SpriteType.UiCoffreWin, new Vector(0, 639), new Vector(355, 274)); 
+        s.addSpriteType(SpriteType.UiGodRayWin, new Vector(356, 639), new Vector(122, 274));
+
         s = new Sprite("Characters");
         s.addSpriteType(SpriteType.Character_Ailten, new Vector(0, 0), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Slime, new Vector(128, 0), new Vector(126, 126));

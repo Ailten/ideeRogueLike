@@ -29,6 +29,8 @@ public enum SpriteType
     ButtonUiSkipTurn_Disabled,
     SkipTurnBack,
     DeckIcon,
+    UiCoffreWin,
+    UiGodRayWin,
 
     MiniMapUi_RoomBG_,
     MiniMapUi_RoomBG_UR,

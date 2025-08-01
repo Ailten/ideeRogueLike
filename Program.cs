@@ -24,7 +24,8 @@ class Program
     // add a special room for "boost card effect".
 
 
-    // make a pool of status effect.
+    // make a pool of status effect (for effects can be pick on special room).
+    // add malus effect (like card play has one chance on 6 to become cracked).
 
 
     // make win/loose screen (end run).
