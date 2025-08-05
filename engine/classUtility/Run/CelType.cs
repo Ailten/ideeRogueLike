@@ -18,7 +18,11 @@ public enum CelType
 
 
     Cel_MobSpawner,
-    Cel_Coffre
+    Cel_Coffre,
+
+
+    Cel_SandMPDown,
+    Cel_SlimeAPDown
 
     
 }

@@ -93,6 +93,11 @@ public class Cel : Entity
             case (CelType.Cel_Coffre):
                 return SpriteType.Cel_Coffre;
 
+            case(CelType.Cel_SandMPDown):
+                return SpriteType.Cel_SandMPDown;
+            case(CelType.Cel_SlimeAPDown):
+                return SpriteType.Cel_SlimeAPDown;
+
             default:
                 throw new Exception("SpriteType no match for CelType !");
 
@@ -107,11 +112,6 @@ public class Cel : Entity
 
         switch (celType)
         {
-
-            //default.
-            case (CelType.Cel):
-                return 0;
-
             //rotate door.
             case (CelType.CelDoor_up):
                 return 0;
@@ -124,7 +124,6 @@ public class Cel : Entity
 
             default:
                 return 0;
-
         }
 
     }
@@ -291,6 +290,15 @@ public class Cel : Entity
 
                 // TODO: do something when walk on chest cel.
 
+                return;
+
+            case (CelType.Cel_SandMPDown):
+                if (TurnManager.isInFight)
+                    characterStep.decreaseMP(1);
+                return;
+            case (CelType.Cel_SlimeAPDown):
+                if (TurnManager.isInFight)
+                    characterStep.decreaseAP(1);
                 return;
 
             default:

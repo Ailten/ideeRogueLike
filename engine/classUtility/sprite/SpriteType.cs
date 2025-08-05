@@ -82,6 +82,8 @@ public enum SpriteType
     Cel_Discard,
     Cel_Duplicate,
     Cel_Boost,
+    Cel_SandMPDown,
+    Cel_SlimeAPDown,
 
 
     // --- Card.
@@ -100,6 +102,7 @@ public enum SpriteType
     CardImg_Meat,
     CardImg_AxeOLoot,
     CardImg_BatteBulle,
+    CardImg_BlacASiable,
 
 
     // --- FX.
@@ -155,6 +158,8 @@ public static class StaticSpriteType
                 return ("Une ache poilue qui ne pence qu'a s'enrichire.");
             case (SpriteType.CardImg_BatteBulle):
                 return ("Une batte en bulle (peu agressive).");
+            case (SpriteType.CardImg_BlacASiable):
+                return ("Un bac a sable qui ralenti les deplacement.");
             default:
                 return "";
                 //throw new Exception("SpriteType getDescription has no description for this spriteType !");
@@ -181,6 +186,8 @@ public static class StaticSpriteType
                 return ("Axe aux loots");
             case (SpriteType.CardImg_BatteBulle):
                 return ("Batte Bulle");
+            case (SpriteType.CardImg_BlacASiable):
+                return ("Blac a siable");
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.
         }

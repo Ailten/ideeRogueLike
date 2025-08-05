@@ -89,6 +89,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Cel_Discard, new Vector(128, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_Boost, new Vector(256, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_Duplicate, new Vector(384, 256), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Cel_SandMPDown, new Vector(0, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Cel_SlimeAPDown, new Vector(128, 384), new Vector(126, 126));
 
         s = new Sprite("Card");
         s.addSpriteType(SpriteType.CardBG_Blue, new Vector(0, 0), new Vector(219, 322)); // -- encrage : (0.5f, 0.5f).
@@ -108,6 +110,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_Meat, new Vector(0, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_AxeOLoot, new Vector(0, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BatteBulle, new Vector(220, 575), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_BlacASiable, new Vector(440, 575), new Vector(219, 125));
 
         s = new Sprite("FX");
         s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));

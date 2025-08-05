@@ -9,7 +9,9 @@ public enum EffectCard
     MPHit, //cast all mp launcher for aply damage to the target.
     Burn, //apply effect burn to target.
     MoneyLoot, //up gold of target.
-    Push //push target of n cell.
+    Push, //push target of n cell.
+    TrapMp, //place a trap on cell, who make decrease MP by one.
+    TrapAp //place a trap on cell, who make decrease AP by one.
 }
 
 
@@ -35,6 +37,11 @@ public static class StaticEffectCard
                 return "Chercheur d or";
             case (EffectCard.Push):
                 return "Pouce";
+            case (EffectCard.TrapMp):
+                return "Piege MP";
+            case (EffectCard.TrapAp):
+                return "Piege AP";
+                
             default:
                 return "No name";
         }
@@ -83,6 +90,15 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     "pouce la cible de N cases."
                 );
+            case (EffectCard.TrapMp):
+                return ("- " + effectCard.getName() + " :\n" +
+                    "pose un piege qui diminue les MP de 1."
+                );
+            case (EffectCard.TrapAp):
+                return ("- " + effectCard.getName() + " :\n" +
+                    "pose un piege qui diminue les AP de 1."
+                );
+
             default:
                 return "cette effet n'a pas de description.";
         }
@@ -135,6 +151,17 @@ public static class StaticEffectCard
             case(EffectCard.MoneyLoot):
                 if (characterTarget == null)
                     return;
+                characterTarget.statusEffects.Add(new MoneyLoot(
+                    characterTarget.idEntity,
+                    characterLauncher.idEntity,
+                    0,
+                    effectValue
+                ));
+                return;
+
+            case(EffectCard.Push):
+                if (characterTarget == null)
+                    return;
                 Vector directionPush = characterTarget.indexPosCel - characterLauncher.indexPosCel;
                 directionPush.x = Math.Clamp(directionPush.x, -1f, 1f);
                 directionPush.y = Math.Clamp(directionPush.y, -1f, 1f);
@@ -153,15 +180,16 @@ public static class StaticEffectCard
                 }
                 return;
 
-            case(EffectCard.Push):
-                if (characterTarget == null)
-                    return;
-                characterTarget.statusEffects.Add(new MoneyLoot(
-                    characterTarget.idEntity,
-                    characterLauncher.idEntity,
-                    0,
-                    effectValue
-                ));
+            case (EffectCard.TrapMp):
+                Cel? celTargetMP = RunManager.getCel(indexPosTarget);
+                if (celTargetMP != null && celTargetMP.celType == CelType.Cel)
+                    celTargetMP.celType = CelType.Cel_SandMPDown;
+                return;
+
+            case (EffectCard.TrapAp):
+                Cel? celTargetAP = RunManager.getCel(indexPosTarget);
+                if (celTargetAP != null && celTargetAP.celType == CelType.Cel)
+                    celTargetAP.celType = CelType.Cel_SlimeAPDown;
                 return;
 
             default:
