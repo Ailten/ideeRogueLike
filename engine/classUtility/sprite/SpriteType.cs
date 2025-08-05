@@ -67,6 +67,7 @@ public enum SpriteType
     Character_KingSlime,
     Character_KingFlame,
     Character_KingRock,
+    Character_DarunyaNeko,
 
 
     // --- Dungeons.
@@ -103,6 +104,7 @@ public enum SpriteType
     CardImg_AxeOLoot,
     CardImg_BatteBulle,
     CardImg_BlacASiable,
+    CardImg_DarunyaNeko,
 
 
     // --- FX.
@@ -160,6 +162,9 @@ public static class StaticSpriteType
                 return ("Une batte en bulle (peu agressive).");
             case (SpriteType.CardImg_BlacASiable):
                 return ("Un bac a sable qui ralenti les deplacement.");
+            case (SpriteType.CardImg_DarunyaNeko):
+                return ("Un daruma aussi espiegle qu'un chat.");
+                
             default:
                 return "";
                 //throw new Exception("SpriteType getDescription has no description for this spriteType !");
@@ -188,6 +193,9 @@ public static class StaticSpriteType
                 return ("Batte Bulle");
             case (SpriteType.CardImg_BlacASiable):
                 return ("Blac a siable");
+            case (SpriteType.CardImg_DarunyaNeko):
+                return ("Darunya Neko");
+
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.
         }

@@ -11,7 +11,9 @@ public enum EffectCard
     MoneyLoot, //up gold of target.
     Push, //push target of n cell.
     TrapMp, //place a trap on cell, who make decrease MP by one.
-    TrapAp //place a trap on cell, who make decrease AP by one.
+    TrapAp, //place a trap on cell, who make decrease AP by one.
+    HitAround, //hit a cross 1 around the cell target.
+    InvokeDarunyaNeko, //invoque a darunya neko.
 }
 
 
@@ -41,54 +43,60 @@ public static class StaticEffectCard
                 return "Piege MP";
             case (EffectCard.TrapAp):
                 return "Piege AP";
+            case (EffectCard.HitAround):
+                return "Attaque tournoyante";
+            case (EffectCard.InvokeDarunyaNeko):
+                return "Invoque Darunya Neko";
                 
             default:
                 return "No name";
         }
     }
 
-    public static string getDetails(this EffectCard effectCard)
+    public static string getDetails(this EffectCard effectCard, int? valueIntencity = null)
     {
+        string value = valueIntencity?.ToString() ?? "N";
+
         switch (effectCard)
         {
             case (EffectCard.NoEffect):
                 return "ne fait rien.";
             case (EffectCard.Hit):
                 return ($"- {effectCard.getName()} :\n" +
-                    "effectue N points de degat a la cible.\n" +
+                    $"effectue {value} points de degat a la cible.\n" +
                     "arrive a 0 points de vie, la cible meure."
                 );
             case (EffectCard.Shild):
                 return ($"- {effectCard.getName()} :\n" +
-                    "donne N points de bouclier a la cible.\n" +
+                    $"donne {value} points de bouclier a la cible.\n" +
                     "les points de bouclier protege les points de vie.\n" +
                     "les points de bouclier sont perdu en debut de tour."
                 );
             case (EffectCard.Heal):
                 return ($"- {effectCard.getName()} :\n" +
-                    "soigne N points de vie a la cible.\n" +
+                    $"soigne {value} points de vie a la cible.\n" +
                     "les soin s arrete au points de vie max."
                 );
             case (EffectCard.MPHit):
                 return ($"- {effectCard.getName()} :\n" +
                     "draine tout les MP du lanceur.\n" +
-                    "chaque MP converti inflige N degats."
+                    $"chaque MP converti inflige {value} degats."
                 );
             case (EffectCard.Burn):
                 return ($"- {effectCard.getName()} :\n" +
                     $"applique l effet Burn.\n" +
                     "inflige 1 degat a la fin du tour de la cible.\n" +
-                    "dure N tour."
+                    $"dure {value} tour."
                 );
             case (EffectCard.MoneyLoot):
                 return ("- " + effectCard.getName() + " :\n" +
                     "applique l effet MoneyLoot.\n" +
-                    "donne N piece d or en plus a la mort de la cible.\n" +
+                    $"donne {value} piece d or en plus a la mort de la cible.\n" +
                     "dure 0 tour."
                 );
             case (EffectCard.Push):
                 return ("- " + effectCard.getName() + " :\n" +
-                    "pouce la cible de N cases."
+                    $"pouce la cible de {value} cases."
                 );
             case (EffectCard.TrapMp):
                 return ("- " + effectCard.getName() + " :\n" +
@@ -97,6 +105,16 @@ public static class StaticEffectCard
             case (EffectCard.TrapAp):
                 return ("- " + effectCard.getName() + " :\n" +
                     "pose un piege qui diminue les AP de 1."
+                );
+            case (EffectCard.HitAround):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"inflige {value} degats au cas adjacente ciblee."
+                );
+            case (EffectCard.InvokeDarunyaNeko):
+                return ("- " + effectCard.getName() + " :\n" +
+                    "invoque 1 Darunya Neko.\n" +
+                    "creature imobile, gagniant 1 AP a chaque coup recu.\n" +
+                    "attaque du 4 autour d'elle une fois boost a 2 AP."
                 );
 
             default:
@@ -190,6 +208,33 @@ public static class StaticEffectCard
                 Cel? celTargetAP = RunManager.getCel(indexPosTarget);
                 if (celTargetAP != null && celTargetAP.celType == CelType.Cel)
                     celTargetAP.celType = CelType.Cel_SlimeAPDown;
+                return;
+
+            case (EffectCard.HitAround):
+                Vector posAdj = indexPosTarget + new Vector(0, -1); // up cell.
+                Character? characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
+                if (characterTargetAdj != null)
+                    characterLauncher.makeDamage(characterTargetAdj, effectValue, refCard);
+                posAdj = indexPosTarget + new Vector(1, 0); // right cell.
+                characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
+                if (characterTargetAdj != null)
+                    characterLauncher.makeDamage(characterTargetAdj, effectValue, refCard);
+                posAdj = indexPosTarget + new Vector(0, 1); // down cell.
+                characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
+                if (characterTargetAdj != null)
+                    characterLauncher.makeDamage(characterTargetAdj, effectValue, refCard);
+                posAdj = indexPosTarget + new Vector(-1, 0); // left cell.
+                characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
+                if (characterTargetAdj != null)
+                    characterLauncher.makeDamage(characterTargetAdj, effectValue, refCard);
+                return;
+
+            case (EffectCard.InvokeDarunyaNeko):
+                if (characterTarget != null)
+                    return;
+                TurnManager.addCharacterInRoom(
+                    new CharacterDarunyaNeko(indexPosTarget, characterLauncher)
+                );
                 return;
 
             default:

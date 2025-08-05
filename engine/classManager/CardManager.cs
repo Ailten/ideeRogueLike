@@ -41,7 +41,7 @@ public static class CardManager
             cardEdition: CardEdition.Default,
             APCost: 1,
             distanceToUse: new(1, 1),
-            effect: new KeyValuePair<EffectCard, int>(EffectCard.Push, 1)
+            effect: new KeyValuePair<EffectCard, int>(EffectCard.Push, 0)
         ));
         communCard.Add(new Card(
             cardIllu: SpriteType.CardImg_BlacASiable,
@@ -49,11 +49,19 @@ public static class CardManager
             cardEdition: CardEdition.Default,
             APCost: 1,
             distanceToUse: new(1, 3),
-            effect: new KeyValuePair<EffectCard, int>(EffectCard.TrapMp, 1)
+            effect: new KeyValuePair<EffectCard, int>(EffectCard.TrapMp, 0)
         ));
         SaveManager.getSave.succes.Where(s => !s.isRareCard()).ToList().ForEach(s => communCard.Add(s.getCardUnlocked()));
 
         rareCard = new();
+        rareCard.Add(new Card(
+            cardIllu: SpriteType.CardImg_DarunyaNeko,
+            cardColor: CardColor.Blue,
+            cardEdition: CardEdition.Default,
+            APCost: 2,
+            distanceToUse: new(1, 1),
+            effect: new KeyValuePair<EffectCard, int>(EffectCard.InvokeDarunyaNeko, 0)
+        ));
         SaveManager.getSave.succes.Where(s => s.isRareCard()).ToList().ForEach(s => communCard.Add(s.getCardUnlocked()));
 
     }

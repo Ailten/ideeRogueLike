@@ -5,6 +5,7 @@ public class CardDetails : Entity
 {
     private Card? card;
     private EffectCard? effectSelected;
+    private int effectValueSelected;
 
     public CardDetails(int idLayer) : base(idLayer, SpriteType.none)
     {
@@ -28,6 +29,7 @@ public class CardDetails : Entity
     {
         this.card = card;
         this.effectSelected = null;
+        this.effectValueSelected = 0;
     }
 
 
@@ -48,7 +50,7 @@ public class CardDetails : Entity
         if (effectSelected != null)
         {
             // get values for draw text details effect selected.
-            string text = effectSelected?.getDetails() ?? throw new Exception("CardDetails.effectSelected is null !");
+            string text = effectSelected?.getDetails(this.effectValueSelected) ?? throw new Exception("CardDetails.effectSelected is null !");
             Vector posText = posToDraw + (new Vector(1, 0) * (sizeAtScreenCard.x + 10));
             float fontSizeText = Card.fontSizeShorter * scaleCards * CanvasManager.scaleCanvas;
             float fontSpacingText = Card.fontSpacing * scaleCards * CanvasManager.scaleCanvas;
@@ -133,11 +135,12 @@ public class CardDetails : Entity
             );
             if (isClickOnCurrentEffect)
             {
-                EffectCard effect = ((i==0 && cardNN.effects.Count == 0)?
-                    EffectCard.NoEffect:
+                EffectCard effect = ((i == 0 && cardNN.effects.Count == 0) ?
+                    EffectCard.NoEffect :
                     cardNN.effects[i].Key
                 );
-                effectSelected = (effectSelected==effect)? null: effect;
+                effectSelected = (effectSelected == effect) ? null : effect;
+                effectValueSelected = cardNN.effects[i].Value;
             }
         }
     }
