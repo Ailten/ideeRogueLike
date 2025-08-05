@@ -35,6 +35,14 @@ public static class CardManager
             distanceToUse: new(0, 0),
             effect: new KeyValuePair<EffectCard, int>(EffectCard.Heal, 6)
         ));
+        communCard.Add(new Card(
+            cardIllu: SpriteType.CardImg_BatteBulle,
+            cardColor: CardColor.Blue,
+            cardEdition: CardEdition.Default,
+            APCost: 1,
+            distanceToUse: new(1, 1),
+            effect: new KeyValuePair<EffectCard, int>(EffectCard.Push, 1)
+        ));
         SaveManager.getSave.succes.Where(s => !s.isRareCard()).ToList().ForEach(s => communCard.Add(s.getCardUnlocked()));
 
         rareCard = new();

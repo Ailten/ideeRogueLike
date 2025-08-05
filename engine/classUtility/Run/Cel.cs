@@ -21,7 +21,7 @@ public class Cel : Entity
         this.zIndex = 1000;
 
         this.geometryTrigger = new Rect(
-            new(-64, -64), 
+            new(-64, -64),
             new(126, 126)
         );
 
@@ -73,23 +73,24 @@ public class Cel : Entity
     private static SpriteType celTypeToSpriteType(CelType celtype)
     {
 
-        switch(celtype){
+        switch (celtype)
+        {
 
-            case(CelType.CelDoor_up):
-            case(CelType.CelDoor_right):
-            case(CelType.CelDoor_down):
-            case(CelType.CelDoor_left):
+            case (CelType.CelDoor_up):
+            case (CelType.CelDoor_right):
+            case (CelType.CelDoor_down):
+            case (CelType.CelDoor_left):
                 if (TurnManager.isInFight)
                     return SpriteType.Cel_DoorToNextRoomLock; //mark as door lock when in fight.
                 return SpriteType.Cel_DoorToNextRoom;
 
-            case(CelType.Cel_NextStage):
+            case (CelType.Cel_NextStage):
                 return SpriteType.Cel_RopeToNextStage;
-            case(CelType.Cel_MobSpawner):
+            case (CelType.Cel_MobSpawner):
                 return SpriteType.Cel_Invocation;
-            case(CelType.Cel_CenterRoom):
+            case (CelType.Cel_CenterRoom):
                 return SpriteType.Cel_CenterRoom;
-            case(CelType.Cel_Coffre):
+            case (CelType.Cel_Coffre):
                 return SpriteType.Cel_Coffre;
 
             default:
@@ -104,20 +105,21 @@ public class Cel : Entity
     private static float getRotateOfCelType(CelType celType)
     {
 
-        switch(celType){
+        switch (celType)
+        {
 
             //default.
-            case(CelType.Cel):
+            case (CelType.Cel):
                 return 0;
 
             //rotate door.
-            case(CelType.CelDoor_up):
+            case (CelType.CelDoor_up):
                 return 0;
-            case(CelType.CelDoor_right):
+            case (CelType.CelDoor_right):
                 return 90;
-            case(CelType.CelDoor_down):
+            case (CelType.CelDoor_down):
                 return 180;
-            case(CelType.CelDoor_left):
+            case (CelType.CelDoor_left):
                 return 270;
 
             default:
@@ -137,16 +139,19 @@ public class Cel : Entity
         Character characterTurn = TurnManager.getCharacterOfCurrentTurn();
 
         //ask to print info of the cel (character is has one, or type cel if has one).
-        if(!isLeftClick && isClickDown){
+        if (!isLeftClick && isClickDown)
+        {
 
-            if(characterAtCel != null){ //print info of character.
+            if (characterAtCel != null)
+            { //print info of character.
 
                 //TODO (in specific function).
 
                 return;
             }
 
-            if(celType != CelType.Cel){ //print info of type cel.
+            if (celType != CelType.Cel)
+            { //print info of type cel.
 
                 //TODO (in specific function).
 
@@ -157,12 +162,13 @@ public class Cel : Entity
         }
 
         //player walk to cel or use card to the cel.
-        if(isLeftClick && !isClickDown){
+        if (isLeftClick && !isClickDown)
+        {
 
             //reason for cancel action.
-            if(!characterTurn.isInRedTeam) //skip action if is not turn player.
+            if (!characterTurn.isInRedTeam) //skip action if is not turn player.
                 return;
-            if(WalkManager.isWalking) //skip action if during a walk.
+            if (WalkManager.isWalking) //skip action if during a walk.
                 return;
 
 
@@ -196,9 +202,10 @@ public class Cel : Entity
             PathFindingManager.evalAPath( //eval a pathfinding.
                 characterTurn.indexPosCel, //posIndexFrom.
                 indexPosCel, //posIndexTo.
-                (TurnManager.isInFight? characterTurn.MP: 100) //maxMPCost (only during fight).
+                (TurnManager.isInFight ? characterTurn.MP : 100) //maxMPCost (only during fight).
             );
-            if(PathFindingManager.isPathValid){
+            if (PathFindingManager.isPathValid)
+            {
 
                 WalkManager.startWalk( //start walk along the path.
                     TurnManager.isInFight //isDecreaseMP.
@@ -223,59 +230,67 @@ public class Cel : Entity
     //execute action of type cel to character step into.
     public void doActionTypeCel(Character characterStep)
     {
-        switch(celType){
+        switch (celType)
+        {
 
             //default.
-            case(CelType.Cel):
+            case (CelType.Cel):
                 return;
 
             //door to move another room.
-            case(CelType.CelDoor_up):
-                if(characterStep.isAPlayer && !TurnManager.isInFight){
+            case (CelType.CelDoor_up):
+                if (characterStep.isAPlayer && !TurnManager.isInFight)
+                {
                     moveToAnotherRoom(characterStep, 0);
                 }
                 return;
-            case(CelType.CelDoor_right):
-                if(characterStep.isAPlayer && !TurnManager.isInFight){
+            case (CelType.CelDoor_right):
+                if (characterStep.isAPlayer && !TurnManager.isInFight)
+                {
                     moveToAnotherRoom(characterStep, 1);
                 }
                 return;
-            case(CelType.CelDoor_down):
-                if(characterStep.isAPlayer && !TurnManager.isInFight){
+            case (CelType.CelDoor_down):
+                if (characterStep.isAPlayer && !TurnManager.isInFight)
+                {
                     moveToAnotherRoom(characterStep, 2);
                 }
                 return;
-            case(CelType.CelDoor_left):
-                if(characterStep.isAPlayer && !TurnManager.isInFight){
+            case (CelType.CelDoor_left):
+                if (characterStep.isAPlayer && !TurnManager.isInFight)
+                {
                     moveToAnotherRoom(characterStep, 3);
                 }
                 return;
 
             //up to next stage.
-            case(CelType.Cel_NextStage):
-                if (characterStep.isAPlayer) { //only if is a player.
+            case (CelType.Cel_NextStage):
+                if (characterStep.isAPlayer)
+                { //only if is a player.
 
-                    if (RunManager.isLastStage) {
+                    if (RunManager.isLastStage)
+                    {
                         RunManager.endRun(false); // event end run.
                         return;
                     }
 
-                    LayerManager.transition(() => { //transition layer.
+                    LayerManager.transition(() =>
+                    { //transition layer.
                         characterStep.moveTo(new( //move player to center pos room.
                             Room.midWidthMax,
                             Room.midHeightMax
                         ), false);
                         RunManager.switchToNextStage();
                     });
-                    
+
                 }
                 return;
 
             //walk to a chest.
-            case(CelType.Cel_Coffre):
+            case (CelType.Cel_Coffre):
 
                 // TODO: do something when walk on chest cel.
-                
+
                 return;
 
             default:
@@ -289,28 +304,29 @@ public class Cel : Entity
     {
         //eval vector movement in room index.
         Vector moveRoom = (
-            (indexDirection==0)? new Vector(0, -1):
-            (indexDirection==1)? new Vector(1, 0):
-            (indexDirection==2)? new Vector(0, 1):
+            (indexDirection == 0) ? new Vector(0, -1) :
+            (indexDirection == 1) ? new Vector(1, 0) :
+            (indexDirection == 2) ? new Vector(0, 1) :
             new Vector(-1, 0)
         );
 
         CelType celTypeDestination = (
-            (indexDirection==0)? CelType.CelDoor_down:
-            (indexDirection==1)? CelType.CelDoor_left:
-            (indexDirection==2)? CelType.CelDoor_up:
+            (indexDirection == 0) ? CelType.CelDoor_down :
+            (indexDirection == 1) ? CelType.CelDoor_left :
+            (indexDirection == 2) ? CelType.CelDoor_up :
             CelType.CelDoor_right
         );
 
         //make transition to another room.
-        LayerManager.transition(() => {
+        LayerManager.transition(() =>
+        {
             characterStep.moveTo(new( //move player to center pos room.
                 Room.midWidthMax,
                 Room.midHeightMax
             ), false);
             RunManager.switchToNextRoom(moveRoom);
             characterStep.moveTo( //move player arrow door (from previous room).
-                RunManager.currentRoom!.getCelByType(celTypeDestination).indexPosCel, 
+                RunManager.currentRoom!.getCelByType(celTypeDestination).indexPosCel,
                 false
             );
         });
@@ -320,7 +336,7 @@ public class Cel : Entity
     private bool isCelIsOnRangeOfACard(Card card, Character? caracterWhoUseCard = null)
     {
         caracterWhoUseCard ??= TurnManager.getCharacterOfCurrentTurn();
-        float dist = ( 
+        float dist = (
             Math.Abs(caracterWhoUseCard.indexPosCel.x - this.indexPosCel.x) +
             Math.Abs(caracterWhoUseCard.indexPosCel.y - this.indexPosCel.y)
         );

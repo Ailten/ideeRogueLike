@@ -8,7 +8,8 @@ public enum EffectCard
     Heal, //heal the hp target.
     MPHit, //cast all mp launcher for aply damage to the target.
     Burn, //apply effect burn to target.
-    MoneyLoot //up gold of target.
+    MoneyLoot, //up gold of target.
+    Push //push target of n cell.
 }
 
 
@@ -32,6 +33,8 @@ public static class StaticEffectCard
                 return "Brulure";
             case (EffectCard.MoneyLoot):
                 return "Chercheur d or";
+            case (EffectCard.Push):
+                return "Pouce";
             default:
                 return "No name";
         }
@@ -75,6 +78,10 @@ public static class StaticEffectCard
                     "applique l effet MoneyLoot.\n" +
                     "donne N piece d or en plus a la mort de la cible.\n" +
                     "dure 0 tour."
+                );
+            case (EffectCard.Push):
+                return ("- " + effectCard.getName() + " :\n" +
+                    "pouce la cible de N cases."
                 );
             default:
                 return "cette effet n'a pas de description.";
@@ -126,6 +133,27 @@ public static class StaticEffectCard
                 return;
 
             case(EffectCard.MoneyLoot):
+                if (characterTarget == null)
+                    return;
+                Vector directionPush = characterTarget.indexPosCel - characterLauncher.indexPosCel;
+                directionPush.x = Math.Clamp(directionPush.x, -1f, 1f);
+                directionPush.y = Math.Clamp(directionPush.y, -1f, 1f);
+                for (int i = effectValue; i >= 0; i--)
+                {
+                    Vector indexPushed = characterTarget.indexPosCel + directionPush;
+                    Character? obstacle = TurnManager.getCharacterAtIndexPos(indexPushed);
+                    Cel? celDest = RunManager.getCel(indexPushed);
+                    bool isPushedOnAnObstacle = (obstacle != null || celDest == null);
+                    if (isPushedOnAnObstacle)
+                    {
+                        characterTarget.getPushedOnAnObsctable(i, obstacle, characterLauncher, refCard);
+                        break;
+                    }
+                    characterTarget.moveTo(indexPushed);
+                }
+                return;
+
+            case(EffectCard.Push):
                 if (characterTarget == null)
                     return;
                 characterTarget.statusEffects.Add(new MoneyLoot(

@@ -271,6 +271,21 @@ public class Character : Entity
         if (isActionCel)
             RunManager.getCelNN(indexPos).doActionTypeCel(this);
     }
+    public void getPushedOnAnObsctable(int cellBePushed, Character? obstacle = null, Character? characterMakePush = null, PackageRefCard? refCard = null)
+    {
+        if (characterMakePush != null)
+        {
+            characterMakePush.makeDamage(this, cellBePushed, refCard);
+            if (obstacle != null)
+                characterMakePush.makeDamage(obstacle, cellBePushed, refCard);
+            return;
+        }
+
+        this.takeDamage(cellBePushed, null, refCard);
+        if (obstacle != null)
+            obstacle.takeDamage(cellBePushed, null, refCard);
+
+    }
 
     //decrease MP.
     public void decreaseMP(int decrease)

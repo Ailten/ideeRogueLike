@@ -116,12 +116,10 @@ public static class RunManager
 
 
     //get cel by index pos (in current stage, in current room).
-    public static Cel? getCel(Vector celPosIndex, bool isCanBeNull = true)
+    public static Cel? getCel(Vector celPosIndex)
     {
         if (currentRoom == null)
-        {
             return null;
-        }
 
         return currentRoom.getCel(celPosIndex);
     }
