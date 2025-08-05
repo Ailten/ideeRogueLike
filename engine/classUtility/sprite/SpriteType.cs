@@ -99,6 +99,7 @@ public enum SpriteType
     CardImg_Rock,
     CardImg_Meat,
     CardImg_AxeOLoot,
+    CardImg_BatteBulle,
 
 
     // --- FX.
@@ -144,8 +145,16 @@ public static class StaticSpriteType
                 return ("Un simple bouclier de bois.");
             case (SpriteType.CardImg_Splash):
                 return ("Un jet d'eau visqueu qui inflige des degats.");
+            case (SpriteType.CardImg_Flame):
+                return ("Un jet de flame qui brule la cible.");
+            case (SpriteType.CardImg_Rock):
+                return ("Une attaque avec d enorme pierres");
             case (SpriteType.CardImg_Meat):
                 return ("Une belle piece de viande juteuse.");
+            case (SpriteType.CardImg_AxeOLoot):
+                return ("Une ache poilue qui ne pence qu'a s'enrichire.");
+            case (SpriteType.CardImg_BatteBulle):
+                return ("Une batte en bulle (peu agressive).");
             default:
                 return "";
                 //throw new Exception("SpriteType getDescription has no description for this spriteType !");
@@ -162,8 +171,16 @@ public static class StaticSpriteType
                 return ("Bouclier de bois");
             case (SpriteType.CardImg_Splash):
                 return ("Splash");
+            case (SpriteType.CardImg_Flame):
+                return ("Flame");
+            case (SpriteType.CardImg_Rock):
+                return ("Rock");
             case (SpriteType.CardImg_Meat):
                 return ("Viande batue");
+            case (SpriteType.CardImg_AxeOLoot):
+                return ("Axe aux loots");
+            case (SpriteType.CardImg_BatteBulle):
+                return ("Batte Bulle");
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.
         }
