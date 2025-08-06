@@ -76,6 +76,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Character_KingSlime, new Vector(128, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_KingFlame, new Vector(256, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_KingRock, new Vector(384, 128), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_LuneAllier, new Vector(0, 256), new Vector(126, 126));
 
         s = new Sprite("DungeonCels");
         s.addSpriteType(SpriteType.Cel, new Vector(0, 0), new Vector(126, 126));
@@ -107,12 +108,14 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_WoodenSword, new Vector(220, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_WoodenShild, new Vector(440, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_DarunyaNeko, new Vector(660, 323), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Meat, new Vector(0, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Flame, new Vector(220, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Rock, new Vector(440, 449), new Vector(219, 125));
-        s.addSpriteType(SpriteType.CardImg_Meat, new Vector(0, 449), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_LuneAllier, new Vector(660, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_AxeOLoot, new Vector(0, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BatteBulle, new Vector(220, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BlacASiable, new Vector(440, 575), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Explsur, new Vector(660, 575), new Vector(219, 125));
 
         s = new Sprite("FX");
         s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));

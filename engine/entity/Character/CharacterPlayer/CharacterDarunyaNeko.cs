@@ -15,15 +15,13 @@ public class CharacterDarunyaNeko : CharacterPlayer
         this.deck.pickCountByTurn = 1;
         this.deck.addCardToDeck(
             new Card(
-                cardIllu: SpriteType.CardImg_DarunyaNeko, //todo: illu explosion.
+                cardIllu: SpriteType.CardImg_Explsur,
                 cardColor: StaticCardColor.getRandomColor(),
                 cardEdition: CardEdition.Default,
                 APCost: 2,
                 distanceToUse: new(0, 0),
                 effect: new KeyValuePair<EffectCard, int>(EffectCard.HitAround, 4) //todo: effect explo.
-            ),
-            amountOfCardAdd: 1,
-            isSameColor: false
+            )
         );
     }
 

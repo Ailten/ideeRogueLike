@@ -68,6 +68,7 @@ public enum SpriteType
     Character_KingFlame,
     Character_KingRock,
     Character_DarunyaNeko,
+    Character_LuneAllier,
 
 
     // --- Dungeons.
@@ -100,11 +101,13 @@ public enum SpriteType
     CardImg_WoodenShild,
     CardImg_Flame,
     CardImg_Rock,
+    CardImg_LuneAllier,
     CardImg_Meat,
     CardImg_AxeOLoot,
     CardImg_BatteBulle,
     CardImg_BlacASiable,
     CardImg_DarunyaNeko,
+    CardImg_Explsur,
 
 
     // --- FX.
@@ -164,6 +167,10 @@ public static class StaticSpriteType
                 return ("Un bac a sable qui ralenti les deplacement.");
             case (SpriteType.CardImg_DarunyaNeko):
                 return ("Un daruma aussi espiegle qu'un chat.");
+            case (SpriteType.CardImg_LuneAllier):
+                return ("Une gentille lune qui soigne ses allier.");
+            case (SpriteType.CardImg_Explsur):
+                return ("Une explosion.");
                 
             default:
                 return "";
@@ -195,6 +202,10 @@ public static class StaticSpriteType
                 return ("Blac a siable");
             case (SpriteType.CardImg_DarunyaNeko):
                 return ("Darunya Neko");
+            case (SpriteType.CardImg_LuneAllier):
+                return ("Lune Allier");
+            case (SpriteType.CardImg_Explsur):
+                return ("Explsur");
 
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.

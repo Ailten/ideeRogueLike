@@ -14,6 +14,7 @@ public enum EffectCard
     TrapAp, //place a trap on cell, who make decrease AP by one.
     HitAround, //hit a cross 1 around the cell target.
     InvokeDarunyaNeko, //invoque a darunya neko.
+    InvokeLuneAllier, //invoque a lune allier.
 }
 
 
@@ -115,6 +116,12 @@ public static class StaticEffectCard
                     "invoque 1 Darunya Neko.\n" +
                     "creature imobile, gagniant 1 AP a chaque coup recu.\n" +
                     "attaque du 4 autour d'elle une fois boost a 2 AP."
+                );
+            case (EffectCard.InvokeLuneAllier):
+                return ("- " + effectCard.getName() + " :\n" +
+                    "invoque 1 Lune Allier.\n" +
+                    "creature imobile.\n" +
+                    "soigne du 2 a un allier a maximum 2 case d'elle."
                 );
 
             default:
@@ -234,6 +241,14 @@ public static class StaticEffectCard
                     return;
                 TurnManager.addCharacterInRoom(
                     new CharacterDarunyaNeko(indexPosTarget, characterLauncher)
+                );
+                return;
+
+            case (EffectCard.InvokeLuneAllier):
+                if (characterTarget != null)
+                    return;
+                TurnManager.addCharacterInRoom(
+                    new CharacterLuneAllier(indexPosTarget, characterLauncher)
                 );
                 return;
 

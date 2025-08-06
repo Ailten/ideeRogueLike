@@ -5,7 +5,9 @@ public enum Succes
     Kill_5_Slime,
     Kill_5_Flame,
     Kill_5_Rock,
-    Take_10_Coin
+    Take_10_Coin,
+    Heal_10,
+    Damage_10,
 }
 
 
@@ -56,6 +58,30 @@ public static class StaticSucces
                     }
                 );
 
+            case (Succes.Heal_10):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_LuneAllier,
+                    cardColor: CardColor.Red,
+                    cardEdition: CardEdition.Default,
+                    APCost: 2,
+                    distanceToUse: new(1, 2),
+                    effects: new() {
+                        new KeyValuePair<EffectCard, int>(EffectCard.InvokeLuneAllier, 0)
+                    }
+                );
+
+            case (Succes.Damage_10):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_Explsur,
+                    cardColor: CardColor.Red,
+                    cardEdition: CardEdition.Default,
+                    APCost: 2,
+                    distanceToUse: new(0, 0),
+                    effects: new() {
+                        new KeyValuePair<EffectCard, int>(EffectCard.HitAround, 3)
+                    }
+                );
+
             default:
                 throw new Exception("Succes has no card attribued !");
         }
@@ -75,7 +101,6 @@ public static class StaticSucces
 
     public static bool isUnlocked(this Succes succes)
     {
-        
         switch (succes)
         {
             case (Succes.Kill_5_Slime):
@@ -86,6 +111,10 @@ public static class StaticSucces
                 return SaveManager.getSave.characterKilled["Rock"] >= 5;
             case (Succes.Take_10_Coin):
                 return SaveManager.getSave.coinTaked >= 10;
+            case (Succes.Heal_10):
+                return SaveManager.getSave.healMaked >= 10;
+            case (Succes.Damage_10):
+                return SaveManager.getSave.damageMaked >= 10;
 
             default:
                 throw new Exception("Succes has no way to be unlocked");

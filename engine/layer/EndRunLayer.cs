@@ -12,7 +12,7 @@ public class EndRunLayer : Layer
         //init all entities of layer. --->
 
         ButtonUi buttonBackToMenu = new ButtonUi(idLayer); // button back main menu.
-        buttonBackToMenu.text = $"retour";
+        buttonBackToMenu.text = "retour";
         buttonBackToMenu.pos = CanvasManager.sizeWindow - (buttonBackToMenu.size * 0.5f) - 10f;
         buttonBackToMenu.scale = new(0.9f, 0.9f);
         buttonBackToMenu.eventClick = () => {
