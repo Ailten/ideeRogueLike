@@ -10,7 +10,7 @@ public static class SaveManager
     // remap function of save.
     public static Save getSave
     {
-        get{ return currentSave; }
+        get { return currentSave; }
     }
     public static bool tryAddSucces(Succes succesToAdd) => currentSave.tryAddSucces(succesToAdd);
     public static bool isHasSucces(Succes succesToAsk) => currentSave.isHasSucces(succesToAsk);
@@ -52,7 +52,7 @@ public static class SaveManager
                 currentSave = new();
             else
                 currentSave = JsonSerializer.Deserialize<Save>(jsonStr, jsonOption) ?? throw new Exception("SaveManager fail to load json !");
-              
+
         }
         catch (JsonException e) // file contend is not matching canvas of json.
         {
@@ -97,5 +97,12 @@ public static class SaveManager
     {
         TimeSpan timePlayed = DateTime.Now - timeStartWindow;
         return timePlayed;
+    }
+
+
+    // get purcent of completion.
+    public static float getPurcentCompletion<T>() where T : Enum
+    {
+        return (float) currentSave.succes.Count / Enum.GetValues<Succes>().Length;
     }
 }

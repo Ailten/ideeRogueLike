@@ -13,7 +13,7 @@ public enum Succes
 
 public static class StaticSucces
 {
-    public static Card getCardUnlocked(this Succes succes)
+    public static Card? getCardUnlocked(this Succes succes)
     {
         switch (succes)
         {
@@ -83,7 +83,7 @@ public static class StaticSucces
                 );
 
             default:
-                throw new Exception("Succes has no card attribued !");
+                return null;
         }
     }
 
@@ -120,4 +120,5 @@ public static class StaticSucces
                 throw new Exception("Succes has no way to be unlocked");
         }
     }
+    
 }
