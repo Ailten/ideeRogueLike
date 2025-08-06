@@ -1,6 +1,4 @@
 
-using System.Drawing;
-
 public struct Card
 {
 
@@ -12,7 +10,7 @@ public struct Card
     public int APCost; //the amount of AP need for use the card.
     public Vector distanceToUse; //distance can be use (x=min, y=max).
 
-    public List<KeyValuePair<EffectCard, int>> effects; //all effects of a card (with an int of value).
+    public List<KeyValuePair<EffectCard, int>> effects = new(); //all effects of a card (with an int of value).
     private static int maxEffectByCard = 5;
     public string getPorteeToUseStr
     {
@@ -44,9 +42,8 @@ public struct Card
         this.cardEdition = cardEdition;
         this.APCost = APCost;
         this.distanceToUse = distanceToUse;
-        this.effects = new();
-        if (effect != null)
-            this.effects.Add(effect ?? throw new Exception("Card effect is null !"));
+        this.effects = (effect == null ? new() : new() { effect ?? throw new Exception("Card effect is null !") });
+        //size card : 219, 322;
         this.idCard = idCardCount++;
     }
 
@@ -284,12 +281,25 @@ public struct Card
     {
         return (A.idCard == B.idCard);
     }
-    public static bool operator!=(Card A, Card B)
+    public static bool operator !=(Card A, Card B)
     {
         return (A.idCard != B.idCard);
     }
 
+    public override bool Equals(object? obj)
+    {
+        if (obj is null)
+            return false;
+        if (obj.GetType() != this.GetType())
+            return false;
+        return this == (Card)obj;
+    }
 
+    // no need.
+    public override int GetHashCode()
+    {
+        throw new NotImplementedException();
+    }
 }
 
 

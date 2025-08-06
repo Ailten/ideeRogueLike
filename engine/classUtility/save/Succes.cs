@@ -78,6 +78,7 @@ public static class StaticSucces
                     APCost: 2,
                     distanceToUse: new(0, 0),
                     effects: new() {
+                        new KeyValuePair<EffectCard, int>(EffectCard.Hit, 1),
                         new KeyValuePair<EffectCard, int>(EffectCard.HitAround, 3)
                     }
                 );
