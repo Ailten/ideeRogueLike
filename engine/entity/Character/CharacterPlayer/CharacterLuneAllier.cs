@@ -2,7 +2,7 @@
 
 public class CharacterLuneAllier : CharacterPlayer
 {
-    public CharacterLuneAllier(Vector posIndexCel, Character invokedBy) : base(SpriteType.Character_LuneAllier, posIndexCel)
+    public CharacterLuneAllier(Vector posIndexCel, Character invokedBy, int amountOfHealByCard = 2) : base(SpriteType.Character_LuneAllier, posIndexCel)
     {
         this.MPmax = 0;
         this.MP = MPmax;
@@ -21,8 +21,9 @@ public class CharacterLuneAllier : CharacterPlayer
                 cardEdition: CardEdition.Default,
                 APCost: 2,
                 distanceToUse: new(1, 2),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.Heal, 2)
-            )
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.Heal, amountOfHealByCard)
+            ),
+            amountOfCardAdd: 2
         );
     }
 
@@ -36,34 +37,38 @@ public class CharacterLuneAllier : CharacterPlayer
             return;
         }
 
-        Card currentCard = this.deck.cardsInHand[0];
-        if (currentCard.APCost > this.AP) // cost to mush AP or not distance expected.
+        for (int i = deck.cardsInHand.Count - 1; i >= 0; i--)
         {
-            skipTurn();
-            return;
-        }
+            Card currentCard = this.deck.cardsInHand[i];
+            if (currentCard.APCost > this.AP) // cost to mush AP or not distance expected.
+            {
+                skipTurn();
+                return;
+            }
 
-        List<Character> allier = TurnManager.getAllCharacters().Where(c => {
-            if (!c.isInRedTeam) // skip mobs.
-                return false;
-            if (this == c) // skip self.
-                return false;
-            float distCell = (
-                Math.Abs(c.indexPosCel.x - this.indexPosCel.x) +
-                Math.Abs(c.indexPosCel.x - this.indexPosCel.x)
-            );
-            return ( // distance on right range.
-                distCell >= currentCard.distanceToUse.x &&
-                distCell <= currentCard.distanceToUse.y
-            );
-        }).OrderBy(c => c.isAPlayer).ToList();
-        if (allier.Count == 0)
-        {
-            skipTurn();
-            return;
-        }
+            List<Character> allier = TurnManager.getAllCharacters().Where(c =>
+            {
+                if (!c.isInRedTeam) // skip mobs.
+                    return false;
+                if (this == c) // skip self.
+                    return false;
+                float distCell = (
+                    Math.Abs(c.indexPosCel.x - this.indexPosCel.x) +
+                    Math.Abs(c.indexPosCel.x - this.indexPosCel.x)
+                );
+                return ( // distance on right range.
+                    distCell >= currentCard.distanceToUse.x &&
+                    distCell <= currentCard.distanceToUse.y
+                );
+            }).OrderBy(c => c.isAPlayer).ToList();
+            if (allier.Count == 0)
+            {
+                skipTurn();
+                return;
+            }
 
-        this.useACardFromHand(0, allier[0].indexPosCel); // play the card.
+            this.useACardFromHand(i, allier[0].indexPosCel); // play the card.
+        }
 
         skipTurn();
     }

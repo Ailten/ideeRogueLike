@@ -101,11 +101,13 @@ public static class StaticEffectCard
                 );
             case (EffectCard.TrapMp):
                 return ("- " + effectCard.getName() + " :\n" +
-                    "pose un piege qui diminue les MP de 1."
+                    $"pose un piege qui diminue les MP de {value}.\n" +
+                    "monte jusque maximum 3."
                 );
             case (EffectCard.TrapAp):
                 return ("- " + effectCard.getName() + " :\n" +
-                    "pose un piege qui diminue les AP de 1."
+                    $"pose un piege qui diminue les AP de {value}.\n" +
+                    "monte jusque maximum 3."
                 );
             case (EffectCard.HitAround):
                 return ("- " + effectCard.getName() + " :\n" +
@@ -114,14 +116,15 @@ public static class StaticEffectCard
             case (EffectCard.InvokeDarunyaNeko):
                 return ("- " + effectCard.getName() + " :\n" +
                     "invoque 1 Darunya Neko.\n" +
-                    "creature imobile, gagniant 1 AP a chaque coup recu.\n" +
-                    "attaque du 4 autour d'elle une fois boost a 2 AP."
+                    $"creature imobile, a {value} AP.\n"+
+                    "gagniant 1 AP max a chaque coup recu.\n" +
+                    "attaque du 4 autour de lui une fois boost a 2 AP."
                 );
             case (EffectCard.InvokeLuneAllier):
                 return ("- " + effectCard.getName() + " :\n" +
                     "invoque 1 Lune Allier.\n" +
                     "creature imobile.\n" +
-                    "soigne du 2 a un allier a maximum 2 case d'elle."
+                    $"soigne du {value} a un allier a maximum 2 case d'elle."
                 );
 
             default:
@@ -208,13 +211,21 @@ public static class StaticEffectCard
             case (EffectCard.TrapMp):
                 Cel? celTargetMP = RunManager.getCel(indexPosTarget);
                 if (celTargetMP != null && celTargetMP.celType == CelType.Cel)
-                    celTargetMP.celType = CelType.Cel_SandMPDown;
+                    celTargetMP.celType = (
+                        (effectValue <= 1) ? CelType.Cel_SandMPDown: 
+                        (effectValue == 2) ? CelType.Cel_SandMPDown_2: 
+                        CelType.Cel_SandMPDown_3
+                    );
                 return;
 
             case (EffectCard.TrapAp):
                 Cel? celTargetAP = RunManager.getCel(indexPosTarget);
                 if (celTargetAP != null && celTargetAP.celType == CelType.Cel)
-                    celTargetAP.celType = CelType.Cel_SlimeAPDown;
+                    celTargetAP.celType = (
+                        (effectValue <= 1) ? CelType.Cel_SlimeAPDown: 
+                        (effectValue == 2) ? CelType.Cel_SlimeAPDown_2: 
+                        CelType.Cel_SlimeAPDown_3
+                    );
                 return;
 
             case (EffectCard.HitAround):
@@ -239,16 +250,16 @@ public static class StaticEffectCard
             case (EffectCard.InvokeDarunyaNeko):
                 if (characterTarget != null)
                     return;
-                TurnManager.addCharacterInRoom(
-                    new CharacterDarunyaNeko(indexPosTarget, characterLauncher)
+                characterLauncher.invokeACharacter(
+                    new CharacterDarunyaNeko(indexPosTarget, characterLauncher, effectValue)
                 );
                 return;
 
             case (EffectCard.InvokeLuneAllier):
                 if (characterTarget != null)
                     return;
-                TurnManager.addCharacterInRoom(
-                    new CharacterLuneAllier(indexPosTarget, characterLauncher)
+                characterLauncher.invokeACharacter(
+                    new CharacterLuneAllier(indexPosTarget, characterLauncher, effectValue)
                 );
                 return;
 

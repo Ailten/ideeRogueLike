@@ -41,7 +41,7 @@ public static class CardManager
             cardEdition: CardEdition.Default,
             APCost: 1,
             distanceToUse: new(1, 1),
-            effect: new KeyValuePair<EffectCard, int>(EffectCard.Push, 0)
+            effect: new KeyValuePair<EffectCard, int>(EffectCard.Push, 1)
         ));
         communCard.Add(new Card(
             cardIllu: SpriteType.CardImg_BlacASiable,
@@ -49,7 +49,7 @@ public static class CardManager
             cardEdition: CardEdition.Default,
             APCost: 1,
             distanceToUse: new(1, 3),
-            effect: new KeyValuePair<EffectCard, int>(EffectCard.TrapMp, 0)
+            effect: new KeyValuePair<EffectCard, int>(EffectCard.TrapMp, 1)
         ));
         SaveManager.getSave.succes.Where(s => !s.isRareCard()) // push card commun from succes into pool commun card.
             .Select(s => s.getCardUnlocked())

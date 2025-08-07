@@ -36,6 +36,8 @@ class Program
 
     // debug batte bulle, blaca siable, darunya neko, lune allier.
 
+    // refacto cel type into enum. (currently on cel class).
+
 
 
     // add a pause menu (back to game, back to main menu, ... other option).

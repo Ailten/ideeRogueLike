@@ -300,6 +300,15 @@ public class Character : Entity
     }
 
 
+    // invoke a character.
+    public void invokeACharacter(Character newInvoke)
+    {
+        // todo: status effects when invoke.
+
+        TurnManager.addCharacterNextTo(newInvoke, this);
+    }
+
+
     //use a card on a pos.
     public void useACardFromHand(int indexCardFromHand, Vector indexPosTarget)
     {

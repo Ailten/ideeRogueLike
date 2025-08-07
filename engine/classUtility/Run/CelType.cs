@@ -22,7 +22,11 @@ public enum CelType
 
 
     Cel_SandMPDown,
-    Cel_SlimeAPDown
+    Cel_SandMPDown_2,
+    Cel_SandMPDown_3,
+    Cel_SlimeAPDown,
+    Cel_SlimeAPDown_2,
+    Cel_SlimeAPDown_3
 
     
 }

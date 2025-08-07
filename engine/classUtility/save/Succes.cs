@@ -66,7 +66,7 @@ public static class StaticSucces
                     APCost: 2,
                     distanceToUse: new(1, 2),
                     effects: new() {
-                        new KeyValuePair<EffectCard, int>(EffectCard.InvokeLuneAllier, 0)
+                        new KeyValuePair<EffectCard, int>(EffectCard.InvokeLuneAllier, 2)
                     }
                 );
 

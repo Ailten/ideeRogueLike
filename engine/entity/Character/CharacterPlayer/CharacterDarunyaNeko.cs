@@ -1,18 +1,18 @@
 
 public class CharacterDarunyaNeko : CharacterPlayer
 {
-    public CharacterDarunyaNeko(Vector posIndexCel, Character invokedBy) : base(SpriteType.Character_DarunyaNeko, posIndexCel)
+    public CharacterDarunyaNeko(Vector posIndexCel, Character invokedBy, int APMaxStart = 0) : base(SpriteType.Character_DarunyaNeko, posIndexCel)
     {
         this.MPmax = 0;
         this.MP = MPmax;
-        this.APmax = 0;
+        this.APmax = APMaxStart;
         this.AP = APmax;
         this.HPmax = 10;
         this.HP = HPmax;
 
         this.invokedBy = invokedBy; // invocked.
 
-        this.deck.pickCountByTurn = 1;
+        this.deck.pickCountByTurn = 3;
         this.deck.addCardToDeck(
             new Card(
                 cardIllu: SpriteType.CardImg_Explsur,
@@ -21,7 +21,8 @@ public class CharacterDarunyaNeko : CharacterPlayer
                 APCost: 2,
                 distanceToUse: new(0, 0),
                 effect: new KeyValuePair<EffectCard, int>(EffectCard.HitAround, 4) //todo: effect explo.
-            )
+            ),
+            amountOfCardAdd: 3
         );
     }
 
@@ -29,8 +30,7 @@ public class CharacterDarunyaNeko : CharacterPlayer
     // override take damage, to include increase AP.
     protected override void takeDamage(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
     {
-        if (this.APmax < 2) // increase AP from 0 to 2.
-            this.APmax += 1;
+        this.APmax += 1; // increase AP from 0 to 2.
 
         base.takeDamage(atk, characterMakeAtk, refCard);
     }
@@ -45,14 +45,18 @@ public class CharacterDarunyaNeko : CharacterPlayer
             return;
         }
 
-        Card currentCard = this.deck.cardsInHand[0];
-        if (currentCard.APCost > this.AP || currentCard.distanceToUse.x > 0) // cost to mush AP or not distance expected.
+        for (int i = deck.cardsInHand.Count - 1; i >= 0; i--)
         {
-            skipTurn();
-            return;
-        }
+            Card currentCard = this.deck.cardsInHand[i];
 
-        this.useACardFromHand(0, this.indexPosCel); // play the card.
+            if (currentCard.APCost > this.AP || currentCard.distanceToUse.x > 0) // cost to mush AP or not distance expected.
+            {
+                skipTurn();
+                return;
+            }
+
+            this.useACardFromHand(i, this.indexPosCel); // play the card.
+        }
 
         skipTurn();
     }

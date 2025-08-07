@@ -94,8 +94,12 @@ public class Cel : Entity
                 return SpriteType.Cel_Coffre;
 
             case(CelType.Cel_SandMPDown):
+            case(CelType.Cel_SandMPDown_2):
+            case(CelType.Cel_SandMPDown_3):
                 return SpriteType.Cel_SandMPDown;
             case(CelType.Cel_SlimeAPDown):
+            case(CelType.Cel_SlimeAPDown_2):
+            case(CelType.Cel_SlimeAPDown_3):
                 return SpriteType.Cel_SlimeAPDown;
 
             default:
@@ -296,9 +300,25 @@ public class Cel : Entity
                 if (TurnManager.isInFight)
                     characterStep.decreaseMP(1);
                 return;
+            case (CelType.Cel_SandMPDown_2):
+                if (TurnManager.isInFight)
+                    characterStep.decreaseMP(2);
+                return;
+            case (CelType.Cel_SandMPDown_3):
+                if (TurnManager.isInFight)
+                    characterStep.decreaseMP(3);
+                return;
             case (CelType.Cel_SlimeAPDown):
                 if (TurnManager.isInFight)
                     characterStep.decreaseAP(1);
+                return;
+            case (CelType.Cel_SlimeAPDown_2):
+                if (TurnManager.isInFight)
+                    characterStep.decreaseAP(2);
+                return;
+            case (CelType.Cel_SlimeAPDown_3):
+                if (TurnManager.isInFight)
+                    characterStep.decreaseAP(3);
                 return;
 
             default:
