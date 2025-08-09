@@ -161,8 +161,8 @@ public static class TurnManager
     private static void enfOfFight(bool isRedWiner)
     {
 
-        if (isRedWiner)
-        { //player win the fight.
+        if (isRedWiner) //player win the fight.
+        {
 
             //TODO. (like increment fight win, or loot).
 
@@ -178,14 +178,17 @@ public static class TurnManager
             //disable button skip turn.
             RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(false);
 
+            //clean all cel traps.
+            RunManager.currentRoom?.cleanTraps();
+
             if (RunManager.currentRoom?.roomType == RoomType.Room_Boss) //if is a room boss, spawn roope for next stage.
             {
                 RunManager.getCelNNCenter().celType = CelType.Cel_NextStage; //spawn roope on cel center of room.
             }
 
         }
-        else
-        { //ennemy win the fight.
+        else //ennemy win the fight.
+        {
 
             //disable button skip turn.
             RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(true);

@@ -4,8 +4,6 @@ class Program
 {
     //TODO : fix bug card fight :
 
-    // debug flame, and rock (mobs and card).
-
     // add special room. -> coffre.
     // add special room. -> fusion.
     // add special room. -> discard.
@@ -14,7 +12,6 @@ class Program
     // add statusEffect. -> add N damage make for M color card.
     // add statusEffect. -> reduce N damage taked by M color card.
     // add StatusEffectManager. -> for generate a statusEffect random (like cardManager).
-    // add status effect print ui -> ui list<statusEffect> with button to change order.
     // add details mobs when click on it, menu.
     // add timeLineBattleUi -> for timeline in battle.
 
@@ -35,6 +32,7 @@ class Program
     // -> when a fight is end : delete effect Cel apply by a character (like traps).
 
     // debug batte bulle, blaca siable, darunya neko, lune allier.
+    // debug card explo, splash, flame, rock.
 
     // refacto cel type into enum. (currently on cel class).
 

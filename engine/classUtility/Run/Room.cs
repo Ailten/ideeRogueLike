@@ -437,12 +437,24 @@ public class Room
     }
 
 
+    //clean all celType unexpected from room.
+    public void cleanTraps()
+    {
+        //loop on every cels.
+        this.cels.ForEach(lineCel => lineCel.Values.ToList().ForEach(c =>
+        {
+            if (c.celType.isAddByCharacter())
+                c.celType = CelType.Cel;
+        }));
+    }
+
+
     //free room.
     public void destroyRoom()
     {
 
         EntityManager.removeManyEntities(
-            cels.SelectMany((dicoC) => 
+            cels.SelectMany((dicoC) =>
                 dicoC.ToList().Select((kvpC) => (Entity)kvpC.Value)
             ).ToList()
         );
