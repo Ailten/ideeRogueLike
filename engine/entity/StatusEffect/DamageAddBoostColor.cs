@@ -4,6 +4,7 @@ public class DamageAddBoostColor : StatusEffect
     private CardColor color;
     private int damageBoost;
 
+
     public DamageAddBoostColor(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, CardColor color, int damageBoost) :
     base(SpriteType.StatusEffect_DamageAddBoostRed, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
@@ -11,12 +12,13 @@ public class DamageAddBoostColor : StatusEffect
         this.damageBoost = damageBoost;
 
         this.spriteType = ( // overide sprite.
-            (color == CardColor.Red)? SpriteType.StatusEffect_DamageAddBoostRed:
-            (color == CardColor.Blue)? SpriteType.StatusEffect_DamageAddBoostBlue:
-            (color == CardColor.Green)? SpriteType.StatusEffect_DamageAddBoostGreen:
+            (color == CardColor.Red) ? SpriteType.StatusEffect_DamageAddBoostRed :
+            (color == CardColor.Blue) ? SpriteType.StatusEffect_DamageAddBoostBlue :
+            (color == CardColor.Green) ? SpriteType.StatusEffect_DamageAddBoostGreen :
             throw new Exception("DamageAddBoostColor can't be assigne with this color !")
         );
     }
+
 
     public override string getDescription()
     {

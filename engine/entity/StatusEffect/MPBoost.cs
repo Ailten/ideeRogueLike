@@ -3,7 +3,7 @@ public class MPBoost : StatusEffect
 {
     private int MPUp;
 
-    public MPBoost(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, int MPUp) :
+    public MPBoost(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1, int MPUp = 1) :
     base(SpriteType.StatusEffect_MPBoost, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.MPUp = MPUp;

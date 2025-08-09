@@ -3,7 +3,7 @@ public class APBoost : StatusEffect
 {
     private int APUp;
 
-    public APBoost(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, int APUp) :
+    public APBoost(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1, int APUp = 1) :
     base(SpriteType.StatusEffect_APBoost, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.APUp = APUp;

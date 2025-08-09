@@ -7,29 +7,33 @@ class Program
     // add special room. -> coffre.
     // add special room. -> fusion.
     // add special room. -> discard.
-    // add a card "axe au loot" -> sprite & cardManager.
+    // add special room. -> duplicate.
+    // add special room. -> boost value effect card.
+    // add special room. -> boost status effect permanent.
     // add boss first floor. -> king slime.
-    // add statusEffect. -> add N damage make for M color card.
-    // add statusEffect. -> reduce N damage taked by M color card.
+    // add boss first floor. -> king Flame.
+    // add boss first floor. -> king Rock.
     // add StatusEffectManager. -> for generate a statusEffect random (like cardManager).
     // add details mobs when click on it, menu.
-    // add timeLineBattleUi -> for timeline in battle.
 
-    // use sprite mobs (kingSlime, kingFlame, kingRock).
     // use sprite cel coffre, fusion, discard, duplicate, boost.
 
-    // add a special room for "boost card effect".
 
+    // add malus effect (like card play has one chance on 20 to become cracked) (and one chance on 10 to cast as shiny). -> Commune.
+    // add malus effect (at eatch fight end, one chance on 20 to drop a status effect) (and one chance on 20 to duplicate a status effect). -> Commun.
+    // add status effect resistance card color.
+    // add status boost HP.
+    // add status boost Invoke (HP, AP, damage[all color at once], resistance[all]).
+    // add status effect copy the status effect at the first position.
+    // add status effect copy the status effect at right position. (re-find index by match id, and pick the next one, and redirect all event).
 
-    // make a pool of status effect (for effects can be pick on special room).
-    // add malus effect (like card play has one chance on 6 to become cracked).
+    // find a way to stock event succes during the run (like unlock succes becose pick/ or play, a cart of a specific illu).
 
 
     // make win/loose screen (end run).
 
 
     // add traps effect (on a card).
-    // -> when a fight is end : delete effect Cel apply by a character (like traps).
 
     // debug batte bulle, blaca siable, darunya neko, lune allier.
     // debug card explo, splash, flame, rock.

@@ -3,7 +3,7 @@ public class DamageMultBoostShiny : StatusEffect
 {
     private float damageMult;
 
-    public DamageMultBoostShiny(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, int damageMult) :
+    public DamageMultBoostShiny(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, float damageMult) :
     base(SpriteType.StatusEffect_DamageMultiplyBoostShiny, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.damageMult = damageMult;

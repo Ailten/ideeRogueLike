@@ -3,6 +3,7 @@ public class DamageAddBoostShiny : StatusEffect
 {
     private int damageBoost;
 
+
     public DamageAddBoostShiny(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, int damageBoost) :
     base(SpriteType.StatusEffect_DamageAddBoostShiny, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
