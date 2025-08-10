@@ -51,7 +51,7 @@ public class MiniMapUi : Entity
                     continue;
 
                 //get object usefull for draw in many case.
-                SpriteType? spriteTypeTileN = roomOfTile.getSpriteTypeOfMiniMapTypeRoom();
+                SpriteType? spriteTypeTileN = roomOfTile.roomType.getSpriteTypeOfMiniMapTypeRoom();
                 Rect rectDestTile = new(posTile, sizeTile);
 
                 //get bool for if draw.

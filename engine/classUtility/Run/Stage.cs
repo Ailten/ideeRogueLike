@@ -354,60 +354,60 @@ public class Stage
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
                     (indexSpecialRoom == 1) ? RoomType.Room_Chest :
-                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 20 ? RoomType.Room_Chest : rngSpecialRoom < 30 ? RoomType.Room_Discard : RoomType.Room) : //20/10/70.
-                    (indexSpecialRoom == 3) ? (rngSpecialRoom < 10 ? RoomType.Room_Chest : rngSpecialRoom < 10 ? RoomType.Room_Boost : RoomType.Room) : //10/10/80.
-                    (indexSpecialRoom == 4) ? (rngSpecialRoom < 10 ? RoomType.Room_Discard : RoomType.Room) : //10/90.
-                    (indexSpecialRoom == 5) ? (rngSpecialRoom < 5 ? RoomType.Room_Discard : RoomType.Room) : //05/95.
-                    (indexSpecialRoom == 6) ? (rngSpecialRoom < 5 ? RoomType.Room_Duplicate : RoomType.Room) : //05/95.
+                    (indexSpecialRoom == 2) ? RoomType.Room : // (rngSpecialRoom < 20 ? RoomType.Room_Chest : RoomType.Room) // 20% 80%
+                    (indexSpecialRoom == 3) ? RoomType.Room :
+                    (indexSpecialRoom == 4) ? RoomType.Room :
+                    (indexSpecialRoom == 5) ? RoomType.Room :
+                    (indexSpecialRoom == 6) ? RoomType.Room :
                     RoomType.Room
                 );
 
             case (2):
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
-                    (indexSpecialRoom == 1) ? (rngSpecialRoom < 85 ? RoomType.Room_Chest : rngSpecialRoom < 95 ? RoomType.Room_Discard : RoomType.Room) : //85/10/05.
-                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 30 ? RoomType.Room_Chest : rngSpecialRoom < 30 ? RoomType.Room_Fusion : RoomType.Room) : //30/30/40.
-                    (indexSpecialRoom == 3) ? (rngSpecialRoom < 20 ? RoomType.Room_Boost : RoomType.Room) : //20/80.
-                    (indexSpecialRoom == 4) ? (rngSpecialRoom < 10 ? RoomType.Room_Discard : RoomType.Room) : //10/90.
-                    (indexSpecialRoom == 5) ? (rngSpecialRoom < 5 ? RoomType.Room_Fusion : RoomType.Room) : //05/95.
-                    (indexSpecialRoom == 6) ? (rngSpecialRoom < 1 ? RoomType.Room_Fusion : RoomType.Room) : //01/99.
+                    (indexSpecialRoom == 1) ? RoomType.Room_Chest :
+                    (indexSpecialRoom == 2) ? RoomType.Room :
+                    (indexSpecialRoom == 3) ? RoomType.Room :
+                    (indexSpecialRoom == 4) ? RoomType.Room :
+                    (indexSpecialRoom == 5) ? RoomType.Room :
+                    (indexSpecialRoom == 6) ? RoomType.Room :
                     RoomType.Room
                 );
             
             case (3):
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
-                    (indexSpecialRoom == 1) ? (rngSpecialRoom < 60 ? RoomType.Room_Chest : rngSpecialRoom < 80 ? RoomType.Room_Fusion : RoomType.Room) : //60/20/20.
-                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 40 ? RoomType.Room_Fusion : rngSpecialRoom < 60 ? RoomType.Room_Boost : RoomType.Room) : //40/20/40.
-                    (indexSpecialRoom == 3) ? (rngSpecialRoom < 20 ? RoomType.Room_Boost : RoomType.Room) : //20/80.
-                    (indexSpecialRoom == 4) ? (rngSpecialRoom < 10 ? RoomType.Room_Discard : RoomType.Room) : //10/90.
-                    (indexSpecialRoom == 5) ? (rngSpecialRoom < 5 ? RoomType.Room_Discard : RoomType.Room) : //05/95.
-                    (indexSpecialRoom == 6) ? (rngSpecialRoom < 5 ? RoomType.Room_Fusion : RoomType.Room) : //05/95.
-                    (rngSpecialRoom < 5 ? RoomType.Room_Chest : RoomType.Room) //05/95.
+                    (indexSpecialRoom == 1) ? RoomType.Room_Chest :
+                    (indexSpecialRoom == 2) ? RoomType.Room :
+                    (indexSpecialRoom == 3) ? RoomType.Room :
+                    (indexSpecialRoom == 4) ? RoomType.Room :
+                    (indexSpecialRoom == 5) ? RoomType.Room :
+                    (indexSpecialRoom == 6) ? RoomType.Room :
+                    RoomType.Room
                 );
             
             case (4):
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
-                    (indexSpecialRoom == 1) ? (rngSpecialRoom < 35 ? RoomType.Room_Boost : RoomType.Room_Chest) : //35/65.
-                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 35 ? RoomType.Room_Discard : RoomType.Room) : //35/65.
-                    (indexSpecialRoom == 3) ? (rngSpecialRoom < 15 ? RoomType.Room_Fusion : RoomType.Room) : //15/85.
-                    (indexSpecialRoom == 4) ? (rngSpecialRoom < 15 ? RoomType.Room_Boost : RoomType.Room) : //15/85.
-                    (indexSpecialRoom == 5) ? (rngSpecialRoom < 10 ? RoomType.Room_Chest : RoomType.Room) : //10/90.
-                    (indexSpecialRoom == 6) ? (rngSpecialRoom < 5 ? RoomType.Room_Fusion : RoomType.Room) : //5/95.
+                    (indexSpecialRoom == 1) ? RoomType.Room_Chest :
+                    (indexSpecialRoom == 2) ? RoomType.Room :
+                    (indexSpecialRoom == 3) ? RoomType.Room :
+                    (indexSpecialRoom == 4) ? RoomType.Room :
+                    (indexSpecialRoom == 5) ? RoomType.Room :
+                    (indexSpecialRoom == 6) ? RoomType.Room :
                     RoomType.Room
                 );
 
             case (5):
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
-                    (indexSpecialRoom == 1) ? (rngSpecialRoom < 20 ? RoomType.Room_Fusion : RoomType.Room) : //20/80.
-                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 10 ? RoomType.Room_Boost : RoomType.Room) : //10/90.
-                    (indexSpecialRoom == 3) ? (rngSpecialRoom < 1 ? RoomType.Room_Fusion : RoomType.Room) : //01/99.
-                    (indexSpecialRoom == 4) ? (rngSpecialRoom < 1 ? RoomType.Room_Fusion : RoomType.Room) : //01/99.
-                    (indexSpecialRoom == 5) ? (rngSpecialRoom < 1 ? RoomType.Room_Discard : RoomType.Room) : //01/99.
-                    (indexSpecialRoom == 6) ? (rngSpecialRoom < 1 ? RoomType.Room_Discard : RoomType.Room) : //01/99.
-                    (rngSpecialRoom < 1 ? RoomType.Room_Boost : RoomType.Room) //01/99.
+                    (indexSpecialRoom == 1) ? RoomType.Room_Chest :
+                    (indexSpecialRoom == 2) ? RoomType.Room :
+                    (indexSpecialRoom == 3) ? RoomType.Room :
+                    (indexSpecialRoom == 4) ? RoomType.Room :
+                    (indexSpecialRoom == 5) ? RoomType.Room :
+                    (indexSpecialRoom == 6) ? RoomType.Room :
+                    RoomType.Room
                 );
 
             default:

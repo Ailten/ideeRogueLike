@@ -54,7 +54,7 @@ public class Cel : Entity
         if (celType == CelType.Cel) //skip draw effect if cel is basic.
             return;
 
-        SpriteType spriteTypeDrawAfter = Cel.celTypeToSpriteType(celType);
+        SpriteType spriteTypeDrawAfter = celType.celTypeToSpriteType();
 
         //draw at screen (with all data eval).
         Raylib_cs.Raylib.DrawTexturePro(
@@ -62,73 +62,9 @@ public class Cel : Entity
             sprite.getSpriteTileBySpriteType(spriteTypeDrawAfter).getRectSource(), //rect source from texture.
             rectDest, //rect desintation at screen.
             origine, //origine, like encrage by adapt at sprite draw in screen (for rotation aply).
-            Cel.getRotateOfCelType(celType), //rotation.
+            celType.getRotateOfCelType(), //rotation.
             Raylib_cs.Color.White //color (already white).
         );
-
-    }
-
-
-    //cast a celType into a spriteType.
-    private static SpriteType celTypeToSpriteType(CelType celtype)
-    {
-
-        switch (celtype)
-        {
-
-            case (CelType.CelDoor_up):
-            case (CelType.CelDoor_right):
-            case (CelType.CelDoor_down):
-            case (CelType.CelDoor_left):
-                if (TurnManager.isInFight)
-                    return SpriteType.Cel_DoorToNextRoomLock; //mark as door lock when in fight.
-                return SpriteType.Cel_DoorToNextRoom;
-
-            case (CelType.Cel_NextStage):
-                return SpriteType.Cel_RopeToNextStage;
-            case (CelType.Cel_MobSpawner):
-                return SpriteType.Cel_Invocation;
-            case (CelType.Cel_CenterRoom):
-                return SpriteType.Cel_CenterRoom;
-            case (CelType.Cel_Coffre):
-                return SpriteType.Cel_Coffre;
-
-            case(CelType.Cel_SandMPDown):
-            case(CelType.Cel_SandMPDown_2):
-            case(CelType.Cel_SandMPDown_3):
-                return SpriteType.Cel_SandMPDown;
-            case(CelType.Cel_SlimeAPDown):
-            case(CelType.Cel_SlimeAPDown_2):
-            case(CelType.Cel_SlimeAPDown_3):
-                return SpriteType.Cel_SlimeAPDown;
-
-            default:
-                throw new Exception("SpriteType no match for CelType !");
-
-        }
-
-    }
-
-
-    //get rotate for a celType.
-    private static float getRotateOfCelType(CelType celType)
-    {
-
-        switch (celType)
-        {
-            //rotate door.
-            case (CelType.CelDoor_up):
-                return 0;
-            case (CelType.CelDoor_right):
-                return 90;
-            case (CelType.CelDoor_down):
-                return 180;
-            case (CelType.CelDoor_left):
-                return 270;
-
-            default:
-                return 0;
-        }
 
     }
 

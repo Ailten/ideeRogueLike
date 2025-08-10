@@ -4,20 +4,18 @@ class Program
 {
     //TODO : fix bug card fight :
 
-    // add special room. -> coffre.
+    // add special room. -> coffre. !!!
+    // add special room. -> boost status effect permanent.
     // add special room. -> fusion.
     // add special room. -> discard.
     // add special room. -> duplicate.
     // add special room. -> boost value effect card.
-    // add special room. -> boost status effect permanent.
     // edit the random atribution of special room for all stage (when all special room maked).
     // add boss first floor. -> king slime.
     // add boss first floor. -> king Flame.
     // add boss first floor. -> king Rock.
-    // add StatusEffectManager. -> for generate a statusEffect random (like cardManager).
-    // add details mobs when click on it, menu.
 
-    // use sprite cel coffre, fusion, discard, duplicate, boost.
+    // add details mobs when click on it, menu.
 
 
     // add malus effect (like card play has one chance on 20 to become cracked) (and one chance on 10 to cast as shiny). -> Commune.
@@ -28,19 +26,17 @@ class Program
     // add status effect copy the status effect at the first position.
     // add status effect copy the status effect at right position. (re-find index by match id, and pick the next one, and redirect all event).
 
-    // find a way to stock event succes during the run (like unlock succes becose pick/ or play, a cart of a specific illu).
+    // add card Drama, who One Shot the launcher.
+
+
+    // find a way to unlock succes during the run (like unlock succes becose pick/ or play, a cart of a specific illu).
 
 
     // make win/loose screen (end run).
 
 
-    // add traps effect (on a card).
-
     // debug batte bulle, blaca siable, darunya neko, lune allier.
     // debug card explo, splash, flame, rock.
-
-    // refacto cel type into enum. (currently on cel class).
-
 
 
     // add a pause menu (back to game, back to main menu, ... other option).

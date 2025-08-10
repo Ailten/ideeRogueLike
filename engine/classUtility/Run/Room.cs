@@ -44,7 +44,15 @@ public class Room
     }
 
 
-    private int seed;
+    private int seedSpecialRoom; //seed for generate random of special room (cards, effects, ... etc) seed send by seed room.
+    private Random _rngSpecialRoom = new Random();
+    public Random rngSpecialRoom
+    {
+        get { return _rngSpecialRoom; }
+    }
+
+
+    private int seed; //seed for generte randomly the cels rooms, and mobs list.
     private Random _rngSeed = new Random();
     public Random rngSeed
     {
@@ -98,23 +106,34 @@ public class Room
     //generate a random room.
     private void generateRoom(int rayonSpread=7)
     {
+        // generate rng base on seed.
         _rngSeed = new Random(seed);
 
-        if(roomType == RoomType.Room_Tuto){ //room tuto.
+
+        // generate seed (for special room) based on rng of room generation.
+        seedSpecialRoom = rngSeed.Next(1000);
+        _rngSpecialRoom = new Random(seedSpecialRoom);
+
+
+        if (roomType == RoomType.Room_Tuto) //room tuto.
+        {
 
             //TODO: generate rooms for tuto stage.
 
             cels = new();
-            for(int y=0; y<heightMax; y++){
+            for (int y = 0; y < heightMax; y++)
+            {
                 cels.Add(new());
-            	for(int x=0; x<widthMax; x++){
+                for (int x = 0; x < widthMax; x++)
+                {
 
                     int distToCenterX = Math.Abs(x - midWidthMax); //eval dist.
                     int distToCenterY = Math.Abs(y - midHeightMax);
                     int dist = Math.Max(distToCenterX, distToCenterY);
 
-                    if(x == midWidthMax && y == midHeightMax - (rayonSpread+1)){ //map a cel up to exit stage tuto.
-                        cels[cels.Count-1].Add(
+                    if (x == midWidthMax && y == midHeightMax - (rayonSpread + 1))
+                    { //map a cel up to exit stage tuto.
+                        cels[cels.Count - 1].Add(
                             x,
                             new Cel(
                                 CelType.Cel_NextStage,
@@ -124,11 +143,11 @@ public class Room
                         continue;
                     }
 
-                    if(dist > rayonSpread) //skip if not the current circle target at this loop.
+                    if (dist > rayonSpread) //skip if not the current circle target at this loop.
                         continue;
 
                     //instancie cel.
-                    cels[cels.Count-1].Add(
+                    cels[cels.Count - 1].Add(
                         x,
                         new Cel(
                             CelType.Cel,
@@ -136,7 +155,7 @@ public class Room
                         )
                     );
 
-            	}
+                }
             }
 
             return;
@@ -247,7 +266,6 @@ public class Room
             typeMobToSpawn.Add(CharacterMob.generateRandomMobType(this, stage, true));
         }
 
-        //TODO: else if for other type special room.
 
         //cast celsBool into cels.
         this.cels = new();
@@ -282,6 +300,7 @@ public class Room
                 {
                     celType = CelType.Cel_Coffre; //print chest cel.
                 }
+                // TODO : add sprite center room special room.
 
                 //instancie cel.
                 cels[cels.Count-1].Add(
@@ -408,31 +427,6 @@ public class Room
                 return SpriteType.MiniMapUi_RoomBG_URDL;
             default:
                 throw new Exception("SpriteTypeOfMiniMap generate a door byte invalide !");
-        }
-    }
-
-
-    //return sprite type of the type room (for minimap).
-    public SpriteType? getSpriteTypeOfMiniMapTypeRoom()
-    {
-        switch(roomType){
-            //case(RoomType.Room_Center):
-            //    return SpriteType.MiniMapUI_RoomCenter;
-            case(RoomType.Room_Chest):
-                return SpriteType.MiniMapUI_RoomChest;
-            case(RoomType.Room_Boss):
-                return SpriteType.MiniMapUI_RoomBoss;
-            case(RoomType.Room_Boost):
-                return SpriteType.MiniMapUI_RoomBoost;
-            case(RoomType.Room_Fusion):
-                return SpriteType.MiniMapUI_RoomFusion;
-            case(RoomType.Room_Discard):
-                return SpriteType.MiniMapUI_RoomDiscard;
-            case(RoomType.Room_Duplicate):
-                return SpriteType.MiniMapUI_RoomDuplicate;
-
-            default:
-                return null;
         }
     }
 
