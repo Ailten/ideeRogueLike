@@ -30,9 +30,6 @@ class Program
     // find a way to stock event succes during the run (like unlock succes becose pick/ or play, a cart of a specific illu).
 
 
-    // fix bug : when player kill a flame, the effect disapear, but the trigger areat is not updated.
-
-
     // make win/loose screen (end run).
 
 

@@ -48,7 +48,7 @@ public class StatusEffectUi : Entity
         this.geometryTriggerSecond = null;
     }
 
-    private void updateGeometryTriggerBasedOnList()
+    public void updateGeometryTriggerBasedOnList()
     {
         bool isEmpty = (this.listEffect.Count == 0);
         this.isActive = !isEmpty;

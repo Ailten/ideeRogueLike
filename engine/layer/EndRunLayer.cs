@@ -11,6 +11,8 @@ public class EndRunLayer : Layer
     {
         //init all entities of layer. --->
 
+        // TODO : never test, need debug, all need to be maked.
+
         ButtonUi buttonBackToMenu = new ButtonUi(idLayer); // button back main menu.
         buttonBackToMenu.text = "retour";
         buttonBackToMenu.pos = CanvasManager.sizeWindow - (buttonBackToMenu.size * 0.5f) - 10f;

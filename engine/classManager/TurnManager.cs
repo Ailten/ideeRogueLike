@@ -309,7 +309,7 @@ public static class TurnManager
             characterWhoDie.statusEffects[i].eventWhenStatusEffectDisapear(isCharacterWhoHasEffectDie: true);
             characterWhoDie.dropAStatusEffectByIndex(i);
         }
-        
+
         // end effect of other character.
         allCharacterInRoom.ForEach(c =>
         {
@@ -323,6 +323,9 @@ public static class TurnManager
                 c.dropAStatusEffectByIndex(i);
             }
         });
+
+        // edit trigger zone of status effect ui currently print.
+        RunHudLayer.layer.statusEffectUi?.updateGeometryTriggerBasedOnList();
     }
 
 
