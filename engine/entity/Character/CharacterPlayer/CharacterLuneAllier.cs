@@ -16,7 +16,7 @@ public class CharacterLuneAllier : CharacterPlayer
         this.deck.pickCountByTurn = 1;
         this.deck.addCardToDeck(
             new Card(
-                cardIllu: SpriteType.CardImg_Meat,
+                cardIllu: SpriteType.CardImg_Barbak,
                 cardColor: StaticCardColor.getRandomColor(),
                 cardEdition: CardEdition.Default,
                 APCost: 2,

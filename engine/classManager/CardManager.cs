@@ -28,7 +28,7 @@ public static class CardManager
         ));
         //*/
         communCard.Add(new Card(
-            cardIllu: SpriteType.CardImg_Meat,
+            cardIllu: SpriteType.CardImg_Barbak,
             cardColor: CardColor.Red,
             cardEdition: CardEdition.Default,
             APCost: 2,

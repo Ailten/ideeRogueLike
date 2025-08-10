@@ -102,7 +102,7 @@ public enum SpriteType
     CardImg_Flame,
     CardImg_Rock,
     CardImg_LuneAllier,
-    CardImg_Meat,
+    CardImg_Barbak,
     CardImg_AxeOLoot,
     CardImg_BatteBulle,
     CardImg_BlacASiable,
@@ -157,10 +157,10 @@ public static class StaticSpriteType
                 return ("Un jet de flame qui brule la cible.");
             case (SpriteType.CardImg_Rock):
                 return ("Une attaque avec d enorme pierres");
-            case (SpriteType.CardImg_Meat):
-                return ("Une belle piece de viande juteuse.");
+            case (SpriteType.CardImg_Barbak):
+                return ("Une belle piece de viande pleine de saveur.");
             case (SpriteType.CardImg_AxeOLoot):
-                return ("Une ache poilue qui ne pence qu'a s'enrichire.");
+                return ("Une ache poilue qui aporte la fortune.");
             case (SpriteType.CardImg_BatteBulle):
                 return ("Une batte en bulle (peu agressive).");
             case (SpriteType.CardImg_BlacASiable):
@@ -192,8 +192,8 @@ public static class StaticSpriteType
                 return ("Flame");
             case (SpriteType.CardImg_Rock):
                 return ("Rock");
-            case (SpriteType.CardImg_Meat):
-                return ("Viande batue");
+            case (SpriteType.CardImg_Barbak):
+                return ("Barbak");
             case (SpriteType.CardImg_AxeOLoot):
                 return ("Axe aux loots");
             case (SpriteType.CardImg_BatteBulle):

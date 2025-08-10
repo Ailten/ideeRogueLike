@@ -35,7 +35,7 @@ public enum CelType
 
 public static class StaticCelType
 {
-    public bool isAddByCharacter(this CelType celType)
+    public static bool isAddByCharacter(this CelType celType)
     {
         switch (celType)
         {
