@@ -10,6 +10,7 @@ class Program
     // add special room. -> duplicate.
     // add special room. -> boost value effect card.
     // add special room. -> boost status effect permanent.
+    // edit the random atribution of special room for all stage (when all special room maked).
     // add boss first floor. -> king slime.
     // add boss first floor. -> king Flame.
     // add boss first floor. -> king Rock.
