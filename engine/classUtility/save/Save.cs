@@ -9,15 +9,16 @@ public class Save
     public uint shildMaked { get; set; } //amount of shild maked.
     public ulong damageTaked { get; set; } //amount of damage taked.
     public uint coinTaked { get; set; } //amount of coin taked.
-    public uint cardPlayed { get; set; } //amount of card played.
     public List<Succes> succes { get; set; } //stock eatch succes already unlocked.
     public Dictionary<string, int> characterKilled { get; set; } //amount of kill on eatch characters type.
+    public Dictionary<string, int> cardPlayed { get; set; } //amount of card played.
 
 
     public Save()
     {
         this.succes = new();
         this.characterKilled = new();
+        this.cardPlayed = new();
     }
 
 
@@ -77,9 +78,19 @@ public class Save
         coinTaked += (uint)amountIncrease;
         return coinTaked;
     }
-    public uint increaseCardPlayed()
+    public int increaseCardPlayed(SpriteType cardIllu)
     {
-        return ++cardPlayed;
+        string cardIlluName = cardIllu.ToString();
+
+        if (!cardIlluName.StartsWith("CardImg_"))
+            throw new Exception("increaseCardPlayed can take only a SpriteType of a card Illu !");
+
+        cardIlluName = cardIlluName.Substring("CardImg_".Length);
+
+        if (!this.cardPlayed.ContainsKey(cardIlluName))
+            this.cardPlayed.Add(cardIlluName, 0);
+
+        return ++this.cardPlayed[cardIlluName];
     }
 
 }

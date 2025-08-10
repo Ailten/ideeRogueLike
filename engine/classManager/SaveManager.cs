@@ -21,7 +21,7 @@ public static class SaveManager
     public static uint increaseShildMaked(int statsIncrease) => currentSave.increaseShildMaked(statsIncrease);
     public static ulong increaseDamageTaked(int statsIncrease) => currentSave.increaseDamageTaked(statsIncrease);
     public static ulong increaseCoinTaked(int statsIncrease) => currentSave.increaseCoinTaked(statsIncrease);
-    public static uint increaseCardPlayed() => currentSave.increaseCardPlayed();
+    public static int increaseCardPlayed(SpriteType cardIllu) => currentSave.increaseCardPlayed(cardIllu);
 
     // add many succes to the list save.
     public static void addSucces(List<Succes> succesToAdd) => currentSave.succes.AddRange(succesToAdd);

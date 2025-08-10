@@ -29,9 +29,6 @@ class Program
     // add card Drama, who One Shot the launcher.
 
 
-    // find a way to unlock succes during the run (like unlock succes becose pick/ or play, a cart of a specific illu).
-
-
     // make win/loose screen (end run).
 
 
@@ -43,7 +40,7 @@ class Program
     // -> make button ui pause.
 
 
-    // make a save progression (a class with data for main progression : character unlock, mobs depeats, gold collected ... etc).
+    // make a save progression (a class with data for main progression : character unlock, mobs defeats, gold collected ... etc).
     // -> use for success, progression, ...
     // -> att the end of the run, make verify succes unlock, add on save, do the save on file.
     // -> make cardPool adapt on succes unlocked.
@@ -61,7 +58,7 @@ class Program
     // - card, etc ...
     // - explain monster, type room.
 
-    // KeyboardManager. (for play more speed) (not now) -> number key for card, and space for skip turn.
+    // ? KeyboardManager. (for play more speed) (not now) -> number key for card, and space for skip turn.
 
     // input select seed. -> menu with enter a number befor start run.
 
