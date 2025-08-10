@@ -99,15 +99,16 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardBG_Red, new Vector(220, 0), new Vector(219, 322));
         s.addSpriteType(SpriteType.CardBG_Green, new Vector(440, 0), new Vector(219, 322));
         s.addSpriteType(SpriteType.CardBG_PolyChrome, new Vector(660, 0), new Vector(219, 322));
-        s.addSpriteType(SpriteType.CardBG_Recto, new Vector(0, 702), new Vector(219, 322));
-        s.addSpriteType(SpriteType.CardBG_Craced, new Vector(220, 702), new Vector(219, 322));
-        s.addSpriteType(SpriteType.CardBG_Shinny, new Vector(440, 702), new Vector(219, 322));
+        s.addSpriteType(SpriteType.CardBG_Recto, new Vector(880, 0), new Vector(219, 322));
+        s.addSpriteType(SpriteType.CardBG_Craced, new Vector(1100, 0), new Vector(219, 322));
+        s.addSpriteType(SpriteType.CardBG_Shinny, new Vector(1320, 0), new Vector(219, 322));
         //-- placeholder last bg.
 
         s.addSpriteType(SpriteType.CardImg_Splash, new Vector(0, 323), new Vector(219, 125)); // -- encrage : (0.5f, 0.952f).
         s.addSpriteType(SpriteType.CardImg_WoodenSword, new Vector(220, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_WoodenShild, new Vector(440, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_DarunyaNeko, new Vector(660, 323), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Drama, new Vector(880, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Barbak, new Vector(0, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Flame, new Vector(220, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Rock, new Vector(440, 449), new Vector(219, 125));

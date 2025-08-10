@@ -132,7 +132,11 @@ public class Character : Entity
         // remove status effect (them self and apply to other).
         TurnManager.endAllStatusEffectWhenCharacterDie(this);
 
-        if (characterMakeKill != null)
+        if (TurnManager.getCharacterOfCurrentTurn() == this) // self kill, do a skip turn.
+        {
+            this.skipTurn();
+        }
+        else if (characterMakeKill != null)
         {
             if (this.PO != 0)
                 characterMakeKill?.gainGold(this.PO);
@@ -145,8 +149,6 @@ public class Character : Entity
 
         //remove from list turn.
         TurnManager.removeCharacterInRoom(this);
-
-        //TODO : drop of mob, xp gain, kill count ...
     }
 
     //give shild point.

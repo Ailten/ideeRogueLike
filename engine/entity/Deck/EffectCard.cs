@@ -15,6 +15,7 @@ public enum EffectCard
     HitAround, //hit a cross 1 around the cell target.
     InvokeDarunyaNeko, //invoque a darunya neko.
     InvokeLuneAllier, //invoque a lune allier.
+    SelfKill, //instant kill the launcher.
 }
 
 
@@ -45,9 +46,13 @@ public static class StaticEffectCard
             case (EffectCard.TrapAp):
                 return "Piege AP";
             case (EffectCard.HitAround):
-                return "Attaque tournoyante";
+                return "Attaque de zone";
             case (EffectCard.InvokeDarunyaNeko):
                 return "Invoque Darunya Neko";
+            case (EffectCard.InvokeLuneAllier):
+                return "Invoque Lune Allier";
+            case (EffectCard.SelfKill):
+                return "Suicide";
                 
             default:
                 return "No name";
@@ -125,6 +130,10 @@ public static class StaticEffectCard
                     "invoque 1 Lune Allier.\n" +
                     "creature imobile.\n" +
                     $"soigne du {value} a un allier a maximum 2 case d'elle."
+                );
+            case (EffectCard.SelfKill):
+                return ("- " + effectCard.getName() + " :\n" +
+                    "tue le lanceur."
                 );
 
             default:
@@ -261,6 +270,10 @@ public static class StaticEffectCard
                 characterLauncher.invokeACharacter(
                     new CharacterLuneAllier(indexPosTarget, characterLauncher, effectValue)
                 );
+                return;
+
+            case (EffectCard.SelfKill):
+                characterLauncher.death(characterLauncher, refCard);
                 return;
 
             default:

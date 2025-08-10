@@ -108,6 +108,7 @@ public enum SpriteType
     CardImg_BlacASiable,
     CardImg_DarunyaNeko,
     CardImg_Explsur,
+    CardImg_Drama,
 
 
     // --- FX.
@@ -171,6 +172,8 @@ public static class StaticSpriteType
                 return ("Une gentille lune qui soigne ses allier.");
             case (SpriteType.CardImg_Explsur):
                 return ("Une explosion.");
+            case (SpriteType.CardImg_Drama):
+                return ("Vous feriez mieu de ne pas jouer cette carte.");
                 
             default:
                 return "";
@@ -206,6 +209,8 @@ public static class StaticSpriteType
                 return ("Lune Allier");
             case (SpriteType.CardImg_Explsur):
                 return ("Explsur");
+            case (SpriteType.CardImg_Drama):
+                return ("Drama");
 
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.

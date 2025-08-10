@@ -26,8 +26,6 @@ class Program
     // add status effect copy the status effect at the first position.
     // add status effect copy the status effect at right position. (re-find index by match id, and pick the next one, and redirect all event).
 
-    // add card Drama, who One Shot the launcher.
-
 
     // make win/loose screen (end run).
 
