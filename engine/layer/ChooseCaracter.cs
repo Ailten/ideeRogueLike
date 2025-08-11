@@ -116,10 +116,13 @@ public class ChooseCaracter : Layer
 
         characterPlayerCanBeChoose = new(); //list of character playable.
         characterPlayerCanBeChoose.Add(SpriteType.Character_Ailten);
+        characterPlayerCanBeChoose.AddRange( // add sprite type of character player unlock from succes.
+            SaveManager.getSave.succes
+                .Select(s => s.getCharacterUnlocked())
+                .Where(c => c != null).Cast<SpriteType>()
+        );
 
-        //heer add other character playable based on succes unlock (or nothing).
-
-        if(characterPlayerCanBeChoose.Count == 1) //enable button right.
+        if (characterPlayerCanBeChoose.Count == 1) //enable button right.
             littleButtonRight.setIsDisabled(true);
 
 

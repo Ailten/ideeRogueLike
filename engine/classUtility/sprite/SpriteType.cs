@@ -69,6 +69,7 @@ public enum SpriteType
     Character_KingRock,
     Character_DarunyaNeko,
     Character_LuneAllier,
+    Character_DarumaNico,
 
 
     // --- Dungeons.

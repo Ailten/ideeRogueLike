@@ -294,11 +294,19 @@ public class Character : Entity
     {
         MP = Math.Max(MP - decrease, 0);
     }
+    public void increaseAP(int increace)
+    {
+        AP += increace;
+    }
 
     //decrease AP.
     public void decreaseAP(int decrease)
     {
         AP = Math.Max(AP - decrease, 0);
+    }
+    public void increaseMP(int increace)
+    {
+        MP += increace;
     }
 
 

@@ -51,10 +51,11 @@ public static class CardManager
             distanceToUse: new(1, 3),
             effect: new KeyValuePair<EffectCard, int>(EffectCard.TrapMp, 1)
         ));
-        SaveManager.getSave.succes.Where(s => !s.isRareCard()) // push card commun from succes into pool commun card.
-            .Select(s => s.getCardUnlocked())
-            .Where(c => c != null).Cast<Card>()
-            .ToList().ForEach(c => communCard.Add(c));
+        communCard.AddRange( // push card commun from succes into pool commun card.
+            SaveManager.getSave.succes.Where(s => !s.isRareCard())
+                .Select(s => s.getCardUnlocked())
+                .Where(c => c != null).Cast<Card>()
+        );
 
         rareCard = new();
         rareCard.Add(new Card(
@@ -73,10 +74,11 @@ public static class CardManager
             distanceToUse: new(0, 8),
             effect: new KeyValuePair<EffectCard, int>(EffectCard.SelfKill, 1)
         ));
-        SaveManager.getSave.succes.Where(s => s.isRareCard()) // push card rare from succes into pool rare card.
-            .Select(s => s.getCardUnlocked())
-            .Where(c => c != null).Cast<Card>()
-            .ToList().ForEach(c => rareCard.Add(c));
+        rareCard.AddRange( // push card rare from succes into pool rare card.
+            SaveManager.getSave.succes.Where(s => s.isRareCard())
+                .Select(s => s.getCardUnlocked())
+                .Where(c => c != null).Cast<Card>()
+        );
 
     }
 

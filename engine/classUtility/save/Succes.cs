@@ -8,6 +8,8 @@ public enum Succes
     Take_10_Coin,
     Heal_10,
     Damage_10,
+
+    UseACard_DarunyaNeko,
 }
 
 
@@ -117,8 +119,24 @@ public static class StaticSucces
             case (Succes.Damage_10):
                 return SaveManager.getSave.damageMaked >= 10;
 
+            case (Succes.UseACard_DarunyaNeko):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_DarunyaNeko) >= 1;
+
             default:
                 throw new Exception("Succes has no way to be unlocked");
+        }
+    }
+
+    // get a spriteType from an enum succes (for set list character in main menu start run).
+    public static SpriteType? getCharacterUnlocked(this Succes succes)
+    {
+        switch (succes)
+        {
+            case (Succes.UseACard_DarunyaNeko):
+                return SpriteType.Character_DarumaNico;
+
+            default:
+                return null;
         }
     }
     

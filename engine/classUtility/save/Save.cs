@@ -1,5 +1,5 @@
 
-[Serializable()] 
+[Serializable()]
 public class Save
 {
     public TimeSpan timePlayed { get; set; } //amount of time played.
@@ -91,6 +91,20 @@ public class Save
             this.cardPlayed.Add(cardIlluName, 0);
 
         return ++this.cardPlayed[cardIlluName];
+    }
+    public int getAmountCardPlayed(SpriteType cardIllu)
+    {
+        string cardIlluName = cardIllu.ToString();
+
+        if (!cardIlluName.StartsWith("CardImg_"))
+            throw new Exception("increaseCardPlayed can take only a SpriteType of a card Illu !");
+
+        cardIlluName = cardIlluName.Substring("CardImg_".Length);
+
+        if (!this.cardPlayed.ContainsKey(cardIlluName))
+            return 0;
+
+        return this.cardPlayed[cardIlluName];
     }
 
 }

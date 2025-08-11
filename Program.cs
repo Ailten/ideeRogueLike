@@ -25,6 +25,7 @@ class Program
     // add status boost Invoke (HP, AP, damage[all color at once], resistance[all]).
     // add status effect copy the status effect at the first position.
     // add status effect copy the status effect at right position. (re-find index by match id, and pick the next one, and redirect all event).
+    // add status effect pick one more card at start turn.
 
 
     // make win/loose screen (end run).

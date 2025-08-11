@@ -15,8 +15,8 @@ public class CharacterPlayer : Character
 
             case (SpriteType.Character_Ailten):
                 return new CharacterAilten(posIndexCel);
-
-            //add heer other CharacterPlayer.
+            case (SpriteType.Character_DarumaNico):
+                return new Character_DarumaNico(posIndexCel);
 
             default:
                 throw new Exception("SpriteType has no CharacterPlayer match !");
