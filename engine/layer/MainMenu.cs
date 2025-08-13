@@ -2,7 +2,7 @@
 public class MainMenu : Layer
 {
 
-    private static MainMenu _layer = new MainMenu(){ layerName="MainMenu" };
+    private static MainMenu _layer = new MainMenu();
     public static MainMenu layer 
     {
         get { return _layer; }

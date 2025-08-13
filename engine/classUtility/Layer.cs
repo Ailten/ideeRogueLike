@@ -4,7 +4,10 @@ public class Layer
 
     public bool isActive = false;
     public int idLayer = -1;
-    public string layerName = "";
+    //public string layerName = "";
+    public string layerName {
+        get { return this.GetType().ToString(); }
+    }
 
     private List<Entity> _entities = new();
     public List<Entity> entities

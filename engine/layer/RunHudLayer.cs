@@ -5,7 +5,7 @@ using System.Security.Principal;
 public class RunHudLayer : Layer
 {
 
-    private static RunHudLayer _layer = new RunHudLayer(){ layerName="RunHudLayer" };
+    private static RunHudLayer _layer = new RunHudLayer();
     public static RunHudLayer layer 
     {
         get { return _layer; }

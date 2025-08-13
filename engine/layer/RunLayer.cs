@@ -2,7 +2,7 @@
 public class RunLayer : Layer
 {
 
-    private static RunLayer _layer = new RunLayer(){ layerName="RunLayer" };
+    private static RunLayer _layer = new RunLayer();
     public static RunLayer layer 
     {
         get { return _layer; }

@@ -2,7 +2,7 @@
 public class ChooseCaracter : Layer
 {
 
-    private static ChooseCaracter _layer = new ChooseCaracter(){ layerName="ChooseCaracter" };
+    private static ChooseCaracter _layer = new ChooseCaracter();
     public static ChooseCaracter layer 
     {
         get { return _layer; }

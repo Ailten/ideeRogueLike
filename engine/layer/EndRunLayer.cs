@@ -1,7 +1,7 @@
 
 public class EndRunLayer : Layer
 {
-    private static EndRunLayer _layer = new EndRunLayer() { layerName = "EndRunLayer" };
+    private static EndRunLayer _layer = new EndRunLayer();
     public static EndRunLayer layer
     {
         get { return _layer; }
