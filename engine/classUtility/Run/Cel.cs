@@ -229,7 +229,8 @@ public class Cel : Entity
             //walk to a chest.
             case (CelType.Cel_Coffre):
 
-                // TODO: do something when walk on chest cel.
+                // active layer SpecialRoom when walk on chest cel.
+                SpecialRoom.layer.active();
 
                 return;
 
