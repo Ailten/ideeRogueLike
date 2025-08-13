@@ -437,6 +437,14 @@ public class Room
     }
 
 
+    // call to make the special room normal.
+    public void unSpecialTheRoom()
+    {
+        this.roomType = RoomType.Room;
+        this.cels[midHeightMax][midWidthMax].celType = CelType.Cel;
+    }
+
+
     //clean all celType unexpected from room.
     public void cleanTraps()
     {

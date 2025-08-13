@@ -7,8 +7,6 @@ public class SpecialRoom : Layer
         get { return _layer; }
     }
 
-    public int amountChoise = 2; // amount of elements choise for a chest or a special room with choise.
-
     public override void active()
     {
         //init all entities of layer. --->
@@ -22,6 +20,8 @@ public class SpecialRoom : Layer
         switch (currentRoom.roomType)
         {
             case (RoomType.Room_Chest):
+                this.isCleanSpecialFromRoom = true;
+
                 int rngForTypeChest = currentRoom.rngSpecialRoom.Next(1000);
                 bool isAnEffectChest = (rngForTypeChest < 330);
 
@@ -59,12 +59,41 @@ public class SpecialRoom : Layer
                 throw new Exception("RoomType has no SpecialRoom UI definition !");
         }
 
-        // TODO : button back.
+        // button back.
+        ButtonUi buttonBack = new ButtonUi(this.idLayer);
+        buttonBack.text = "back";
+        buttonBack.pos = new(442, 661);
+        buttonBack.eventClick = () =>
+        {
+            SpecialRoom.layer.unActive();
+        };
 
-        // TODO : button valid.
+        // button valid.
+        this.buttonValid = new ButtonUi(this.idLayer);
+        this.buttonValid.text = "valid";
+        this.buttonValid.pos = new(838, 661);
+        this.buttonValid.eventClick = () =>
+        {
+            // apply choice.
+            SpecialRoom.layer.validateChoise();
+
+            // make the room as normal.
+            if (SpecialRoom.layer.isCleanSpecialFromRoom)
+                RunManager.currentRoom?.unSpecialTheRoom();
+
+            SpecialRoom.layer.unActive();
+        };
+
 
         base.active();
     }
+
+
+    public int amountChoise = 2; // amount of elements choise for a chest or a special room with choise.
+    private bool isCleanSpecialFromRoom = false;
+    public ButtonUi? buttonValid;
+    public Action validateChoise = () => { };
+
 
     public override void update()
     {
@@ -76,6 +105,8 @@ public class SpecialRoom : Layer
     public override void unActive()
     {
         //free all entities of layer. --->
+
+        this.buttonValid = null;
 
         base.unActive();
     }
