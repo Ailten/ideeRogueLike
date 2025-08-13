@@ -112,7 +112,6 @@ public class Room
 
         // generate seed (for special room) based on rng of room generation.
         seedSpecialRoom = rngSeed.Next(1000);
-        _rngSpecialRoom = new Random(seedSpecialRoom);
 
 
         if (roomType == RoomType.Room_Tuto) //room tuto.
@@ -428,6 +427,13 @@ public class Room
             default:
                 throw new Exception("SpriteTypeOfMiniMap generate a door byte invalide !");
         }
+    }
+
+
+    // refresh the random object for rng special room.
+    public void refreshRngSpecialRoom()
+    {
+        this._rngSpecialRoom = new Random(seedSpecialRoom);
     }
 
 

@@ -14,6 +14,7 @@ public class SpecialRoom : Layer
         //init all entities of layer. --->
 
         Room currentRoom = RunManager.currentRoom ?? throw new Exception("no current room !");
+        currentRoom.refreshRngSpecialRoom();
 
         CardMenuBGUi bg = new CardMenuBGUi(this.idLayer);
         bg.pos = new(240, 0);
@@ -38,6 +39,18 @@ public class SpecialRoom : Layer
                     statusEffetUi.pos = new(380, 5);
                     statusEffetUi.setWidthSize(720);
                     statusEffetUi.setListEffect(listChoose);
+
+                    // TODO : click for select an effect.
+                }
+                else
+                {
+                    List<Card> listChoose = new();
+                    for (int i = 0; i < this.amountChoise; i++)
+                    {
+                        listChoose.Add(CardManager.generateARandomCard());
+                    }
+
+                    // TODO : UI list card selection.
                 }
 
                 break;
@@ -45,6 +58,10 @@ public class SpecialRoom : Layer
             default:
                 throw new Exception("RoomType has no SpecialRoom UI definition !");
         }
+
+        // TODO : button back.
+
+        // TODO : button valid.
 
         base.active();
     }

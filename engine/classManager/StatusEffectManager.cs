@@ -8,15 +8,6 @@ public static class StatusEffectManager
     // call in start run for fill pool of status effect (depend on succes unlock).
     public static void initStatusEffects()
     {
-
-        //FIX ME:
-        //How to manage a pool of status effect ?
-        // - store a list of instanced object (but is store by instance, so we can't pull twice the same)
-        // - store a type of status effect child (but, some effect has a colorCard type in parameters, spliting by 4 the result of same class)
-        // - do a switch case (but how manage success modification)
-        // - do an enum for eatch status effect. [V]
-
-
         communEffect = new();
         communEffect.Add(StatusEffectType.DamageAddBoostColor_Red);
         communEffect.Add(StatusEffectType.DamageAddBoostColor_Blue);
