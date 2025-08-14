@@ -39,6 +39,8 @@ public class SpecialRoom : Layer
                     statusEffetUi.pos = new(380, 5);
                     statusEffetUi.setWidthSize(720);
                     statusEffetUi.setListEffect(listChoose);
+                    // TODO : make statusEffectUi without arrow and details. (change upSelected ?)
+                    // TODO : add event click and unClick.
 
                     // TODO : click for select an effect.
                 }
@@ -50,7 +52,19 @@ public class SpecialRoom : Layer
                         listChoose.Add(CardManager.generateARandomCard());
                     }
 
-                    // TODO : UI list card selection.
+                    ListCardUi cardsUi = new ListCardUi(this.idLayer);
+                    cardsUi.pos = new(250, 388);
+                    cardsUi.upCardWhenSelected = 45f;
+                    cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        // TODO : select card on details.
+                    };
+                    cardsUi.unClickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        // TODO : remove card from details.
+                    };
+
+                    // TODO : click for select a card.
                 }
 
                 break;
