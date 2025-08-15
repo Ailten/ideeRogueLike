@@ -35,10 +35,10 @@ public class SpecialRoom : Layer
                         listChoose.Add(StatusEffectManager.generateARandomEffect(TurnManager.getMainPlayerCharacter().idEntity));
                     }
 
-                    // TODO : details effect for select an effect.
+                    // details effect for select an effect.
                     StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer);
-                    // TODO : apply parameters.
-                    // finish drawAfter (description).
+                    statusEffectDetailsUi.pos = new(313, 73); // edit pos.
+                    statusEffectDetailsUi.scaleEffectIllu = 2f;
 
                     StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer);
                     statusEffetUi.pos = new(380, 5);
@@ -74,7 +74,7 @@ public class SpecialRoom : Layer
 
                     // details card for select a card.
                     CardDetails cardDetails = new CardDetails(this.idLayer);
-                    // TODO : parameters.
+                    cardDetails.pos = new(250, 10);
 
                     ListCardUi cardsUi = new ListCardUi(this.idLayer);
                     cardsUi.pos = new(250, 388);

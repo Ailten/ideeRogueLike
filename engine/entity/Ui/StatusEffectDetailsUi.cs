@@ -2,7 +2,7 @@
 public class StatusEffectDetailsUi : Entity
 {
     private StatusEffect? effectSelected;
-    public float scaleEffectIllu = 2f;
+    public float scaleEffectIllu = 1f;
 
     public StatusEffectDetailsUi(int idLayer) : base(idLayer, SpriteType.none)
     {
@@ -26,10 +26,8 @@ public class StatusEffectDetailsUi : Entity
 
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
-        if (this.effectSelected == null)
-        {
+        if (this.effectSelected == null) //TODO: draw text no-effect selected.
             return;
-        }
 
         Sprite spriteEffect = SpriteManager.findBySpriteType(SpriteType.StatusEffect_BGStatusEffect) ?? throw new Exception("Sprite not found !");
 
@@ -56,5 +54,7 @@ public class StatusEffectDetailsUi : Entity
             rotation: 0,
             Raylib_cs.Color.White
         );
+
+        // TODO : draw details effect.
     }
 }

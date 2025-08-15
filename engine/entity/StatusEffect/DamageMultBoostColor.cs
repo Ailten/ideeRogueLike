@@ -20,9 +20,11 @@ public class DamageMultBoostColor : StatusEffect
 
     public override string getDescription()
     {
+        int purcent = (int)((1f - this.damageMult) * 100);
         return (
             $"- {this.getName()} :\n" +
-            $"multiplie les degats des cartes {this.color.getName()} par {this.damageMult}.\n" +
+            $"multiplie les degats des cartes {this.color.getName()}.\n" +
+            $"augmente les degats realise de {purcent}%" +
             this.getDescriptionTurn()
         );
     }

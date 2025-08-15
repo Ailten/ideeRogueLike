@@ -81,7 +81,7 @@ public class RunHudLayer : Layer
         CardDetails cardDetails = new CardDetails(idLayer); //card details.
         cardDetails.isActive = false;
         cardDetails.pos = new(250, 10);
-        elementsInMenuCardUi.Add(cardDetails); //TODO: click on effects of card selected, and print details at right.
+        elementsInMenuCardUi.Add(cardDetails);
 
         cardHandListCardUi = new ListCardUi(idLayer); //list card ui (hand).
         cardHandListCardUi.pos = new(150, 620);

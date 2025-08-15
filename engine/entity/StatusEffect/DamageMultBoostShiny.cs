@@ -11,9 +11,11 @@ public class DamageMultBoostShiny : StatusEffect
 
     public override string getDescription()
     {
+        int purcent = (int)((1f - this.damageMult) * 100);
         return (
             $"- {this.getName()} :\n" +
-            $"multiplie les degats des cartes brillante par {this.damageMult}.\n" +
+            $"multiplie les degats des cartes brillante.\n" +
+            $"augmente les degats realise de {purcent}%" +
             this.getDescriptionTurn()
         );
     }

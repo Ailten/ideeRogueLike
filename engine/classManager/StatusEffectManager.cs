@@ -13,6 +13,14 @@ public static class StatusEffectManager
         communEffect.Add(StatusEffectType.DamageAddBoostColor_Blue);
         communEffect.Add(StatusEffectType.DamageAddBoostColor_Green);
         communEffect.Add(StatusEffectType.DamageAddBoostShiny);
+        communEffect.Add(StatusEffectType.ShildAddBoostColor_Red);
+        communEffect.Add(StatusEffectType.ShildAddBoostColor_Blue);
+        communEffect.Add(StatusEffectType.ShildAddBoostColor_Green);
+        communEffect.Add(StatusEffectType.ShildAddBoostShiny);
+        communEffect.Add(StatusEffectType.ShildMultBoostColor_Red);
+        communEffect.Add(StatusEffectType.ShildMultBoostColor_Blue);
+        communEffect.Add(StatusEffectType.ShildMultBoostColor_Green);
+        communEffect.Add(StatusEffectType.ShildMultBoostShiny);
 
         rareEffect = new();
         rareEffect.Add(StatusEffectType.DamageMultBoostColor_Red);
@@ -21,6 +29,7 @@ public static class StatusEffectManager
         rareEffect.Add(StatusEffectType.DamageMultBoostShiny);
         rareEffect.Add(StatusEffectType.APBoost);
         rareEffect.Add(StatusEffectType.MPBoost);
+        rareEffect.Add(StatusEffectType.APWhenHit);
     }
 
 
@@ -79,6 +88,51 @@ public static class StatusEffectManager
                     turnLife: turnLife,
                     damageMult: RandomManager.rng.Next(110, 221) / 100f
                 );
+
+            case (StatusEffectType.ShildAddBoostColor_Red):
+            case (StatusEffectType.ShildAddBoostColor_Blue):
+            case (StatusEffectType.ShildAddBoostColor_Green):
+                return new ShildAddBoostColor(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    color: (
+                        (typePick == StatusEffectType.ShildAddBoostColor_Red)? CardColor.Red:
+                        (typePick == StatusEffectType.ShildAddBoostColor_Blue)? CardColor.Blue:
+                        CardColor.Green
+                    ),
+                    shildBoost: RandomManager.rng.Next(1, 4)
+                );
+            case (StatusEffectType.ShildAddBoostShiny):
+                return new ShildAddBoostShiny(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    shildBoost: RandomManager.rng.Next(1, 4)
+                );
+
+            case (StatusEffectType.ShildMultBoostColor_Red):
+            case (StatusEffectType.ShildMultBoostColor_Blue):
+            case (StatusEffectType.ShildMultBoostColor_Green):
+                return new ShildMultBoostColor(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    color: (
+                        (typePick == StatusEffectType.ShildMultBoostColor_Red)? CardColor.Red:
+                        (typePick == StatusEffectType.ShildMultBoostColor_Blue)? CardColor.Blue:
+                        CardColor.Green
+                    ),
+                    shildMult: RandomManager.rng.Next(80, 95) / 100f
+                );
+            case (StatusEffectType.ShildMultBoostShiny):
+                return new ShildMultBoostShiny(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    shildMult: RandomManager.rng.Next(80, 95) / 100f
+                );
+
             case (StatusEffectType.APBoost):
                 return new APBoost(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
@@ -92,6 +146,13 @@ public static class StatusEffectManager
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
                     MPUp: 1
+                );
+            case (StatusEffectType.APWhenHit):
+                return new APWhenHit(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    APUp: 1
                 );
 
             default:

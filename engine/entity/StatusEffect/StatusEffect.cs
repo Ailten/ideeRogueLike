@@ -93,8 +93,8 @@ public class StatusEffect
     public SpriteType getBackgroundSprite()
     {
         return (
-            (this.isInfinitTurn)? SpriteType.StatusEffect_BGStatusEffectBuff:
-            (this.isAMalus())? SpriteType.StatusEffect_BGStatusEffectMalus:
+            (this.isInfinitTurn) ? SpriteType.StatusEffect_BGStatusEffectBuff :
+            (this.isAMalus()) ? SpriteType.StatusEffect_BGStatusEffectMalus :
             SpriteType.StatusEffect_BGStatusEffect
         );
     }
@@ -115,6 +115,9 @@ public class StatusEffect
     public virtual void eventWhenTargetEndTurn() { }
     // event call when target make damage.
     public virtual void eventWhenTargetMakeDamage(ref Character target, ref int atk, ref PackageRefCard? refCard) { }
+    // event call when target take damage.
+    public virtual void eventWhenTargetTakeDamage(ref int atk, ref Character? characterMakeAtk, ref PackageRefCard? refCard) { }
+
 
 
 }

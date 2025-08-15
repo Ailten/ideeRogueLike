@@ -10,6 +10,9 @@ public class Character_DarumaNico : CharacterPlayer
         this.HPmax = 10;
         this.HP = HPmax;
 
+        // special effect.
+        this.statusEffects.Add(new APWhenHit(this.idEntity));
+
         this.deck.pickCountByTurn = 5;
         this.deck.addCardToDeck(
             new Card(
@@ -20,7 +23,19 @@ public class Character_DarumaNico : CharacterPlayer
                 distanceToUse: new(1, 1),
                 effect: new KeyValuePair<EffectCard, int>(EffectCard.InvokeDarunyaNeko, 2)
             ),
-            amountOfCardAdd: 6,
+            amountOfCardAdd: 4,
+            isSameColor: false
+        );
+        this.deck.addCardToDeck(
+            new Card(
+                cardIllu: SpriteType.CardImg_WoodenSword,
+                cardColor: StaticCardColor.getRandomColor(),
+                cardEdition: CardEdition.Default,
+                APCost: 1,
+                distanceToUse: new(1, 1),
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 2)
+            ),
+            amountOfCardAdd: 2,
             isSameColor: false
         );
         this.deck.addCardToDeck(
@@ -37,12 +52,4 @@ public class Character_DarumaNico : CharacterPlayer
         );
     }
 
-
-    // override take damage, to include increase AP.
-    protected override void takeDamage(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
-    {
-        this.increaseAP(1); // increase AP. TODO : maybe make it as an statusEffect.
-
-        base.takeDamage(atk, characterMakeAtk, refCard);
-    }
 }

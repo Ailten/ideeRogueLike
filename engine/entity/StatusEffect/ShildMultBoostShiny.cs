@@ -1,0 +1,45 @@
+
+public class ShildMultBoostShiny : StatusEffect
+{
+    private float shildMult;
+
+    public ShildMultBoostShiny(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, float shildMult) :
+    base(SpriteType.StatusEffect_DamageMultiplyBoostShiny, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
+    {
+        this.shildMult = shildMult;
+    }
+
+
+    public override string getDescription()
+    {
+        int purcent = (int)((1f - this.shildMult) * 100) * -1;
+        return (
+            $"- {this.getName()} :\n" +
+            $"multiplie les degats subit par des cartes Brillante.\n" +
+            $"donne {purcent}% de resistance au degat subits.\n" +
+            this.getDescriptionTurn()
+        );
+    }
+    protected override string getName()
+    {
+        return $"Bouclier multi brillante";
+    }
+    public override bool isAMalus()
+    {
+        return this.shildMult < 1f;
+    }
+
+
+    public override void eventWhenTargetTakeDamage(ref int atk, ref Character? characterMakeAtk, ref PackageRefCard? refCard)
+    {
+        if (refCard is null) // skip if damage is not maked by a card.
+            return;
+
+        CardEdition editionOfCardUsed = refCard?.getCard().cardEdition ?? throw new Exception("refCard is null");
+        if (editionOfCardUsed == CardEdition.Shinny)
+        {
+            atk = (int)(atk * this.shildMult); // aply multiplier by reference.
+        }
+    }
+
+}

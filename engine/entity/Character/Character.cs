@@ -69,7 +69,8 @@ public class Character : Entity
     //apply damage to character.
     protected virtual void takeDamage(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
     {
-        // todo: apply effects list.
+        // apply status effect.
+        this.statusEffects.ForEach(se => se.eventWhenTargetTakeDamage(ref atk, ref characterMakeAtk, ref refCard));
 
         if (SP > 0)
         {
@@ -290,6 +291,10 @@ public class Character : Entity
     }
 
     //decrease MP.
+    public void decreaseAP(int decrease)
+    {
+        AP = Math.Max(AP - decrease, 0);
+    }
     public void decreaseMP(int decrease)
     {
         MP = Math.Max(MP - decrease, 0);
@@ -297,12 +302,6 @@ public class Character : Entity
     public void increaseAP(int increace)
     {
         AP += increace;
-    }
-
-    //decrease AP.
-    public void decreaseAP(int decrease)
-    {
-        AP = Math.Max(AP - decrease, 0);
     }
     public void increaseMP(int increace)
     {
