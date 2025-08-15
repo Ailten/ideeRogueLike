@@ -10,6 +10,10 @@ public class StatusEffect
     private int idEffect;
     private static int idEffectCount = 0;
 
+    public int getTurnFromApply
+    {
+        get { return TurnManager.getTurnCount - turnStart; }
+    }
     public int getTurnEnd
     {
         get { return turnEnd; }
@@ -110,13 +114,15 @@ public class StatusEffect
     { }
 
     // event call when target start turn.
-    public void eventWhenTargetStartTurn() { }
+    public virtual void eventWhenTargetStartTurn() { }
     // event call when target end turn.
     public virtual void eventWhenTargetEndTurn() { }
     // event call when target make damage.
     public virtual void eventWhenTargetMakeDamage(ref Character target, ref int atk, ref PackageRefCard? refCard) { }
     // event call when target take damage.
     public virtual void eventWhenTargetTakeDamage(ref int atk, ref Character? characterMakeAtk, ref PackageRefCard? refCard) { }
+    // event call when a fight end.
+    public virtual void eventWhenPlayerWinFight() { }
 
 
 

@@ -160,6 +160,7 @@ public static class TurnManager
     //call when a fight is end.
     private static void enfOfFight(bool isRedWiner)
     {
+        // apply effects.
 
         if (isRedWiner) //player win the fight.
         {
@@ -185,6 +186,9 @@ public static class TurnManager
             {
                 RunManager.getCelNNCenter().celType = CelType.Cel_NextStage; //spawn roope on cel center of room.
             }
+
+            // apply effects.
+            player.statusEffects.ForEach(e => e.eventWhenPlayerWinFight());
 
         }
         else //ennemy win the fight.
