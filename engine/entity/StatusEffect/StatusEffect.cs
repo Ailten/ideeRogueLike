@@ -18,6 +18,10 @@ public class StatusEffect
     {
         get { return (turnEnd >= 0 ? turnEnd - TurnManager.getTurnCount : -1); }
     }
+    public bool isInfinitTurn
+    {
+        get { return turnEnd < 0; }
+    }
     public int getCharacterIdWhoApplyEffect
     {
         get { return characterIdWhoApplyEffect; }
@@ -52,7 +56,7 @@ public class StatusEffect
         this.spriteType = spriteType;
 
         this.turnStart = TurnManager.getTurnCount;
-        this.turnEnd = (turnLife == -1) ? turnLife : this.turnStart + turnLife;
+        this.turnEnd = (turnLife < 0) ? turnLife : this.turnStart + turnLife;
 
         this.characterIdWhoHasEffect = characterIdWhoHasEffect;
         this.characterIdWhoApplyEffect = characterIdWhoApplyEffect;
@@ -79,6 +83,20 @@ public class StatusEffect
     protected virtual string getName()
     {
         return "No name";
+    }
+
+    public virtual bool isAMalus()
+    {
+        return false;
+    }
+
+    public SpriteType getBackgroundSprite()
+    {
+        return (
+            (this.isInfinitTurn)? SpriteType.StatusEffect_BGStatusEffectBuff:
+            (this.isAMalus())? SpriteType.StatusEffect_BGStatusEffectMalus:
+            SpriteType.StatusEffect_BGStatusEffect
+        );
     }
 
 

@@ -16,13 +16,17 @@ public class MPBoost : StatusEffect
     {
         return (
             $"- {this.getName()} :\n" +
-            $"gagne {this.MPUp} point de deplacement en plus.\n"+
+            $"gagne {this.MPUp} point de deplacement.\n"+
             this.getDescriptionTurn()
         );
     }
     protected override string getName()
     {
-        return "Deplacement plus";
+        return $"Deplacement {(this.isAMalus()? "moin": "plus")}";
+    }
+    public override bool isAMalus()
+    {
+        return this.MPUp < 0;
     }
 
 

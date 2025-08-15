@@ -20,7 +20,11 @@ public class DamageAddBoostShiny : StatusEffect
     }
     protected override string getName()
     {
-        return $"Domage plus brillante";
+        return $"Domage {(this.isAMalus()? "moin": "plus")} brillante";
+    }
+    public override bool isAMalus()
+    {
+        return this.damageBoost < 0;
     }
 
 

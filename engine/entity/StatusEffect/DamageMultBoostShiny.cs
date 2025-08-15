@@ -21,6 +21,10 @@ public class DamageMultBoostShiny : StatusEffect
     {
         return $"Domage multi brillante";
     }
+    public override bool isAMalus()
+    {
+        return this.damageMult < 1f;
+    }
 
 
     public override void eventWhenTargetMakeDamage(ref Character target, ref int atk, ref PackageRefCard? refCard)

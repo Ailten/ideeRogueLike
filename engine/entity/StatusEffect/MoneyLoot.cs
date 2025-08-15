@@ -15,13 +15,17 @@ public class MoneyLoot : StatusEffect
     {
         return (
             $"- {this.getName()} :\n" +
-            $"donne {this.money} en plus.\n"+
+            $"ajoute {this.money} d'or.\n"+
             this.getDescriptionTurn()
         );
     }
     protected override string getName()
     {
         return "Fortune";
+    }
+    public override bool isAMalus()
+    {
+        return this.money < 0;
     }
 
 

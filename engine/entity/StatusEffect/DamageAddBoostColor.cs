@@ -30,7 +30,11 @@ public class DamageAddBoostColor : StatusEffect
     }
     protected override string getName()
     {
-        return $"Domage plus {this.color.getName()}";
+        return $"Domage {(this.isAMalus()? "moin": "plus")} {this.color.getName()}";
+    }
+    public override bool isAMalus()
+    {
+        return this.damageBoost < 0;
     }
 
 

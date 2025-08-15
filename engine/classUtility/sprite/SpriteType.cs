@@ -125,6 +125,8 @@ public enum SpriteType
     StatusEffect_arrowLeftStatusEffect,
     StatusEffect_BGTimeLineCharacterBlue,
     StatusEffect_BGTimeLineCharacterRed,
+    StatusEffect_BGStatusEffectMalus,
+    StatusEffect_BGStatusEffectBuff,
     StatusEffect_TimeLineDelimiterTurn,
     StatusEffect_BGStatusEffect,
 
@@ -135,11 +137,20 @@ public enum SpriteType
     StatusEffect_DamageAddBoostGreen,
     StatusEffect_DamageAddBoostShiny,
     StatusEffect_APBoost,
+    StatusEffect_APWhenHit,
     StatusEffect_DamageMultiplyBoostRed,
     StatusEffect_DamageMultiplyBoostBlue,
     StatusEffect_DamageMultiplyBoostGreen,
     StatusEffect_DamageMultiplyBoostShiny,
-    StatusEffect_MPBoost
+    StatusEffect_MPBoost,
+    StatusEffect_ShildAddBoostRed,
+    StatusEffect_ShildAddBoostBlue,
+    StatusEffect_ShildAddBoostGreen,
+    StatusEffect_ShildAddBoostShiny,
+    StatusEffect_ShildMultiplyBoostRed,
+    StatusEffect_ShildMultiplyBoostBlue,
+    StatusEffect_ShildMultiplyBoostGreen,
+    StatusEffect_ShildMultiplyBoostShiny
 
 }
 

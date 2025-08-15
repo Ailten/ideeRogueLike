@@ -21,6 +21,10 @@ public class Burn : StatusEffect
     {
         return "Brulure";
     }
+    public override bool isAMalus()
+    {
+        return true;
+    }
 
 
     public override void eventWhenTargetEndTurn()

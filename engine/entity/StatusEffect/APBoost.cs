@@ -16,13 +16,17 @@ public class APBoost : StatusEffect
     {
         return (
             $"- {this.getName()} :\n" +
-            $"gagne {this.APUp} point d action en plus.\n"+
+            $"gagne {this.APUp} point d action.\n"+
             this.getDescriptionTurn()
         );
     }
     protected override string getName()
     {
-        return "Action plus";
+        return $"Action {(this.isAMalus()? "moin": "plus")}";
+    }
+    public override bool isAMalus()
+    {
+        return this.APUp < 0;
     }
 
 

@@ -129,8 +129,10 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_arrowLeftStatusEffect, new Vector(318, 66), new Vector(32, 16));
         s.addSpriteType(SpriteType.StatusEffect_BGTimeLineCharacterBlue, new Vector(351, 0), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_BGTimeLineCharacterRed, new Vector(415, 0), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_BGStatusEffectMalus, new Vector(351, 64), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_BGStatusEffectBuff, new Vector(415, 64), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_TimeLineDelimiterTurn, new Vector(479, 0), new Vector(32, 126));
-        s.addSpriteType(SpriteType.StatusEffect_BGStatusEffect, new Vector(0, 127), new Vector(63, 63)); //second line.
+        s.addSpriteType(SpriteType.StatusEffect_BGStatusEffect, new Vector(0, 127), new Vector(63, 63)); //second line (l1).
         s.addSpriteType(SpriteType.StatusEffect_Burn, new Vector(64, 127), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_MoneyLoot, new Vector(128, 127), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_DamageAddBoostRed, new Vector(192, 127), new Vector(63, 63));
@@ -138,11 +140,20 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_DamageAddBoostGreen, new Vector(320, 127), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_DamageAddBoostShiny, new Vector(384, 127), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_APBoost, new Vector(448, 127), new Vector(63, 63));
-        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostRed, new Vector(192, 127), new Vector(63, 63));
-        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostBlue, new Vector(256, 127), new Vector(63, 63));
-        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostGreen, new Vector(320, 127), new Vector(63, 63));
-        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostShiny, new Vector(384, 127), new Vector(63, 63));
-        s.addSpriteType(SpriteType.StatusEffect_APBoost, new Vector(448, 127), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_APWhenHit, new Vector(0, 191), new Vector(63, 63)); // (l2).
+        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostRed, new Vector(192, 191), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostBlue, new Vector(256, 191), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostGreen, new Vector(320, 191), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostShiny, new Vector(384, 191), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_APBoost, new Vector(448, 191), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostRed, new Vector(192, 255), new Vector(63, 63)); // (l3).
+        s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostBlue, new Vector(256, 255), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostGreen, new Vector(320, 255), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostShiny, new Vector(384, 255), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostRed, new Vector(192, 319), new Vector(63, 63)); // (l4).
+        s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostBlue, new Vector(256, 319), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostGreen, new Vector(320, 319), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostShiny, new Vector(384, 319), new Vector(63, 63));
 
     }
 

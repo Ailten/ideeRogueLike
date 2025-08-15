@@ -194,7 +194,7 @@ public class StatusEffectUi : Entity
 
             Raylib_cs.Raylib.DrawTexturePro( // draw bg effect.
                 texture: spriteEffect.texture,
-                source: spriteEffect.getSpriteTileBySpriteType(SpriteType.StatusEffect_BGStatusEffect).getRectSource(),
+                source: spriteEffect.getSpriteTileBySpriteType(currentEffect.getBackgroundSprite()).getRectSource(),
                 dest: currentRect,
                 origin: origine,
                 rotation: 0,
