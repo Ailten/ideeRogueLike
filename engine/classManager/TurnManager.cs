@@ -148,7 +148,7 @@ public static class TurnManager
                 _isInFight = true;
 
                 getMainPlayerCharacter().deck.piocheOfStartTurn(); //pioche first hands of fight.
-                RunHudLayer.layer.cardHandListCardUi?.setListCard(getMainPlayerCharacter().deck.cardsInHand); //set card list hand to UI.
+                RunHudLayer.layer.cardHandListCardUi!.setListCard(getMainPlayerCharacter().deck.cardsInHand); //set card list hand to UI.
 
                 turnCount = 0; //reset turn count.
 
@@ -179,9 +179,9 @@ public static class TurnManager
             RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(false);
 
             //clean all cel traps.
-            RunManager.currentRoom?.cleanTraps();
+            RunManager.currentRoom!.cleanTraps();
 
-            if (RunManager.currentRoom?.roomType == RoomType.Room_Boss) //if is a room boss, spawn roope for next stage.
+            if (RunManager.currentRoom!.roomType == RoomType.Room_Boss) //if is a room boss, spawn roope for next stage.
             {
                 RunManager.getCelNNCenter().celType = CelType.Cel_NextStage; //spawn roope on cel center of room.
             }
@@ -325,7 +325,7 @@ public static class TurnManager
         });
 
         // edit trigger zone of status effect ui currently print.
-        RunHudLayer.layer.statusEffectUi?.updateGeometryTriggerBasedOnList();
+        RunHudLayer.layer.statusEffectUi!.updateGeometryTriggerBasedOnList();
     }
 
 

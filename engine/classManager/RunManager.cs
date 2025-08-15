@@ -40,7 +40,6 @@ public static class RunManager
         //rng.
         RunManager._seed = seed;
         _rngSeed = new Random(seed);
-        Console.WriteLine($"Seed : {seed}");
 
         //set random seed to randomManager (used to event decide by player).
         RandomManager.setRandomManagerSeed(seed);
@@ -62,6 +61,10 @@ public static class RunManager
 
         //increase count run save.
         SaveManager.increaseRunCount();
+
+        //init pools (based on succes save).
+        CardManager.initCards(); //init cards for pool.
+        StatusEffectManager.initStatusEffects(); //init status effect pool.
 
     }
 

@@ -107,11 +107,11 @@ public static class StaticSucces
         switch (succes)
         {
             case (Succes.Kill_5_Slime):
-                return SaveManager.getSave.characterKilled["Slime"] >= 5;
+                return SaveManager.getAmountKillCount(typeof(CharacterSlime)) >= 5;
             case (Succes.Kill_5_Flame):
-                return SaveManager.getSave.characterKilled["Flame"] >= 5;
+                return SaveManager.getAmountKillCount(typeof(CharacterFlame)) >= 5;
             case (Succes.Kill_5_Rock):
-                return SaveManager.getSave.characterKilled["Rock"] >= 5;
+                return SaveManager.getAmountKillCount(typeof(CharacterRock)) >= 5;
             case (Succes.Take_10_Coin):
                 return SaveManager.getSave.coinTaked >= 10;
             case (Succes.Heal_10):

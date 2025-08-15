@@ -91,4 +91,17 @@ public class Entity
         );
     }
 
+    public override bool Equals(object? obj)
+    {
+        if (obj is null)
+            return (this is null);
+        if (obj.GetType() != this.GetType())
+            return false;
+        return this == (Entity)obj;
+    }
+
+    public override int GetHashCode()
+    {
+        throw new NotImplementedException();
+    }
 }

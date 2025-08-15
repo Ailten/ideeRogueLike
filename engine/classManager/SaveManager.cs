@@ -15,7 +15,8 @@ public static class SaveManager
     public static bool tryAddSucces(Succes succesToAdd) => currentSave.tryAddSucces(succesToAdd);
     public static bool isHasSucces(Succes succesToAsk) => currentSave.isHasSucces(succesToAsk);
     public static int increaseRunCount() => currentSave.increaseRunCount();
-    public static int increaseKillCount(string nameMobKilled) => currentSave.increaseKillCount(nameMobKilled);
+    public static int increaseKillCount(Type typeMob) => currentSave.increaseKillCount(typeMob);
+    public static int getAmountKillCount(Type typeMob) => currentSave.getAmountKillCount(typeMob);
     public static ulong increaseDamageMaked(int statsIncrease) => currentSave.increaseDamageMaked(statsIncrease);
     public static uint increaseHealMaked(int statsIncrease) => currentSave.increaseHealMaked(statsIncrease);
     public static uint increaseShildMaked(int statsIncrease) => currentSave.increaseShildMaked(statsIncrease);
@@ -102,7 +103,7 @@ public static class SaveManager
 
 
     // get purcent of completion.
-    public static float getPurcentCompletion<T>() where T : Enum
+    public static float getPurcentCompletion()
     {
         return (float) currentSave.succes.Count / Enum.GetValues<Succes>().Length;
     }

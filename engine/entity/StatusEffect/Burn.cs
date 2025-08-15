@@ -29,6 +29,6 @@ public class Burn : StatusEffect
 
     public override void eventWhenTargetEndTurn()
     {
-        this.getCharacterWhoApplyEffect?.makeDamage(this.getCharacterWhoHasEffect, this.damage);
+        this.getCharacterWhoApplyEffect!.makeDamage(this.getCharacterWhoHasEffect, this.damage);
     }
 }

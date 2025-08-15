@@ -63,7 +63,6 @@ public class ChooseCaracter : Layer
                 () =>
                 { //action to do during black screen transition.
                     RunManager.buildNewRun();
-                    CardManager.initCards(); //init cards for pool.
                 }
             );
         };

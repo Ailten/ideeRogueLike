@@ -43,13 +43,26 @@ public class Save
     }
 
     // increase kill count character.
-    public int increaseKillCount(string nameMobKilled)
+    public int increaseKillCount(Type typeMob)
     {
+        string nameMobKilled = Character.getNameOf(typeMob);
+        
         if (characterKilled.ContainsKey(nameMobKilled))
             return ++characterKilled[nameMobKilled];
 
         characterKilled.Add(nameMobKilled, 1);
         return 1;
+    }
+
+    // get amount of mob killed by sending type mob.
+    public int getAmountKillCount(Type typeMob)
+    {
+        string nameMobKilled = Character.getNameOf(typeMob);
+
+        if (characterKilled.ContainsKey(nameMobKilled))
+            return characterKilled[nameMobKilled];
+
+        return 0;
     }
 
     // increase stats count maked.

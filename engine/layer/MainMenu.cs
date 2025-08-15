@@ -37,7 +37,8 @@ public class MainMenu : Layer
         buttonOption.setIsDisabled(true);
 
         ButtonUi buttonOptionTwitch = new ButtonUi(idLayer);
-        buttonOptionTwitch.text = $"progres {0}%";
+        int purcentCompletion = (int)(SaveManager.getPurcentCompletion() * 100);
+        buttonOptionTwitch.text = $"progres {purcentCompletion}%";
         buttonOptionTwitch.pos = buttonOption.pos + spacingButton;
         buttonOptionTwitch.scale = scaleButton;
         buttonOptionTwitch.eventClick = () => {

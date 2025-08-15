@@ -17,6 +17,8 @@ public class SpecialRoom : Layer
         CardMenuBGUi bg = new CardMenuBGUi(this.idLayer);
         bg.pos = new(240, 0);
 
+        // TODO : X button to exit special room menu.
+
         switch (currentRoom.roomType)
         {
             case (RoomType.Room_Chest):
@@ -125,7 +127,7 @@ public class SpecialRoom : Layer
 
             // make the room as normal.
             if (SpecialRoom.layer.isCleanSpecialFromRoom)
-                RunManager.currentRoom?.unSpecialTheRoom();
+                RunManager.currentRoom!.unSpecialTheRoom();
 
             SpecialRoom.layer.unActive();
         };

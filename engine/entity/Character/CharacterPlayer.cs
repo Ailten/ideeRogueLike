@@ -49,14 +49,14 @@ public class CharacterPlayer : Character
     public override void startTurn()
     {
         base.startTurn(); //do the basic start turn.
-        RunHudLayer.layer.cardHandListCardUi?.setListCard(this.deck.cardsInHand); //link card list UI with card player character current turn.
-        RunHudLayer.layer.statusEffectUi?.setListEffect(this.statusEffects);
+        RunHudLayer.layer.cardHandListCardUi!.setListCard(this.deck.cardsInHand); //link card list UI with card player character current turn.
+        RunHudLayer.layer.statusEffectUi!.setListEffect(this.statusEffects);
     }
     //overide for aditionnal process for skip turn when player.
     public override void skipTurn()
     {
-        RunHudLayer.layer.statusEffectUi?.setListEffect(new());
-        RunHudLayer.layer.cardHandListCardUi?.setListCard(new());
+        RunHudLayer.layer.statusEffectUi!.setListEffect(new());
+        RunHudLayer.layer.cardHandListCardUi!.setListCard(new());
         base.skipTurn();
     }
 

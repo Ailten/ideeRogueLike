@@ -36,7 +36,14 @@ public class Character : Entity
     public List<StatusEffect> statusEffects = new();
     public virtual string getName
     {
-        get{ return this.GetType().ToString().Substring("Character".Length); }
+        get{ return getNameOf(this.GetType()); }
+    }
+    public static string getNameOf(Type characterType)
+    {
+        string typeStr = characterType.ToString();
+        if(!typeStr.StartsWith("Character"))
+            throw new Exception("Character.getNameOf parameter is not a class Character !");
+        return typeStr.Substring("Character".Length);
     }
 
 
@@ -122,7 +129,7 @@ public class Character : Entity
         // todo: apply effects list.
 
         if (characterMakeKill?.isInRedTeam ?? false) //increase kill count on stats save.
-            SaveManager.increaseKillCount(this.getName);
+            SaveManager.increaseKillCount(this.GetType());
 
         //hidde.
         isActive = false;
@@ -140,12 +147,12 @@ public class Character : Entity
         else if (characterMakeKill != null)
         {
             if (this.PO != 0)
-                characterMakeKill?.gainGold(this.PO);
+                characterMakeKill!.gainGold(this.PO);
         }
         else if (this.isAnInvoc)
         {
             if (this.PO != 0)
-                this.invokedBy?.gainGold(this.PO);
+                this.invokedBy!.gainGold(this.PO);
         }
 
         //remove from list turn.
