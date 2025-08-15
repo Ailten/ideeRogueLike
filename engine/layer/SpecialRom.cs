@@ -35,14 +35,34 @@ public class SpecialRoom : Layer
                         listChoose.Add(StatusEffectManager.generateARandomEffect(TurnManager.getMainPlayerCharacter().idEntity));
                     }
 
+                    // TODO : details effect for select an effect.
+                    StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer);
+                    // TODO : apply parameters.
+                    // finish drawAfter (description).
+
                     StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer);
                     statusEffetUi.pos = new(380, 5);
                     statusEffetUi.setWidthSize(720);
                     statusEffetUi.setListEffect(listChoose);
-                    // TODO : make statusEffectUi without arrow and details. (change upSelected ?)
-                    // TODO : add event click and unClick.
+                    statusEffetUi.isWithDetail = false;
+                    statusEffetUi.heightSizeDownSelected = -20;
+                    statusEffetUi.clickOnEffect = (effectClicked, isLeftClick) =>
+                    {
+                        statusEffectDetailsUi.setStatusEffect(effectClicked);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(false);
+                    };
+                    statusEffetUi.unClickOnEffect = (effectClicked, isLeftClick) =>
+                    {
+                        statusEffectDetailsUi.setStatusEffect(null);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
+                    };
 
-                    // TODO : click for select an effect.
+                    // when valide, set statusEffect selected to player.
+                    this.validateChoise = () =>
+                    {
+                        StatusEffect effectSelected = statusEffectDetailsUi.getStatusEffect() ?? throw new Exception("effectSelected is null !");
+                        TurnManager.getMainPlayerCharacter().statusEffects.Add(effectSelected);
+                    };
                 }
                 else
                 {
@@ -52,19 +72,30 @@ public class SpecialRoom : Layer
                         listChoose.Add(CardManager.generateARandomCard());
                     }
 
+                    // details card for select a card.
+                    CardDetails cardDetails = new CardDetails(this.idLayer);
+                    // TODO : parameters.
+
                     ListCardUi cardsUi = new ListCardUi(this.idLayer);
                     cardsUi.pos = new(250, 388);
                     cardsUi.upCardWhenSelected = 45f;
                     cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
                     {
-                        // TODO : select card on details.
+                        cardDetails.setCard(cardClicked);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(false);
                     };
                     cardsUi.unClickOnCard = (cardClicked, isLeftClick) =>
                     {
-                        // TODO : remove card from details.
+                        cardDetails.setCard(null);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
                     };
 
-                    // TODO : click for select a card.
+                    // when valide, set statusEffect selected to player.
+                    this.validateChoise = () =>
+                    {
+                        Card cardSelected = cardDetails.getCard() ?? throw new Exception("cardSelected is null !");
+                        TurnManager.getMainPlayerCharacter().deck.addCardToDeck(cardSelected);
+                    };
                 }
 
                 break;
@@ -86,6 +117,7 @@ public class SpecialRoom : Layer
         this.buttonValid = new ButtonUi(this.idLayer);
         this.buttonValid.text = "valid";
         this.buttonValid.pos = new(838, 661);
+        this.buttonValid.setIsDisabled(true);
         this.buttonValid.eventClick = () =>
         {
             // apply choice.

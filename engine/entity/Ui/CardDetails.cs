@@ -25,11 +25,15 @@ public class CardDetails : Entity
 
 
     //set card.
-    public void setListCard(Card? card)
+    public void setCard(Card? card)
     {
         this.card = card;
         this.effectSelected = null;
         this.effectValueSelected = 0;
+    }
+    public Card? getCard()
+    {
+        return this.card;
     }
 
 

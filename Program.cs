@@ -31,6 +31,10 @@ class Program
     // make win/loose screen (end run).
 
 
+    // make a methode in statusEffect, override to say if a status effect is a malus (for switch background sprite as red one).
+    // adapt ?. into !. in major of case.
+
+
     // debug batte bulle, blaca siable, darunya neko, lune allier.
     // debug card explo, splash, flame, rock.
 

@@ -8,6 +8,11 @@ public class StatusEffectUi : Entity
         get { return this.indexEffectSelected >= 0; }
     }
 
+    public bool isWithDetail = true;
+    public float heightSizeDownSelected = 20;
+    public Action<StatusEffect, bool> clickOnEffect = (effectClicked, isLeftClick) => { };
+    public Action<StatusEffect, bool> unClickOnEffect = (effectClicked, isLeftClick) => { };
+
     public StatusEffectUi(int idLayer) : base(idLayer, SpriteType.none)
     {
         this.isUi = true;
@@ -102,12 +107,11 @@ public class StatusEffectUi : Entity
     }
 
 
-    private static Vector statusEffectSize = new(63, 63);
+    public static Vector statusEffectSize = new(63, 63);
     private static Vector arrowLeftSize = new(32, 16);
     private static float widthSizeSpacing = 10;
     private static float heightSizeSpacing = 10;
-    private static float heightSizeDownSelected = 20;
-    private static Font fontDescription = FontManager.getFontByFontType(FontType.IntensaFuente);
+    public static Font fontDescription = FontManager.getFontByFontType(FontType.IntensaFuente);
     private static float fontSize = 20f;
     public static float fontSpacing = 2f;
 
@@ -126,7 +130,7 @@ public class StatusEffectUi : Entity
         List<Rect> effectsArrea = this.getEffectsArrea();
 
         // draw arrow effect selected (and description).
-        if (this.isEffectSelected)
+        if (this.isEffectSelected && this.isWithDetail)
         {
             // draw arrow left/right.
             Rect arrowSource = spriteEffect.getSpriteTileBySpriteType(SpriteType.StatusEffect_arrowLeftStatusEffect).getRectSource();
@@ -137,7 +141,7 @@ public class StatusEffectUi : Entity
                     source: arrowSource,
                     dest: effectsArrea[effectsArrea.Count - 2],
                     origine,
-                    rotate,
+                    0,
                     Raylib_cs.Color.White
                 );
             }
@@ -149,7 +153,7 @@ public class StatusEffectUi : Entity
                     source: arrowSource,
                     dest: effectsArrea[effectsArrea.Count - 1],
                     origine,
-                    rotate,
+                    0,
                     Raylib_cs.Color.White
                 );
             }
@@ -193,7 +197,7 @@ public class StatusEffectUi : Entity
                 source: spriteEffect.getSpriteTileBySpriteType(SpriteType.StatusEffect_BGStatusEffect).getRectSource(),
                 dest: currentRect,
                 origin: origine,
-                rotation: rotate,
+                rotation: 0,
                 Raylib_cs.Color.White
             );
             Raylib_cs.Raylib.DrawTexturePro( // draw effect.
@@ -249,7 +253,7 @@ public class StatusEffectUi : Entity
         List<Rect> effectsArrea = getEffectsArrea();
 
         // click arrow left/right.
-        if (this.isEffectSelected)
+        if (this.isEffectSelected && this.isWithDetail)
         {
             // verify match click both arrow.
             bool isClickArrowLeft = ColideManager.isPosIsInRect(
@@ -294,11 +298,13 @@ public class StatusEffectUi : Entity
             // select/unselect effect.
             if (this.indexEffectSelected == i)
             {
+                this.unClickOnEffect(this.listEffect[i], isLeftClick);
                 this.resetSelection();
                 this.updateGeometryTriggerBasedOnList();
             }
             else
             {
+                this.clickOnEffect(this.listEffect[i], isLeftClick);
                 this.indexEffectSelected = i;
                 this.updateGeometryTriggerBasedOnList();
             }
@@ -306,7 +312,6 @@ public class StatusEffectUi : Entity
             return;
 
         }
-
 
     }
 
@@ -374,11 +379,14 @@ public class StatusEffectUi : Entity
     }
     private void getButtonArea(ref Vector posStart, ref Rect? buttonLeft, ref Rect? buttonRight, Vector statusEffectSizeScaled)
     {
-        Vector arrowLeftSizeScaled = arrowLeftSize * this.scale.y * CanvasManager.scaleCanvas;
         float heightSizeDownSelectedScaled = heightSizeDownSelected * this.scale.y * CanvasManager.scaleCanvas;
-        float heightSizeSpacingScaled = heightSizeSpacing * this.scale.y * CanvasManager.scaleCanvas;
-
         posStart.y += heightSizeDownSelectedScaled; // replace down effect area.
+        
+        if (!this.isWithDetail)
+            return;
+
+        Vector arrowLeftSizeScaled = arrowLeftSize * this.scale.y * CanvasManager.scaleCanvas;
+        float heightSizeSpacingScaled = heightSizeSpacing * this.scale.y * CanvasManager.scaleCanvas;
 
         float posStartYButton = (
             statusEffectSizeScaled.y + heightSizeDownSelectedScaled +

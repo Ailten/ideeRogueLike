@@ -144,7 +144,7 @@ public class RunHudLayer : Layer
     public void setCardSelectedToMenuCardUi(Card? cardSelected)
     {
         foreach (Entity e in elementsInMenuCardUi){
-            (e as CardDetails)?.setListCard(cardSelected);
+            (e as CardDetails)?.setCard(cardSelected);
         }
     }
     public void selectCardOnListToMenuCardUi(Card cardSelected)
