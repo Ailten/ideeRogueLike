@@ -23,6 +23,8 @@ class Program
     // add status effect copy the status effect at the first position.
     // add status effect copy the status effect at right position. (re-find index by match id, and pick the next one, and redirect all event).
     // add status effect pick one more card at start turn.
+    // add status effect +1 choise in special room.
+    // add status effect +1 pick card by turn.
 
 
     // make win/loose screen (end run).

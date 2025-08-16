@@ -338,9 +338,18 @@ public class Character : Entity
         this.decreaseAP(cardPlay.APCost);
 
         if (cardPlay.cardEdition == CardEdition.Cracked)
-            this.deck.destroyCardFromHand(indexCardFromHand);
+            this.destroyACrackedCard(indexCardFromHand);
         else
             this.deck.pushCardFromHandIntoCimetier(indexCardFromHand);
+    }
+    public void destroyACrackedCard(int indexCardFromHand)
+    {
+        bool isDestroyCard = true;
+
+        // TODO : apply effects.
+
+        if(isDestroyCard)
+            this.deck.destroyCardFromHand(indexCardFromHand);
     }
 
 

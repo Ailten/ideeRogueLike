@@ -4,7 +4,7 @@ public class CharacterKingRock : CharacterMob
     public CharacterKingRock(Vector posIndexCel) : base(SpriteType.Character_KingRock, posIndexCel)
     {
         //IA logic.
-        this.logicState.Add(LogicState.chase_or_firstAttireInLine);
+        this.logicState.Add(LogicState.chase_or_firstAttire);
         this.logicState.Add(LogicState.firstHit);
         this.logicState.Add(LogicState.skipTurn);
 
