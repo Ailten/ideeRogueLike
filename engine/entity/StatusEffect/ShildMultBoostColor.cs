@@ -1,7 +1,7 @@
 
 public class ShildMultBoostColor : StatusEffect
 {
-    private CardColor color;
+    public CardColor color;
     private float shildMult;
 
     public ShildMultBoostColor(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, CardColor color, float shildMult) :

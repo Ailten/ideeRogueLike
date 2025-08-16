@@ -1,7 +1,7 @@
 
 public class DamageMultBoostColor : StatusEffect
 {
-    private CardColor color;
+    public CardColor color;
     private float damageMult;
 
     public DamageMultBoostColor(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, CardColor color, float damageMult) :

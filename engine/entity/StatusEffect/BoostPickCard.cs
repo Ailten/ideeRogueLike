@@ -1,0 +1,42 @@
+
+public class BoostPickCard : StatusEffect
+{
+    private int cardPickBoost;
+
+    public BoostPickCard(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1, int cardPickBoost = 1) :
+    base(SpriteType.StatusEffect_BoostChooseSpecialRoom, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
+    {
+        this.cardPickBoost = cardPickBoost;
+        this.getCharacterWhoHasEffect.deck.pickCountByTurn += cardPickBoost;
+    }
+
+
+    public override string getDescription()
+    {
+        return (
+            $"- {this.getName()} :\n" +
+            $"ogmente le nombre de carte piochee de {this.cardPickBoost}.\n" +
+            $"la pioche s effectue au debut du tour.\n" +
+            this.getDescriptionTurn()
+        );
+    }
+    protected override string getName()
+    {
+        return $"Pioche cartes";
+    }
+    public override bool isAMalus()
+    {
+        return this.cardPickBoost < 0;
+    }
+    
+
+    public override void eventWhenStatusEffectDisapear(
+        bool isEndLifeEffect = false,
+        bool isEndOfFight = false,
+        bool isCharacterWhoHasEffectDie = false,
+        bool isCharacterWhoApplyEffectDie = false)
+    {
+        
+        this.getCharacterWhoHasEffect.deck.pickCountByTurn -= this.cardPickBoost; // cancel effect.
+    }
+}

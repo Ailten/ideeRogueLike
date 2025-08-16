@@ -142,12 +142,17 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_DamageAddBoostShiny, new Vector(384, 127), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_APBoost, new Vector(448, 127), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_APWhenHit, new Vector(0, 191), new Vector(63, 63)); // (l2).
+        s.addSpriteType(SpriteType.StatusEffect_HPBoost, new Vector(64, 191), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_BoostIntoInvoke, new Vector(128, 191), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostRed, new Vector(192, 191), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostBlue, new Vector(256, 191), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostGreen, new Vector(320, 191), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostShiny, new Vector(384, 191), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_APBoost, new Vector(448, 191), new Vector(63, 63));
-        s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostRed, new Vector(192, 255), new Vector(63, 63)); // (l3).
+        s.addSpriteType(SpriteType.StatusEffect_BoostChooseSpecialRoom, new Vector(0, 255), new Vector(63, 63)); // (l3).
+        s.addSpriteType(SpriteType.StatusEffect_BoostPickCard, new Vector(64, 255), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_MoneyMultiplyDamage, new Vector(128, 255), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostRed, new Vector(192, 255), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostBlue, new Vector(256, 255), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostGreen, new Vector(320, 255), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostShiny, new Vector(384, 255), new Vector(63, 63));

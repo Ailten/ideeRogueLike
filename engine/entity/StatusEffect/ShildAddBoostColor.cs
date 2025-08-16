@@ -1,7 +1,7 @@
 
 public class ShildAddBoostColor : StatusEffect
 {
-    private CardColor color;
+    public CardColor color;
     private int shildBoost;
 
 

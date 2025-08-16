@@ -123,6 +123,8 @@ public class StatusEffect
     public virtual void eventWhenTargetTakeDamage(ref int atk, ref Character? characterMakeAtk, ref PackageRefCard? refCard) { }
     // event call when a fight end.
     public virtual void eventWhenPlayerWinFight() { }
+    // event call when make an invoke.
+    public virtual void eventWhenMakeAnInvoke(ref Character newInvoke) { }
 
 
 

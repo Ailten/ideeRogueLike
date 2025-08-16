@@ -17,21 +17,15 @@ class Program
 
     // add malus effect (like card play has one chance on 20 to become cracked) (and one chance on 10 to cast as shiny). -> Commune.
     // add malus effect (at eatch fight end, one chance on 20 to drop a status effect) (and one chance on 20 to duplicate a status effect). -> Commun.
-    // add status effect resistance card color.
-    // add status boost HP.
-    // add status boost Invoke (HP, AP, damage[all color at once], resistance[all]).
     // add status effect copy the status effect at the first position.
     // add status effect copy the status effect at right position. (re-find index by match id, and pick the next one, and redirect all event).
-    // add status effect pick one more card at start turn.
-    // add status effect +1 choise in special room.
-    // add status effect +1 pick card by turn.
-
+    
 
     // make win/loose screen (end run).
 
 
     // make a methode in statusEffect, override to say if a status effect is a malus (for switch background sprite as red one).
-    
+
 
     // debug batte bulle, blaca siable, darunya neko, lune allier.
     // debug card explo, splash, flame, rock.

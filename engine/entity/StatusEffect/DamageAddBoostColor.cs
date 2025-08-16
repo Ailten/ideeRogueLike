@@ -1,7 +1,7 @@
 
 public class DamageAddBoostColor : StatusEffect
 {
-    private CardColor color;
+    public CardColor color;
     private int damageBoost;
 
 

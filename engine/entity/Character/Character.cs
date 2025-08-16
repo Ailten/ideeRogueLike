@@ -319,9 +319,10 @@ public class Character : Entity
     // invoke a character.
     public void invokeACharacter(Character newInvoke)
     {
-        // todo: status effects when invoke.
-
         TurnManager.addCharacterNextTo(newInvoke, this);
+
+        // apply status effects.
+        this.statusEffects.ForEach(e => e.eventWhenMakeAnInvoke(ref newInvoke));
     }
 
 
