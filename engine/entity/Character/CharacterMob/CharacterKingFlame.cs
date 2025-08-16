@@ -5,7 +5,7 @@ public class CharacterKingFlame : CharacterMob
     {
         //IA logic.
         this.logicState.Add(LogicState.chase);
-        this.logicState.Add(LogicState.firstHit);
+        this.logicState.Add(LogicState.firstCardPlayableOponent);
         this.logicState.Add(LogicState.skipTurn);
 
         //stats.

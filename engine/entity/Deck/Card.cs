@@ -14,15 +14,22 @@ public struct Card
     private static int maxEffectByCard = 5;
     public string getPorteeToUseStr
     {
-        get { return Math.Round(distanceToUse.x).ToString() + "~" + Math.Round(distanceToUse.y).ToString(); }
+        get {
+            string min = Math.Round(distanceToUse.x).ToString();
+            string max = Math.Round(distanceToUse.y).ToString();
+            string isLine = (isInLine ? "\nen ligne" : "");
+            return $"{min}~{max}{isLine}";
+        }
     }
+
+    public bool isInLine;
 
     public uint idCard;
     private static uint idCardCount = 0;
 
 
     //default constructor.
-    public Card(SpriteType cardIllu, CardColor? cardColor = null, CardEdition cardEdition = CardEdition.Default, int APCost = 0, Vector distanceToUse = new(), List<KeyValuePair<EffectCard, int>>? effects = null)
+    public Card(SpriteType cardIllu, CardColor? cardColor = null, CardEdition cardEdition = CardEdition.Default, int APCost = 0, Vector distanceToUse = new(), List<KeyValuePair<EffectCard, int>>? effects = null, bool isInLine = false)
     {
         this.cardIllu = cardIllu;
         this.cardColor = cardColor ?? StaticCardColor.getRandomColor();
@@ -30,12 +37,13 @@ public struct Card
         this.APCost = APCost;
         this.distanceToUse = distanceToUse;
         this.effects = effects ?? new();
+        this.isInLine = isInLine;
         //size card : 219, 322;
         this.idCard = idCardCount++;
     }
 
     //constructor with single effect.
-    public Card(SpriteType cardIllu, CardColor? cardColor = null, CardEdition cardEdition = CardEdition.Default, int APCost = 0, Vector distanceToUse = new(), KeyValuePair<EffectCard, int>? effect = null)
+    public Card(SpriteType cardIllu, CardColor? cardColor = null, CardEdition cardEdition = CardEdition.Default, int APCost = 0, Vector distanceToUse = new(), KeyValuePair<EffectCard, int>? effect = null, bool isInLine = false)
     {
         this.cardIllu = cardIllu;
         this.cardColor = cardColor ?? StaticCardColor.getRandomColor();
@@ -43,6 +51,7 @@ public struct Card
         this.APCost = APCost;
         this.distanceToUse = distanceToUse;
         this.effects = (effect == null ? new() : new() { effect ?? throw new Exception("Card effect is null !") });
+        this.isInLine = isInLine;
         //size card : 219, 322;
         this.idCard = idCardCount++;
     }
@@ -180,6 +189,12 @@ public struct Card
             spacing: fontSpacingText,
             Raylib_cs.Color.Black
         );
+
+        // draw text (use in line only).
+        if (this.isInLine)
+        {
+            // TODO : (temporary set on distToUse print).
+        }
 
         // draw text (name card).
         text = this.cardIllu.getCardName();

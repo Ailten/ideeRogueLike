@@ -4,14 +4,14 @@ public class CharacterKingRock : CharacterMob
     public CharacterKingRock(Vector posIndexCel) : base(SpriteType.Character_KingRock, posIndexCel)
     {
         //IA logic.
-        this.logicState.Add(LogicState.chase); // TODO : chase or attire.
+        this.logicState.Add(LogicState.chase_or_firstAttireInLine);
         this.logicState.Add(LogicState.firstHit);
         this.logicState.Add(LogicState.skipTurn);
 
         //stats.
         this.MPmax = 1;
         this.MP = MPmax;
-        this.APmax = 2;
+        this.APmax = 3;
         this.AP = APmax;
         this.HPmax = 15;
         this.HP = HPmax;
@@ -37,6 +37,18 @@ public class CharacterKingRock : CharacterMob
             amountOfCardAdd: 1,
             isSameColor: true
         );
-        // TODO : card attire.
+        this.deck.addCardToDeck(
+            new Card(
+                cardIllu: SpriteType.CardImg_BlackHole,
+                cardColor: CardColor.Green,
+                cardEdition: CardEdition.Default,
+                APCost: 1,
+                distanceToUse: new(2, 3),
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.Attire, 2),
+                isInLine: true
+            ),
+            amountOfCardAdd: 1,
+            isSameColor: true
+        );
     }
 }

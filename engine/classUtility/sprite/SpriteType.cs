@@ -103,6 +103,7 @@ public enum SpriteType
     CardImg_Flame,
     CardImg_Rock,
     CardImg_LuneAllier,
+    CardImg_BlackHole,
     CardImg_Barbak,
     CardImg_AxeOLoot,
     CardImg_BatteBulle,
@@ -186,6 +187,8 @@ public static class StaticSpriteType
                 return ("Une explosion.");
             case (SpriteType.CardImg_Drama):
                 return ("Vous feriez mieu de ne pas jouer cette carte.");
+            case (SpriteType.CardImg_BlackHole):
+                return ("Attire la cible vers le lanceur.");
                 
             default:
                 return "";
@@ -223,6 +226,8 @@ public static class StaticSpriteType
                 return ("Explsur");
             case (SpriteType.CardImg_Drama):
                 return ("Drama");
+            case (SpriteType.CardImg_BlackHole):
+                return ("Trou Noir");
 
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.

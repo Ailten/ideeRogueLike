@@ -16,6 +16,7 @@ public enum EffectCard
     InvokeDarunyaNeko, //invoque a darunya neko.
     InvokeLuneAllier, //invoque a lune allier.
     SelfKill, //instant kill the launcher.
+    Attire, //attire target to the launcher.
 }
 
 
@@ -53,6 +54,8 @@ public static class StaticEffectCard
                 return "Invoque Lune Allier";
             case (EffectCard.SelfKill):
                 return "Suicide";
+            case (EffectCard.Attire):
+                return "Attire";
                 
             default:
                 return "No name";
@@ -135,6 +138,10 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     "tue le lanceur."
                 );
+            case (EffectCard.Attire):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"attire la cible de {value} case vers le lanceur."
+                );
 
             default:
                 return "cette effet n'a pas de description.";
@@ -160,13 +167,13 @@ public static class StaticEffectCard
                 characterLauncher.giveShild(characterTarget, effectValue, refCard);
                 return;
 
-            case(EffectCard.Heal):
+            case (EffectCard.Heal):
                 if (characterTarget == null)
                     return;
                 characterLauncher.giveHeal(characterTarget, effectValue, refCard);
                 return;
 
-            case(EffectCard.MPHit):
+            case (EffectCard.MPHit):
                 int damage = characterLauncher.MP * effectValue;
                 characterLauncher.decreaseMP(characterLauncher.MP);
                 if (characterTarget == null)
@@ -174,7 +181,7 @@ public static class StaticEffectCard
                 characterLauncher.makeDamage(characterTarget, damage, refCard);
                 return;
 
-            case(EffectCard.Burn):
+            case (EffectCard.Burn):
                 if (characterTarget == null)
                     return;
                 characterTarget.statusEffects.Add(new Burn(
@@ -185,7 +192,7 @@ public static class StaticEffectCard
                 ));
                 return;
 
-            case(EffectCard.MoneyLoot):
+            case (EffectCard.MoneyLoot):
                 if (characterTarget == null)
                     return;
                 characterTarget.statusEffects.Add(new MoneyLoot(
@@ -196,13 +203,19 @@ public static class StaticEffectCard
                 ));
                 return;
 
-            case(EffectCard.Push):
+            case (EffectCard.Push):
                 if (characterTarget == null)
                     return;
-                Vector directionPush = characterTarget.indexPosCel - characterLauncher.indexPosCel;
-                directionPush.x = Math.Clamp(directionPush.x, -1f, 1f);
+                Vector directionPush = characterTarget.indexPosCel - characterLauncher.indexPosCel; // get dif.
+                int directionPushXAbs = (int)Math.Abs(directionPush.x); // take only the axe farest (stay both if diago).
+                int directionPushYAbs = (int)Math.Abs(directionPush.y);
+                if (directionPushXAbs > directionPushYAbs)
+                    directionPush.y = 0;
+                else if (directionPushXAbs < directionPushYAbs)
+                    directionPush.x = 0;
+                directionPush.x = Math.Clamp(directionPush.x, -1f, 1f); //c lamp for stay at 1 max.
                 directionPush.y = Math.Clamp(directionPush.y, -1f, 1f);
-                for (int i = effectValue; i >= 0; i--)
+                for (int i = effectValue; i >= 0; i--) // aply many push one.
                 {
                     Vector indexPushed = characterTarget.indexPosCel + directionPush;
                     Character? obstacle = TurnManager.getCharacterAtIndexPos(indexPushed);
@@ -275,6 +288,34 @@ public static class StaticEffectCard
             case (EffectCard.SelfKill):
                 characterLauncher.death(characterLauncher, refCard);
                 return;
+
+            case (EffectCard.Attire):
+                if (characterTarget == null)
+                    return;
+                Vector directionMagnet = characterLauncher.indexPosCel - characterTarget.indexPosCel; // get dif.
+                int directionMagnetXAbs = (int)Math.Abs(directionMagnet.x); // take only the axe farest (stay both if diago).
+                int directionMagnetYAbs = (int)Math.Abs(directionMagnet.y);
+                if (directionMagnetXAbs > directionMagnetYAbs)
+                    directionMagnet.y = 0;
+                else if (directionMagnetXAbs < directionMagnetYAbs)
+                    directionMagnet.x = 0;
+                directionMagnet.x = Math.Clamp(directionMagnet.x, -1f, 1f); //c lamp for stay at 1 max.
+                directionMagnet.y = Math.Clamp(directionMagnet.y, -1f, 1f);
+                for (int i = effectValue; i >= 0; i--) // aply many magnet one.
+                {
+                    Vector indexMagnet = characterTarget.indexPosCel + directionMagnet;
+                    Character? obstacle = TurnManager.getCharacterAtIndexPos(indexMagnet);
+                    Cel? celDest = RunManager.getCel(indexMagnet);
+                    bool isMagnetOnAnObstacle = (obstacle != null || celDest == null);
+                    if (isMagnetOnAnObstacle)
+                    {
+                        // no damage maked when attire on an obstacle.
+                        break;
+                    }
+                    characterTarget.moveTo(indexMagnet);
+                }
+                return;
+
 
             default:
                 throw new Exception($"useACard find a EffectCard with no effect {effectCard} !");

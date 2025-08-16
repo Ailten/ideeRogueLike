@@ -110,11 +110,12 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_WoodenShild, new Vector(440, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_DarunyaNeko, new Vector(660, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Drama, new Vector(880, 323), new Vector(219, 125));
-        s.addSpriteType(SpriteType.CardImg_Barbak, new Vector(0, 449), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Barbak, new Vector(0, 449), new Vector(219, 125)); // (l2).
         s.addSpriteType(SpriteType.CardImg_Flame, new Vector(220, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Rock, new Vector(440, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_LuneAllier, new Vector(660, 449), new Vector(219, 125));
-        s.addSpriteType(SpriteType.CardImg_AxeOLoot, new Vector(0, 575), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_BlackHole, new Vector(880, 449), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_AxeOLoot, new Vector(0, 575), new Vector(219, 125)); // (l3).
         s.addSpriteType(SpriteType.CardImg_BatteBulle, new Vector(220, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BlacASiable, new Vector(440, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Explsur, new Vector(660, 575), new Vector(219, 125));

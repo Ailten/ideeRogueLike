@@ -11,7 +11,6 @@ class Program
     // add special room. -> duplicate.
     // add special room. -> boost value effect card.
     // edit the random atribution of special room for all stage (when all special room maked).
-    // add boss first floor. -> king Rock.
 
     // add details mobs when click on it, menu.
 

@@ -304,6 +304,11 @@ public class Cel : Entity
             Math.Abs(caracterWhoUseCard.indexPosCel.y - this.indexPosCel.y)
         );
         Vector cardPortee = card.distanceToUse;
-        return (dist >= cardPortee.x && dist <= cardPortee.y);
+        bool isInRightDist = (dist >= cardPortee.x && dist <= cardPortee.y);
+        bool isInRightLine = (card.isInLine) ? (
+            caracterWhoUseCard.indexPosCel.x == this.indexPosCel.x ||
+            caracterWhoUseCard.indexPosCel.y == this.indexPosCel.y
+        ): true;
+        return (isInRightDist && isInRightLine);
     }
 }

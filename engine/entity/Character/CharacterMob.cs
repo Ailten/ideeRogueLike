@@ -98,6 +98,16 @@ public class CharacterMob : Character
             case (LogicState.firstCardPlayableOponent):
                 this.logicStateFirstCardPlayableOponent();
                 break;
+            case (LogicState.firstAttire):
+                this.logicStateFirstAttire();
+                break;
+
+            case (LogicState.chase_or_firstAttire):
+                if (RandomManager.rng.Next(2) == 0)
+                    this.logicStateChase();
+                else
+                    this.logicStateFirstAttire();
+                break;
 
             default:
                 throw new Exception("doLogicState has no execution to this enum !");
@@ -173,15 +183,9 @@ public class CharacterMob : Character
             if (!currentCard.effects.Select(e => e.Key).Contains(EffectCard.Hit)) //card has no effect "hit".
                 continue;
 
-            Character? target = TurnManager.getAllCharacters().Where(c =>
-            {
-                if (!c.isInRedTeam) //skip other mobs.
-                    return false;
-                int dist = this.getDistFrom(c);
-                if (dist < currentCard.distanceToUse.x || dist > currentCard.distanceToUse.y) //to close or to fare for use this card.
-                    return false;
-                return true;
-            }).OrderBy(c => c.isAPlayer).FirstOrDefault();
+            Character? target = TurnManager.getAllCharacters()
+                .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true))
+                .OrderBy(c => c.isAPlayer).FirstOrDefault();
             if (target == null)
                 continue;
 
@@ -202,15 +206,9 @@ public class CharacterMob : Character
             if (currentCard.distanceToUse.x == 0) //is a cart usable on it self.
                 continue;
 
-            Character? target = TurnManager.getAllCharacters().Where(c =>
-            {
-                if (!c.isInRedTeam) //skip other mobs.
-                    return false;
-                int dist = this.getDistFrom(c);
-                if (dist < currentCard.distanceToUse.x || dist > currentCard.distanceToUse.y) //to close or to fare for use this card.
-                    return false;
-                return true;
-            }).OrderBy(c => c.isAPlayer).FirstOrDefault();
+            Character? target = TurnManager.getAllCharacters()
+                .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true))
+                .OrderBy(c => c.isAPlayer).FirstOrDefault();
             if (target == null)
                 continue;
 
@@ -219,6 +217,43 @@ public class CharacterMob : Character
         }
 
         this.nextLogicState(); //move to next state.
+    }
+    private void logicStateFirstAttire()
+    {
+        for (int i = 0; i < this.deck.cardsInHand.Count; i++)
+        {
+            Card currentCard = this.deck.cardsInHand[i];
+
+            if (currentCard.APCost > this.AP) //cost to mush ap.
+                continue;
+            if (!currentCard.effects.Select(e => e.Key).Contains(EffectCard.Attire)) //card has no effect "hit".
+                continue;
+
+            Character? target = TurnManager.getAllCharacters()
+                .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true))
+                .OrderBy(c => c.isAPlayer).FirstOrDefault();
+            if (target == null)
+                continue;
+
+            this.useACardFromHand(i, target.indexPosCel); //play the card.
+            break;
+        }
+
+        this.nextLogicState(); //move to next state.
+    }
+
+
+    // return true if a card can be play on this character.
+    private bool isCardCanBePlayOnThisCharacter(Card card, Character target, bool isFocusARedTeam)
+    {
+        if (target.isInRedTeam ^ isFocusARedTeam) //skip other mobs.
+            return false;
+        int dist = this.getDistFrom(target);
+        if (dist < card.distanceToUse.x || dist > card.distanceToUse.y) //to close or to fare for use this card.
+            return false;
+        if (card.isInLine && !this.isAlignTo(target.indexPosCel)) // skip if not aligned.
+            return false;
+        return true;
     }
 
 }

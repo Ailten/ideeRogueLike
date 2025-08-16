@@ -394,6 +394,10 @@ public class Character : Entity
             (int)Math.Abs(this.indexPosCel.y - characterB.indexPosCel.y)
         );
     }
+    public bool isAlignTo(Vector indexPos)
+    {
+        return this.indexPosCel.x == indexPos.x || this.indexPosCel.y == indexPos.y;
+    }
 
 
     // remove a status effect.

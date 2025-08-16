@@ -51,6 +51,15 @@ public static class CardManager
             distanceToUse: new(1, 3),
             effect: new KeyValuePair<EffectCard, int>(EffectCard.TrapMp, 1)
         ));
+        communCard.Add(new Card(
+            cardIllu: SpriteType.CardImg_BlackHole,
+            cardColor: CardColor.Blue,
+            cardEdition: CardEdition.Default,
+            APCost: 1,
+            distanceToUse: new(2, 4),
+            effect: new KeyValuePair<EffectCard, int>(EffectCard.Attire, 1),
+            isInLine: true
+        ));
         communCard.AddRange( // push card commun from succes into pool commun card.
             SaveManager.getSave.succes.Where(s => !s.isRareCard())
                 .Select(s => s.getCardUnlocked())
