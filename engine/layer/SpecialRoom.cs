@@ -17,7 +17,17 @@ public class SpecialRoom : Layer
         CardMenuBGUi bg = new CardMenuBGUi(this.idLayer);
         bg.pos = new(240, 0);
 
-        // TODO : X button to exit special room menu.
+        // X button to exit special room menu.
+        CheckBoxUi buttonExit = new CheckBoxUi(idLayer); // button exit card menu.
+        buttonExit.isActive = false;
+        buttonExit.zIndex = 3400;
+        buttonExit.scale = new(0.5f, 0.5f);
+        buttonExit.pos = new(1007, 33);
+        buttonExit.eventClick = () =>
+        {
+            buttonExit.switchIsOn(); // stay on "X".
+            SpecialRoom.layer.unActive(); // close the layer special room.
+        };
 
         switch (currentRoom.roomType)
         {
@@ -71,7 +81,12 @@ public class SpecialRoom : Layer
                     List<Card> listChoose = new();
                     for (int i = 0; i < this.amountChoise; i++)
                     {
-                        listChoose.Add(CardManager.generateARandomCard());
+                        Card cardGenerate = CardManager.generateARandomCard();
+                        
+                        bool isCardRecto = RandomManager.rng.Next(1000) < 100;
+                        cardGenerate.isRecto = isCardRecto;
+
+                        listChoose.Add(cardGenerate);
                     }
 
                     // details card for select a card.
@@ -96,6 +111,7 @@ public class SpecialRoom : Layer
                     this.validateChoise = () =>
                     {
                         Card cardSelected = cardDetails.getCard() ?? throw new Exception("cardSelected is null !");
+                        cardSelected.isRecto = false; // force return card if recto (masked).
                         TurnManager.getMainPlayerCharacter().deck.addCardToDeck(cardSelected);
                     };
                 }
