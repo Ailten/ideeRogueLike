@@ -19,9 +19,11 @@ class Program
     // add malus effect (at eatch fight end, one chance on 20 to drop a status effect) (and one chance on 20 to duplicate a status effect). -> Commun.
     // add status effect copy the status effect at the first position.
     // add status effect copy the status effect at right position. (re-find index by match id, and pick the next one, and redirect all event).
-    
+
 
     // make win/loose screen (end run).
+    
+    // !!! debug special room.
 
 
     // make a methode in statusEffect, override to say if a status effect is a malus (for switch background sprite as red one).

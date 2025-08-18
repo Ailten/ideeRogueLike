@@ -4,7 +4,7 @@ public class ShildMultBoostShiny : StatusEffect
     private float shildMult;
 
     public ShildMultBoostShiny(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, float shildMult) :
-    base(SpriteType.StatusEffect_DamageMultiplyBoostShiny, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
+    base(SpriteType.StatusEffect_ShildMultiplyBoostShiny, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.shildMult = shildMult;
     }
@@ -12,7 +12,7 @@ public class ShildMultBoostShiny : StatusEffect
 
     public override string getDescription()
     {
-        int purcent = (int)((1f - this.shildMult) * 100) * -1;
+        int purcent = (int)((1f - this.shildMult) * 100);
         return (
             $"- {this.getName()} :\n" +
             $"multiplie les degats subit par des cartes Brillante.\n" +

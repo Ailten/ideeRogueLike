@@ -7,7 +7,9 @@ public class APBoost : StatusEffect
     base(SpriteType.StatusEffect_APBoost, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.APUp = APUp;
-
+    }
+    public override void ActivateEffect()
+    {
         this.getCharacterWhoHasEffect.AP += this.APUp;
         this.getCharacterWhoHasEffect.APmax += this.APUp;
     }

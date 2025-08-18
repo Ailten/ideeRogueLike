@@ -7,11 +7,12 @@ public class BoostChooseSpecialRoom : StatusEffect
     public BoostChooseSpecialRoom(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1, int chooseBoost = 1) :
     base(SpriteType.StatusEffect_BoostChooseSpecialRoom, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
-        if (!this.getCharacterWhoHasEffect.isAPlayer)
-            return;
-
         this.chooseBoost = chooseBoost;
-        SpecialRoom.layer.amountChoise += chooseBoost;
+    }
+    public override void ActivateEffect()
+    {
+        if (this.getCharacterWhoHasEffect.isAPlayer)
+            SpecialRoom.layer.amountChoise += chooseBoost;
     }
 
 
@@ -39,6 +40,7 @@ public class BoostChooseSpecialRoom : StatusEffect
         bool isCharacterWhoHasEffectDie = false,
         bool isCharacterWhoApplyEffectDie = false)
     {
-        SpecialRoom.layer.amountChoise -= chooseBoost; // cancel effect.
+        if (this.getCharacterWhoHasEffect.isAPlayer)
+            SpecialRoom.layer.amountChoise += chooseBoost; // cancel effect.
     }
 }

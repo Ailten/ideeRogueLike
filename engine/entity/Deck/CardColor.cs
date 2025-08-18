@@ -34,16 +34,18 @@ public static class StaticCardColor
         return cardColor == cardColorAsk;
     }
 
-    public static CardColor getRandomColor(bool isIncludePolyChrome = false, int purcentChanceOfBeingPolyChrome = 12)
+    public static CardColor getRandomColor(bool isIncludePolyChrome = false, int purcentChanceOfBeingPolyChrome = 12, Random? rng = null)
     {
-        bool isPolyChrome = (!isIncludePolyChrome) ? false : (RandomManager.rng.Next(100) < purcentChanceOfBeingPolyChrome);
+        rng ??= RandomManager.rng;
+
+        bool isPolyChrome = (!isIncludePolyChrome) ? false : (rng.Next(100) < purcentChanceOfBeingPolyChrome);
         if (isPolyChrome)
             return CardColor.PolyChrome;
 
-        int rng = RandomManager.rng.Next(3);
+        int rngNumberForColor = rng.Next(3);
         return (
-            (rng == 0) ? CardColor.Blue :
-            (rng == 1) ? CardColor.Red :
+            (rngNumberForColor == 0) ? CardColor.Blue :
+            (rngNumberForColor == 1) ? CardColor.Red :
             CardColor.Green
         );
     }

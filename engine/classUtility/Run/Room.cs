@@ -433,7 +433,7 @@ public class Room
     // refresh the random object for rng special room.
     public void refreshRngSpecialRoom()
     {
-        this._rngSpecialRoom = new Random(seedSpecialRoom);
+        this._rngSpecialRoom = new Random(this.seedSpecialRoom);
     }
 
 

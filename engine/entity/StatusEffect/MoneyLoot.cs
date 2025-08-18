@@ -7,7 +7,9 @@ public class MoneyLoot : StatusEffect
     base(SpriteType.StatusEffect_MoneyLoot, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.money = money;
-
+    }
+    public override void ActivateEffect()
+    {
         this.getCharacterWhoHasEffect.PO += this.money;
     }
 

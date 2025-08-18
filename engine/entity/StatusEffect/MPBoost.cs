@@ -7,7 +7,9 @@ public class MPBoost : StatusEffect
     base(SpriteType.StatusEffect_MPBoost, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.MPUp = MPUp;
-
+    }
+    public override void ActivateEffect()
+    {
         this.getCharacterWhoHasEffect.MP += this.MPUp;
         this.getCharacterWhoHasEffect.MPmax += this.MPUp;
     }
@@ -16,7 +18,7 @@ public class MPBoost : StatusEffect
     {
         return (
             $"- {this.getName()} :\n" +
-            $"gagne {this.MPUp} point de deplacement.\n"+
+            $"gagne {this.MPUp} point de deplacement.\n" +
             this.getDescriptionTurn()
         );
     }

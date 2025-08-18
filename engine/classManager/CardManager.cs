@@ -91,17 +91,19 @@ public static class CardManager
 
     }
 
-    public static Card generateARandomCard()
+    public static Card generateARandomCard(Random? rng = null)
     {
-        bool isARareCard = (rareCard.Count == 0)? false: RandomManager.rng.Next(1000) < 120;
-        int indexCardPick = RandomManager.rng.Next(
+        rng ??= RandomManager.rng;
+
+        bool isARareCard = (rareCard.Count == 0)? false: rng.Next(1000) < 120;
+        int indexCardPick = rng.Next(
             (isARareCard)? rareCard.Count: communCard.Count
         );
         
         Card output = (isARareCard)? rareCard[indexCardPick]: communCard[indexCardPick];
 
-        output.cardColor = StaticCardColor.getRandomColor(true);
-        output.cardEdition = StaticCardEdition.getRandomEdition(false);
+        output.cardColor = StaticCardColor.getRandomColor(true, rng: rng);
+        output.cardEdition = StaticCardEdition.getRandomEdition(false, rng: rng);
 
         return output;
     }

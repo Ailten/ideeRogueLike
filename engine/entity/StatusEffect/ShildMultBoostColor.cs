@@ -21,7 +21,7 @@ public class ShildMultBoostColor : StatusEffect
 
     public override string getDescription()
     {
-        int purcent = (int)((1f - this.shildMult) * 100) * -1;
+        int purcent = (int)((1f - this.shildMult) * 100);
         return (
             $"- {this.getName()} :\n" +
             $"multiplie les degats subit par des cartes {this.color.getName()}.\n" +

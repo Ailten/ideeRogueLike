@@ -1,19 +1,19 @@
 {
-  "timePlayed": "00:14:26.9196282",
-  "runCount": 5,
-  "damageMaked": 140,
+  "timePlayed": "02:05:04.7503504",
+  "runCount": 16,
+  "damageMaked": 492,
   "healMaked": 0,
-  "shildMaked": 14,
-  "damageTaked": 2,
-  "coinTaked": 53,
+  "shildMaked": 60,
+  "damageTaked": 3,
+  "coinTaked": 172,
   "succes": [],
   "characterKilled": {
-    "Rock": 11,
-    "Flame": 9,
-    "Slime": 12
+    "Rock": 39,
+    "Flame": 33,
+    "Slime": 45
   },
   "cardPlayed": {
-    "WoodenSword": 30,
-    "WoodenShild": 3
+    "WoodenSword": 194,
+    "WoodenShild": 26
   }
 }

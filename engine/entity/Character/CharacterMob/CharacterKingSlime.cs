@@ -20,8 +20,8 @@ public class CharacterKingSlime : CharacterMob
         this.PO = RandomManager.rng.Next(5, 9);
 
         // effects.
-        this.statusEffects.Add(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 0f)); // imune to blue damage.
-        this.statusEffects.Add(new DamageAddByTurn(this.idEntity, -1, -1, CardColor.Blue, 1, 3)); // increase atk by 1 eatch 3 turn.
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 0f)); // imune to blue damage.
+        this.AddStatusEffect(new DamageAddByTurn(this.idEntity, -1, -1, CardColor.Blue, 1, 3)); // increase atk by 1 eatch 3 turn.
 
         //set deck.
         this.deck.pickCountByTurn = 2;

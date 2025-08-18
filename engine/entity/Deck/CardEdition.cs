@@ -24,15 +24,17 @@ public static class StaticCardEdition
         }
     }
 
-    public static CardEdition getRandomEdition(bool isOnlySpecialEdition = false ,int purcentChanceOfBeingSpecialEdition = 12)
+    public static CardEdition getRandomEdition(bool isOnlySpecialEdition = false ,int purcentChanceOfBeingSpecialEdition = 12, Random? rng = null)
     {
-        bool isSpecialEdition = (isOnlySpecialEdition)? true: (RandomManager.rng.Next(100) < purcentChanceOfBeingSpecialEdition);
+        rng ??= RandomManager.rng;
+
+        bool isSpecialEdition = (isOnlySpecialEdition)? true: (rng.Next(100) < purcentChanceOfBeingSpecialEdition);
         if (!isSpecialEdition)
             return CardEdition.Default;
 
-        int rng = RandomManager.rng.Next(2);
+        int rngEdition = rng.Next(2);
         return (
-            (rng == 0)? CardEdition.Cracked:
+            (rngEdition == 0)? CardEdition.Cracked:
             CardEdition.Shinny
         );
     }

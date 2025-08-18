@@ -68,6 +68,10 @@ public class StatusEffect
         this.idEffect = idEffectCount++;
     }
 
+    // active the starting effect (instead of in constructor) when the attribution of a character have an effect.
+    public virtual void ActivateEffect() { }
+
+
     // description of effect.
     public virtual string getDescription()
     {

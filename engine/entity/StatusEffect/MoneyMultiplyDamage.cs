@@ -4,7 +4,7 @@ public class MoneyMultiplyDamage : StatusEffect
     private int purcentDamageByCoint;
 
     public MoneyMultiplyDamage(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife, int purcentDamageByCoint = 1) :
-    base(SpriteType.StatusEffect_DamageMultiplyBoostShiny, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
+    base(SpriteType.StatusEffect_MoneyMultiplyDamage, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.purcentDamageByCoint = purcentDamageByCoint;
     }

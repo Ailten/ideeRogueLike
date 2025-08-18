@@ -40,10 +40,12 @@ public static class StatusEffectManager
 
 
     // generate a random status effect.
-    public static StatusEffect generateARandomEffect(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1)
+    public static StatusEffect generateARandomEffect(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1, Random? rng = null)
     {
-        bool isRare = (rareEffect.Count == 0) ? false : RandomManager.rng.Next(1000) < 120;
-        int indexPick = RandomManager.rng.Next(
+        rng ??= RandomManager.rng;
+
+        bool isRare = (rareEffect.Count == 0) ? false : rng.Next(1000) < 120;
+        int indexPick = rng.Next(
             (isRare) ? rareEffect.Count : communEffect.Count
         );
 

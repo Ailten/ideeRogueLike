@@ -36,12 +36,12 @@ public class Character : Entity
     public List<StatusEffect> statusEffects = new();
     public virtual string getName
     {
-        get{ return getNameOf(this.GetType()); }
+        get { return getNameOf(this.GetType()); }
     }
     public static string getNameOf(Type characterType)
     {
         string typeStr = characterType.ToString();
-        if(!typeStr.StartsWith("Character"))
+        if (!typeStr.StartsWith("Character"))
             throw new Exception("Character.getNameOf parameter is not a class Character !");
         return typeStr.Substring("Character".Length);
     }
@@ -349,7 +349,7 @@ public class Character : Entity
 
         // TODO : apply effects.
 
-        if(isDestroyCard)
+        if (isDestroyCard)
             this.deck.destroyCardFromHand(indexCardFromHand);
     }
 
@@ -410,6 +410,12 @@ public class Character : Entity
     }
 
 
+    // add a status effect.
+    public void AddStatusEffect(StatusEffect newStatusEffect)
+    {
+        newStatusEffect.ActivateEffect();
+        this.statusEffects.Add(newStatusEffect);
+    }
     // remove a status effect.
     public void dropAStatusEffectByIndex(int indexStatuSEffect)
     {

@@ -1,4 +1,5 @@
 
+// class for print a list of status effects at screen.
 public class StatusEffectUi : Entity
 {
     private List<StatusEffect> listEffect = new();
@@ -77,10 +78,20 @@ public class StatusEffectUi : Entity
                 Vector.lerpF(0, widthSizeGeometry, (float)this.indexEffectSelected / this.listEffect.Count) :
                 (statusEffectSize.x + widthSizeSpacing) * this.indexEffectSelected
             );
-            float sizeY = heightSizeDownSelected + heightSizeSpacing + arrowLeftSize.y;
+
+            bool isNoNeedToPrintArrow = this.listEffect.Count == 1;
+            float sizeY = Math.Abs(heightSizeDownSelected);
+            if (!isNoNeedToPrintArrow && this.isWithDetail)
+                sizeY += heightSizeSpacing + arrowLeftSize.y;
+
+            bool isHeightSizeDownSelectedIsNegatif = heightSizeDownSelected < 0f;
+            float posStartY = ((!isHeightSizeDownSelectedIsNegatif) ?
+                statusEffectSize.y:
+                heightSizeDownSelected
+            );
 
             this.geometryTriggerSecond = new Rect( // set geometry trigger second (for click button left/right).
-                new Vector(posStartX, statusEffectSize.y),
+                new Vector(posStartX, posStartY),
                 new Vector(statusEffectSize.x, sizeY)
             );
         }
@@ -163,7 +174,17 @@ public class StatusEffectUi : Entity
             float padding = heightSizeSpacing * this.scale.y * CanvasManager.scaleCanvas;
             Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(fontDescription, textDescription, fontSizeText, fontSpacingText);
             sizeText += padding * (textDescription.Count(c => c == '\n') * 0.5f + 2);
-            float posStartBGTextY = effectsArrea[effectsArrea.Count - 2].posStart.y + effectsArrea[effectsArrea.Count - 2].size.y + padding;
+            bool isHeightSizeDownSelectedIsNegatif = heightSizeDownSelected < 0f;
+            float posStartBGTextY = ((!isHeightSizeDownSelectedIsNegatif) ?
+                effectsArrea[effectsArrea.Count - 2].posStart.y + effectsArrea[effectsArrea.Count - 2].size.y + padding :
+                effectsArrea[effectsArrea.Count - 2].posStart.y - padding - sizeText.y
+            );
+            if (this.listEffect.Count == 1) // re ajust pos Y of description when no arrow print.
+            {
+                posStartBGTextY += (
+                    effectsArrea[effectsArrea.Count - 2].size.y + padding
+                ) * ((!isHeightSizeDownSelectedIsNegatif)? -1: 1);
+            }
             Raylib_cs.Raylib.DrawRectangle( // draw back text.
                 (int)posToDraw.x,
                 (int)posStartBGTextY,
@@ -381,16 +402,21 @@ public class StatusEffectUi : Entity
     {
         float heightSizeDownSelectedScaled = heightSizeDownSelected * this.scale.y * CanvasManager.scaleCanvas;
         posStart.y += heightSizeDownSelectedScaled; // replace down effect area.
-        
+
         if (!this.isWithDetail)
             return;
 
         Vector arrowLeftSizeScaled = arrowLeftSize * this.scale.y * CanvasManager.scaleCanvas;
         float heightSizeSpacingScaled = heightSizeSpacing * this.scale.y * CanvasManager.scaleCanvas;
 
-        float posStartYButton = (
+        bool isHeightSizeDownSelectedIsNegatif = heightSizeDownSelected < 0f;
+
+        float posStartYButton = (!isHeightSizeDownSelectedIsNegatif)? (
             statusEffectSizeScaled.y + heightSizeDownSelectedScaled +
             heightSizeSpacingScaled + CanvasManager.posDecalCanvas.y
+        ): ( // case replace button arrow up when selected height is negatif (to the top).
+            heightSizeDownSelectedScaled - heightSizeSpacingScaled +
+            CanvasManager.posDecalCanvas.y
         );
 
         buttonLeft = new Rect(

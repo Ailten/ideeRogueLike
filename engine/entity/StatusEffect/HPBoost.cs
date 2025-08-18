@@ -7,7 +7,9 @@ public class HPBoost : StatusEffect
     base(SpriteType.StatusEffect_HPBoost, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.HPUp = HPUp;
-
+    }
+    public override void ActivateEffect()
+    {
         this.getCharacterWhoHasEffect.HP += this.HPUp;
         this.getCharacterWhoHasEffect.HPmax += this.HPUp;
     }

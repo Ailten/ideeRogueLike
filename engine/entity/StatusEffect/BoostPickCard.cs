@@ -4,10 +4,13 @@ public class BoostPickCard : StatusEffect
     private int cardPickBoost;
 
     public BoostPickCard(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1, int cardPickBoost = 1) :
-    base(SpriteType.StatusEffect_BoostChooseSpecialRoom, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
+    base(SpriteType.StatusEffect_BoostPickCard, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.cardPickBoost = cardPickBoost;
-        this.getCharacterWhoHasEffect.deck.pickCountByTurn += cardPickBoost;
+    }
+    public override void ActivateEffect()
+    {
+        this.getCharacterWhoHasEffect.deck.pickCountByTurn += this.cardPickBoost;
     }
 
 

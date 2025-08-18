@@ -13,13 +13,14 @@ public class SpecialRoom : Layer
 
         Room currentRoom = RunManager.currentRoom ?? throw new Exception("no current room !");
         currentRoom.refreshRngSpecialRoom();
+        Random rng = currentRoom.rngSpecialRoom;
 
         CardMenuBGUi bg = new CardMenuBGUi(this.idLayer);
         bg.pos = new(240, 0);
 
         // X button to exit special room menu.
         CheckBoxUi buttonExit = new CheckBoxUi(idLayer); // button exit card menu.
-        buttonExit.isActive = false;
+        //buttonExit.setIsOn(false);
         buttonExit.zIndex = 3400;
         buttonExit.scale = new(0.5f, 0.5f);
         buttonExit.pos = new(1007, 33);
@@ -34,7 +35,7 @@ public class SpecialRoom : Layer
             case (RoomType.Room_Chest):
                 this.isCleanSpecialFromRoom = true;
 
-                int rngForTypeChest = currentRoom.rngSpecialRoom.Next(1000);
+                int rngForTypeChest = rng.Next(1000);
                 bool isAnEffectChest = (rngForTypeChest < 330);
 
                 isAnEffectChest = true; // DEBUG.
@@ -44,20 +45,22 @@ public class SpecialRoom : Layer
                     List<StatusEffect> listChoose = new();
                     for (int i = 0; i < this.amountChoise; i++)
                     {
-                        listChoose.Add(StatusEffectManager.generateARandomEffect(TurnManager.getMainPlayerCharacter().idEntity));
+                        listChoose.Add(StatusEffectManager.generateARandomEffect(TurnManager.getMainPlayerCharacter().idEntity, rng: rng));
                     }
 
                     // details effect for select an effect.
                     StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer);
                     statusEffectDetailsUi.pos = new(313, 73); // edit pos.
                     statusEffectDetailsUi.scaleEffectIllu = 2f;
+                    statusEffectDetailsUi.zIndex = 3200;
 
                     StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer);
-                    statusEffetUi.pos = new(380, 5);
+                    statusEffetUi.pos = new(380, 105); // TODO : place elements.
                     statusEffetUi.setWidthSize(720);
                     statusEffetUi.setListEffect(listChoose);
                     statusEffetUi.isWithDetail = false;
                     statusEffetUi.heightSizeDownSelected = -20;
+                    statusEffetUi.zIndex = 3200;
                     statusEffetUi.clickOnEffect = (effectClicked, isLeftClick) =>
                     {
                         statusEffectDetailsUi.setStatusEffect(effectClicked);
@@ -73,7 +76,10 @@ public class SpecialRoom : Layer
                     this.validateChoise = () =>
                     {
                         StatusEffect effectSelected = statusEffectDetailsUi.getStatusEffect() ?? throw new Exception("effectSelected is null !");
-                        TurnManager.getMainPlayerCharacter().statusEffects.Add(effectSelected);
+                        TurnManager.getMainPlayerCharacter().AddStatusEffect(effectSelected);
+
+                        // update UI.
+                        RunHudLayer.layer.statusEffectUi!.setListEffect(TurnManager.getMainPlayerCharacter().statusEffects);
                     };
                 }
                 else
@@ -81,9 +87,9 @@ public class SpecialRoom : Layer
                     List<Card> listChoose = new();
                     for (int i = 0; i < this.amountChoise; i++)
                     {
-                        Card cardGenerate = CardManager.generateARandomCard();
+                        Card cardGenerate = CardManager.generateARandomCard(rng: rng);
                         
-                        bool isCardRecto = RandomManager.rng.Next(1000) < 100;
+                        bool isCardRecto = rng.Next(1000) < 100;
                         cardGenerate.isRecto = isCardRecto;
 
                         listChoose.Add(cardGenerate);
@@ -92,10 +98,12 @@ public class SpecialRoom : Layer
                     // details card for select a card.
                     CardDetails cardDetails = new CardDetails(this.idLayer);
                     cardDetails.pos = new(250, 10);
+                    cardDetails.zIndex = 3200;
 
                     ListCardUi cardsUi = new ListCardUi(this.idLayer);
                     cardsUi.pos = new(250, 388);
                     cardsUi.upCardWhenSelected = 45f;
+                    cardsUi.zIndex = 3200;
                     cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
                     {
                         cardDetails.setCard(cardClicked);
@@ -126,6 +134,7 @@ public class SpecialRoom : Layer
         ButtonUi buttonBack = new ButtonUi(this.idLayer);
         buttonBack.text = "back";
         buttonBack.pos = new(442, 661);
+        buttonBack.zIndex = 3200;
         buttonBack.eventClick = () =>
         {
             SpecialRoom.layer.unActive();
@@ -136,6 +145,7 @@ public class SpecialRoom : Layer
         this.buttonValid.text = "valid";
         this.buttonValid.pos = new(838, 661);
         this.buttonValid.setIsDisabled(true);
+        this.buttonValid.zIndex = 3200;
         this.buttonValid.eventClick = () =>
         {
             // apply choice.
@@ -147,6 +157,11 @@ public class SpecialRoom : Layer
 
             SpecialRoom.layer.unActive();
         };
+
+
+        EntityManager.getEntitiesByIdLayer(this.idLayer).ForEach(e => // DEBUG.
+            Console.WriteLine($"{e.GetType()}: {e.zIndex}")
+        );
 
 
         base.active();

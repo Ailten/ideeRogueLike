@@ -184,7 +184,7 @@ public static class StaticEffectCard
             case (EffectCard.Burn):
                 if (characterTarget == null)
                     return;
-                characterTarget.statusEffects.Add(new Burn(
+                characterTarget.AddStatusEffect(new Burn(
                     characterTarget.idEntity,
                     characterLauncher.idEntity,
                     effectValue,
@@ -195,7 +195,7 @@ public static class StaticEffectCard
             case (EffectCard.MoneyLoot):
                 if (characterTarget == null)
                     return;
-                characterTarget.statusEffects.Add(new MoneyLoot(
+                characterTarget.AddStatusEffect(new MoneyLoot(
                     characterTarget.idEntity,
                     characterLauncher.idEntity,
                     0,
