@@ -20,13 +20,11 @@ public class SpecialRoom : Layer
 
         // X button to exit special room menu.
         CheckBoxUi buttonExit = new CheckBoxUi(idLayer); // button exit card menu.
-        //buttonExit.setIsOn(false);
         buttonExit.zIndex = 3400;
         buttonExit.scale = new(0.5f, 0.5f);
         buttonExit.pos = new(1007, 33);
         buttonExit.eventClick = () =>
         {
-            buttonExit.switchIsOn(); // stay on "X".
             SpecialRoom.layer.unActive(); // close the layer special room.
         };
 
@@ -60,9 +58,10 @@ public class SpecialRoom : Layer
                     // details effect for select an effect.
                     StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer);
                     float centerY = Vector.lerpF(10, 515, 0.5f);
-                    statusEffectDetailsUi.pos = new(313, centerY); // edit pos.
+                    statusEffectDetailsUi.pos = new(442, centerY);
                     statusEffectDetailsUi.scaleEffectIllu = 2f;
                     statusEffectDetailsUi.zIndex = 3200;
+                    statusEffectDetailsUi.isPrintDetails = true;
 
                     StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer);
                     float sizeX = ((listChoose.Count - 1) * 73) + 63;

@@ -3,6 +3,7 @@ public class StatusEffectDetailsUi : Entity
 {
     private StatusEffect? effectSelected;
     public float scaleEffectIllu = 1f;
+    public bool isPrintDetails = false;
 
     public StatusEffectDetailsUi(int idLayer) : base(idLayer, SpriteType.none)
     {
@@ -55,6 +56,10 @@ public class StatusEffectDetailsUi : Entity
             Raylib_cs.Color.White
         );
 
-        // TODO : draw details effect.
+        // draw details effect.
+        if (this.isPrintDetails)
+        {
+            Vector posDetails; //TODO : inspire of details in StatusEffectUi.
+        }
     }
 }
