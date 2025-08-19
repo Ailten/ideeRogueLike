@@ -36,7 +36,16 @@ public class SpecialRoom : Layer
                 this.isCleanSpecialFromRoom = true;
 
                 int rngForTypeChest = rng.Next(1000);
-                bool isAnEffectChest = (rngForTypeChest < 330);
+                const int minCard = 8;
+                const int maxCard = 12;
+                int rangeRngTypeChest = (int)(
+                    999 - Vector.lerpF(0, 999,
+                        Vector.reverceLerpF(minCard, maxCard,
+                            Math.Clamp(TurnManager.getMainPlayerCharacter().deck.countCardInFullDeck, minCard, maxCard)
+                        )
+                    )
+                );
+                bool isAnEffectChest = (rngForTypeChest < rangeRngTypeChest);
 
                 isAnEffectChest = true; // DEBUG.
 
@@ -55,8 +64,12 @@ public class SpecialRoom : Layer
                     statusEffectDetailsUi.zIndex = 3200;
 
                     StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer);
-                    statusEffetUi.pos = new(380, 105); // TODO : place elements.
-                    statusEffetUi.setWidthSize(720);
+                    float sizeX = ((listChoose.Count - 1) * 73) + 63;
+                    statusEffetUi.setWidthSize(sizeX);
+                    statusEffetUi.pos = new(
+                        CanvasManager.centerWindow.x - (sizeX/2),
+                        CanvasManager.sizeWindow.y - 180
+                    );
                     statusEffetUi.setListEffect(listChoose);
                     statusEffetUi.isWithDetail = false;
                     statusEffetUi.heightSizeDownSelected = -20;
