@@ -59,7 +59,8 @@ public class SpecialRoom : Layer
 
                     // details effect for select an effect.
                     StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer);
-                    statusEffectDetailsUi.pos = new(313, 73); // edit pos.
+                    float centerY = Vector.lerpF(10, 515, 0.5f);
+                    statusEffectDetailsUi.pos = new(313, centerY); // edit pos.
                     statusEffectDetailsUi.scaleEffectIllu = 2f;
                     statusEffectDetailsUi.zIndex = 3200;
 
