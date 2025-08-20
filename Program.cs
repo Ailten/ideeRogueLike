@@ -6,11 +6,13 @@ class Program
 
     // add special room. -> coffre. !!!
     // add special room. -> boost status effect permanent.
-    // add special room. -> fusion.
+
+    // add special room. -> fusion. (with % chance to rate depend on number effects on card end).
     // add special room. -> discard.
     // add special room. -> duplicate.
-    // add special room. -> boost value effect card.
-    // edit the random atribution of special room for all stage (when all special room maked).
+
+    // add special room. -> boost value effect card. (with % chance fail depend on effect selected and his level).
+    // add special room. -> edit edition of a card. (pass normal into shiny, or a cracked into a normal).
 
     // add details mobs when click on it, menu.
 
@@ -22,8 +24,17 @@ class Program
 
 
     // make win/loose screen (end run).
-    
-    // !!! debug special room.
+
+
+    // !!! debug special room. (card).
+    // special effect : + 5% degats par cartes dans le deck.
+    // special effect : + 10% degats si la dernière card jouée a une couleur diférente (revien a zero si same color).
+    // special effect : récupère 1 AP when use a card shiny.
+    // special effect : + 1 degats par carte shiny dans le deck.
+    // special effect : + 30% degats par carte cracked dans le deck.
+    // special effect : 50% de chance de créer une copie de la carte jouée dans le cimetière si la carte jouée est cracked.
+    // special effect : donne N de shild a chaque carte cassée.
+    // special effect : when use a card sans edition 5% passer shiny, 8% passer cracked.
 
 
     // make a methode in statusEffect, override to say if a status effect is a malus (for switch background sprite as red one).
