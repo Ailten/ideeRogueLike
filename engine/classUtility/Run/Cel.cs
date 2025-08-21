@@ -34,6 +34,7 @@ public class Cel : Entity
     //draw over the cel.
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
+        // apply effect on cel : if card selected can be used on it.
         if (TurnManager.isInFight && RunHudLayer.layer.cardHandListCardUiNN.isCardSelected)
         {
             bool isCardOnRange = isCelIsOnRangeOfACard(RunHudLayer.layer.cardHandListCardUiNN.getCardSelected);

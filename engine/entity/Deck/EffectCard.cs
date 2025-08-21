@@ -215,7 +215,7 @@ public static class StaticEffectCard
                     directionPush.x = 0;
                 directionPush.x = Math.Clamp(directionPush.x, -1f, 1f); //c lamp for stay at 1 max.
                 directionPush.y = Math.Clamp(directionPush.y, -1f, 1f);
-                for (int i = effectValue; i >= 0; i--) // aply many push one.
+                for (int i = effectValue - 1; i >= 0; i--) // aply many push one.
                 {
                     Vector indexPushed = characterTarget.indexPosCel + directionPush;
                     Character? obstacle = TurnManager.getCharacterAtIndexPos(indexPushed);
@@ -223,7 +223,7 @@ public static class StaticEffectCard
                     bool isPushedOnAnObstacle = (obstacle != null || celDest == null);
                     if (isPushedOnAnObstacle)
                     {
-                        characterTarget.getPushedOnAnObsctable(i, obstacle, characterLauncher, refCard);
+                        characterTarget.getPushedOnAnObsctable(i + 1, obstacle, characterLauncher, refCard);
                         break;
                     }
                     characterTarget.moveTo(indexPushed);
@@ -301,7 +301,7 @@ public static class StaticEffectCard
                     directionMagnet.x = 0;
                 directionMagnet.x = Math.Clamp(directionMagnet.x, -1f, 1f); //c lamp for stay at 1 max.
                 directionMagnet.y = Math.Clamp(directionMagnet.y, -1f, 1f);
-                for (int i = effectValue; i >= 0; i--) // aply many magnet one.
+                for (int i = effectValue - 1; i >= 0; i--) // aply many magnet one.
                 {
                     Vector indexMagnet = characterTarget.indexPosCel + directionMagnet;
                     Character? obstacle = TurnManager.getCharacterAtIndexPos(indexMagnet);

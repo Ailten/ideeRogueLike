@@ -82,11 +82,11 @@ public class CardDetails : Entity
                 Raylib_cs.Color.Black
             );
         }
-        else if (cardNN.cardIllu.getDescription() != "")
+        else if (cardNN.cardIllu.getDescription() != "" && !cardNN.isRecto)
         {
 
             // get values for draw text description card (if has one).
-            string text = "Description: \n"+cardNN.cardIllu.getDescription();
+            string text = "Description: \n" + cardNN.cardIllu.getDescription();
             Vector posText = posToDraw + (new Vector(1, 0) * (sizeAtScreenCard.x + 10));
             float fontSizeText = Card.fontSizeShorter * scaleCards * CanvasManager.scaleCanvas;
             float fontSpacingText = Card.fontSpacing * scaleCards * CanvasManager.scaleCanvas;
@@ -123,7 +123,7 @@ public class CardDetails : Entity
             return;
 
         if (card == null)
-                return;
+            return;
         Card cardNN = card ?? throw new Exception("CardDetails.card is null !");
 
         if (cardNN.isRecto)
@@ -152,9 +152,11 @@ public class CardDetails : Entity
     //get rects of text effects in card details.
     private List<Rect> getRectEffects()
     {
-        if (card == null)
+        if (this.card == null)
             return new();
         Card cardNN = card ?? throw new Exception("CardDetails.card is null !");
+        if (cardNN.isRecto)
+            return new();
 
         //pos screen of full entity.
         Vector posAtScreen = this.pos * CanvasManager.scaleCanvas + CanvasManager.posDecalCanvas;

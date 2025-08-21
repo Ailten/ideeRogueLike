@@ -45,7 +45,7 @@ public class SpecialRoom : Layer
                 );
                 bool isAnEffectChest = (rngForTypeChest < rangeRngTypeChest);
 
-                isAnEffectChest = true; // DEBUG.
+                isAnEffectChest = false; // DEBUG.
 
                 if (isAnEffectChest)
                 {
@@ -117,6 +117,7 @@ public class SpecialRoom : Layer
                     cardsUi.pos = new(250, 388);
                     cardsUi.upCardWhenSelected = 45f;
                     cardsUi.zIndex = 3200;
+                    cardsUi.setListCard(listChoose);
                     cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
                     {
                         cardDetails.setCard(cardClicked);
@@ -133,7 +134,7 @@ public class SpecialRoom : Layer
                     {
                         Card cardSelected = cardDetails.getCard() ?? throw new Exception("cardSelected is null !");
                         cardSelected.isRecto = false; // force return card if recto (masked).
-                        TurnManager.getMainPlayerCharacter().deck.addCardToDeck(cardSelected);
+                        TurnManager.getMainPlayerCharacter().deck.addCardToDeck(cardSelected, isSameColor: true);
                     };
                 }
 
@@ -147,7 +148,7 @@ public class SpecialRoom : Layer
         ButtonUi buttonBack = new ButtonUi(this.idLayer);
         buttonBack.text = "back";
         buttonBack.pos = new(442, 661);
-        buttonBack.zIndex = 3200;
+        buttonBack.zIndex = 3400;
         buttonBack.eventClick = () =>
         {
             SpecialRoom.layer.unActive();
@@ -158,7 +159,7 @@ public class SpecialRoom : Layer
         this.buttonValid.text = "valid";
         this.buttonValid.pos = new(838, 661);
         this.buttonValid.setIsDisabled(true);
-        this.buttonValid.zIndex = 3200;
+        this.buttonValid.zIndex = 3400;
         this.buttonValid.eventClick = () =>
         {
             // apply choice.

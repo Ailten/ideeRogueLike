@@ -298,28 +298,42 @@ public class Character : Entity
     }
 
     //decrease MP.
-    public void decreaseAP(int decrease)
+    public void decreaseAP(int decrease, bool isDrawText=true)
     {
-        AP = Math.Max(AP - decrease, 0);
+        int APdecrease = Math.Min(decrease, AP);
+        AP -= APdecrease;
+
+        if(isDrawText)
+            FxTextHit.initOnlyOneFxAtTime(this.pos, $"-{APdecrease}", Color.Yellow);
     }
-    public void decreaseMP(int decrease)
+    public void decreaseMP(int decrease, bool isDrawText=true)
     {
-        MP = Math.Max(MP - decrease, 0);
+        int MPdecrease = Math.Min(decrease, MP);
+        MP -= MPdecrease;
+
+        if(isDrawText)
+            FxTextHit.initOnlyOneFxAtTime(this.pos, $"-{MPdecrease}", Color.Lime);
     }
-    public void increaseAP(int increace)
+    public void increaseAP(int increace, bool isDrawText=true)
     {
         AP += increace;
+
+        if(isDrawText)
+            FxTextHit.initOnlyOneFxAtTime(this.pos, $"{increace}", Color.Yellow);
     }
-    public void increaseMP(int increace)
+    public void increaseMP(int increace, bool isDrawText=true)
     {
         MP += increace;
+
+        if(isDrawText)
+            FxTextHit.initOnlyOneFxAtTime(this.pos, $"{increace}", Color.Lime);
     }
 
 
     // invoke a character.
     public void invokeACharacter(Character newInvoke)
     {
-        TurnManager.addCharacterNextTo(newInvoke, this);
+        TurnManager.addCharacterNextTo(newInvoke, this.idEntity);
 
         // apply status effects.
         this.statusEffects.ForEach(e => e.eventWhenMakeAnInvoke(ref newInvoke));
@@ -336,7 +350,7 @@ public class Character : Entity
         if (!TurnManager.isInFight) //cut process defaus card if end fight (so hand is already full remove).
             return;
 
-        this.decreaseAP(cardPlay.APCost);
+        this.decreaseAP(cardPlay.APCost, isDrawText: false);
 
         bool isCracked = (cardPlay.cardEdition == CardEdition.Cracked);
 

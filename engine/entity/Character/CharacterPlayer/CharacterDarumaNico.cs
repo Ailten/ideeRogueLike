@@ -11,7 +11,8 @@ public class Character_DarumaNico : CharacterPlayer
         this.HP = HPmax;
 
         // special effect.
-        this.AddStatusEffect(new APWhenHit(this.idEntity));
+        if(SaveManager.getSave.succes.Contains(Succes.UseACard_DarunyaNeko_5))
+            this.AddStatusEffect(new BoostIntoInvoke(this.idEntity));
 
         this.deck.pickCountByTurn = 5;
         this.deck.addCardToDeck(

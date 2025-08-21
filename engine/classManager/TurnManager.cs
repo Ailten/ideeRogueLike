@@ -42,13 +42,13 @@ public static class TurnManager
         if (!isInFight)
             verifyIfFightIsStart();
     }
-    public static void addCharacterNextTo(Character newCharacter, Character characterBefore)
+    public static void addCharacterNextTo(Character newCharacter, int idCharacterBefore)
     {
         for (int i = 0; i < allCharacterInRoom.Count; i++)
         {
-            if (allCharacterInRoom[i].idEntity == characterBefore.idEntity)
+            if (allCharacterInRoom[i].idEntity == idCharacterBefore)
             {
-                allCharacterInRoom.Insert(i, newCharacter); //add at specific index.
+                allCharacterInRoom.Insert(i+1, newCharacter); //add at specific index.
                 return;
             }
         }

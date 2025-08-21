@@ -64,7 +64,7 @@ public static class WalkManager
                 characterWalk.moveTo(PathFindingManager.pathFind[PathFindingManager.pathFind.Count - 1]); //move to end pos.
 
                 if (isDecreaseMP)
-                    characterWalk.decreaseMP(indexWalkInPath); //decrease MP by cost walking.
+                    characterWalk.decreaseMP(indexWalkInPath, isDrawText: false); //decrease MP by cost walking.
 
                 endWalk();
                 return;
