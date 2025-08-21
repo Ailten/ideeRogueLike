@@ -4,7 +4,6 @@ class Program
 {
     //TODO : fix bug card fight :
 
-    // add special room. -> coffre. !!!
     // add special room. -> boost status effect permanent.
 
     // add special room. -> fusion. (with % chance to rate depend on number effects on card end).
@@ -14,34 +13,25 @@ class Program
     // add special room. -> boost value effect card. (with % chance fail depend on effect selected and his level).
     // add special room. -> edit edition of a card. (pass normal into shiny, or a cracked into a normal).
 
-    // add details mobs when click on it, menu.
-
-
-    // add malus effect (like card play has one chance on 20 to become cracked) (and one chance on 10 to cast as shiny). -> Commune.
-    // add malus effect (at eatch fight end, one chance on 20 to drop a status effect) (and one chance on 20 to duplicate a status effect). -> Commun.
-    // add status effect copy the status effect at the first position.
-    // add status effect copy the status effect at right position. (re-find index by match id, and pick the next one, and redirect all event).
+    // add details mobs when click on it, menu. !!!
 
 
     // make win/loose screen (end run).
 
 
-    // !!! debug special room. (card).
-    // special effect : + 5% degats par cartes dans le deck.
-    // special effect : + 10% degats si la dernière card jouée a une couleur diférente (revien a zero si same color).
+    // special effect : (at eatch fight end, one chance on 20 to drop a status effect) (and one chance on 20 to duplicate a status effect). -> Commun.
     // special effect : récupère 1 AP when use a card shiny.
-    // special effect : + 1 degats par carte shiny dans le deck.
-    // special effect : + 30% degats par carte cracked dans le deck.
-    // special effect : 50% de chance de créer une copie de la carte jouée dans le cimetière si la carte jouée est cracked.
-    // special effect : donne N de shild a chaque carte cassée.
-    // special effect : when use a card sans edition 5% passer shiny, 8% passer cracked.
+    // special effect : copy effect of statusEffect at next position. (make an instance of copy statusEffect next, when event move the effect status position).
+    // se : rall PM make damage.
+    // se : push to wall make heal the launcher.
+    // se : push to wall make rall PM.
+    // se : boost damage make during the turn of an other character than the launcher.
+    // se : make a heal on a persone of same team, make a damage around him.
+    // se : multiplie damage by purcent HP launcher has lost.
+    // se : make heal on him self, gain damage for this turn (depend on the hp healable).
 
 
-    // make a methode in statusEffect, override to say if a status effect is a malus (for switch background sprite as red one).
-
-
-    // debug batte bulle, blaca siable, darunya neko, lune allier.
-    // debug card explo, splash, flame, rock.
+    // add character : Axo, Blaca, Babulle, Chlow, Lunali, Barbak.
 
 
     // add a pause menu (back to game, back to main menu, ... other option).
