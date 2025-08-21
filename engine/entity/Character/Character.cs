@@ -165,7 +165,7 @@ public class Character : Entity
         target.takeShild(shildIncrement, this, refCard);
     }
     //give shild point.
-    protected virtual void takeShild(int shildIncrement, Character? characterGiveShild = null, PackageRefCard? refCard = null)
+    public virtual void takeShild(int shildIncrement, Character? characterGiveShild = null, PackageRefCard? refCard = null)
     {
         // todo: apply effect list.
 
@@ -338,19 +338,24 @@ public class Character : Entity
 
         this.decreaseAP(cardPlay.APCost);
 
-        if (cardPlay.cardEdition == CardEdition.Cracked)
+        bool isCracked = (cardPlay.cardEdition == CardEdition.Cracked);
+
+        // apply status effects.
+        PackageRefCard packageRefCard = new(this, indexCardFromHand);
+        this.statusEffects.ForEach(e => e.eventWhenUseACard(ref packageRefCard));
+
+        if (isCracked)
             this.destroyACrackedCard(indexCardFromHand);
         else
             this.deck.pushCardFromHandIntoCimetier(indexCardFromHand);
     }
     public void destroyACrackedCard(int indexCardFromHand)
     {
-        bool isDestroyCard = true;
+        // apply status effects.
+        PackageRefCard packageRefCard = new(this, indexCardFromHand);
+        this.statusEffects.ForEach(e => e.eventWhenCardBroke(ref packageRefCard));
 
-        // TODO : apply effects.
-
-        if (isDestroyCard)
-            this.deck.destroyCardFromHand(indexCardFromHand);
+        this.deck.destroyCardFromHand(indexCardFromHand);
     }
 
 

@@ -24,6 +24,8 @@ public static class SaveManager
     public static ulong increaseCoinTaked(int statsIncrease) => currentSave.increaseCoinTaked(statsIncrease);
     public static int increaseCardPlayed(SpriteType cardIllu) => currentSave.increaseCardPlayed(cardIllu);
     public static int getAmountCardPlayed(SpriteType cardIllu) => currentSave.getAmountCardPlayed(cardIllu);
+    public static uint increaseCardEditionPlayed(CardEdition cardEdition) => currentSave.increaseCardEditionPlayed(cardEdition);
+    public static uint getAmountCardEditionPlayed(CardEdition cardEdition) => currentSave.getAmountCardEditionPlayed(cardEdition);
 
     // add many succes to the list save.
     public static void addSucces(List<Succes> succesToAdd) => currentSave.succes.AddRange(succesToAdd);

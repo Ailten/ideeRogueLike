@@ -61,7 +61,7 @@ public static class CardManager
             isInLine: true
         ));
         communCard.AddRange( // push card commun from succes into pool commun card.
-            SaveManager.getSave.succes.Where(s => !s.isRareCard())
+            SaveManager.getSave.succes.Where(s => !s.isRare())
                 .Select(s => s.getCardUnlocked())
                 .Where(c => c != null).Cast<Card>()
         );
@@ -84,7 +84,7 @@ public static class CardManager
             effect: new KeyValuePair<EffectCard, int>(EffectCard.SelfKill, 1)
         ));
         rareCard.AddRange( // push card rare from succes into pool rare card.
-            SaveManager.getSave.succes.Where(s => s.isRareCard())
+            SaveManager.getSave.succes.Where(s => s.isRare())
                 .Select(s => s.getCardUnlocked())
                 .Where(c => c != null).Cast<Card>()
         );

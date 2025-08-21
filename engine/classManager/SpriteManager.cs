@@ -156,7 +156,11 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostBlue, new Vector(256, 255), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostGreen, new Vector(320, 255), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShildAddBoostShiny, new Vector(384, 255), new Vector(63, 63));
-        s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostRed, new Vector(192, 319), new Vector(63, 63)); // (l4).
+        s.addSpriteType(SpriteType.StatusEffect_BrokeCardGainShild, new Vector(448, 255), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_YingYangShinyCracked, new Vector(0, 319), new Vector(63, 63)); // (l4).
+        s.addSpriteType(SpriteType.StatusEffect_DuplicateCracked, new Vector(64, 319), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_CrackedAddDamage, new Vector(128, 319), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostRed, new Vector(192, 319), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostBlue, new Vector(256, 319), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostGreen, new Vector(320, 319), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostShiny, new Vector(384, 319), new Vector(63, 63));

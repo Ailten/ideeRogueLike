@@ -132,8 +132,12 @@ public class Cel : Entity
 
                 handUiPlayer.setListCard(characterTurn.deck.cardsInHand); //update hand change by the card played.
 
-                if(characterTurn.isAPlayer)
+                if (characterTurn.isAPlayer)
+                {
                     SaveManager.increaseCardPlayed(cardSelected.cardIllu); // increase card played for stats save.
+                    if (cardSelected.cardEdition != CardEdition.Default)
+                        SaveManager.increaseCardEditionPlayed(cardSelected.cardEdition);
+                }
 
                 return;
             }

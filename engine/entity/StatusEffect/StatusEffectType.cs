@@ -27,6 +27,10 @@ public enum StatusEffectType
     BoostChooseSpecialRoom,
     BoostPickCard,
     MoneyMultiplyDamage,
+    YingYangShinyCracked,
+    DuplicateCracked,
+    CrackedAddDamage,
+    BrokeCardGainShild,
 }
 
 
@@ -179,6 +183,36 @@ public static class StaticStatusEffectType
                     turnLife: turnLife,
                     purcentDamageByCoint: Math.Clamp(RandomManager.rng.Next(0, 3), 1, 2)
                 );
+            case (StatusEffectType.YingYangShinyCracked):
+                return new YingYangShinyCracked(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    purcentCastShiny: ((float)RandomManager.rng.Next(0, 16) / 100),
+                    purcentCastCracked: ((float)RandomManager.rng.Next(0, 16) / 100)
+                );
+            case (StatusEffectType.DuplicateCracked):
+                return new DuplicateCracked(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    purcentSave: ((float)RandomManager.rng.Next(30, 51) / 100)
+                );
+            case (StatusEffectType.CrackedAddDamage):
+                return new CrackedAddDamage(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    damageByCracked: RandomManager.rng.Next(1, 3)
+                );
+            case (StatusEffectType.BrokeCardGainShild):
+                return new BrokeCardGainShild(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    shildByCrack: RandomManager.rng.Next(1, 4)
+                );
+
 
                 
             default:
@@ -249,7 +283,15 @@ public static class StaticStatusEffectType
             return StatusEffectType.BoostPickCard;
         if (statusEffect.GetType() == typeof(MoneyMultiplyDamage))
             return StatusEffectType.MoneyMultiplyDamage;
-            
+        if (statusEffect.GetType() == typeof(YingYangShinyCracked))
+            return StatusEffectType.YingYangShinyCracked;
+        if (statusEffect.GetType() == typeof(DuplicateCracked))
+            return StatusEffectType.DuplicateCracked;
+        if (statusEffect.GetType() == typeof(CrackedAddDamage))
+            return StatusEffectType.CrackedAddDamage;
+        if (statusEffect.GetType() == typeof(BrokeCardGainShild))
+            return StatusEffectType.BrokeCardGainShild;
+
 
         throw new Exception("getStatusEffectType has no impementation for this !");
     }

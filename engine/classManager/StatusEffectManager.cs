@@ -12,29 +12,34 @@ public static class StatusEffectManager
         communEffect.Add(StatusEffectType.DamageAddBoostColor_Red);
         communEffect.Add(StatusEffectType.DamageAddBoostColor_Blue);
         communEffect.Add(StatusEffectType.DamageAddBoostColor_Green);
-        communEffect.Add(StatusEffectType.DamageAddBoostShiny);
-        communEffect.Add(StatusEffectType.ShildAddBoostColor_Red);
-        communEffect.Add(StatusEffectType.ShildAddBoostColor_Blue);
-        communEffect.Add(StatusEffectType.ShildAddBoostColor_Green);
-        communEffect.Add(StatusEffectType.ShildAddBoostShiny);
-        communEffect.Add(StatusEffectType.ShildMultBoostColor_Red);
-        communEffect.Add(StatusEffectType.ShildMultBoostColor_Blue);
-        communEffect.Add(StatusEffectType.ShildMultBoostColor_Green);
-        communEffect.Add(StatusEffectType.ShildMultBoostShiny);
+        if (SaveManager.getSave.succes.Contains(Succes.Take_20_Damage))
+        {
+            communEffect.Add(StatusEffectType.ShildAddBoostColor_Blue);
+            communEffect.Add(StatusEffectType.ShildAddBoostColor_Green);
+        }
+        if (SaveManager.getSave.succes.Contains(Succes.Take_40_Damage))
+        {
+            communEffect.Add(StatusEffectType.ShildMultBoostColor_Blue);
+            communEffect.Add(StatusEffectType.ShildMultBoostColor_Green);
+        }
         communEffect.Add(StatusEffectType.HPBoost);
-        communEffect.Add(StatusEffectType.BoostChooseSpecialRoom);
-        communEffect.Add(StatusEffectType.BoostPickCard);
+        communEffect.AddRange( // push status effect type into pool.
+            SaveManager.getSave.succes.Where(s => !s.isRare())
+                .Select(s => s.getStatusEffectUnlocked())
+                .Where(se => se != null).Cast<StatusEffectType>()
+        );
 
         rareEffect = new();
         rareEffect.Add(StatusEffectType.DamageMultBoostColor_Red);
         rareEffect.Add(StatusEffectType.DamageMultBoostColor_Blue);
         rareEffect.Add(StatusEffectType.DamageMultBoostColor_Green);
-        rareEffect.Add(StatusEffectType.DamageMultBoostShiny);
         rareEffect.Add(StatusEffectType.APBoost);
         rareEffect.Add(StatusEffectType.MPBoost);
-        rareEffect.Add(StatusEffectType.APWhenHit);
-        rareEffect.Add(StatusEffectType.BoostIntoInvoke);
-        rareEffect.Add(StatusEffectType.MoneyMultiplyDamage);
+        rareEffect.AddRange( // push status effect type into pool.
+            SaveManager.getSave.succes.Where(s => s.isRare())
+                .Select(s => s.getStatusEffectUnlocked())
+                .Where(se => se != null).Cast<StatusEffectType>()
+        );
         
     }
 

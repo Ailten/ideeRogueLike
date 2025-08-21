@@ -12,6 +12,8 @@ public class Save
     public List<Succes> succes { get; set; } //stock eatch succes already unlocked.
     public Dictionary<string, int> characterKilled { get; set; } //amount of kill on eatch characters type.
     public Dictionary<string, int> cardPlayed { get; set; } //amount of card played.
+    public uint cardShinyPlayed { get; set; } //amount of card shiny played.
+    public uint cardCrackedPlayed { get; set; } //amount of card cracked played.
 
 
     public Save()
@@ -46,7 +48,7 @@ public class Save
     public int increaseKillCount(Type typeMob)
     {
         string nameMobKilled = Character.getNameOf(typeMob);
-        
+
         if (characterKilled.ContainsKey(nameMobKilled))
             return ++characterKilled[nameMobKilled];
 
@@ -118,6 +120,30 @@ public class Save
             return 0;
 
         return this.cardPlayed[cardIlluName];
+    }
+    public uint increaseCardEditionPlayed(CardEdition cardEdition)
+    {
+        if (cardEdition == CardEdition.Shinny)
+        {
+            return ++this.cardShinyPlayed;
+        }
+        if (cardEdition == CardEdition.Cracked)
+        {
+            return ++this.cardCrackedPlayed;
+        }
+        throw new Exception("CardEdition unexpected !");
+    }
+    public uint getAmountCardEditionPlayed(CardEdition cardEdition)
+    { 
+        if (cardEdition == CardEdition.Shinny)
+        {
+            return this.cardShinyPlayed;
+        }
+        if (cardEdition == CardEdition.Cracked)
+        {
+            return this.cardCrackedPlayed;
+        }
+        throw new Exception("CardEdition unexpected !");
     }
 
 }

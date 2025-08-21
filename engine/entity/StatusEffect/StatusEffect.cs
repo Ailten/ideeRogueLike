@@ -129,7 +129,10 @@ public class StatusEffect
     public virtual void eventWhenPlayerWinFight() { }
     // event call when make an invoke.
     public virtual void eventWhenMakeAnInvoke(ref Character newInvoke) { }
-
+    // event call when use a card.
+    public virtual void eventWhenUseACard(ref PackageRefCard packageRefCard) { }
+    // event call when a card broke.
+    public virtual void eventWhenCardBroke(ref PackageRefCard packageRefCard) { }
 
 
 }

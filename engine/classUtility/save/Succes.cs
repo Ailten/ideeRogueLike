@@ -6,10 +6,25 @@ public enum Succes
     Kill_5_Flame,
     Kill_5_Rock,
     Take_10_Coin,
+    Take_100_Coin,
     Heal_10,
     Damage_10,
+    Played_1_Shiny,
+    Played_5_Shiny,
+    Played_15_Shiny,
+    Played_45_Shiny,
+    Take_20_Damage,
+    Take_40_Damage,
+    Take_100_Damage,
+    Played_1_Cracked,
+    Played_5_Cracked,
+    Played_10_Cracked,
+    Played_15_Cracked,
+    RunPlayed_5,
+    RunPlayed_10,
 
     UseACard_DarunyaNeko,
+    UseACard_DarunyaNeko_5,
 }
 
 
@@ -90,11 +105,17 @@ public static class StaticSucces
         }
     }
 
-    public static bool isRareCard(this Succes succes)
+    public static bool isRare(this Succes succes)
     {
         switch (succes)
         {
             case (Succes.Take_10_Coin):
+            case (Succes.Take_100_Coin):
+            case (Succes.Played_5_Shiny):
+            case (Succes.Take_100_Damage):
+            case (Succes.Played_10_Cracked):
+
+            case (Succes.UseACard_DarunyaNeko_5):
                 return true;
 
             default:
@@ -114,13 +135,44 @@ public static class StaticSucces
                 return SaveManager.getAmountKillCount(typeof(CharacterRock)) >= 5;
             case (Succes.Take_10_Coin):
                 return SaveManager.getSave.coinTaked >= 10;
+            case (Succes.Take_100_Coin):
+                return SaveManager.getSave.coinTaked >= 100;
             case (Succes.Heal_10):
                 return SaveManager.getSave.healMaked >= 10;
             case (Succes.Damage_10):
                 return SaveManager.getSave.damageMaked >= 10;
+            case (Succes.Played_1_Shiny):
+                return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 1;
+            case (Succes.Played_5_Shiny):
+                return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 5;
+            case (Succes.Played_15_Shiny):
+                return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 15;
+            case (Succes.Played_45_Shiny):
+                return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 45;
+            case (Succes.Take_20_Damage):
+                return SaveManager.getSave.damageTaked >= 20;
+            case (Succes.Take_40_Damage):
+                return SaveManager.getSave.damageTaked >= 40;
+            case (Succes.Take_100_Damage):
+                return SaveManager.getSave.damageTaked >= 100;
+            case (Succes.Played_1_Cracked):
+                return SaveManager.getAmountCardEditionPlayed(CardEdition.Cracked) >= 1;
+            case (Succes.Played_5_Cracked):
+                return SaveManager.getAmountCardEditionPlayed(CardEdition.Cracked) >= 5;
+            case (Succes.Played_10_Cracked):
+                return SaveManager.getAmountCardEditionPlayed(CardEdition.Cracked) >= 10;
+            case (Succes.Played_15_Cracked):
+                return SaveManager.getAmountCardEditionPlayed(CardEdition.Cracked) >= 15;
+            case (Succes.RunPlayed_5):
+                return SaveManager.getSave.runCount >= 5;
+            case (Succes.RunPlayed_10):
+                return SaveManager.getSave.runCount >= 10;
+
 
             case (Succes.UseACard_DarunyaNeko):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_DarunyaNeko) >= 1;
+            case (Succes.UseACard_DarunyaNeko_5):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_DarunyaNeko) >= 5;
 
             default:
                 throw new Exception("Succes has no way to be unlocked");
@@ -134,6 +186,48 @@ public static class StaticSucces
         {
             case (Succes.UseACard_DarunyaNeko):
                 return SpriteType.Character_DarumaNico;
+
+            default:
+                return null;
+        }
+    }
+
+    // get StatusEffectType by succes.
+    public static StatusEffectType? getStatusEffectUnlocked(this Succes succes)
+    {
+        switch (succes)
+        {
+            case (Succes.Take_100_Coin):
+                return StatusEffectType.MoneyMultiplyDamage;
+            case (Succes.Played_1_Shiny):
+                return StatusEffectType.DamageAddBoostShiny;
+            case (Succes.Played_5_Shiny):
+                return StatusEffectType.DamageMultBoostShiny;
+            case (Succes.Played_15_Shiny):
+                return StatusEffectType.ShildAddBoostShiny;
+            case (Succes.Played_45_Shiny):
+                return StatusEffectType.ShildMultBoostShiny;
+            case (Succes.Take_20_Damage):
+                return StatusEffectType.ShildAddBoostColor_Red;
+            case (Succes.Take_40_Damage):
+                return StatusEffectType.ShildMultBoostColor_Red;
+            case (Succes.Take_100_Damage):
+                return StatusEffectType.APWhenHit;
+            case (Succes.Played_1_Cracked):
+                return StatusEffectType.CrackedAddDamage;
+            case (Succes.Played_5_Cracked):
+                return StatusEffectType.BrokeCardGainShild;
+            case (Succes.Played_10_Cracked):
+                return StatusEffectType.DuplicateCracked;
+            case (Succes.Played_15_Cracked):
+                return StatusEffectType.YingYangShinyCracked;
+            case (Succes.RunPlayed_5):
+                return StatusEffectType.BoostChooseSpecialRoom;
+            case (Succes.RunPlayed_10):
+                return StatusEffectType.BoostPickCard;
+
+            case (Succes.UseACard_DarunyaNeko_5):
+                return StatusEffectType.BoostIntoInvoke;
 
             default:
                 return null;
