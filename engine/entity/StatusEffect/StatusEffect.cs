@@ -138,6 +138,9 @@ public class StatusEffect
     public virtual void eventWhenUseACard(ref PackageRefCard packageRefCard) { }
     // event call when a card broke.
     public virtual void eventWhenCardBroke(ref PackageRefCard packageRefCard) { }
-
+    // event call when make a wall pushed.
+    public virtual void eventWhenMakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard) { }
+    // event call when take a wall push.
+    public virtual void eventWhenTakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard) { }
 
 }

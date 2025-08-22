@@ -8,6 +8,7 @@ public enum Succes
     Take_10_Coin,
     Take_100_Coin,
     Heal_10,
+    Heal_20,
     Damage_10,
     Damage_100,
     Played_1_Shiny,
@@ -144,6 +145,8 @@ public static class StaticSucces
                 return SaveManager.getSave.coinTaked >= 100;
             case (Succes.Heal_10):
                 return SaveManager.getSave.healMaked >= 10;
+            case (Succes.Heal_20):
+                return SaveManager.getSave.healMaked >= 20;
             case (Succes.Damage_10):
                 return SaveManager.getSave.damageMaked >= 10;
             case (Succes.Damage_100):
@@ -206,6 +209,8 @@ public static class StaticSucces
     {
         switch (succes)
         {
+            case (Succes.Heal_20):
+                return StatusEffectType.PushWallMakeSelfHeal;
             case (Succes.Damage_100):
                 return StatusEffectType.SideEyes;
             case (Succes.Take_100_Coin):

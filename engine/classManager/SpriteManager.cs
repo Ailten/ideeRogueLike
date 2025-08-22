@@ -167,6 +167,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_BalanceEffect, new Vector(448, 319), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShinyGainAP, new Vector(0, 383), new Vector(63, 63)); // (l5).
         s.addSpriteType(SpriteType.StatusEffect_SideEyes, new Vector(64, 383), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_RallMpMakeDamage, new Vector(128, 383), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_PushWallMakeSelfHeal, new Vector(192, 383), new Vector(63, 63));
 
     }
 

@@ -41,7 +41,7 @@ public class SideEyes : StatusEffect
     public override bool isAMalus()
     {
         StatusEffect? se = this.getEffectAtRight();
-        return (se is null)? false: se.isAMalus();
+        return (se is null) ? false : se.isAMalus();
     }
 
 
@@ -103,5 +103,16 @@ public class SideEyes : StatusEffect
     {
         this.getEffectAtRight()?.eventWhenCardBroke(ref packageRefCard);
     }
+    // event call when make a wall pushed.
+    public override void eventWhenMakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard)
+    {
+        this.eventWhenMakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard);
+    }
+    // event call when take a wall pushed.
+    public override void eventWhenTakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard)
+    {
+        this.eventWhenTakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard);
+    }
+
 
 }

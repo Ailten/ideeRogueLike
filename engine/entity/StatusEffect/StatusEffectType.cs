@@ -35,6 +35,7 @@ public enum StatusEffectType
     ShinyGainAP,
     SideEyes,
     MultDamageWhenNoMP,
+    PushWallMakeSelfHeal,
 }
 
 
@@ -243,7 +244,13 @@ public static class StaticStatusEffectType
                     turnLife: turnLife,
                     damageMult: ((float)RandomManager.rng.Next(181, 280) / 100)
                 );
-
+            case (StatusEffectType.PushWallMakeSelfHeal):
+                return new PushWallMakeSelfHeal(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    heal: RandomManager.rng.Next(1, 3)
+                );
 
 
             default:
@@ -330,7 +337,8 @@ public static class StaticStatusEffectType
             return StatusEffectType.SideEyes;
         if (statusEffect.GetType() == typeof(MultDamageWhenNoMP))
             return StatusEffectType.MultDamageWhenNoMP;
-
+        if (statusEffect.GetType() == typeof(PushWallMakeSelfHeal))
+            return StatusEffectType.PushWallMakeSelfHeal;
 
         throw new Exception("getStatusEffectType has no impementation for this !");
     }
