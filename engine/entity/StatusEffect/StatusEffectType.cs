@@ -36,6 +36,7 @@ public enum StatusEffectType
     SideEyes,
     RallMpMakeDamage,
     PushWallMakeSelfHeal,
+    PushWallMakeRallMP,
 }
 
 
@@ -251,6 +252,13 @@ public static class StaticStatusEffectType
                     turnLife: turnLife,
                     heal: RandomManager.rng.Next(1, 3)
                 );
+            case (StatusEffectType.PushWallMakeRallMP):
+                return new PushWallMakeRallMP(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    rallMPByCase: Math.Clamp(RandomManager.rng.Next(0, 3), 1, 2)
+                );
 
 
             default:
@@ -339,6 +347,8 @@ public static class StaticStatusEffectType
             return StatusEffectType.RallMpMakeDamage;
         if (statusEffect.GetType() == typeof(PushWallMakeSelfHeal))
             return StatusEffectType.PushWallMakeSelfHeal;
+        if (statusEffect.GetType() == typeof(PushWallMakeRallMP))
+            return StatusEffectType.PushWallMakeRallMP;
 
         throw new Exception("getStatusEffectType has no impementation for this !");
     }

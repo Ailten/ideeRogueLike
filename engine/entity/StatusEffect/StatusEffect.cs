@@ -141,7 +141,7 @@ public class StatusEffect
     // event call when apply decrease MP to a target.
     public virtual void eventWhenDecreaseMPOfATarget(ref int decrease, ref Character whoTakeDecreaseMP) { }
     // event call when make a wall pushed.
-    public virtual void eventWhenMakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard) { }
+    public virtual void eventWhenMakeAWallPush(ref int cellBePushed, ref Character characterPushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard) { }
     // event call when take a wall push.
     public virtual void eventWhenTakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard) { }
 

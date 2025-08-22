@@ -166,6 +166,7 @@ public enum SpriteType
     StatusEffect_SideEyes,
     StatusEffect_RallMpMakeDamage,
     StatusEffect_PushWallMakeSelfHeal,
+    StatusEffect_PushWallMakeRallMP,
 
 }
 

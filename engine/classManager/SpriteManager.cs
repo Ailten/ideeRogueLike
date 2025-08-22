@@ -169,6 +169,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_SideEyes, new Vector(64, 383), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_RallMpMakeDamage, new Vector(128, 383), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_PushWallMakeSelfHeal, new Vector(192, 383), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_PushWallMakeRallMP, new Vector(256, 383), new Vector(63, 63));
 
     }
 

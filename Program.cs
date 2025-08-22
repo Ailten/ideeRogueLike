@@ -24,7 +24,7 @@ class Program
     // [V] se : copy effect of statusEffect at next position. (make an instance of copy statusEffect next, when event move the effect status position).
     // [V] se : rall PM make damage.
     // [V] se : push to wall make heal the launcher.
-    // [ ] se : push to wall make rall PM.
+    // [V] se : push to wall make rall PM.
     // [ ] se : boost damage make during the turn of an other character than the launcher.
     // [ ] se : make a heal on a persone of same team, make a damage around him.
     // [ ] se : multiplie damage by purcent HP launcher has lost.

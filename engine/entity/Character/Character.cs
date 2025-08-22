@@ -284,10 +284,18 @@ public class Character : Entity
     public void getPushedOnAnObsctable(int cellBePushed, Character? obstacle = null, Character? characterMakePush = null, PackageRefCard? refCard = null)
     {
         // apply status effect.
-        if(characterMakePush is not null)
-            characterMakePush.statusEffects.ForEach(se => se.eventWhenMakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard));
+        if (characterMakePush is not null)
+        {
+            Character characterPushed = this;
+            characterMakePush.statusEffects.ForEach(se => se.eventWhenMakeAWallPush(ref cellBePushed, ref characterPushed, ref obstacle, ref characterMakePush, ref refCard));
+        }
         this.statusEffects.ForEach(se => se.eventWhenTakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard));
-
+        if(obstacle is not null)
+        {
+            Character? characterPushed = this;
+            obstacle.statusEffects.ForEach(se => se.eventWhenTakeAWallPush(ref cellBePushed, ref characterPushed, ref characterMakePush, ref refCard));
+        }
+        
         if (characterMakePush != null)
         {
             characterMakePush.makeDamage(this, cellBePushed, refCard);

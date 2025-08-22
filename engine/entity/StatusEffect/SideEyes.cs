@@ -109,9 +109,9 @@ public class SideEyes : StatusEffect
         this.getEffectAtRight()?.eventWhenDecreaseMPOfATarget(ref decrease, ref whoTakeDecreaseMP);
     }
     // event call when make a wall pushed.
-    public override void eventWhenMakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard)
+    public override void eventWhenMakeAWallPush(ref int cellBePushed, ref Character characterPushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard)
     {
-        this.eventWhenMakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard);
+        this.eventWhenMakeAWallPush(ref cellBePushed, ref characterPushed, ref obstacle, ref characterMakePush, ref refCard);
     }
     // event call when take a wall pushed.
     public override void eventWhenTakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard)
