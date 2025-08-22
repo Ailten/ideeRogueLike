@@ -164,6 +164,7 @@ public enum SpriteType
     StatusEffect_BalanceEffect,
     StatusEffect_ShinyGainAP,
     StatusEffect_SideEyes,
+    StatusEffect_RallMpMakeDamage,
 
 }
 

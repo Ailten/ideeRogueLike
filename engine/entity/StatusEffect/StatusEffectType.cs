@@ -34,6 +34,7 @@ public enum StatusEffectType
     BalanceEffect,
     ShinyGainAP,
     SideEyes,
+    MultDamageWhenNoMP,
 }
 
 
@@ -235,6 +236,13 @@ public static class StaticStatusEffectType
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife
                 );
+            case (StatusEffectType.MultDamageWhenNoMP):
+                return new MultDamageWhenNoMP(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    damageMult: ((float)RandomManager.rng.Next(181, 280) / 100)
+                );
 
 
 
@@ -320,6 +328,8 @@ public static class StaticStatusEffectType
             return StatusEffectType.ShinyGainAP;
         if (statusEffect.GetType() == typeof(SideEyes))
             return StatusEffectType.SideEyes;
+        if (statusEffect.GetType() == typeof(MultDamageWhenNoMP))
+            return StatusEffectType.MultDamageWhenNoMP;
 
 
         throw new Exception("getStatusEffectType has no impementation for this !");
