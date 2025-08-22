@@ -33,12 +33,13 @@ public enum StatusEffectType
     BrokeCardGainShild,
     BalanceEffect,
     ShinyGainAP,
+    SideEyes,
 }
 
 
 public static class StaticStatusEffectType
 {
-    public static StatusEffect GetStatusEffect(this StatusEffectType statusEffectType, int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1)
+    public static StatusEffect getStatusEffect(this StatusEffectType statusEffectType, int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1)
     {
         switch (statusEffectType)
         {
@@ -228,6 +229,13 @@ public static class StaticStatusEffectType
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife
                 );
+            case (StatusEffectType.SideEyes):
+                return new SideEyes(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife
+                );
+
 
 
             default:
@@ -310,6 +318,8 @@ public static class StaticStatusEffectType
             return StatusEffectType.BalanceEffect;
         if (statusEffect.GetType() == typeof(ShinyGainAP))
             return StatusEffectType.ShinyGainAP;
+        if (statusEffect.GetType() == typeof(SideEyes))
+            return StatusEffectType.SideEyes;
 
 
         throw new Exception("getStatusEffectType has no impementation for this !");

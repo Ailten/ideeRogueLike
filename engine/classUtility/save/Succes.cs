@@ -9,6 +9,7 @@ public enum Succes
     Take_100_Coin,
     Heal_10,
     Damage_10,
+    Damage_100,
     Played_1_Shiny,
     Played_5_Shiny,
     Played_15_Shiny,
@@ -118,6 +119,7 @@ public static class StaticSucces
             case (Succes.Take_100_Damage):
             case (Succes.Played_10_Cracked):
             case (Succes.RunPlayed_15):
+            case (Succes.Damage_100):
 
             case (Succes.UseACard_DarunyaNeko_5):
                 return true;
@@ -145,6 +147,8 @@ public static class StaticSucces
                 return SaveManager.getSave.healMaked >= 10;
             case (Succes.Damage_10):
                 return SaveManager.getSave.damageMaked >= 10;
+            case (Succes.Damage_100):
+                return SaveManager.getSave.damageMaked >= 100;
             case (Succes.Played_1_Shiny):
                 return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 1;
             case (Succes.Played_5_Shiny):
@@ -205,6 +209,8 @@ public static class StaticSucces
     {
         switch (succes)
         {
+            case (Succes.Damage_100):
+                return StatusEffectType.SideEyes;
             case (Succes.Take_100_Coin):
                 return StatusEffectType.MoneyMultiplyDamage;
             case (Succes.Played_1_Shiny):

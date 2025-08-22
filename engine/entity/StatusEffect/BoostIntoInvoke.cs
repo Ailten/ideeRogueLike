@@ -37,7 +37,7 @@ public class BoostIntoInvoke : StatusEffect
             .Select(se =>
             {
                 StatusEffectType set = StaticStatusEffectType.getStatusEffectType(se);
-                return StaticStatusEffectType.GetStatusEffect(set, idInvoke, se.getCharacterIdWhoApplyEffect, se.getTurnLife);
+                return StaticStatusEffectType.getStatusEffect(set, idInvoke, se.getCharacterIdWhoApplyEffect, se.getTurnLife);
             }).ToList()
             .ForEach(se => newInvokeNR.AddStatusEffect(se));
     }

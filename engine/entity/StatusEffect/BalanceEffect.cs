@@ -64,7 +64,7 @@ public class BalanceEffect : StatusEffect
         {
             StatusEffect se = getCharacterWhoHasEffect.statusEffects[randomIndexEffect];
             StatusEffectType set = StaticStatusEffectType.getStatusEffectType(se);
-            StatusEffect newSe = StaticStatusEffectType.GetStatusEffect(
+            StatusEffect newSe = StaticStatusEffectType.getStatusEffect(
                 set,
                 this.getCharacterIdWhoHasEffect,
                 this.getCharacterIdWhoApplyEffect,

@@ -10,6 +10,10 @@ public class CharacterAilten : CharacterPlayer
         this.HPmax = 10;
         this.HP = HPmax;
 
+        // special effect.
+        if(SaveManager.getSave.succes.Contains(Succes.RunPlayed_5))
+            this.AddStatusEffect(new BoostChooseSpecialRoom(this.idEntity, chooseBoost: 1));
+
         this.deck.pickCountByTurn = 5;
         this.deck.addCardToDeck(
             new Card(
