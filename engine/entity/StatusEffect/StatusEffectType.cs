@@ -32,6 +32,7 @@ public enum StatusEffectType
     CrackedAddDamage,
     BrokeCardGainShild,
     BalanceEffect,
+    ShinyGainAP,
 }
 
 
@@ -221,9 +222,14 @@ public static class StaticStatusEffectType
                     duplicateRate: ((float)RandomManager.rng.Next(0, 16) / 100),
                     eraseRate: ((float)RandomManager.rng.Next(0, 16) / 100)
                 );
+            case (StatusEffectType.ShinyGainAP):
+                return new ShinyGainAP(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife
+                );
 
 
-                
             default:
                 throw new Exception("StatusEffectType pick has no instanciation expected !");
         }
@@ -302,6 +308,8 @@ public static class StaticStatusEffectType
             return StatusEffectType.BrokeCardGainShild;
         if (statusEffect.GetType() == typeof(BalanceEffect))
             return StatusEffectType.BalanceEffect;
+        if (statusEffect.GetType() == typeof(ShinyGainAP))
+            return StatusEffectType.ShinyGainAP;
 
 
         throw new Exception("getStatusEffectType has no impementation for this !");

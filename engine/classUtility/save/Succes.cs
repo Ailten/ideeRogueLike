@@ -13,6 +13,7 @@ public enum Succes
     Played_5_Shiny,
     Played_15_Shiny,
     Played_45_Shiny,
+    Played_100_Shiny,
     Take_20_Damage,
     Take_40_Damage,
     Take_100_Damage,
@@ -113,6 +114,7 @@ public static class StaticSucces
             case (Succes.Take_10_Coin):
             case (Succes.Take_100_Coin):
             case (Succes.Played_5_Shiny):
+            case (Succes.Played_100_Shiny):
             case (Succes.Take_100_Damage):
             case (Succes.Played_10_Cracked):
             case (Succes.RunPlayed_15):
@@ -151,6 +153,8 @@ public static class StaticSucces
                 return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 15;
             case (Succes.Played_45_Shiny):
                 return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 45;
+            case (Succes.Played_100_Shiny):
+                return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 100;
             case (Succes.Take_20_Damage):
                 return SaveManager.getSave.damageTaked >= 20;
             case (Succes.Take_40_Damage):
@@ -211,6 +215,8 @@ public static class StaticSucces
                 return StatusEffectType.ShildAddBoostShiny;
             case (Succes.Played_45_Shiny):
                 return StatusEffectType.ShildMultBoostShiny;
+            case (Succes.Played_100_Shiny):
+                return StatusEffectType.ShinyGainAP;
             case (Succes.Take_20_Damage):
                 return StatusEffectType.ShildAddBoostColor_Red;
             case (Succes.Take_40_Damage):

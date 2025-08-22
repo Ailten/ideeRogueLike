@@ -165,6 +165,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostGreen, new Vector(320, 319), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShildMultiplyBoostShiny, new Vector(384, 319), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_BalanceEffect, new Vector(448, 319), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_ShinyGainAP, new Vector(0, 383), new Vector(63, 63)); // (l5).
+        s.addSpriteType(SpriteType.StatusEffect_SideEyes, new Vector(64, 383), new Vector(63, 63));
 
     }
 

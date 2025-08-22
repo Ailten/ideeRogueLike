@@ -162,6 +162,8 @@ public enum SpriteType
     StatusEffect_ShildMultiplyBoostGreen,
     StatusEffect_ShildMultiplyBoostShiny,
     StatusEffect_BalanceEffect,
+    StatusEffect_ShinyGainAP,
+    StatusEffect_SideEyes,
 
 }
 
