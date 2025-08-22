@@ -19,16 +19,16 @@ class Program
     // make win/loose screen (end run).
 
 
-    // special effect : (at eatch fight end, one chance on 20 to drop a status effect) (and one chance on 20 to duplicate a status effect). -> Commun.
-    // special effect : récupère 1 AP when use a card shiny.
-    // special effect : copy effect of statusEffect at next position. (make an instance of copy statusEffect next, when event move the effect status position).
-    // se : rall PM make damage.
-    // se : push to wall make heal the launcher.
-    // se : push to wall make rall PM.
-    // se : boost damage make during the turn of an other character than the launcher.
-    // se : make a heal on a persone of same team, make a damage around him.
-    // se : multiplie damage by purcent HP launcher has lost.
-    // se : make heal on him self, gain damage for this turn (depend on the hp healable).
+    // [V] se : (at eatch fight end, one chance on 20 to drop a status effect) (and one chance on 20 to duplicate a status effect). -> Commun.
+    // [V] se : récupère 1 AP when use a card shiny.
+    // [V] se : copy effect of statusEffect at next position. (make an instance of copy statusEffect next, when event move the effect status position).
+    // [ ] se : rall PM make damage.
+    // [ ] se : push to wall make heal the launcher.
+    // [ ] se : push to wall make rall PM.
+    // [ ] se : boost damage make during the turn of an other character than the launcher.
+    // [ ] se : make a heal on a persone of same team, make a damage around him.
+    // [ ] se : multiplie damage by purcent HP launcher has lost.
+    // [ ] se : make heal on him self, gain damage for this turn (depend on the hp healable).
 
 
     // add character : Axo, Blaca, Babulle, Chlow, Lunali, Barbak.
