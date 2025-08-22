@@ -245,7 +245,7 @@ public static class StaticSucces
             case (Succes.UseACard_DarunyaNeko_5):
                 return StatusEffectType.BoostIntoInvoke;
             case (Succes.UseACard_BlacASiable_5):
-                return StatusEffectType.MultDamageWhenNoMP;
+                return StatusEffectType.RallMpMakeDamage;
 
             default:
                 return null;

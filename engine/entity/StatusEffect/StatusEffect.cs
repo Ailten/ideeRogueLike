@@ -41,11 +41,11 @@ public class StatusEffect
 
     protected Character? getCharacterWhoApplyEffect
     {
-        get { return TurnManager.getAllCharacters().FirstOrDefault(c => c.idEntity == this.characterIdWhoApplyEffect); }
+        get { return TurnManager.getCharacterByIdEntity(this.characterIdWhoApplyEffect); }
     }
     protected Character getCharacterWhoHasEffect
     {
-        get { return TurnManager.getAllCharacters().Find(c => c.idEntity == this.characterIdWhoHasEffect) ?? throw new Exception("CharacterHasApplyEffect has not found in TurnManager !"); }
+        get { return TurnManager.getCharacterByIdEntity(this.characterIdWhoHasEffect) ?? throw new Exception("CharacterHasApplyEffect has not found in TurnManager !"); }
     }
 
     public SpriteType GetSpriteType
@@ -138,6 +138,8 @@ public class StatusEffect
     public virtual void eventWhenUseACard(ref PackageRefCard packageRefCard) { }
     // event call when a card broke.
     public virtual void eventWhenCardBroke(ref PackageRefCard packageRefCard) { }
+    // event call when apply decrease MP to a target.
+    public virtual void eventWhenDecreaseMPOfATarget(ref int decrease, ref Character whoTakeDecreaseMP) { }
     // event call when make a wall pushed.
     public virtual void eventWhenMakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard) { }
     // event call when take a wall push.

@@ -103,6 +103,11 @@ public class SideEyes : StatusEffect
     {
         this.getEffectAtRight()?.eventWhenCardBroke(ref packageRefCard);
     }
+    // event call when apply decrease MP to a target.
+    public override void eventWhenDecreaseMPOfATarget(ref int decrease, ref Character whoTakeDecreaseMP)
+    {
+        this.getEffectAtRight()?.eventWhenDecreaseMPOfATarget(ref decrease, ref whoTakeDecreaseMP);
+    }
     // event call when make a wall pushed.
     public override void eventWhenMakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard)
     {

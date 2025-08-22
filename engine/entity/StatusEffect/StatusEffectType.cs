@@ -34,7 +34,7 @@ public enum StatusEffectType
     BalanceEffect,
     ShinyGainAP,
     SideEyes,
-    MultDamageWhenNoMP,
+    RallMpMakeDamage,
     PushWallMakeSelfHeal,
 }
 
@@ -237,12 +237,12 @@ public static class StaticStatusEffectType
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife
                 );
-            case (StatusEffectType.MultDamageWhenNoMP):
-                return new MultDamageWhenNoMP(
+            case (StatusEffectType.RallMpMakeDamage):
+                return new RallMpMakeDamage(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    damageMult: ((float)RandomManager.rng.Next(181, 280) / 100)
+                    damageByMPDecrease: RandomManager.rng.Next(1, 4)
                 );
             case (StatusEffectType.PushWallMakeSelfHeal):
                 return new PushWallMakeSelfHeal(
@@ -335,8 +335,8 @@ public static class StaticStatusEffectType
             return StatusEffectType.ShinyGainAP;
         if (statusEffect.GetType() == typeof(SideEyes))
             return StatusEffectType.SideEyes;
-        if (statusEffect.GetType() == typeof(MultDamageWhenNoMP))
-            return StatusEffectType.MultDamageWhenNoMP;
+        if (statusEffect.GetType() == typeof(RallMpMakeDamage))
+            return StatusEffectType.RallMpMakeDamage;
         if (statusEffect.GetType() == typeof(PushWallMakeSelfHeal))
             return StatusEffectType.PushWallMakeSelfHeal;
 

@@ -313,6 +313,17 @@ public class Character : Entity
     }
     public void decreaseMP(int decrease, bool isDrawText=true, int idCharacterWhoDoDecreaseMP = -1)
     {
+        // apply status effects.
+        if (idCharacterWhoDoDecreaseMP >= 0)
+        {
+            Character? charWhoDoDecreaseMP = TurnManager.getCharacterByIdEntity(idCharacterWhoDoDecreaseMP);
+            if (charWhoDoDecreaseMP is not null)
+            {
+                Character whoTakeDecreaseMP = this;
+                charWhoDoDecreaseMP.statusEffects.ForEach(se => se.eventWhenDecreaseMPOfATarget(ref decrease, ref whoTakeDecreaseMP));
+            }
+        }
+
         int MPdecrease = Math.Min(decrease, MP);
         MP -= MPdecrease;
 

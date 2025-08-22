@@ -240,6 +240,13 @@ public static class TurnManager
     }
 
 
+    //get character by idEntity.
+    public static Character? getCharacterByIdEntity(int idEntity)
+    {
+        return TurnManager.getAllCharacters().FirstOrDefault(c => c.idEntity == idEntity);
+    }
+
+
     //update action turn of every character.
     public static void updateTurn()
     {
