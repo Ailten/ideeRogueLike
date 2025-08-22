@@ -303,7 +303,7 @@ public class Character : Entity
     }
 
     //decrease MP.
-    public void decreaseAP(int decrease, bool isDrawText=true)
+    public void decreaseAP(int decrease, bool isDrawText=true, int idCharacterWhoDoDecreaseMP = -1)
     {
         int APdecrease = Math.Min(decrease, AP);
         AP -= APdecrease;
@@ -311,7 +311,7 @@ public class Character : Entity
         if(isDrawText)
             FxTextHit.initOnlyOneFxAtTime(this.pos, $"-{APdecrease}", Color.Yellow);
     }
-    public void decreaseMP(int decrease, bool isDrawText=true)
+    public void decreaseMP(int decrease, bool isDrawText=true, int idCharacterWhoDoDecreaseMP = -1)
     {
         int MPdecrease = Math.Min(decrease, MP);
         MP -= MPdecrease;

@@ -233,21 +233,27 @@ public static class StaticEffectCard
             case (EffectCard.TrapMp):
                 Cel? celTargetMP = RunManager.getCel(indexPosTarget);
                 if (celTargetMP != null && celTargetMP.celType == CelType.Cel)
+                {
                     celTargetMP.celType = (
-                        (effectValue <= 1) ? CelType.Cel_SandMPDown: 
-                        (effectValue == 2) ? CelType.Cel_SandMPDown_2: 
+                        (effectValue <= 1) ? CelType.Cel_SandMPDown :
+                        (effectValue == 2) ? CelType.Cel_SandMPDown_2 :
                         CelType.Cel_SandMPDown_3
                     );
+                    celTargetMP.idCharacterWhoApplyCelType = characterLauncher.idEntity;
+                }
                 return;
 
             case (EffectCard.TrapAp):
                 Cel? celTargetAP = RunManager.getCel(indexPosTarget);
                 if (celTargetAP != null && celTargetAP.celType == CelType.Cel)
+                {
                     celTargetAP.celType = (
-                        (effectValue <= 1) ? CelType.Cel_SlimeAPDown: 
-                        (effectValue == 2) ? CelType.Cel_SlimeAPDown_2: 
+                        (effectValue <= 1) ? CelType.Cel_SlimeAPDown :
+                        (effectValue == 2) ? CelType.Cel_SlimeAPDown_2 :
                         CelType.Cel_SlimeAPDown_3
                     );
+                    celTargetAP.idCharacterWhoApplyCelType = characterLauncher.idEntity;
+                }
                 return;
 
             case (EffectCard.HitAround):

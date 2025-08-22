@@ -7,6 +7,7 @@ public class Cel : Entity
     {
         get { return _indexPosCel; }
     }
+    public int idCharacterWhoApplyCelType = 0; // only use when a character apply a trap.
 
 
     public Cel(CelType celType, Vector indexPosCel) : base(RunLayer.layer.idLayer, SpriteType.Cel)
@@ -237,28 +238,32 @@ public class Cel : Entity
                 return;
 
             case (CelType.Cel_SandMPDown):
-                if (TurnManager.isInFight)
-                    characterStep.decreaseMP(1);
-                return;
             case (CelType.Cel_SandMPDown_2):
-                if (TurnManager.isInFight)
-                    characterStep.decreaseMP(2);
-                return;
             case (CelType.Cel_SandMPDown_3):
-                if (TurnManager.isInFight)
-                    characterStep.decreaseMP(3);
+                if (!TurnManager.isInFight)
+                    return;
+                int intencitySandMP = (
+                    (celType == CelType.Cel_SandMPDown) ? 1:
+                    (celType == CelType.Cel_SandMPDown_2) ? 2:
+                    3
+                );
+                characterStep.decreaseMP(intencitySandMP, idCharacterWhoDoDecreaseMP: this.idCharacterWhoApplyCelType);
+                this.celType = CelType.Cel;
+                this.idCharacterWhoApplyCelType = -1;
                 return;
             case (CelType.Cel_SlimeAPDown):
-                if (TurnManager.isInFight)
-                    characterStep.decreaseAP(1);
-                return;
             case (CelType.Cel_SlimeAPDown_2):
-                if (TurnManager.isInFight)
-                    characterStep.decreaseAP(2);
-                return;
             case (CelType.Cel_SlimeAPDown_3):
-                if (TurnManager.isInFight)
-                    characterStep.decreaseAP(3);
+                if (!TurnManager.isInFight)
+                    return;
+                int intencitySlimeAP = (
+                    (celType == CelType.Cel_SlimeAPDown) ? 1:
+                    (celType == CelType.Cel_SlimeAPDown_2) ? 2:
+                    3
+                );
+                characterStep.decreaseAP(intencitySlimeAP, idCharacterWhoDoDecreaseMP: this.idCharacterWhoApplyCelType);
+                this.celType = CelType.Cel;
+                this.idCharacterWhoApplyCelType = -1;
                 return;
 
             default:
