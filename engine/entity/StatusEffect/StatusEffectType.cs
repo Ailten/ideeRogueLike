@@ -31,6 +31,7 @@ public enum StatusEffectType
     DuplicateCracked,
     CrackedAddDamage,
     BrokeCardGainShild,
+    BalanceEffect,
 }
 
 
@@ -212,6 +213,14 @@ public static class StaticStatusEffectType
                     turnLife: turnLife,
                     shildByCrack: RandomManager.rng.Next(1, 4)
                 );
+            case (StatusEffectType.BalanceEffect):
+                return new BalanceEffect(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    duplicateRate: ((float)RandomManager.rng.Next(0, 16) / 100),
+                    eraseRate: ((float)RandomManager.rng.Next(0, 16) / 100)
+                );
 
 
                 
@@ -291,6 +300,8 @@ public static class StaticStatusEffectType
             return StatusEffectType.CrackedAddDamage;
         if (statusEffect.GetType() == typeof(BrokeCardGainShild))
             return StatusEffectType.BrokeCardGainShild;
+        if (statusEffect.GetType() == typeof(BalanceEffect))
+            return StatusEffectType.BalanceEffect;
 
 
         throw new Exception("getStatusEffectType has no impementation for this !");

@@ -36,7 +36,8 @@ public class APBoost : StatusEffect
         bool isEndLifeEffect = false,
         bool isEndOfFight = false,
         bool isCharacterWhoHasEffectDie = false,
-        bool isCharacterWhoApplyEffectDie = false)
+        bool isCharacterWhoApplyEffectDie = false,
+        bool isDestroyByAction = false)
     {
         this.getCharacterWhoHasEffect.AP -= this.APUp; // cancel effect.
         this.getCharacterWhoHasEffect.APmax -= this.APUp;

@@ -37,7 +37,8 @@ public class HPBoost : StatusEffect
         bool isEndLifeEffect = false,
         bool isEndOfFight = false,
         bool isCharacterWhoHasEffectDie = false,
-        bool isCharacterWhoApplyEffectDie = false)
+        bool isCharacterWhoApplyEffectDie = false,
+        bool isDestroyByAction = false)
     {
         this.getCharacterWhoHasEffect.HPmax -= this.HPUp; // cancel effect.
         if(this.getCharacterWhoHasEffect.HP > this.getCharacterWhoHasEffect.HPmax) // clamp HP (for no over range HP).

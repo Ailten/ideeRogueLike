@@ -37,7 +37,8 @@ public class BoostPickCard : StatusEffect
         bool isEndLifeEffect = false,
         bool isEndOfFight = false,
         bool isCharacterWhoHasEffectDie = false,
-        bool isCharacterWhoApplyEffectDie = false)
+        bool isCharacterWhoApplyEffectDie = false,
+        bool isDestroyByAction = false)
     {
         
         this.getCharacterWhoHasEffect.deck.pickCountByTurn -= this.cardPickBoost; // cancel effect.

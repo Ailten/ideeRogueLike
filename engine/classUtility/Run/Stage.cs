@@ -345,7 +345,7 @@ public class Stage
 
     private RoomType getSpecialRoomType(int indexSpecialRoom, int stage)
     {
-        int rngSpecialRoom = rngSeed.Next(100);
+        int rngSpecialRoom = rngSeed.Next(1000);
         switch (stage)
         {
             //0.
@@ -354,7 +354,7 @@ public class Stage
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
                     (indexSpecialRoom == 1) ? RoomType.Room_Chest :
-                    (indexSpecialRoom == 2) ? RoomType.Room : // (rngSpecialRoom < 20 ? RoomType.Room_Chest : RoomType.Room) // 20% 80%
+                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 900 ? RoomType.Room_Chest : RoomType.Room) :
                     (indexSpecialRoom == 3) ? RoomType.Room :
                     (indexSpecialRoom == 4) ? RoomType.Room :
                     (indexSpecialRoom == 5) ? RoomType.Room :
@@ -366,7 +366,7 @@ public class Stage
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
                     (indexSpecialRoom == 1) ? RoomType.Room_Chest :
-                    (indexSpecialRoom == 2) ? RoomType.Room :
+                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 750 ? RoomType.Room_Chest : RoomType.Room) :
                     (indexSpecialRoom == 3) ? RoomType.Room :
                     (indexSpecialRoom == 4) ? RoomType.Room :
                     (indexSpecialRoom == 5) ? RoomType.Room :
@@ -378,7 +378,7 @@ public class Stage
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
                     (indexSpecialRoom == 1) ? RoomType.Room_Chest :
-                    (indexSpecialRoom == 2) ? RoomType.Room :
+                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 250 ? RoomType.Room_Chest : RoomType.Room) :
                     (indexSpecialRoom == 3) ? RoomType.Room :
                     (indexSpecialRoom == 4) ? RoomType.Room :
                     (indexSpecialRoom == 5) ? RoomType.Room :
@@ -389,7 +389,7 @@ public class Stage
             case (4):
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
-                    (indexSpecialRoom == 1) ? RoomType.Room_Chest :
+                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 600 ? RoomType.Room_Chest : RoomType.Room) :
                     (indexSpecialRoom == 2) ? RoomType.Room :
                     (indexSpecialRoom == 3) ? RoomType.Room :
                     (indexSpecialRoom == 4) ? RoomType.Room :
@@ -401,7 +401,7 @@ public class Stage
             case (5):
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
-                    (indexSpecialRoom == 1) ? RoomType.Room_Chest :
+                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 80 ? RoomType.Room_Chest : RoomType.Room) :
                     (indexSpecialRoom == 2) ? RoomType.Room :
                     (indexSpecialRoom == 3) ? RoomType.Room :
                     (indexSpecialRoom == 4) ? RoomType.Room :

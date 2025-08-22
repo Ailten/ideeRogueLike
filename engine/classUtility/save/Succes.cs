@@ -22,6 +22,7 @@ public enum Succes
     Played_15_Cracked,
     RunPlayed_5,
     RunPlayed_10,
+    RunPlayed_15,
 
     UseACard_DarunyaNeko,
     UseACard_DarunyaNeko_5,
@@ -114,6 +115,7 @@ public static class StaticSucces
             case (Succes.Played_5_Shiny):
             case (Succes.Take_100_Damage):
             case (Succes.Played_10_Cracked):
+            case (Succes.RunPlayed_15):
 
             case (Succes.UseACard_DarunyaNeko_5):
                 return true;
@@ -167,6 +169,8 @@ public static class StaticSucces
                 return SaveManager.getSave.runCount >= 5;
             case (Succes.RunPlayed_10):
                 return SaveManager.getSave.runCount >= 10;
+            case (Succes.RunPlayed_15):
+                return SaveManager.getSave.runCount >= 15;
 
 
             case (Succes.UseACard_DarunyaNeko):
@@ -225,6 +229,8 @@ public static class StaticSucces
                 return StatusEffectType.BoostChooseSpecialRoom;
             case (Succes.RunPlayed_10):
                 return StatusEffectType.BoostPickCard;
+            case (Succes.RunPlayed_15):
+                return StatusEffectType.BalanceEffect;
 
             case (Succes.UseACard_DarunyaNeko_5):
                 return StatusEffectType.BoostIntoInvoke;

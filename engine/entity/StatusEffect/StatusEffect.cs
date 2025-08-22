@@ -26,6 +26,10 @@ public class StatusEffect
     {
         get { return turnEnd < 0; }
     }
+    public int getTurnLife
+    {
+        get { return (getTurnEnd < 0) ? getTurnEnd : getTurnEnd - TurnManager.getTurnCount; }
+    }
     public int getCharacterIdWhoApplyEffect
     {
         get { return characterIdWhoApplyEffect; }
@@ -113,7 +117,8 @@ public class StatusEffect
         bool isEndLifeEffect = false,
         bool isEndOfFight = false,
         bool isCharacterWhoHasEffectDie = false,
-        bool isCharacterWhoApplyEffectDie = false
+        bool isCharacterWhoApplyEffectDie = false,
+        bool isDestroyByAction = false
     )
     { }
 

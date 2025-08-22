@@ -38,7 +38,8 @@ public class BoostChooseSpecialRoom : StatusEffect
         bool isEndLifeEffect = false,
         bool isEndOfFight = false,
         bool isCharacterWhoHasEffectDie = false,
-        bool isCharacterWhoApplyEffectDie = false)
+        bool isCharacterWhoApplyEffectDie = false,
+        bool isDestroyByAction = false)
     {
         if (this.getCharacterWhoHasEffect.isAPlayer)
             SpecialRoom.layer.amountChoise += chooseBoost; // cancel effect.

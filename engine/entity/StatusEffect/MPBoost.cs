@@ -36,7 +36,8 @@ public class MPBoost : StatusEffect
         bool isEndLifeEffect = false,
         bool isEndOfFight = false,
         bool isCharacterWhoHasEffectDie = false,
-        bool isCharacterWhoApplyEffectDie = false)
+        bool isCharacterWhoApplyEffectDie = false,
+        bool isDestroyByAction = false)
     {
         this.getCharacterWhoHasEffect.MP -= this.MPUp; // cancel effect.
         this.getCharacterWhoHasEffect.MPmax -= this.MPUp;

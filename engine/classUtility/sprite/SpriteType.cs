@@ -160,7 +160,8 @@ public enum SpriteType
     StatusEffect_ShildMultiplyBoostRed,
     StatusEffect_ShildMultiplyBoostBlue,
     StatusEffect_ShildMultiplyBoostGreen,
-    StatusEffect_ShildMultiplyBoostShiny
+    StatusEffect_ShildMultiplyBoostShiny,
+    StatusEffect_BalanceEffect,
 
 }
 

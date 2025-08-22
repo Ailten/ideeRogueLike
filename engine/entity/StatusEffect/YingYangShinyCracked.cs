@@ -44,7 +44,7 @@ public class YingYangShinyCracked : StatusEffect
         int rangeForShiny = (int)Vector.lerpF(0, 999, this.purcentCastShiny);
         int rangeForCracked = (int)Vector.lerpF(0, 999, this.purcentCastCracked);
         bool isCastShiny = (rngShiny < rangeForShiny);
-        bool isCastCracked = (rngShiny < rangeForCracked);
+        bool isCastCracked = (rngCracked < rangeForCracked);
 
         if (!isCastShiny && !isCastCracked) // skip rng fail.
             return;

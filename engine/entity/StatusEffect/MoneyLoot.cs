@@ -35,12 +35,13 @@ public class MoneyLoot : StatusEffect
         bool isEndLifeEffect = false,
         bool isEndOfFight = false,
         bool isCharacterWhoHasEffectDie = false,
-        bool isCharacterWhoApplyEffectDie = false)
+        bool isCharacterWhoApplyEffectDie = false,
+        bool isDestroyByAction = false)
     {
-        if (isEndLifeEffect || isEndOfFight || isCharacterWhoApplyEffectDie) // cancel effect.
-        {
-            this.getCharacterWhoHasEffect.PO -= this.money;
-        }
+        if (isCharacterWhoHasEffectDie)
+            return;
+            
+        this.getCharacterWhoHasEffect.PO -= this.money; // cancel effect.
     }
 
 }
