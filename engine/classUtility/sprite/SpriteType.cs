@@ -169,6 +169,8 @@ public enum SpriteType
     StatusEffect_PushWallMakeRallMP,
     StatusEffect_AddIndirectDamage,
     StatusEffect_TakeHealMakeHitAround,
+    StatusEffect_MultDamageByHPLeft,
+    StatusEffect_TakeHealAddDamage,
 
 }
 

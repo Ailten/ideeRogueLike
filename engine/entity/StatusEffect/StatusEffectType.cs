@@ -39,6 +39,7 @@ public enum StatusEffectType
     PushWallMakeRallMP,
     AddIndirectDamage,
     TakeHealMakeHitAround,
+    MultDamageByHPLeft,
 
 }
 
@@ -276,8 +277,13 @@ public static class StaticStatusEffectType
                     turnLife: turnLife,
                     damageMake: RandomManager.rng.Next(1, 3)
                 );
+            case (StatusEffectType.MultDamageByHPLeft):
+                return new MultDamageByHPLeft(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife
+                );
 
-                
 
             default:
                 throw new Exception("StatusEffectType pick has no instanciation expected !");
@@ -371,7 +377,8 @@ public static class StaticStatusEffectType
             return StatusEffectType.AddIndirectDamage;
         if (statusEffect.GetType() == typeof(TakeHealMakeHitAround))
             return StatusEffectType.TakeHealMakeHitAround;
-            
+        if (statusEffect.GetType() == typeof(MultDamageByHPLeft))
+            return StatusEffectType.MultDamageByHPLeft;
 
         throw new Exception("getStatusEffectType has no impementation for this !");
     }

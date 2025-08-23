@@ -18,6 +18,7 @@ public enum Succes
     Played_15_Shiny,
     Take_20_Damage,
     Take_40_Damage,
+    Take_60_Damage,
     Take_100_Damage,
     Played_1_Cracked,
     Played_5_Cracked,
@@ -169,6 +170,8 @@ public static class StaticSucces
                 return SaveManager.getSave.damageTaked >= 20;
             case (Succes.Take_40_Damage):
                 return SaveManager.getSave.damageTaked >= 40;
+            case (Succes.Take_60_Damage):
+                return SaveManager.getSave.damageTaked >= 40;
             case (Succes.Take_100_Damage):
                 return SaveManager.getSave.damageTaked >= 100;
             case (Succes.Played_1_Cracked):
@@ -239,6 +242,8 @@ public static class StaticSucces
                 return StatusEffectType.ShildAddBoostColor_Red;
             case (Succes.Take_40_Damage):
                 return StatusEffectType.ShildMultBoostColor_Red;
+            case (Succes.Take_60_Damage):
+                return StatusEffectType.MultDamageByHPLeft;
             case (Succes.Take_100_Damage):
                 return StatusEffectType.APWhenHit;
             case (Succes.Played_1_Cracked):
