@@ -144,5 +144,9 @@ public class StatusEffect
     public virtual void eventWhenMakeAWallPush(ref int cellBePushed, ref Character characterPushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard) { }
     // event call when take a wall push.
     public virtual void eventWhenTakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard) { }
+    // event call when make a heal.
+    public virtual void eventWhenMakeAHeal(ref Character target, ref int healIncrement, ref PackageRefCard? refCard) { }
+    // event call when take a heal.
+    public virtual void eventWhenTakeAHeal(ref int healIncrement, ref Character? characterGiveHeal, ref PackageRefCard? refCard) { }
 
 }

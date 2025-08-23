@@ -72,7 +72,6 @@ public struct Card
                 characterLauncher: characterLauncher,
                 indexPosTarget: indexPosTarget,
                 effectValue: effectValue,
-                indexCardHand: indexCardHand,
                 refCard: refCard
             );
 

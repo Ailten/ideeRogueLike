@@ -111,13 +111,24 @@ public class SideEyes : StatusEffect
     // event call when make a wall pushed.
     public override void eventWhenMakeAWallPush(ref int cellBePushed, ref Character characterPushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard)
     {
-        this.eventWhenMakeAWallPush(ref cellBePushed, ref characterPushed, ref obstacle, ref characterMakePush, ref refCard);
+        this.getEffectAtRight()?.eventWhenMakeAWallPush(ref cellBePushed, ref characterPushed, ref obstacle, ref characterMakePush, ref refCard);
     }
     // event call when take a wall pushed.
     public override void eventWhenTakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard)
     {
-        this.eventWhenTakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard);
+        this.getEffectAtRight()?.eventWhenTakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard);
     }
+    // event call when make a heal.
+    public override void eventWhenMakeAHeal(ref Character target, ref int healIncrement, ref PackageRefCard? refCard)
+    {
+        this.getEffectAtRight()?.eventWhenMakeAHeal(ref target, ref healIncrement, ref refCard);
+    }
+    // event call when take a heal.
+    public override void eventWhenTakeAHeal(ref int healIncrement, ref Character? characterGiveHeal, ref PackageRefCard? refCard)
+    {
+        this.getEffectAtRight()?.eventWhenTakeAHeal(ref healIncrement, ref characterGiveHeal, ref refCard);
+    }
+
 
 
 }

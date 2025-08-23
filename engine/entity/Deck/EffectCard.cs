@@ -149,7 +149,7 @@ public static class StaticEffectCard
     }
 
     //execute an effect card.
-    public static void doEffectCard(this EffectCard effectCard, Character characterLauncher, Vector indexPosTarget, int effectValue, int indexCardHand, PackageRefCard? refCard = null)
+    public static void doEffectCard(this EffectCard effectCard, Character characterLauncher, Vector indexPosTarget, int effectValue, PackageRefCard? refCard = null)
     {
         Character? characterTarget = TurnManager.getCharacterAtIndexPos(indexPosTarget);
 

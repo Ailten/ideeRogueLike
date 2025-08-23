@@ -2,24 +2,27 @@
 public class HPBoost : StatusEffect
 {
     private int HPUp;
+    private int totalHPUp;
 
     public HPBoost(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1, int HPUp = 5) :
     base(SpriteType.StatusEffect_HPBoost, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
         this.HPUp = HPUp;
+        this.totalHPUp = 0;
     }
-    public override void ActivateEffect()
-    {
-        this.getCharacterWhoHasEffect.HP += this.HPUp;
-        this.getCharacterWhoHasEffect.HPmax += this.HPUp;
-    }
+    //public override void ActivateEffect()
+    //{
+    //    this.getCharacterWhoHasEffect.HP += this.HPUp;
+    //    this.getCharacterWhoHasEffect.HPmax += this.HPUp;
+    //}
 
 
     public override string getDescription()
     {
         return (
             $"- {this.getName()} :\n" +
-            $"gagne {this.HPUp} point de vie max.\n" +
+            $"gagne {this.HPUp} point de vie max par combat gagnie.\n" +
+            $"{this.totalHPUp} points de vie total ajoute.\n" +
             this.getDescriptionTurn()
         );
     }
@@ -29,9 +32,16 @@ public class HPBoost : StatusEffect
     }
     public override bool isAMalus()
     {
-        return this.HPUp < 0;
+        return this.totalHPUp < 0;
     }
-    
+
+
+    public override void eventWhenPlayerWinFight()
+    {
+        this.totalHPUp += this.HPUp;
+        this.getCharacterWhoHasEffect.HP += this.HPUp;
+        this.getCharacterWhoHasEffect.HPmax += this.HPUp;
+    }
 
     public override void eventWhenStatusEffectDisapear(
         bool isEndLifeEffect = false,
@@ -40,8 +50,8 @@ public class HPBoost : StatusEffect
         bool isCharacterWhoApplyEffectDie = false,
         bool isDestroyByAction = false)
     {
-        this.getCharacterWhoHasEffect.HPmax -= this.HPUp; // cancel effect.
-        if(this.getCharacterWhoHasEffect.HP > this.getCharacterWhoHasEffect.HPmax) // clamp HP (for no over range HP).
+        this.getCharacterWhoHasEffect.HPmax -= this.totalHPUp; // cancel effect.
+        if (this.getCharacterWhoHasEffect.HP > this.getCharacterWhoHasEffect.HPmax) // clamp HP (for no over range HP).
             this.getCharacterWhoHasEffect.HP = this.getCharacterWhoHasEffect.HPmax;
     }
 }

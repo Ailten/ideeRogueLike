@@ -26,7 +26,7 @@ public class CrackedAddDamage : StatusEffect
     }
     public override bool isAMalus()
     {
-        return false;
+        return this.damageByCracked < 0;
     }
 
 

@@ -9,8 +9,10 @@ public enum Succes
     Take_100_Coin,
     Heal_10,
     Heal_20,
+    Heal_30,
     Damage_10,
     Damage_100,
+    Damage_200,
     Played_1_Shiny,
     Played_5_Shiny,
     Played_15_Shiny,
@@ -115,6 +117,7 @@ public static class StaticSucces
         {
             case (Succes.Take_10_Coin):
             case (Succes.Take_100_Coin):
+            case (Succes.Heal_30):
             case (Succes.Played_5_Shiny):
             case (Succes.Played_15_Shiny):
             case (Succes.Take_100_Damage):
@@ -148,10 +151,14 @@ public static class StaticSucces
                 return SaveManager.getSave.healMaked >= 10;
             case (Succes.Heal_20):
                 return SaveManager.getSave.healMaked >= 20;
+            case (Succes.Heal_30):
+                return SaveManager.getSave.healMaked >= 30;
             case (Succes.Damage_10):
                 return SaveManager.getSave.damageMaked >= 10;
             case (Succes.Damage_100):
                 return SaveManager.getSave.damageMaked >= 100;
+            case (Succes.Damage_200):
+                return SaveManager.getSave.damageMaked >= 200;
             case (Succes.Played_1_Shiny):
                 return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 1;
             case (Succes.Played_5_Shiny):
@@ -214,8 +221,12 @@ public static class StaticSucces
         {
             case (Succes.Heal_20):
                 return StatusEffectType.PushWallMakeSelfHeal;
+            case (Succes.Heal_30):
+                return StatusEffectType.TakeHealMakeHitAround;
             case (Succes.Damage_100):
                 return StatusEffectType.SideEyes;
+            case (Succes.Damage_200):
+                return StatusEffectType.AddIndirectDamage;
             case (Succes.Take_100_Coin):
                 return StatusEffectType.MoneyMultiplyDamage;
             case (Succes.Played_1_Shiny):

@@ -183,12 +183,16 @@ public class Character : Entity
     //give heal to a target.
     public virtual void giveHeal(Character target, int healIncrement, PackageRefCard? refCard = null)
     {
+        // apply status effect.
+        this.statusEffects.ForEach(se => se.eventWhenMakeAHeal(ref target, ref healIncrement, ref refCard));
+
         target.takeHeal(healIncrement, this, refCard);
     }
     //take heal.
     protected virtual void takeHeal(int healIncrement, Character? characterGiveHeal = null, PackageRefCard? refCard = null)
     {
-        // todo: apply effect list.
+        // apply effect list.
+        this.statusEffects.ForEach(se => se.eventWhenTakeAHeal(ref healIncrement, ref characterGiveHeal, ref refCard));
 
         if (characterGiveHeal?.isInRedTeam ?? false) //increase heal maked on stats save.
             SaveManager.increaseHealMaked(healIncrement);

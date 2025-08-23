@@ -170,6 +170,9 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_RallMpMakeDamage, new Vector(128, 383), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_PushWallMakeSelfHeal, new Vector(192, 383), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_PushWallMakeRallMP, new Vector(256, 383), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_AddIndirectDamage, new Vector(320, 383), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_TakeHealMakeHitAround, new Vector(384, 383), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_, new Vector(448, 383), new Vector(63, 63));
 
     }
 

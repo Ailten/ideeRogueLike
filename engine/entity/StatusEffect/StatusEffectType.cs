@@ -37,6 +37,9 @@ public enum StatusEffectType
     RallMpMakeDamage,
     PushWallMakeSelfHeal,
     PushWallMakeRallMP,
+    AddIndirectDamage,
+    TakeHealMakeHitAround,
+
 }
 
 
@@ -259,7 +262,22 @@ public static class StaticStatusEffectType
                     turnLife: turnLife,
                     rallMPByCase: Math.Clamp(RandomManager.rng.Next(0, 3), 1, 2)
                 );
+            case (StatusEffectType.AddIndirectDamage):
+                return new AddIndirectDamage(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    damageBoost: RandomManager.rng.Next(1, 4)
+                );
+            case (StatusEffectType.TakeHealMakeHitAround):
+                return new TakeHealMakeHitAround(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    damageMake: RandomManager.rng.Next(1, 3)
+                );
 
+                
 
             default:
                 throw new Exception("StatusEffectType pick has no instanciation expected !");
@@ -349,6 +367,11 @@ public static class StaticStatusEffectType
             return StatusEffectType.PushWallMakeSelfHeal;
         if (statusEffect.GetType() == typeof(PushWallMakeRallMP))
             return StatusEffectType.PushWallMakeRallMP;
+        if (statusEffect.GetType() == typeof(AddIndirectDamage))
+            return StatusEffectType.AddIndirectDamage;
+        if (statusEffect.GetType() == typeof(TakeHealMakeHitAround))
+            return StatusEffectType.TakeHealMakeHitAround;
+            
 
         throw new Exception("getStatusEffectType has no impementation for this !");
     }
