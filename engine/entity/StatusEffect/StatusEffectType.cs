@@ -40,6 +40,7 @@ public enum StatusEffectType
     AddIndirectDamage,
     TakeHealMakeHitAround,
     MultDamageByHPLeft,
+    TakeHealAddDamage,
 
 }
 
@@ -283,6 +284,14 @@ public static class StaticStatusEffectType
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife
                 );
+            case (StatusEffectType.TakeHealAddDamage):
+                return new TakeHealAddDamage(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife
+                );
+
+
 
 
             default:
@@ -379,6 +388,12 @@ public static class StaticStatusEffectType
             return StatusEffectType.TakeHealMakeHitAround;
         if (statusEffect.GetType() == typeof(MultDamageByHPLeft))
             return StatusEffectType.MultDamageByHPLeft;
+        if (statusEffect.GetType() == typeof(TakeHealAddDamage))
+            return StatusEffectType.TakeHealAddDamage;
+            
+
+
+
 
         throw new Exception("getStatusEffectType has no impementation for this !");
     }
