@@ -220,13 +220,14 @@ public class Cel : Entity
                         return;
                     }
 
-                    LayerManager.transition(() =>
-                    { //transition layer.
-                        characterStep.moveTo(new( //move player to center pos room.
+                    LayerManager.transition(() => // transition layer.
+                    {
+                        characterStep.moveTo(new( // move player to center pos room.
                             Room.midWidthMax,
                             Room.midHeightMax
                         ), false);
-                        RunManager.switchToNextStage();
+                        SpecialRoom.layer.updateCardCountInDeckPlayer(); // update count card in deck player (for stats rng special room).
+                        RunManager.switchToNextStage(); // edit index stage to next one.
                     });
 
                 }

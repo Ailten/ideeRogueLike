@@ -39,13 +39,11 @@ public class SpecialRoom : Layer
                 int rangeRngTypeChest = (int)(
                     999 - Vector.lerpF(0, 999,
                         Vector.reverceLerpF(minCard, maxCard,
-                            Math.Clamp(TurnManager.getMainPlayerCharacter().deck.countCardInFullDeck, minCard, maxCard)
+                            Math.Clamp(this.cardInDeckPlayerAtStartStage, minCard, maxCard)
                         )
                     )
                 );
-                bool isAnEffectChest = (rngForTypeChest < rangeRngTypeChest);
-
-                isAnEffectChest = false; // DEBUG.
+                bool isAnEffectChest = (rng.Next(1000) < rangeRngTypeChest);
 
                 if (isAnEffectChest)
                 {
@@ -140,6 +138,9 @@ public class SpecialRoom : Layer
 
                 break;
 
+            //case(RoomType.Room_Shop): // TODO: enum room shop and illu.
+            //    break;
+
             default:
                 throw new Exception("RoomType has no SpecialRoom UI definition !");
         }
@@ -184,6 +185,12 @@ public class SpecialRoom : Layer
 
     public int amountChoise = 2; // amount of elements choise for a chest or a special room with choise.
     private bool isCleanSpecialFromRoom = false;
+    public int cardInDeckPlayerAtStartStage = 10;
+    public void updateCardCountInDeckPlayer()
+    {
+        this.cardInDeckPlayerAtStartStage = TurnManager.getMainPlayerCharacter().deck.countCardInFullDeck;
+    }
+
     public ButtonUi? buttonValid;
     public Action validateChoise = () => { };
 
