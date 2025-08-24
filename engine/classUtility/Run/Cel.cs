@@ -202,8 +202,10 @@ public class Cel : Entity
 
             //up to next stage.
             case (CelType.Cel_NextStage):
-                if (characterStep.isAPlayer)
-                { //only if is a player.
+                if (characterStep.isAPlayer) //only if is a player.
+                {
+
+                    SpecialRoom.layer.cleanSpecialRoomDataOfStage(); // clean special room data.
 
                     if (RunManager.isLastStage)
                     {

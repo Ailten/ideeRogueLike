@@ -2,7 +2,7 @@
 public class SpecialRoom : Layer
 {
     private static SpecialRoom _layer = new SpecialRoom();
-    public static SpecialRoom layer 
+    public static SpecialRoom layer
     {
         get { return _layer; }
     }
@@ -33,17 +33,7 @@ public class SpecialRoom : Layer
             case (RoomType.Room_Chest):
                 this.isCleanSpecialFromRoom = true;
 
-                int rngForTypeChest = rng.Next(1000);
-                const int minCard = 8;
-                const int maxCard = 12;
-                int rangeRngTypeChest = (int)(
-                    999 - Vector.lerpF(0, 999,
-                        Vector.reverceLerpF(minCard, maxCard,
-                            Math.Clamp(this.cardInDeckPlayerAtStartStage, minCard, maxCard)
-                        )
-                    )
-                );
-                bool isAnEffectChest = (rng.Next(1000) < rangeRngTypeChest);
+                bool isAnEffectChest = this.isAnEffectOrCard(rng);
 
                 if (isAnEffectChest)
                 {
@@ -65,7 +55,7 @@ public class SpecialRoom : Layer
                     float sizeX = ((listChoose.Count - 1) * 73) + 63;
                     statusEffetUi.setWidthSize(sizeX);
                     statusEffetUi.pos = new(
-                        CanvasManager.centerWindow.x - (sizeX/2),
+                        CanvasManager.centerWindow.x - (sizeX / 2),
                         CanvasManager.sizeWindow.y - 180
                     );
                     statusEffetUi.setListEffect(listChoose);
@@ -99,7 +89,7 @@ public class SpecialRoom : Layer
                     for (int i = 0; i < this.amountChoise; i++)
                     {
                         Card cardGenerate = CardManager.generateARandomCard(rng: rng);
-                        
+
                         bool isCardRecto = rng.Next(1000) < 100;
                         cardGenerate.isRecto = isCardRecto;
 
@@ -138,9 +128,72 @@ public class SpecialRoom : Layer
 
                 break;
 
-            case(RoomType.Room_Shop):
+            case (RoomType.Room_Shop):
+                const int AmountOfProductInShop = 5;
 
-                // TODO: enum room shop and illu.
+                this.setDictionaryShop(rng, AmountOfProductInShop);
+
+                bool isAnEffectShop = this.isAnEffectOrCard(rng);
+
+                if (isAnEffectShop)
+                {
+                    List<StatusEffect> listChoose = new();
+                    this.productMarkSolded = new ProductSoldedUi[AmountOfProductInShop];
+                    this.productPrice = new TextPriceProductUi[AmountOfProductInShop];
+                    for (int i = 0; i < AmountOfProductInShop; i++)
+                    {
+                        listChoose.Add(StatusEffectManager.generateARandomEffect(TurnManager.getMainPlayerCharacter().idEntity, rng: rng));
+                        this.productMarkSolded[i] = new ProductSoldedUi(this.idLayer, isAnEffectShop);
+                        this.productMarkSolded[i].isActive = this.getProductIsSold(i);
+                        // TODO: replace pos.
+                        this.productPrice[i] = new TextPriceProductUi(this.idLayer, $"{this.getPriceProduct(i)}");
+                        // TODO: replace pos.
+                    }
+
+                    // details effect for select an effect.
+                    StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer);
+                    float centerY = Vector.lerpF(10, 515, 0.5f); // TODO: up the pos max.
+                    statusEffectDetailsUi.pos = new(442, centerY);
+                    statusEffectDetailsUi.scaleEffectIllu = 2f;
+                    statusEffectDetailsUi.zIndex = 3200;
+                    statusEffectDetailsUi.isPrintDetails = true;
+
+                    StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer);
+                    float sizeX = ((listChoose.Count - 1) * 73) + 63;
+                    statusEffetUi.setWidthSize(sizeX);
+                    statusEffetUi.pos = new( // TODO: up the list for let place to price.
+                        CanvasManager.centerWindow.x - (sizeX / 2),
+                        CanvasManager.sizeWindow.y - 180
+                    );
+                    statusEffetUi.setListEffect(listChoose);
+                    statusEffetUi.isWithDetail = false;
+                    statusEffetUi.heightSizeDownSelected = -20;
+                    statusEffetUi.zIndex = 3200;
+                    statusEffetUi.clickOnEffect = (effectClicked, isLeftClick) =>
+                    {
+                        statusEffectDetailsUi.setStatusEffect(effectClicked);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(false);
+                    };
+                    statusEffetUi.unClickOnEffect = (effectClicked, isLeftClick) =>
+                    {
+                        statusEffectDetailsUi.setStatusEffect(null);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
+                    };
+
+                    // when valide, set statusEffect selected to player.
+                    this.validateChoise = () =>
+                    {
+                        StatusEffect effectSelected = statusEffectDetailsUi.getStatusEffect() ?? throw new Exception("effectSelected is null !");
+                        TurnManager.getMainPlayerCharacter().AddStatusEffect(effectSelected);
+
+                        // update UI.
+                        RunHudLayer.layer.statusEffectUi!.setListEffect(TurnManager.getMainPlayerCharacter().statusEffects);
+                    };
+                }
+                else
+                {
+
+                }
 
                 break;
 
@@ -193,6 +246,22 @@ public class SpecialRoom : Layer
     {
         this.cardInDeckPlayerAtStartStage = TurnManager.getMainPlayerCharacter().deck.countCardInFullDeck;
     }
+    private bool isAnEffectOrCard(Random rng)
+    {
+        int rngForTypeChest = rng.Next(1000);
+        const int minCard = 8;
+        const int maxCard = 12;
+        int rangeRngTypeChest = (int)(
+            999 - Vector.lerpF(0, 999,
+                Vector.reverceLerpF(minCard, maxCard,
+                    Math.Clamp(this.cardInDeckPlayerAtStartStage, minCard, maxCard)
+                )
+            )
+        );
+        return (rng.Next(1000) < rangeRngTypeChest);
+    }
+    public ProductSoldedUi[] productMarkSolded = new ProductSoldedUi[0];
+    public TextPriceProductUi[] productPrice = new TextPriceProductUi[0];
 
     public ButtonUi? buttonValid;
     public Action validateChoise = () => { };
@@ -210,8 +279,61 @@ public class SpecialRoom : Layer
         //free all entities of layer. --->
 
         this.buttonValid = null;
+        this.productMarkSolded = new ProductSoldedUi[0];
+        this.productPrice = new TextPriceProductUi[0];
 
         base.unActive();
+    }
+
+
+    // Dictionary use for stock data of eatch product (SE or Card).
+    public Dictionary<int, KeyValuePair<int, bool>[]> dictionarShop = new Dictionary<int, KeyValuePair<int, bool>[]>();
+    // call when change stage. for clear data from specialRoom of this stage.
+    public void cleanSpecialRoomDataOfStage()
+    {
+        // dictioarShop take a KeyValuePair of price and isSolded, for eatch StatusEffect (of Card) of all shop stage (key Dictionary is SpecialRoom indexPos in stage concat : x*100 + y).
+        this.dictionarShop = new Dictionary<int, KeyValuePair<int, bool>[]>();
+    }
+    private int getKeyOfDictionarShop(Vector? indexPosSpecialRoom = null)
+    {
+        Vector indexPosSpecialRoomNN = indexPosSpecialRoom ?? RunManager.currentStage.currentIndexRoom;
+        return ((int)indexPosSpecialRoomNN.x) * 100 + ((int)indexPosSpecialRoomNN.y);
+    }
+    private void setDictionaryShop(Random rng, int AmountOfProductInShop)
+    {
+        int keySpecialRoomPos = this.getKeyOfDictionarShop();
+
+        bool isAlreadyInit = dictionarShop.ContainsKey(keySpecialRoomPos);
+
+        if (!isAlreadyInit)
+            dictionarShop.Add(keySpecialRoomPos, new KeyValuePair<int, bool>[AmountOfProductInShop]);
+
+        for (int i = 0; i < AmountOfProductInShop; i++)
+        {
+            // need to get Next for stay seed stable.
+            int price = this.randomPriseProductShop(rng);
+
+            // skip if already init.
+            if (isAlreadyInit)
+                continue;
+
+            dictionarShop[keySpecialRoomPos][i] = new KeyValuePair<int, bool>(
+                price,
+                false
+            );
+        }
+    }
+    private int getPriceProduct(int indexProduct) {
+        return dictionarShop[this.getKeyOfDictionarShop()][indexProduct].Key;
+    }
+    private bool getProductIsSold(int indexProduct) {
+        return dictionarShop[this.getKeyOfDictionarShop()][indexProduct].Value;
+    }
+    private int randomPriseProductShop(Random rng)
+    {
+        const int min = 10;
+        const int max = 30;
+        return rng.Next(min, max + 1);
     }
 
 }

@@ -103,7 +103,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardBG_Recto, new Vector(880, 0), new Vector(219, 322));
         s.addSpriteType(SpriteType.CardBG_Craced, new Vector(1100, 0), new Vector(219, 322));
         s.addSpriteType(SpriteType.CardBG_Shinny, new Vector(1320, 0), new Vector(219, 322));
-        //-- placeholder last bg.
+        s.addSpriteType(SpriteType.CardBG_Solded, new Vector(1540, 0), new Vector(219, 322));
 
         s.addSpriteType(SpriteType.CardImg_Splash, new Vector(0, 323), new Vector(219, 125)); // -- encrage : (0.5f, 0.952f).
         s.addSpriteType(SpriteType.CardImg_WoodenSword, new Vector(220, 323), new Vector(219, 125));
@@ -128,6 +128,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_turnBG, new Vector(318, 0), new Vector(32, 32)); //little spirte ui.
         s.addSpriteType(SpriteType.StatusEffect_arrowRightTimeLine, new Vector(318, 33), new Vector(32, 32));
         s.addSpriteType(SpriteType.StatusEffect_arrowLeftStatusEffect, new Vector(318, 66), new Vector(32, 16));
+        s.addSpriteType(SpriteType.StatusEffect_Solded, new Vector(318, 50), new Vector(32, 32));
         s.addSpriteType(SpriteType.StatusEffect_BGTimeLineCharacterBlue, new Vector(351, 0), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_BGTimeLineCharacterRed, new Vector(415, 0), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_BGStatusEffectMalus, new Vector(351, 64), new Vector(63, 63));
