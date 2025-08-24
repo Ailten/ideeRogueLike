@@ -30,12 +30,6 @@ class Program
     // -> make button ui pause.
 
 
-    // make a save progression (a class with data for main progression : character unlock, mobs defeats, gold collected ... etc).
-    // -> use for success, progression, ...
-    // -> att the end of the run, make verify succes unlock, add on save, do the save on file.
-    // -> make cardPool adapt on succes unlocked.
-    // -> make option change save emplacement.
-    // -> make print purcent progress success on main menu.
     // -> make end run screen with success unlocked during the run.
 
     // event run is end (die player on fight, or reach the upper level stage).
@@ -53,6 +47,9 @@ class Program
     // input select seed. -> menu with enter a number befor start run.
 
     // ? consoleManager for combat print line ?
+
+
+    // make a run of the day, with a defined seed, character, and card effects randomly send.
 
 
     public static void Main(string[] args)

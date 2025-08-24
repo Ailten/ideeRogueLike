@@ -5,6 +5,7 @@ public enum RoomType
 
     Room_Boss, //fight with a boss, allow to walk to next stage.
     Room_Chest, //a chest contain a new card to add to deck (or statusEffect).
+    Room_Shop,
     //Room_Fusion, //allow to merge two card.
     //Room_Boost, //send a boost permanent on the player.
     //Room_Duplicate, //allow to duplicate a card on your deck.
@@ -25,10 +26,12 @@ public static class StaticRoomType
         switch(roomType){
             //case(RoomType.Room_Center):
             //    return SpriteType.MiniMapUI_RoomCenter;
-            case(RoomType.Room_Chest):
-                return SpriteType.MiniMapUI_RoomChest;
             case(RoomType.Room_Boss):
                 return SpriteType.MiniMapUI_RoomBoss;
+            case(RoomType.Room_Chest):
+                return SpriteType.MiniMapUI_RoomChest;
+            case(RoomType.Room_Shop):
+                return SpriteType.MiniMapUI_RoomShop;
             //case(RoomType.Room_Boost):
             //    return SpriteType.MiniMapUI_RoomBoost;
             //case(RoomType.Room_Fusion):

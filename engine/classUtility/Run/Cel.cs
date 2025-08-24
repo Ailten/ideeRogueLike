@@ -185,27 +185,18 @@ public class Cel : Entity
 
             //door to move another room.
             case (CelType.CelDoor_up):
-                if (characterStep.isAPlayer && !TurnManager.isInFight)
-                {
-                    moveToAnotherRoom(characterStep, 0);
-                }
-                return;
             case (CelType.CelDoor_right):
-                if (characterStep.isAPlayer && !TurnManager.isInFight)
-                {
-                    moveToAnotherRoom(characterStep, 1);
-                }
-                return;
             case (CelType.CelDoor_down):
-                if (characterStep.isAPlayer && !TurnManager.isInFight)
-                {
-                    moveToAnotherRoom(characterStep, 2);
-                }
-                return;
             case (CelType.CelDoor_left):
+                int directionDoor = (
+                    (celType == CelType.CelDoor_up)? 0:
+                    (celType == CelType.CelDoor_right)? 1:
+                    (celType == CelType.CelDoor_down)? 2:
+                    3
+                );
                 if (characterStep.isAPlayer && !TurnManager.isInFight)
                 {
-                    moveToAnotherRoom(characterStep, 3);
+                    moveToAnotherRoom(characterStep, directionDoor);
                 }
                 return;
 
@@ -235,6 +226,7 @@ public class Cel : Entity
 
             //walk to a chest.
             case (CelType.Cel_Coffre):
+            case (CelType.Cel_Shop):
                 SpecialRoom.layer.active(); // active layer SpecialRoom when walk on chest cel.
                 return;
 

@@ -299,6 +299,10 @@ public class Room
                 {
                     celType = CelType.Cel_Coffre; //print chest cel.
                 }
+                else if (celType == CelType.Cel && roomType == RoomType.Room_Shop && isCenterRoomCel)
+                {
+                    celType = CelType.Cel_Shop; //print chest cel.
+                }
                 // TODO : add sprite center room special room.
 
                 //instancie cel.

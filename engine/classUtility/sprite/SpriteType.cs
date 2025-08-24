@@ -52,7 +52,7 @@ public enum SpriteType
     MiniMapUI_PosPlayer,
     MiniMapUI_RoomChest,
     MiniMapUI_RoomBoss,
-    MiniMapUI_RoomBoost,
+    MiniMapUI_RoomShop,
     MiniMapUI_RoomFusion,
     MiniMapUI_RoomDiscard,
     MiniMapUI_RoomDuplicate,
@@ -84,7 +84,7 @@ public enum SpriteType
     Cel_Fusion,
     Cel_Discard,
     Cel_Duplicate,
-    Cel_Boost,
+    Cel_Shop,
     Cel_SandMPDown,
     Cel_SlimeAPDown,
 

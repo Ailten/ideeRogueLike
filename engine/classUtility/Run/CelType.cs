@@ -19,6 +19,7 @@ public enum CelType
 
     Cel_MobSpawner,
     Cel_Coffre,
+    Cel_Shop,
 
 
     // celtype who's add by character.
@@ -48,6 +49,7 @@ public static class StaticCelType
             case (CelType.Cel_CenterRoom):
             case (CelType.Cel_MobSpawner):
             case (CelType.Cel_Coffre):
+            case (CelType.Cel_Shop):
                 return false;
 
             default:
@@ -76,6 +78,8 @@ public static class StaticCelType
                 return SpriteType.Cel_CenterRoom;
             case (CelType.Cel_Coffre):
                 return SpriteType.Cel_Coffre;
+            case (CelType.Cel_Shop):
+                return SpriteType.Cel_Shop;
 
             case (CelType.Cel_SandMPDown):
             case (CelType.Cel_SandMPDown_2):

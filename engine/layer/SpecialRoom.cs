@@ -138,8 +138,11 @@ public class SpecialRoom : Layer
 
                 break;
 
-            //case(RoomType.Room_Shop): // TODO: enum room shop and illu.
-            //    break;
+            case(RoomType.Room_Shop):
+
+                // TODO: enum room shop and illu.
+
+                break;
 
             default:
                 throw new Exception("RoomType has no SpecialRoom UI definition !");
