@@ -4,7 +4,7 @@ public class ProductSoldedUi : Entity
     public ProductSoldedUi(int idLayer, bool isProductEffect) : base(idLayer, ((isProductEffect) ? SpriteType.StatusEffect_Solded : SpriteType.CardBG_Solded))
     {
         this.isUi = true;
-        this.zIndex = 2000;
+        this.zIndex = 3250;
 
         this.encrage = new(0, 0);
 

@@ -5,7 +5,7 @@ public class TextPriceProductUi : Entity
     public TextPriceProductUi(int idLayer, string price) : base(idLayer, SpriteType.none)
     {
         this.isUi = true;
-        this.zIndex = 2000;
+        this.zIndex = 3250;
 
         this.size = new(0, 0);
 
@@ -22,7 +22,7 @@ public class TextPriceProductUi : Entity
     {
         float fontSizeScaled = fontSize * scale.y * CanvasManager.scaleCanvas;
         float fontSpacingScaled = fontSpacing * scale.y * CanvasManager.scaleCanvas;
-        
+
         Vector textRectDest = Raylib_cs.Raylib.MeasureTextEx( //get size of rect texture text at screen.
             font,
             this.price,
