@@ -4,8 +4,6 @@ class Program
 {
     //TODO : fix bug card fight :
 
-    // add special room. -> boost status effect permanent.
-
     // add special room. -> fusion. (with % chance to rate depend on number effects on card end).
     // add special room. -> discard.
     // add special room. -> duplicate.
@@ -17,12 +15,13 @@ class Program
 
 
     // make win/loose screen (end run).
+    // -> sprite letters saying Win or Loose.
+    // -> make end run screen with success unlocked during the run.
+    // -> back to main menu button.
+    // -> make save file.
 
 
-    // !! when walk, stop walk if walk on a cel have a type SpecialRoom (only specialRoom).
-
-
-    // se : shild make multiply by 2 ~ 3 when has 5 card or more in hands.
+    // se : shild give are multiply by 2 ~ 3 when has 5 card or more in hands.
     // se : convert 50 ~ 100 purcent heal maked into shild (if zero or less, do nothing).
 
 
@@ -33,12 +32,6 @@ class Program
     // -> make button ui pause.
 
 
-    // -> make end run screen with success unlocked during the run.
-
-    // event run is end (die player on fight, or reach the upper level stage).
-    // -> end run screen (ui).
-    // -> back to main menu.
-    // -> make save file.
 
     // make tuto : (not now)
     // - explain mouse (right click drag and drop, for move cam, and scroll for zoom).
