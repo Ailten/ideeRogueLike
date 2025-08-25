@@ -73,7 +73,7 @@ public class StatusEffectDetailsUi : Entity
                 posToDraw +
                 new Vector(statusEffectSizeScaled.x / 2, 0) +
                 new Vector(padding, 0) +
-                new Vector(0, sizeText.y / 2)
+                new Vector(0, - sizeText.y / 2)
             );
 
             Raylib_cs.Raylib.DrawRectangle( // draw back text.

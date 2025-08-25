@@ -94,7 +94,7 @@ public static class StaticCelType
                 throw new Exception("SpriteType no match for CelType !");
         }
     }
-    
+
     //get rotate for a celType.
     public static float getRotateOfCelType(this CelType celType)
     {
@@ -112,6 +112,25 @@ public static class StaticCelType
 
             default:
                 return 0;
+        }
+    }
+    
+    
+    public static bool isACelStopWalk(this CelType celType)
+    {
+        switch (celType)
+        {
+            case (CelType.CelDoor_up):
+            case (CelType.CelDoor_right):
+            case (CelType.CelDoor_down):
+            case (CelType.CelDoor_left):
+            case (CelType.Cel_NextStage):
+            case (CelType.Cel_Coffre):
+            case (CelType.Cel_Shop):
+                return true;
+
+            default:
+                return false;
         }
     }
 }

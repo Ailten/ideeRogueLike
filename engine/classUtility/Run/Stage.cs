@@ -355,9 +355,9 @@ public class Stage
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
                     (indexSpecialRoom == 1) ? RoomType.Room_Chest :
                     (indexSpecialRoom == 2) ? (rngSpecialRoom < 900 ? RoomType.Room_Chest : RoomType.Room) :
-                    (indexSpecialRoom == 3) ? RoomType.Room :
-                    (indexSpecialRoom == 4) ? RoomType.Room :
-                    (indexSpecialRoom == 5) ? RoomType.Room :
+                    (indexSpecialRoom == 3) ? RoomType.Room_Shop : //Debug.
+                    (indexSpecialRoom == 4) ? RoomType.Room_Shop :
+                    (indexSpecialRoom == 5) ? RoomType.Room_Shop :
                     (indexSpecialRoom == 6) ? RoomType.Room :
                     RoomType.Room
                 );

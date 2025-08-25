@@ -101,6 +101,9 @@ public class DeckButtonUi : Entity
     {
         if (!isLeftClick || isClickDown)
             return;
+
+        if (SpecialRoom.layer.isActive) // can't open deck details in a specialRoom (chest, shop, etc).
+            return;
             
         isMouseHover = false;
 

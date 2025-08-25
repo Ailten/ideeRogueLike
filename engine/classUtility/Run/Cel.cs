@@ -189,9 +189,9 @@ public class Cel : Entity
             case (CelType.CelDoor_down):
             case (CelType.CelDoor_left):
                 int directionDoor = (
-                    (celType == CelType.CelDoor_up)? 0:
-                    (celType == CelType.CelDoor_right)? 1:
-                    (celType == CelType.CelDoor_down)? 2:
+                    (celType == CelType.CelDoor_up) ? 0 :
+                    (celType == CelType.CelDoor_right) ? 1 :
+                    (celType == CelType.CelDoor_down) ? 2 :
                     3
                 );
                 if (characterStep.isAPlayer && !TurnManager.isInFight)
@@ -238,8 +238,8 @@ public class Cel : Entity
                 if (!TurnManager.isInFight)
                     return;
                 int intencitySandMP = (
-                    (celType == CelType.Cel_SandMPDown) ? 1:
-                    (celType == CelType.Cel_SandMPDown_2) ? 2:
+                    (celType == CelType.Cel_SandMPDown) ? 1 :
+                    (celType == CelType.Cel_SandMPDown_2) ? 2 :
                     3
                 );
                 characterStep.decreaseMP(intencitySandMP, idCharacterWhoDoDecreaseMP: this.idCharacterWhoApplyCelType);
@@ -252,8 +252,8 @@ public class Cel : Entity
                 if (!TurnManager.isInFight)
                     return;
                 int intencitySlimeAP = (
-                    (celType == CelType.Cel_SlimeAPDown) ? 1:
-                    (celType == CelType.Cel_SlimeAPDown_2) ? 2:
+                    (celType == CelType.Cel_SlimeAPDown) ? 1 :
+                    (celType == CelType.Cel_SlimeAPDown_2) ? 2 :
                     3
                 );
                 characterStep.decreaseAP(intencitySlimeAP, idCharacterWhoDoDecreaseMP: this.idCharacterWhoApplyCelType);

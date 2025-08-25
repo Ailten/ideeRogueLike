@@ -135,6 +135,8 @@ public class SpecialRoom : Layer
 
                 bool isAnEffectShop = this.isAnEffectOrCard(rng);
 
+                isAnEffectShop = true; // DEBUG.
+
                 if (isAnEffectShop)
                 {
                     List<StatusEffect> listChoose = new();
@@ -145,14 +147,12 @@ public class SpecialRoom : Layer
                         listChoose.Add(StatusEffectManager.generateARandomEffect(TurnManager.getMainPlayerCharacter().idEntity, rng: rng));
                         this.productMarkSolded[i] = new ProductSoldedUi(this.idLayer, isAnEffectShop);
                         this.productMarkSolded[i].isActive = this.getProductIsSold(i);
-                        // TODO: replace pos.
                         this.productPrice[i] = new TextPriceProductUi(this.idLayer, $"{this.getPriceProduct(i)}");
-                        // TODO: replace pos.
                     }
 
                     // details effect for select an effect.
                     StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer);
-                    float centerY = Vector.lerpF(10, 515, 0.5f); // TODO: up the pos max.
+                    float centerY = Vector.lerpF(10, 455, 0.5f); // TODO: up the pos max.
                     statusEffectDetailsUi.pos = new(442, centerY);
                     statusEffectDetailsUi.scaleEffectIllu = 2f;
                     statusEffectDetailsUi.zIndex = 3200;
@@ -161,9 +161,9 @@ public class SpecialRoom : Layer
                     StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer);
                     float sizeX = ((listChoose.Count - 1) * 73) + 63;
                     statusEffetUi.setWidthSize(sizeX);
-                    statusEffetUi.pos = new( // TODO: up the list for let place to price.
+                    statusEffetUi.pos = new(
                         CanvasManager.centerWindow.x - (sizeX / 2),
-                        CanvasManager.sizeWindow.y - 180
+                        CanvasManager.sizeWindow.y - 240
                     );
                     statusEffetUi.setListEffect(listChoose);
                     statusEffetUi.isWithDetail = false;
@@ -180,14 +180,45 @@ public class SpecialRoom : Layer
                         SpecialRoom.layer.buttonValid!.setIsDisabled(true);
                     };
 
+                    // replace price and maskSolded.
+                    float pricePosY = statusEffetUi.pos.y + (StatusEffectUi.statusEffectSize.y + 35);
+                    for (int i = 0; i < AmountOfProductInShop; i++)
+                    {
+                        float decalX = (StatusEffectUi.statusEffectSize.x + 10f) * i;
+                        this.productPrice[i].pos = new(
+                            statusEffetUi.pos.x + (StatusEffectUi.statusEffectSize.x / 2) + decalX,
+                            pricePosY
+                        );
+                        this.productMarkSolded[i].pos = new(
+                            statusEffetUi.pos.x + decalX,
+                            statusEffetUi.pos.y
+                        );
+                    }
+
                     // when valide, set statusEffect selected to player.
                     this.validateChoise = () =>
                     {
+                        Character player = TurnManager.getMainPlayerCharacter();
+                        int indexSelected = statusEffetUi.getIndexEffectSelected;
+                        int priceSelected = this.getPriceProduct(indexSelected);
+
+                        if (player.PO < priceSelected) // verif if can't paye.
+                            return;
+
+                        player.decreaseGold(priceSelected); // paye.
+                        SpecialRoom.layer.setProductIsSoleded(indexSelected); // update bool is payed.
+                        this.productMarkSolded[indexSelected].isActive = true; // mark as solded ui + click mask.
+
                         StatusEffect effectSelected = statusEffectDetailsUi.getStatusEffect() ?? throw new Exception("effectSelected is null !");
                         TurnManager.getMainPlayerCharacter().AddStatusEffect(effectSelected);
 
                         // update UI.
                         RunHudLayer.layer.statusEffectUi!.setListEffect(TurnManager.getMainPlayerCharacter().statusEffects);
+
+                        // unselect.
+                        statusEffectDetailsUi.setStatusEffect(null);
+                        statusEffetUi.resetSelection();
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
                     };
                 }
                 else
@@ -224,15 +255,12 @@ public class SpecialRoom : Layer
 
             // make the room as normal.
             if (SpecialRoom.layer.isCleanSpecialFromRoom)
+            {
                 RunManager.currentRoom!.unSpecialTheRoom();
-
-            SpecialRoom.layer.unActive();
+                SpecialRoom.layer.unActive();
+                return;
+            }
         };
-
-
-        EntityManager.getEntitiesByIdLayer(this.idLayer).ForEach(e => // DEBUG.
-            Console.WriteLine($"{e.GetType()}: {e.zIndex}")
-        );
 
 
         base.active();
@@ -278,9 +306,13 @@ public class SpecialRoom : Layer
     {
         //free all entities of layer. --->
 
+        this.isCleanSpecialFromRoom = false;
+
         this.buttonValid = null;
         this.productMarkSolded = new ProductSoldedUi[0];
         this.productPrice = new TextPriceProductUi[0];
+
+        this.validateChoise = () => { };
 
         base.unActive();
     }
@@ -328,6 +360,13 @@ public class SpecialRoom : Layer
     }
     private bool getProductIsSold(int indexProduct) {
         return dictionarShop[this.getKeyOfDictionarShop()][indexProduct].Value;
+    }
+    private void setProductIsSoleded(int indexProduct)
+    {
+        dictionarShop[this.getKeyOfDictionarShop()][indexProduct] = new KeyValuePair<int, bool>(
+            getPriceProduct(indexProduct),
+            true
+        );
     }
     private int randomPriseProductShop(Random rng)
     {

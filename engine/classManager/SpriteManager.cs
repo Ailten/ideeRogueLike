@@ -131,7 +131,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_turnBG, new Vector(318, 0), new Vector(32, 32)); //little spirte ui.
         s.addSpriteType(SpriteType.StatusEffect_arrowRightTimeLine, new Vector(318, 33), new Vector(32, 32));
         s.addSpriteType(SpriteType.StatusEffect_arrowLeftStatusEffect, new Vector(318, 66), new Vector(32, 16));
-        s.addSpriteType(SpriteType.StatusEffect_Solded, new Vector(318, 50), new Vector(32, 32));
+        s.addSpriteType(SpriteType.StatusEffect_Solded, new Vector(318, 83), new Vector(32, 32));
         s.addSpriteType(SpriteType.StatusEffect_BGTimeLineCharacterBlue, new Vector(351, 0), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_BGTimeLineCharacterRed, new Vector(415, 0), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_BGStatusEffectMalus, new Vector(351, 64), new Vector(63, 63));
@@ -152,7 +152,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostBlue, new Vector(256, 191), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostGreen, new Vector(320, 191), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_DamageMultiplyBoostShiny, new Vector(384, 191), new Vector(63, 63));
-        s.addSpriteType(SpriteType.StatusEffect_APBoost, new Vector(448, 191), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_MPBoost, new Vector(448, 191), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_BoostChooseSpecialRoom, new Vector(0, 255), new Vector(63, 63)); // (l3).
         s.addSpriteType(SpriteType.StatusEffect_BoostPickCard, new Vector(64, 255), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_MoneyMultiplyDamage, new Vector(128, 255), new Vector(63, 63));

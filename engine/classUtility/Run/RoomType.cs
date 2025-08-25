@@ -19,18 +19,19 @@ public enum RoomType
 
 public static class StaticRoomType
 {
-    
+
     //return sprite type of the type room (for minimap).
     public static SpriteType? getSpriteTypeOfMiniMapTypeRoom(this RoomType roomType)
     {
-        switch(roomType){
+        switch (roomType)
+        {
             //case(RoomType.Room_Center):
             //    return SpriteType.MiniMapUI_RoomCenter;
-            case(RoomType.Room_Boss):
+            case (RoomType.Room_Boss):
                 return SpriteType.MiniMapUI_RoomBoss;
-            case(RoomType.Room_Chest):
+            case (RoomType.Room_Chest):
                 return SpriteType.MiniMapUI_RoomChest;
-            case(RoomType.Room_Shop):
+            case (RoomType.Room_Shop):
                 return SpriteType.MiniMapUI_RoomShop;
             //case(RoomType.Room_Boost):
             //    return SpriteType.MiniMapUI_RoomBoost;

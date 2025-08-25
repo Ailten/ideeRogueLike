@@ -29,7 +29,7 @@ public class PushWallMakeSelfHeal : StatusEffect
     }
 
 
-    public override void eventWhenMakeAWallPush(ref int cellBePushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard)
+    public override void eventWhenMakeAWallPush(ref int cellBePushed, ref Character characterPushed, ref Character? obstacle, ref Character? characterMakePush, ref PackageRefCard? refCard)
     {
         if (characterMakePush is null)
             return;

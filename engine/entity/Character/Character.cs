@@ -218,6 +218,10 @@ public class Character : Entity
 
         FxTextHit.initOnlyOneFxAtTime(this.pos, $"{POIncrement}", Color.Gold);
     }
+    public void decreaseGold(int POdecrease)
+    {
+        this.PO -= POdecrease;
+    }
 
 
     //do the turn of a character (event when it's the turn of this character) use for execute logic mobs.
@@ -283,7 +287,14 @@ public class Character : Entity
         pos = Room.getPosAtIndexCelRoom(indexPos);
 
         if (isActionCel)
-            RunManager.getCelNN(indexPos).doActionTypeCel(this);
+        {
+            Cel celWalk = RunManager.getCelNN(indexPos);
+            celWalk.doActionTypeCel(this);
+            if (celWalk.celType.isACelStopWalk())
+            {
+                WalkManager.endWalk();
+            }
+        }
     }
     public void getPushedOnAnObsctable(int cellBePushed, Character? obstacle = null, Character? characterMakePush = null, PackageRefCard? refCard = null)
     {

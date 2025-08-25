@@ -16,7 +16,7 @@ public class CharacterRock : CharacterMob
         this.HP = HPmax;
 
         //gold can be looted.
-        this.PO = RandomManager.rng.Next(0, 4);
+        this.PO = RandomManager.rng.Next(1, 4);
 
         //set deck.
         this.deck.pickCountByTurn = 1;

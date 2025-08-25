@@ -19,6 +19,9 @@ class Program
     // make win/loose screen (end run).
 
 
+    // !! when walk, stop walk if walk on a cel have a type SpecialRoom (only specialRoom).
+
+
     // se : shild make multiply by 2 ~ 3 when has 5 card or more in hands.
     // se : convert 50 ~ 100 purcent heal maked into shild (if zero or less, do nothing).
 

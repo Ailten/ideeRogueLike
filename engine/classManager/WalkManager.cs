@@ -32,6 +32,13 @@ public static class WalkManager
     //end the current walk.
     public static void endWalk()
     {
+        if (indexWalkInPath == 0) // skip if walk of zero cel (when endWalk already called).
+            return;
+
+        Character characterWalk = TurnManager.getCharacterOfCurrentTurn();
+        if (isDecreaseMP)
+            characterWalk.decreaseMP(indexWalkInPath, isDrawText: false); //decrease MP by cost walking.
+
         _isWalking = false;
 
         if (TurnManager.getCharacterOfCurrentTurn().isInRedTeam) //enable ui button skip turn.
@@ -60,11 +67,7 @@ public static class WalkManager
             //end of walk (last cel).
             if (indexWalkInPath >= PathFindingManager.pathFind.Count - 1)
             {
-
                 characterWalk.moveTo(PathFindingManager.pathFind[PathFindingManager.pathFind.Count - 1]); //move to end pos.
-
-                if (isDecreaseMP)
-                    characterWalk.decreaseMP(indexWalkInPath, isDrawText: false); //decrease MP by cost walking.
 
                 endWalk();
                 return;

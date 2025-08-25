@@ -8,6 +8,10 @@ public class StatusEffectUi : Entity
     {
         get { return this.indexEffectSelected >= 0; }
     }
+    public int getIndexEffectSelected
+    {
+        get { return this.indexEffectSelected; }
+    }
 
     public bool isWithDetail = true;
     public float heightSizeDownSelected = 20;
@@ -48,7 +52,7 @@ public class StatusEffectUi : Entity
         this.updateGeometryTriggerBasedOnList();
     }
 
-    private void resetSelection()
+    public void resetSelection()
     {
         this.indexEffectSelected = -1;
         this.geometryTriggerSecond = null;
