@@ -13,6 +13,8 @@ public class StatusEffectUi : Entity
         get { return this.indexEffectSelected; }
     }
 
+    private bool[] isSolded = new bool[0];
+
     public bool isWithDetail = true;
     public float heightSizeDownSelected = 20;
     public Action<StatusEffect, bool> clickOnEffect = (effectClicked, isLeftClick) => { };
@@ -119,6 +121,11 @@ public class StatusEffectUi : Entity
                 widthSizeCroped -= effectAndSpacingWidth;
             }
         }
+    }
+
+    public void setArrayIsSolded(bool[] isSolded)
+    {
+        this.isSolded = isSolded;
     }
 
 
@@ -234,6 +241,19 @@ public class StatusEffectUi : Entity
                 Raylib_cs.Color.White
             );
 
+            // draw is solded.
+            if (this.isSolded.Length != 0 && this.isSolded[i])
+            {
+                Raylib_cs.Raylib.DrawTexturePro( // draw effect.
+                    texture: spriteEffect.texture,
+                    source: spriteEffect.getSpriteTileBySpriteType(SpriteType.StatusEffect_Solded).getRectSource(),
+                    dest: currentRect,
+                    origin: origine,
+                    rotation: 0,
+                    Raylib_cs.Color.White
+                );
+            }
+
             // draw turn until end in bulle.
             if (currentEffect.getTurnUntilEnd != -1)
             {
@@ -318,6 +338,10 @@ public class StatusEffectUi : Entity
                 effectsArrea[i]
             );
             if (!isClickOnCurrentEffect)
+                continue;
+
+            // skip click if is on an effect solded.
+            if (this.isSolded.Length != 0 && this.isSolded[i])
                 continue;
 
             // select/unselect effect.

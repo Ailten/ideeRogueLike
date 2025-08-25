@@ -136,17 +136,12 @@ public class SpecialRoom : Layer
 
                 bool isAnEffectShop = this.isAnEffectOrCard(rng);
 
-                isAnEffectShop = false; // DEBUG.
-
                 if (isAnEffectShop)
                 {
                     List<StatusEffect> listChoose = new();
-                    this.productMarkSolded = new ProductSoldedUi[AmountOfProductInShop];
                     for (int i = 0; i < AmountOfProductInShop; i++)
                     {
                         listChoose.Add(StatusEffectManager.generateARandomEffect(TurnManager.getMainPlayerCharacter().idEntity, rng: rng));
-                        this.productMarkSolded[i] = new ProductSoldedUi(this.idLayer);
-                        this.productMarkSolded[i].isActive = this.getProductIsSold(i);
                         this.productPrice[i] = new TextPriceProductUi(this.idLayer, $"{this.getPriceProduct(i)}");
                     }
 
@@ -166,6 +161,7 @@ public class SpecialRoom : Layer
                         CanvasManager.sizeWindow.y - 240
                     );
                     statusEffetUi.setListEffect(listChoose);
+                    statusEffetUi.setArrayIsSolded(SpecialRoom.layer.getArrayBoolIsSold());
                     statusEffetUi.isWithDetail = false;
                     statusEffetUi.heightSizeDownSelected = -20;
                     statusEffetUi.zIndex = 3200;
@@ -189,10 +185,6 @@ public class SpecialRoom : Layer
                             statusEffetUi.pos.x + (StatusEffectUi.statusEffectSize.x / 2) + decalX,
                             pricePosY
                         );
-                        this.productMarkSolded[i].pos = new(
-                            statusEffetUi.pos.x + decalX,
-                            statusEffetUi.pos.y
-                        );
                     }
 
                     // when valide, set statusEffect selected to player.
@@ -207,7 +199,7 @@ public class SpecialRoom : Layer
 
                         player.decreaseGold(priceSelected); // paye.
                         SpecialRoom.layer.setProductIsSoleded(indexSelected); // update bool is payed.
-                        this.productMarkSolded[indexSelected].isActive = true; // mark as solded ui + click mask.
+                        statusEffetUi.setArrayIsSolded(SpecialRoom.layer.getArrayBoolIsSold()); // update array bool isSolded for mask click.
 
                         if (isEntireShopSolded()) // close shop definitively, if sold every articles.
                             SpecialRoom.layer.isCleanSpecialFromRoom = true;
@@ -365,7 +357,6 @@ public class SpecialRoom : Layer
         );
         return (rng.Next(1000) < rangeRngTypeChest);
     }
-    public ProductSoldedUi[] productMarkSolded = new ProductSoldedUi[0];
     public TextPriceProductUi[] productPrice = new TextPriceProductUi[0];
 
     public ButtonUi? buttonValid;
@@ -386,7 +377,6 @@ public class SpecialRoom : Layer
         this.isCleanSpecialFromRoom = false;
 
         this.buttonValid = null;
-        this.productMarkSolded = new ProductSoldedUi[0];
         this.productPrice = new TextPriceProductUi[0];
 
         this.validateChoise = () => { };
