@@ -56,7 +56,7 @@ public static class StatusEffectManager
 
         StatusEffectType typePick = (isRare) ? rareEffect[indexPick] : communEffect[indexPick];
 
-        return StaticStatusEffectType.getStatusEffect(typePick, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife);
+        return StaticStatusEffectType.getStatusEffect(typePick, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife, rng);
     }
 
 }

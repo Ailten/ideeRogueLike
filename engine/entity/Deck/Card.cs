@@ -94,7 +94,7 @@ public struct Card
     private static Vector nameEncrage = new(0.5f, 0.5f);
     private static Vector posName = new(106, 29);
     public static Vector[] posEffects = new Vector[] { new(34, 185), new(34, 212), new(34, 240), new(34, 268), new(34, 296), };
-    public void drawCard(Vector posAtScreen, float scale = 1f)
+    public void drawCard(Vector posAtScreen, float scale = 1f, bool isMarkedSold = false)
     {
         SpriteType spriteType;
         Sprite sprite;
@@ -121,104 +121,49 @@ public struct Card
                 rotation: 0f,
                 Raylib_cs.Color.White
             );
-
-            return;
+            
         }
-
-        // draw illu (behind back card).
-        spriteType = this.cardIllu;
-        sprite = SpriteManager.findBySpriteType(spriteType) ?? throw new Exception("Sprite not found !");
-        rectSourceInTexture = sprite.getSpriteTileBySpriteType(spriteType).getRectSource();
-
-        Raylib_cs.Rectangle rectDestIllu = new Raylib_cs.Rectangle(
-            posAtScreen + (new Vector(0, 43) * scale * CanvasManager.scaleCanvas) - (cardSizeAtScreen * 0.5f),
-            illuSize * scale * CanvasManager.scaleCanvas
-        );
-
-        Raylib_cs.Raylib.DrawTexturePro(
-            texture: sprite.texture,
-            source: rectSourceInTexture,
-            dest: rectDestIllu,
-            origin: illuEncrage,
-            rotation: 0f,
-            Raylib_cs.Color.White
-        );
-
-        // draw back card.
-        spriteType = this.cardColor.getSpriteType();
-        sprite = SpriteManager.findBySpriteType(spriteType) ?? throw new Exception("Sprite not found !");
-        rectSourceInTexture = sprite.getSpriteTileBySpriteType(spriteType).getRectSource();
-
-        Raylib_cs.Raylib.DrawTexturePro(
-            texture: sprite.texture,
-            source: rectSourceInTexture,
-            dest: rectDestCard,
-            origin: cardEncrage,
-            rotation: 0f,
-            Raylib_cs.Color.White
-        );
-
-        // draw text (cost AP).
-        string text = this.APCost.ToString();
-        Vector posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posAPCost * scale * CanvasManager.scaleCanvas);
-        float fontSizeText = fontSize * scale * CanvasManager.scaleCanvas;
-        float fontSpacingText = fontSpacing * scale * CanvasManager.scaleCanvas;
-        Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
-
-        Raylib_cs.Raylib.DrawTextEx(
-            font: font,
-            text: text,
-            position: posText - (sizeText * APCostEncrage),
-            fontSize: fontSizeText,
-            spacing: fontSpacingText,
-            Raylib_cs.Color.Black
-        );
-
-        // draw text (distanceToUse).
-        text = this.getPorteeToUseStr;
-        posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posPorteeToUse * scale * CanvasManager.scaleCanvas);
-        fontSizeText = fontSizeShorter * scale * CanvasManager.scaleCanvas;
-        sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
-
-        Raylib_cs.Raylib.DrawTextEx(
-            font: font,
-            text: text,
-            position: posText - (sizeText * porteeToUseEncrage),
-            fontSize: fontSizeText,
-            spacing: fontSpacingText,
-            Raylib_cs.Color.Black
-        );
-
-        // draw text (use in line only).
-        if (this.isInLine)
+        else // draw card normaly.
         {
-            // TODO : (temporary set on distToUse print).
-        }
+            // draw illu (behind back card).
+            spriteType = this.cardIllu;
+            sprite = SpriteManager.findBySpriteType(spriteType) ?? throw new Exception("Sprite not found !");
+            rectSourceInTexture = sprite.getSpriteTileBySpriteType(spriteType).getRectSource();
 
-        // draw text (name card).
-        text = this.cardIllu.getCardName();
-        posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posName * scale * CanvasManager.scaleCanvas);
-        sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
+            Raylib_cs.Rectangle rectDestIllu = new Raylib_cs.Rectangle(
+                posAtScreen + (new Vector(0, 43) * scale * CanvasManager.scaleCanvas) - (cardSizeAtScreen * 0.5f),
+                illuSize * scale * CanvasManager.scaleCanvas
+            );
 
-        Raylib_cs.Raylib.DrawTextEx(
-            font: font,
-            text: text,
-            position: posText - (sizeText * nameEncrage),
-            fontSize: fontSizeText,
-            spacing: fontSpacingText,
-            Raylib_cs.Color.Black
-        );
+            Raylib_cs.Raylib.DrawTexturePro(
+                texture: sprite.texture,
+                source: rectSourceInTexture,
+                dest: rectDestIllu,
+                origin: illuEncrage,
+                rotation: 0f,
+                Raylib_cs.Color.White
+            );
 
-        // draw text (effects).
-        List<string> effectsStr = ((effects.Count == 0) ?
-            new List<string>() { EffectCard.NoEffect.getName() } :
-            effects.Select(e => $"- {e.Key.getName()}" + (e.Value > 0? $" ({e.Value})": "")).ToList()
-        );
-        for (int i = 0; i < effectsStr.Count; i++)
-        {
-            text = effectsStr[i];
-            posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posEffects[i] * scale * CanvasManager.scaleCanvas);
-            sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
+            // draw back card.
+            spriteType = this.cardColor.getSpriteType();
+            sprite = SpriteManager.findBySpriteType(spriteType) ?? throw new Exception("Sprite not found !");
+            rectSourceInTexture = sprite.getSpriteTileBySpriteType(spriteType).getRectSource();
+
+            Raylib_cs.Raylib.DrawTexturePro(
+                texture: sprite.texture,
+                source: rectSourceInTexture,
+                dest: rectDestCard,
+                origin: cardEncrage,
+                rotation: 0f,
+                Raylib_cs.Color.White
+            );
+
+            // draw text (cost AP).
+            string text = this.APCost.ToString();
+            Vector posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posAPCost * scale * CanvasManager.scaleCanvas);
+            float fontSizeText = fontSize * scale * CanvasManager.scaleCanvas;
+            float fontSpacingText = fontSpacing * scale * CanvasManager.scaleCanvas;
+            Vector sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
 
             Raylib_cs.Raylib.DrawTextEx(
                 font: font,
@@ -228,13 +173,80 @@ public struct Card
                 spacing: fontSpacingText,
                 Raylib_cs.Color.Black
             );
+
+            // draw text (distanceToUse).
+            text = this.getPorteeToUseStr; // include "in line".
+            posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posPorteeToUse * scale * CanvasManager.scaleCanvas);
+            fontSizeText = fontSizeShorter * scale * CanvasManager.scaleCanvas;
+            sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
+
+            Raylib_cs.Raylib.DrawTextEx(
+                font: font,
+                text: text,
+                position: posText - (sizeText * porteeToUseEncrage),
+                fontSize: fontSizeText,
+                spacing: fontSpacingText,
+                Raylib_cs.Color.Black
+            );
+
+            // draw text (name card).
+            text = this.cardIllu.getCardName();
+            posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posName * scale * CanvasManager.scaleCanvas);
+            sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
+
+            Raylib_cs.Raylib.DrawTextEx(
+                font: font,
+                text: text,
+                position: posText - (sizeText * nameEncrage),
+                fontSize: fontSizeText,
+                spacing: fontSpacingText,
+                Raylib_cs.Color.Black
+            );
+
+            // draw text (effects).
+            List<string> effectsStr = ((effects.Count == 0) ?
+                new List<string>() { EffectCard.NoEffect.getName() } :
+                effects.Select(e => $"- {e.Key.getName()}" + (e.Value > 0 ? $" ({e.Value})" : "")).ToList()
+            );
+            for (int i = 0; i < effectsStr.Count; i++)
+            {
+                text = effectsStr[i];
+                posText = posAtScreen - (cardSizeAtScreen * 0.5f) + (posEffects[i] * scale * CanvasManager.scaleCanvas);
+                sizeText = Raylib_cs.Raylib.MeasureTextEx(font, text, fontSizeText, fontSpacingText);
+
+                Raylib_cs.Raylib.DrawTextEx(
+                    font: font,
+                    text: text,
+                    position: posText - (sizeText * APCostEncrage),
+                    fontSize: fontSizeText,
+                    spacing: fontSpacingText,
+                    Raylib_cs.Color.Black
+                );
+            }
+
+
+            // draw edition.
+            if (cardEdition != CardEdition.Default)
+            {
+                spriteType = this.cardEdition.getSpriteType();
+                sprite = SpriteManager.findBySpriteType(spriteType) ?? throw new Exception("Sprite not found !");
+                rectSourceInTexture = sprite.getSpriteTileBySpriteType(spriteType).getRectSource();
+
+                Raylib_cs.Raylib.DrawTexturePro(
+                    texture: sprite.texture,
+                    source: rectSourceInTexture,
+                    dest: rectDestCard,
+                    origin: cardEncrage,
+                    rotation: 0f,
+                    Raylib_cs.Color.White
+                );
+            }
         }
 
-
-        // draw edition.
-        if (cardEdition != CardEdition.Default)
+        // draw a giant red X on the card.
+        if (isMarkedSold)
         {
-            spriteType = this.cardEdition.getSpriteType();
+            spriteType = SpriteType.CardBG_Solded;
             sprite = SpriteManager.findBySpriteType(spriteType) ?? throw new Exception("Sprite not found !");
             rectSourceInTexture = sprite.getSpriteTileBySpriteType(spriteType).getRectSource();
 
@@ -272,12 +284,13 @@ public struct Card
 
     }
 
-    public void drawCardByArrea(Rect cardArrea, float scale = 1f)
+    public void drawCardByArrea(Rect cardArrea, float scale = 1f, bool isMarkedSold = false)
     {
         Vector posCard = cardArrea.posStart + cardArrea.size * 0.5f;
         drawCard(
             posAtScreen: posCard,
-            scale: scale
+            scale: scale,
+            isMarkedSold: isMarkedSold
         );
     }
 

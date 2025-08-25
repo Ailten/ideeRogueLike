@@ -4,6 +4,7 @@ public class ListCardUi : Entity
     private List<Card> listCard = new();
     private int indexCardSelected = -1;
     public bool isMakeReOrdered = true;
+    private bool[] isSolded = new bool[0];
 
     public int getIndexCardSelected
     {
@@ -69,6 +70,10 @@ public class ListCardUi : Entity
             }
         }
     }
+    public void setArrayIsSolded(bool[] isSolded)
+    {
+        this.isSolded = isSolded;
+    }
 
     //set rect geometryTrigger with custom size.
     public void updateGeometryTriggerBasedOnSizeListCard()
@@ -106,7 +111,8 @@ public class ListCardUi : Entity
         {
             listCard[i].drawCardByArrea(
                 cardArrea: cardsArrea[i],
-                scale: this.scaleCards
+                scale: this.scaleCards,
+                isMarkedSold: ((this.isSolded.Length == 0)? false: this.isSolded[i])
             );
         }
     }
@@ -126,7 +132,8 @@ public class ListCardUi : Entity
                 MouseManager.getPosMouseAtScreen,
                 cardsArrea[i]
             );
-            if (isClickOnCurrentCard)
+            bool isClickableByNotSolded = ((this.isSolded.Length == 0) ? true : !this.isSolded[i]);
+            if (isClickOnCurrentCard && isClickableByNotSolded)
             {
                 bool isAnUndoClick = this.indexCardSelected == i;
                 if (isAnUndoClick)
@@ -135,7 +142,7 @@ public class ListCardUi : Entity
                     unClickOnCard(listCard[i], isLeftClick);
                     return;
                 }
-                
+
                 this.indexCardSelected = i;
 
                 Vector sizeTriggerSecond = new Vector(
@@ -144,14 +151,14 @@ public class ListCardUi : Entity
 
                 //generate second geometry trigger (for card selected up).
                 float widthCard = Card.cardSize.x * this.scaleCards;
-                float leftCardReplace = Vector.lerpF(0, this.geometryTriggerNN.size.x - widthCard, (float)i/(listCard.Count-1));
+                float leftCardReplace = Vector.lerpF(0, this.geometryTriggerNN.size.x - widthCard, (float)i / (listCard.Count - 1));
                 this.geometryTriggerSecond = new Rect(
                     posStart: this.geometryTriggerNN.posStart + new Vector(leftCardReplace, -this.upCardWhenSelected),
                     size: new Vector(widthCard, this.upCardWhenSelected)
                 );
 
                 clickOnCard(listCard[i], isLeftClick);
-                
+
                 return;
             }
         }

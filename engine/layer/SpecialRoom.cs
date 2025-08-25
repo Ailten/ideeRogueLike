@@ -132,20 +132,20 @@ public class SpecialRoom : Layer
                 const int AmountOfProductInShop = 5;
 
                 this.setDictionaryShop(rng, AmountOfProductInShop);
+                this.productPrice = new TextPriceProductUi[AmountOfProductInShop];
 
                 bool isAnEffectShop = this.isAnEffectOrCard(rng);
 
-                isAnEffectShop = true; // DEBUG.
+                isAnEffectShop = false; // DEBUG.
 
                 if (isAnEffectShop)
                 {
                     List<StatusEffect> listChoose = new();
                     this.productMarkSolded = new ProductSoldedUi[AmountOfProductInShop];
-                    this.productPrice = new TextPriceProductUi[AmountOfProductInShop];
                     for (int i = 0; i < AmountOfProductInShop; i++)
                     {
                         listChoose.Add(StatusEffectManager.generateARandomEffect(TurnManager.getMainPlayerCharacter().idEntity, rng: rng));
-                        this.productMarkSolded[i] = new ProductSoldedUi(this.idLayer, isAnEffectShop);
+                        this.productMarkSolded[i] = new ProductSoldedUi(this.idLayer);
                         this.productMarkSolded[i].isActive = this.getProductIsSold(i);
                         this.productPrice[i] = new TextPriceProductUi(this.idLayer, $"{this.getPriceProduct(i)}");
                     }
@@ -209,6 +209,9 @@ public class SpecialRoom : Layer
                         SpecialRoom.layer.setProductIsSoleded(indexSelected); // update bool is payed.
                         this.productMarkSolded[indexSelected].isActive = true; // mark as solded ui + click mask.
 
+                        if (isEntireShopSolded()) // close shop definitively, if sold every articles.
+                            SpecialRoom.layer.isCleanSpecialFromRoom = true;
+
                         StatusEffect effectSelected = statusEffectDetailsUi.getStatusEffect() ?? throw new Exception("effectSelected is null !");
                         TurnManager.getMainPlayerCharacter().AddStatusEffect(effectSelected);
 
@@ -223,7 +226,81 @@ public class SpecialRoom : Layer
                 }
                 else
                 {
+                    List<Card> listChoose = new();
+                    for (int i = 0; i < AmountOfProductInShop; i++)
+                    {
+                        Card cardGenerate = CardManager.generateARandomCard(rng: rng);
 
+                        bool isCardRecto = rng.Next(1000) < 100;
+                        cardGenerate.isRecto = isCardRecto;
+
+                        listChoose.Add(cardGenerate);
+
+                        this.productPrice[i] = new TextPriceProductUi(this.idLayer, $"{this.getPriceProduct(i)}");
+                    }
+
+                    // details card for select a card.
+                    CardDetails cardDetails = new CardDetails(this.idLayer);
+                    cardDetails.pos = new(250, 10);
+                    cardDetails.zIndex = 3200;
+
+                    ListCardUi cardsUi = new ListCardUi(this.idLayer);
+                    cardsUi.pos = new(250, 388);
+                    cardsUi.upCardWhenSelected = 45f;
+                    cardsUi.zIndex = 3200;
+                    cardsUi.setListCard(listChoose);
+                    cardsUi.setArrayIsSolded(SpecialRoom.layer.getArrayBoolIsSold());
+                    cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCard(cardClicked);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(false);
+                    };
+                    cardsUi.unClickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCard(null);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
+                    };
+
+                    // replace price and maskSolded.
+                    float pricePosY = cardsUi.pos.y - 20;
+                    float cardEndPosX = cardsUi.pos.x + 780 - Card.cardSize.x;
+                    for (int i = 0; i < AmountOfProductInShop; i++)
+                    {
+                        float interpolateI = (float)i / (AmountOfProductInShop - 1);
+                        float cardPosX = Vector.lerpF(cardsUi.pos.x, cardEndPosX, interpolateI);
+                        float decalX = (StatusEffectUi.statusEffectSize.x + 10f) * i;
+                        this.productPrice[i].pos = new(
+                            cardPosX + (Card.cardSize.x / 2),
+                            pricePosY
+                        );
+                    }
+
+                    // when valide, set statusEffect selected to player.
+                    this.validateChoise = () =>
+                    {
+                        Character player = TurnManager.getMainPlayerCharacter();
+                        int indexSelected = cardsUi.getIndexCardSelected;
+                        int priceSelected = this.getPriceProduct(indexSelected);
+
+                        if (player.PO < priceSelected) // verif if can't paye.
+                            return;
+
+                        player.decreaseGold(priceSelected); // paye.
+                        SpecialRoom.layer.setProductIsSoleded(indexSelected); // update bool is payed.
+                        cardsUi.setArrayIsSolded(SpecialRoom.layer.getArrayBoolIsSold()); // update the array bool to print marker solded on card.
+
+                        if (isEntireShopSolded()) // close shop definitively, if sold every articles.
+                            SpecialRoom.layer.isCleanSpecialFromRoom = true;
+
+                        Card cardSelected = cardDetails.getCard() ?? throw new Exception("cardSelected is null !");
+                        cardSelected.isRecto = false; // force return card if recto (masked).
+                        TurnManager.getMainPlayerCharacter().deck.addCardToDeck(cardSelected, isSameColor: true);
+
+                        // unselect.
+                        cardDetails.setCard(null);
+                        cardsUi.unselectCard();
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
+                    };
                 }
 
                 break;
@@ -367,6 +444,14 @@ public class SpecialRoom : Layer
             getPriceProduct(indexProduct),
             true
         );
+    }
+    private bool isEntireShopSolded()
+    {
+        return !getArrayBoolIsSold().Contains(false);
+    }
+    private bool[] getArrayBoolIsSold()
+    {
+        return dictionarShop[this.getKeyOfDictionarShop()].Select(kvp => kvp.Value).ToArray();
     }
     private int randomPriseProductShop(Random rng)
     {
