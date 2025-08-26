@@ -29,6 +29,9 @@ public enum Succes
     RunPlayed_15,
 
     UseACard_DarunyaNeko,
+    UseACard_AxeOLoot,
+    UseACard_BlacASiable,
+    UseACard_Barbak,
     UseACard_DarunyaNeko_5,
     UseACard_BlacASiable_5,
     UseACard_BatteBulle_5,
@@ -192,6 +195,12 @@ public static class StaticSucces
 
             case (Succes.UseACard_DarunyaNeko):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_DarunyaNeko) >= 1;
+            case (Succes.UseACard_AxeOLoot):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_AxeOLoot) >= 1;
+            case (Succes.UseACard_BlacASiable):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_BlacASiable) >= 1;
+            case (Succes.UseACard_Barbak):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_Barbak) >= 1;
             case (Succes.UseACard_DarunyaNeko_5):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_DarunyaNeko) >= 5;
             case (Succes.UseACard_BlacASiable_5):
@@ -211,6 +220,12 @@ public static class StaticSucces
         {
             case (Succes.UseACard_DarunyaNeko):
                 return SpriteType.Character_DarumaNico;
+            case (Succes.UseACard_AxeOLoot):
+                return SpriteType.Character_Axolootl;
+            case (Succes.UseACard_BlacASiable):
+                return SpriteType.Character_Blacacia;
+            case (Succes.UseACard_Barbak):
+                return SpriteType.Character_Barbak;
 
             default:
                 return null;

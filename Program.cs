@@ -2,7 +2,7 @@
 
 class Program 
 {
-    //TODO : fix bug card fight :
+    // TODO :
 
     // add special room. -> fusion. (with % chance to rate depend on number effects on card end).
     // add special room. -> discard.
@@ -25,7 +25,8 @@ class Program
     // se : convert 50 ~ 100 purcent heal maked into shild (if zero or less, do nothing).
 
 
-    // add character : Axo, Blaca, Babulle, Chlow, Lunali, Barbak.
+    // add character : Babulle, Chlow, Lunali.
+    // add mobs and boss next stage.
 
 
     // add a pause menu (back to game, back to main menu, ... other option).

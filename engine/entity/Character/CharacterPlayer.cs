@@ -16,7 +16,13 @@ public class CharacterPlayer : Character
             case (SpriteType.Character_Ailten):
                 return new CharacterAilten(posIndexCel);
             case (SpriteType.Character_DarumaNico):
-                return new Character_DarumaNico(posIndexCel);
+                return new CharacterDarumaNico(posIndexCel);
+            case (SpriteType.Character_Axolootl):
+                return new CharacterAxolootl(posIndexCel);
+            case (SpriteType.Character_Blacacia):
+                return new CharacterBlacacia(posIndexCel);
+            case (SpriteType.Character_Barbak):
+                return new CharacterBarbak(posIndexCel);
 
             default:
                 throw new Exception("SpriteType has no CharacterPlayer match !");

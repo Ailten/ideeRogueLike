@@ -1,7 +1,7 @@
 
-public class CharacterDarumaNico : CharacterPlayer
+public class CharacterBlacacia : CharacterPlayer
 {
-    public CharacterDarumaNico(Vector posIndexCel) : base(SpriteType.Character_DarumaNico, posIndexCel)
+    public CharacterBlacacia(Vector posIndexCel) : base(SpriteType.Character_Blacacia, posIndexCel)
     {
         this.MPmax = 3;
         this.MP = MPmax;
@@ -11,22 +11,10 @@ public class CharacterDarumaNico : CharacterPlayer
         this.HP = HPmax;
 
         // special effect.
-        if(SaveManager.getSave.succes.Contains(Succes.UseACard_DarunyaNeko_5))
-            this.AddStatusEffect(new BoostIntoInvoke(this.idEntity));
+        if(SaveManager.getSave.succes.Contains(Succes.UseACard_BlacASiable_5))
+            this.AddStatusEffect(new RallMpMakeDamage(this.idEntity, -1, -1, damageByMPDecrease: 2));
 
         this.deck.pickCountByTurn = 5;
-        this.deck.addCardToDeck(
-            new Card(
-                cardIllu: SpriteType.CardImg_DarunyaNeko,
-                cardColor: CardColor.Blue,
-                cardEdition: CardEdition.Default,
-                APCost: 2,
-                distanceToUse: new(1, 1),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.InvokeDarunyaNeko, 2)
-            ),
-            amountOfCardAdd: 4,
-            isSameColor: false
-        );
         this.deck.addCardToDeck(
             new Card(
                 cardIllu: SpriteType.CardImg_WoodenSword,
@@ -35,6 +23,18 @@ public class CharacterDarumaNico : CharacterPlayer
                 APCost: 1,
                 distanceToUse: new(1, 1),
                 effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 2)
+            ),
+            amountOfCardAdd: 4,
+            isSameColor: false
+        );
+        this.deck.addCardToDeck(
+            new Card(
+                cardIllu: SpriteType.CardImg_BlacASiable,
+                cardColor: CardColor.Blue,
+                cardEdition: CardEdition.Default,
+                APCost: 1,
+                distanceToUse: new(1, 3),
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.TrapMp, 1)
             ),
             amountOfCardAdd: 2,
             isSameColor: false
@@ -52,5 +52,4 @@ public class CharacterDarumaNico : CharacterPlayer
             isSameColor: false
         );
     }
-
 }
