@@ -28,6 +28,9 @@ class Program
     // add character : Babulle, Chlow, Lunali.
     // add mobs and boss next stage.
 
+    // add card : poison. (like burn, make 1 damage at start turn during 2turn , and try to spread around eatch character adjacent).
+    // add card : TP (if a target, switch with it).
+
 
     // add a pause menu (back to game, back to main menu, ... other option).
     // -> make button ui pause.

@@ -345,6 +345,9 @@ public class SpecialRoom : Layer
     }
     private bool isAnEffectOrCard(Random rng)
     {
+        // do random based on rng, not the amont of card deck.
+        return (rng.Next(1000) < 500);
+        /*/
         int rngForTypeChest = rng.Next(1000);
         const int minCard = 8;
         const int maxCard = 12;
@@ -356,6 +359,7 @@ public class SpecialRoom : Layer
             )
         );
         return (rng.Next(1000) < rangeRngTypeChest);
+        //*/
     }
     public TextPriceProductUi[] productPrice = new TextPriceProductUi[0];
 
