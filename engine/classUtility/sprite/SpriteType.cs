@@ -115,6 +115,7 @@ public enum SpriteType
     CardImg_DarunyaNeko,
     CardImg_Explsur,
     CardImg_Drama,
+    CardImg_OsuAime,
 
 
     // --- FX.
@@ -176,6 +177,7 @@ public enum SpriteType
     StatusEffect_TakeHealMakeHitAround,
     StatusEffect_MultDamageByHPLeft,
     StatusEffect_TakeHealAddDamage,
+    StatusEffect_PropagatePoison,
 
 }
 
@@ -213,6 +215,10 @@ public static class StaticSpriteType
                 return ("Vous feriez mieu de ne pas jouer cette carte.");
             case (SpriteType.CardImg_BlackHole):
                 return ("Attire la cible vers le lanceur.");
+            case (SpriteType.CardImg_OsuAime):
+                return ("Propage la tendinite.");
+
+                
                 
             default:
                 return "";
@@ -252,6 +258,8 @@ public static class StaticSpriteType
                 return ("Drama");
             case (SpriteType.CardImg_BlackHole):
                 return ("Trou Noir");
+            case (SpriteType.CardImg_OsuAime):
+                return ("Osu Aime");
 
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.

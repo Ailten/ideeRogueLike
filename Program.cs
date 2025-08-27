@@ -24,12 +24,14 @@ class Program
     // se : shild give are multiply by 2 ~ 3 when has 5 card or more in hands.
     // se : convert 50 ~ 100 purcent heal maked into shild (if zero or less, do nothing).
 
+    // add card : TP (if a target, switch with it).
+
+    // re do sprite StatusEffect propagationPoison (more generic).
+
 
     // add character : Babulle, Chlow, Lunali.
     // add mobs and boss next stage.
 
-    // add card : poison. (like burn, make 1 damage at start turn during 2turn , and try to spread around eatch character adjacent).
-    // add card : TP (if a target, switch with it).
 
 
     // add a pause menu (back to game, back to main menu, ... other option).

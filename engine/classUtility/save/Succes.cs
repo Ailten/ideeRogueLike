@@ -32,6 +32,7 @@ public enum Succes
     UseACard_AxeOLoot,
     UseACard_BlacASiable,
     UseACard_Barbak,
+    UseACard_Flame,
     UseACard_DarunyaNeko_5,
     UseACard_BlacASiable_5,
     UseACard_BatteBulle_5,
@@ -110,6 +111,18 @@ public static class StaticSucces
                     }
                 );
 
+            case (Succes.UseACard_Flame):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_OsuAime,
+                    cardColor: CardColor.Red,
+                    cardEdition: CardEdition.Default,
+                    APCost: 1,
+                    distanceToUse: new(1, 3),
+                    effects: new() {
+                        new KeyValuePair<EffectCard, int>(EffectCard.PropagatePoison, 2)
+                    }
+                );
+
             default:
                 return null;
         }
@@ -128,6 +141,7 @@ public static class StaticSucces
             case (Succes.Played_10_Cracked):
             case (Succes.RunPlayed_15):
             case (Succes.Damage_100):
+            case (Succes.UseACard_Flame):
 
             case (Succes.UseACard_DarunyaNeko_5):
                 return true;
@@ -201,6 +215,8 @@ public static class StaticSucces
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_BlacASiable) >= 1;
             case (Succes.UseACard_Barbak):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_Barbak) >= 1;
+            case (Succes.UseACard_Flame):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_Flame) >= 1;
             case (Succes.UseACard_DarunyaNeko_5):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_DarunyaNeko) >= 5;
             case (Succes.UseACard_BlacASiable_5):

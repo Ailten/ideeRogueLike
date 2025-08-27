@@ -17,6 +17,7 @@ public enum EffectCard
     InvokeLuneAllier, //invoque a lune allier.
     SelfKill, //instant kill the launcher.
     Attire, //attire target to the launcher.
+    PropagatePoison, //poison hit at beginning turn, and try to propage to character cel adjacente.
 }
 
 
@@ -56,6 +57,8 @@ public static class StaticEffectCard
                 return "Suicide";
             case (EffectCard.Attire):
                 return "Attire";
+            case (EffectCard.PropagatePoison):
+                return "Propagation";
                 
             default:
                 return "No name";
@@ -141,6 +144,11 @@ public static class StaticEffectCard
             case (EffectCard.Attire):
                 return ("- " + effectCard.getName() + " :\n" +
                     $"attire la cible de {value} case vers le lanceur."
+                );
+            case (EffectCard.PropagatePoison):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"applique {value} degat a la cible en debut de tour.\n" +
+                    $"propage l'effet au celules adjacente en debut de tour.\n"
                 );
 
             default:
@@ -257,22 +265,13 @@ public static class StaticEffectCard
                 return;
 
             case (EffectCard.HitAround):
-                Vector posAdj = indexPosTarget + new Vector(0, -1); // up cell.
-                Character? characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
-                if (characterTargetAdj != null)
-                    characterLauncher.makeDamage(characterTargetAdj, effectValue, refCard);
-                posAdj = indexPosTarget + new Vector(1, 0); // right cell.
-                characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
-                if (characterTargetAdj != null)
-                    characterLauncher.makeDamage(characterTargetAdj, effectValue, refCard);
-                posAdj = indexPosTarget + new Vector(0, 1); // down cell.
-                characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
-                if (characterTargetAdj != null)
-                    characterLauncher.makeDamage(characterTargetAdj, effectValue, refCard);
-                posAdj = indexPosTarget + new Vector(-1, 0); // left cell.
-                characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
-                if (characterTargetAdj != null)
-                    characterLauncher.makeDamage(characterTargetAdj, effectValue, refCard);
+                for (int i = 0; i < Vector.adjacente.Length; i++)
+                {
+                    Vector posAdj = indexPosTarget + Vector.adjacente[i];
+                    Character? characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
+                    if (characterTargetAdj != null)
+                        characterLauncher.makeDamage(characterTargetAdj, effectValue, refCard);
+                }
                 return;
 
             case (EffectCard.InvokeDarunyaNeko):
@@ -320,6 +319,17 @@ public static class StaticEffectCard
                     }
                     characterTarget.moveTo(indexMagnet);
                 }
+                return;
+
+            case (EffectCard.PropagatePoison):
+                if (characterTarget == null)
+                    return;
+                characterTarget.AddStatusEffect(new PropagatePoison(
+                    characterTarget.idEntity,
+                    characterLauncher.idEntity,
+                    2,
+                    effectValue
+                ));
                 return;
 
 

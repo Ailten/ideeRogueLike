@@ -4,9 +4,17 @@ public struct Vector
 
     public float x;
     public float y;
+    
+
+    public static Vector[] adjacente = new Vector[]{
+        new(0, -1),
+        new(1, 0),
+        new(0, 1),
+        new(-1, 0)
+    };
 
 
-    public Vector(float x=0, float y=0)
+    public Vector(float x = 0, float y = 0)
     {
         this.x = x;
         this.y = y;

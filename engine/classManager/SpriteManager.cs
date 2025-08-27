@@ -64,7 +64,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.SkipTurnBack, new Vector(676, 0), new Vector(269, 126));
         s.addSpriteType(SpriteType.DeckIcon, new Vector(306, 111), new Vector(115, 99));
 
-        s.addSpriteType(SpriteType.UiCoffreWin, new Vector(0, 639), new Vector(355, 274)); 
+        s.addSpriteType(SpriteType.UiCoffreWin, new Vector(0, 639), new Vector(355, 274));
         s.addSpriteType(SpriteType.UiGodRayWin, new Vector(356, 639), new Vector(122, 274));
 
         s = new Sprite("Characters");
@@ -122,6 +122,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_BatteBulle, new Vector(220, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BlacASiable, new Vector(440, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Explsur, new Vector(660, 575), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_OsuAime, new Vector(880, 575), new Vector(219, 125));
 
         s = new Sprite("FX");
         s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));
@@ -178,6 +179,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_TakeHealMakeHitAround, new Vector(384, 383), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_MultDamageByHPLeft, new Vector(448, 383), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_TakeHealAddDamage, new Vector(0, 447), new Vector(63, 63)); // (l6).
+        s.addSpriteType(SpriteType.StatusEffect_PropagatePoison, new Vector(64, 447), new Vector(63, 63));
+        
 
     }
 
