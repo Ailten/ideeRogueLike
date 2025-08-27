@@ -41,6 +41,8 @@ public enum StatusEffectType
     TakeHealMakeHitAround,
     MultDamageByHPLeft,
     TakeHealAddDamage,
+    PropagatePoison,
+    ShildMultWhenFirst,
 
 }
 
@@ -292,6 +294,20 @@ public static class StaticStatusEffectType
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife
                 );
+            case (StatusEffectType.PropagatePoison):
+                return new PropagatePoison(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    damage: rng.Next(1, 4)
+                );
+            case (StatusEffectType.ShildMultWhenFirst):
+                return new ShildMultWhenFirst(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    shildMult: (float)(rng.Next(20, 30) * 10)/100
+                );
 
 
 
@@ -392,9 +408,11 @@ public static class StaticStatusEffectType
             return StatusEffectType.MultDamageByHPLeft;
         if (statusEffect.GetType() == typeof(TakeHealAddDamage))
             return StatusEffectType.TakeHealAddDamage;
+        if (statusEffect.GetType() == typeof(PropagatePoison))
+            return StatusEffectType.PropagatePoison;
+        if (statusEffect.GetType() == typeof(ShildMultWhenFirst))
+            return StatusEffectType.ShildMultWhenFirst;
             
-
-
 
 
         throw new Exception("getStatusEffectType has no impementation for this !");

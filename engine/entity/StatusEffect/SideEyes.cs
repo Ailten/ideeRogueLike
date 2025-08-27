@@ -128,6 +128,16 @@ public class SideEyes : StatusEffect
     {
         this.getEffectAtRight()?.eventWhenTakeAHeal(ref healIncrement, ref characterGiveHeal, ref refCard);
     }
+    // event call when make a shild.
+    public override void eventWhenGiveAShild(ref Character target, ref int shildIncrement, ref PackageRefCard? refCard)
+    {
+        this.getEffectAtRight()?.eventWhenGiveAShild(ref target, ref shildIncrement, ref refCard);
+    }
+    // event call when take a shild.
+    public override void eventWhenTakeAShild(ref int shildIncrement, ref Character? characterGiveShild, ref PackageRefCard? refCard)
+    {
+        this.getEffectAtRight()?.eventWhenTakeAShild(ref shildIncrement, ref characterGiveShild, ref refCard);
+    }
 
 
 

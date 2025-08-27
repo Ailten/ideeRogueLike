@@ -148,5 +148,9 @@ public class StatusEffect
     public virtual void eventWhenMakeAHeal(ref Character target, ref int healIncrement, ref PackageRefCard? refCard) { }
     // event call when take a heal.
     public virtual void eventWhenTakeAHeal(ref int healIncrement, ref Character? characterGiveHeal, ref PackageRefCard? refCard) { }
+    // event call when make a shild.
+    public virtual void eventWhenGiveAShild(ref Character target, ref int shildIncrement, ref PackageRefCard? refCard) { }
+    // event call when take a shild.
+    public virtual void eventWhenTakeAShild(ref int shildIncrement, ref Character? characterGiveShild, ref PackageRefCard? refCard) { }
 
 }

@@ -162,12 +162,16 @@ public class Character : Entity
     //give shild point.
     public virtual void giveShild(Character target, int shildIncrement, PackageRefCard? refCard = null)
     {
+        // apply status effect.
+        this.statusEffects.ForEach(se => se.eventWhenGiveAShild(ref target, ref shildIncrement, ref refCard));
+
         target.takeShild(shildIncrement, this, refCard);
     }
     //give shild point.
     public virtual void takeShild(int shildIncrement, Character? characterGiveShild = null, PackageRefCard? refCard = null)
     {
-        // todo: apply effect list.
+        // apply status effect.
+        this.statusEffects.ForEach(se => se.eventWhenTakeAShild(ref shildIncrement, ref characterGiveShild, ref refCard));
 
         if (characterGiveShild?.isInRedTeam ?? false) //increase damage maked on stats save.
             SaveManager.increaseShildMaked(shildIncrement);

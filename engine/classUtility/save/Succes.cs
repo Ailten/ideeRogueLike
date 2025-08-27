@@ -36,6 +36,7 @@ public enum Succes
     UseACard_DarunyaNeko_5,
     UseACard_BlacASiable_5,
     UseACard_BatteBulle_5,
+    UseACard_WoodenShild_20,
 }
 
 
@@ -142,6 +143,7 @@ public static class StaticSucces
             case (Succes.RunPlayed_15):
             case (Succes.Damage_100):
             case (Succes.UseACard_Flame):
+            case (Succes.UseACard_WoodenShild_20):
 
             case (Succes.UseACard_DarunyaNeko_5):
                 return true;
@@ -223,6 +225,9 @@ public static class StaticSucces
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_BlacASiable) >= 5;
             case (Succes.UseACard_BatteBulle_5):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_BatteBulle) >= 5;
+            case (Succes.UseACard_WoodenShild_20):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_WoodenShild) >= 20;
+                
 
             default:
                 throw new Exception("Succes has no way to be unlocked");
@@ -298,6 +303,8 @@ public static class StaticSucces
                 return StatusEffectType.RallMpMakeDamage;
             case (Succes.UseACard_BatteBulle_5):
                 return StatusEffectType.PushWallMakeRallMP;
+            case (Succes.UseACard_WoodenShild_20):
+                return StatusEffectType.ShildMultWhenFirst;
 
             default:
                 return null;

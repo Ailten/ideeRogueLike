@@ -178,6 +178,7 @@ public enum SpriteType
     StatusEffect_MultDamageByHPLeft,
     StatusEffect_TakeHealAddDamage,
     StatusEffect_PropagatePoison,
+    StatusEffect_ShildMultWhenFirst,
 
 }
 
