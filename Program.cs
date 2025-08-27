@@ -21,7 +21,6 @@ class Program
     // -> make save file.
 
 
-    // se : shild give are multiply by 2 ~ 3 when has 5 card or more in hands.
     // se : convert 50 ~ 100 purcent heal maked into shild (if zero or less, do nothing).
 
     // add card : TP (if a target, switch with it).
