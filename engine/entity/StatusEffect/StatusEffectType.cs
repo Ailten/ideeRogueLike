@@ -43,6 +43,7 @@ public enum StatusEffectType
     TakeHealAddDamage,
     PropagatePoison,
     ShildMultWhenFirst,
+    ConvertPurcentHealInShild,
 
 }
 
@@ -308,8 +309,13 @@ public static class StaticStatusEffectType
                     turnLife: turnLife,
                     shildMult: (float)(rng.Next(20, 30) * 10)/100
                 );
-
-
+            case (StatusEffectType.ConvertPurcentHealInShild):
+                return new ConvertPurcentHealInShild(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    purcentConvert: (float)(rng.Next(5, 11) * 10)/100
+                );
 
 
             default:
@@ -412,8 +418,9 @@ public static class StaticStatusEffectType
             return StatusEffectType.PropagatePoison;
         if (statusEffect.GetType() == typeof(ShildMultWhenFirst))
             return StatusEffectType.ShildMultWhenFirst;
+        if (statusEffect.GetType() == typeof(ConvertPurcentHealInShild))
+            return StatusEffectType.ConvertPurcentHealInShild;
             
-
 
         throw new Exception("getStatusEffectType has no impementation for this !");
     }
