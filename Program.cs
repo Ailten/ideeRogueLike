@@ -21,8 +21,6 @@ class Program
     // -> make save file.
 
 
-    // se : convert 50 ~ 100 purcent heal maked into shild (if zero or less, do nothing).
-
     // add card : TP (if a target, switch with it).
 
     // re do sprite StatusEffect propagationPoison (more generic).

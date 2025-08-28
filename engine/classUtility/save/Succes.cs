@@ -10,6 +10,7 @@ public enum Succes
     Heal_10,
     Heal_20,
     Heal_30,
+    Heal_40,
     Damage_10,
     Damage_100,
     Damage_200,
@@ -144,6 +145,7 @@ public static class StaticSucces
             case (Succes.Damage_100):
             case (Succes.UseACard_Flame):
             case (Succes.UseACard_WoodenShild_20):
+            case (Succes.Heal_40):
 
             case (Succes.UseACard_DarunyaNeko_5):
                 return true;
@@ -173,6 +175,8 @@ public static class StaticSucces
                 return SaveManager.getSave.healMaked >= 20;
             case (Succes.Heal_30):
                 return SaveManager.getSave.healMaked >= 30;
+            case (Succes.Heal_40):
+                return SaveManager.getSave.healMaked >= 40;
             case (Succes.Damage_10):
                 return SaveManager.getSave.damageMaked >= 10;
             case (Succes.Damage_100):
@@ -262,6 +266,8 @@ public static class StaticSucces
                 return StatusEffectType.PushWallMakeSelfHeal;
             case (Succes.Heal_30):
                 return StatusEffectType.TakeHealMakeHitAround;
+            case (Succes.Heal_40):
+                return StatusEffectType.ConvertPurcentHealInShild;
             case (Succes.Damage_100):
                 return StatusEffectType.SideEyes;
             case (Succes.Damage_200):
