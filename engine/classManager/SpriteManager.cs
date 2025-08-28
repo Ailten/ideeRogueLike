@@ -181,6 +181,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_TakeHealAddDamage, new Vector(0, 447), new Vector(63, 63)); // (l6).
         s.addSpriteType(SpriteType.StatusEffect_PropagatePoison, new Vector(64, 447), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ShildMultWhenFirst, new Vector(128, 447), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_ConvertPurcentHealInShild, new Vector(192, 447), new Vector(63, 63));
+        
         
 
     }
