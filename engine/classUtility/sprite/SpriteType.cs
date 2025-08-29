@@ -116,6 +116,7 @@ public enum SpriteType
     CardImg_Explsur,
     CardImg_Drama,
     CardImg_OsuAime,
+    CardImg_Dashilios,
 
 
     // --- FX.
@@ -219,6 +220,8 @@ public static class StaticSpriteType
                 return ("Attire la cible vers le lanceur.");
             case (SpriteType.CardImg_OsuAime):
                 return ("Propage la tendinite.");
+            case (SpriteType.CardImg_Dashilios):
+                return ("Teleporte le lanceur.");
 
                 
                 
@@ -262,6 +265,8 @@ public static class StaticSpriteType
                 return ("Trou Noir");
             case (SpriteType.CardImg_OsuAime):
                 return ("Osu Aime");
+            case (SpriteType.CardImg_Dashilios):
+                return ("Dashilios");
 
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.

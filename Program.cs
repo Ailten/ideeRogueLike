@@ -23,8 +23,6 @@ class Program
 
     // add card : TP (if a target, switch with it).
 
-    // re do sprite StatusEffect propagationPoison (more generic).
-
 
     // add character : Babulle, Chlow, Lunali.
     // add mobs and boss next stage.
