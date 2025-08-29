@@ -18,6 +18,7 @@ public enum EffectCard
     SelfKill, //instant kill the launcher.
     Attire, //attire target to the launcher.
     PropagatePoison, //poison hit at beginning turn, and try to propage to character cel adjacente.
+    TeleportSwitch, //teleport or switch position with the cel target.
 }
 
 
@@ -59,6 +60,8 @@ public static class StaticEffectCard
                 return "Attire";
             case (EffectCard.PropagatePoison):
                 return "Propagation";
+            case (EffectCard.TeleportSwitch):
+                return "Teleporte";
                 
             default:
                 return "No name";
@@ -149,6 +152,11 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     $"applique {value} degat a la cible en debut de tour.\n" +
                     $"propage l'effet au celules adjacente en debut de tour.\n"
+                );
+            case (EffectCard.TeleportSwitch):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"Teleporte le lanceur sur la case ciblee.\n" +
+                    $"Si la case est occupee, echange de places.\n"
                 );
 
             default:
@@ -330,6 +338,12 @@ public static class StaticEffectCard
                     2,
                     effectValue
                 ));
+                return;
+
+            case (EffectCard.TeleportSwitch):
+                if (characterTarget != null)
+                    characterTarget.moveTo(characterLauncher.indexPosCel);
+                characterLauncher.moveTo(indexPosTarget);
                 return;
 
 

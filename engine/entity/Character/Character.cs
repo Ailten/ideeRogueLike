@@ -287,8 +287,8 @@ public class Character : Entity
     //move character to a vector index pos.
     public void moveTo(Vector indexPos, bool isActionCel = true)
     {
-        indexPosCel = indexPos;
-        pos = Room.getPosAtIndexCelRoom(indexPos);
+        this.indexPosCel = indexPos;
+        this.pos = Room.getPosAtIndexCelRoom(indexPos);
 
         if (isActionCel)
         {
