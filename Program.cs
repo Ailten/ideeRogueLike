@@ -21,9 +21,6 @@ class Program
     // -> make save file.
 
 
-    // add card : TP (if a target, switch with it).
-
-
     // add character : Babulle, Chlow, Lunali.
     // add mobs and boss next stage.
 
