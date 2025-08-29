@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 
 // eatch succes in game.
 public enum Succes
@@ -35,10 +36,10 @@ public enum Succes
     UseACard_BlacASiable,
     UseACard_Barbak,
     UseACard_Flame,
-    UseACard_DarunyaNeko_5,
-    UseACard_BlacASiable_5,
-    UseACard_BatteBulle_5,
-    UseACard_WoodenShild_20,
+    UseACard_5_DarunyaNeko,
+    UseACard_5_BlacASiable,
+    UseACard_5_BatteBulle,
+    UseACard_20_WoodenShild,
 }
 
 
@@ -157,10 +158,10 @@ public static class StaticSucces
             case (Succes.RunPlayed_15):
             case (Succes.Damage_100):
             case (Succes.UseACard_Flame):
-            case (Succes.UseACard_WoodenShild_20):
+            case (Succes.UseACard_20_WoodenShild):
             case (Succes.Heal_40):
 
-            case (Succes.UseACard_DarunyaNeko_5):
+            case (Succes.UseACard_5_DarunyaNeko):
                 return true;
 
             default:
@@ -238,19 +239,62 @@ public static class StaticSucces
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_Barbak) >= 1;
             case (Succes.UseACard_Flame):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_Flame) >= 1;
-            case (Succes.UseACard_DarunyaNeko_5):
+            case (Succes.UseACard_5_DarunyaNeko):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_DarunyaNeko) >= 5;
-            case (Succes.UseACard_BlacASiable_5):
+            case (Succes.UseACard_5_BlacASiable):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_BlacASiable) >= 5;
-            case (Succes.UseACard_BatteBulle_5):
+            case (Succes.UseACard_5_BatteBulle):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_BatteBulle) >= 5;
-            case (Succes.UseACard_WoodenShild_20):
+            case (Succes.UseACard_20_WoodenShild):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_WoodenShild) >= 20;
                 
 
             default:
                 throw new Exception("Succes has no way to be unlocked");
         }
+    }
+
+    // get description of what do to unlock success.
+    public static string getConditionToUnlock(this Succes succes)
+    {
+        string succesStr = succes.ToString();
+        Match getNumber = new Regex("[0-9]{1,}").Match(succesStr);
+        Match getFirstPart = new Regex("^[a-zA-Z]{1,}").Match(succesStr);
+        Match getLastPart = new Regex("[a-zA-Z]{1,}$").Match(succesStr);
+        int amountNeed = (
+            (getNumber.Length > 0)? Int32.Parse(getNumber.Groups[0].Value):
+            1
+        );
+        string firstPart = (
+            (getFirstPart.Length > 0)? getFirstPart.Groups[0].Value:
+            ""
+        );
+        string lastPart = (
+            (getLastPart.Length > 0)? getLastPart.Groups[0].Value:
+            ""
+        );
+
+        if (firstPart == "Kill") // ex: Kill_5_Slime.
+            return $"Tuer {amountNeed} {lastPart}";
+        if (firstPart == "Take" && lastPart == "Coin") // ex: Take_10_Coin.
+            return $"Colecter {amountNeed} pieces d'or";
+        if (firstPart == "Take" && lastPart == "Damage") // ex: Take_20_Damage.
+            return $"Encaisser {amountNeed} points de degats";
+        if (firstPart == "Heal") // ex: Heal_10.
+            return $"Soigner {amountNeed} points de vie";
+        if (firstPart == "Damage") // ex: Damage_10.
+            return $"Infliger {amountNeed} points de degats";
+        if (firstPart == "Played" && lastPart == "Shiny") // ex: Played_1_Shiny.
+            return $"Jouer {amountNeed} cartes brillantes";
+        if (firstPart == "Played" && lastPart == "Cracked") // ex: Played_1_Cracked.
+            return $"Jouer {amountNeed} cartes fissurees";
+        if (firstPart == "RunPlayed") // ex: RunPlayed_5.
+            return $"Jouer {amountNeed} parties";
+        if (firstPart == "UseACard") // ex: UseACard_DarunyaNeko || UseACard_5_DarunyaNeko.
+            return $"Jouer {amountNeed} fois la carte {lastPart}";
+
+
+        throw new Exception("Can't getConditionToUnlock !");
     }
 
     // get a spriteType from an enum succes (for set list character in main menu start run).
@@ -318,13 +362,13 @@ public static class StaticSucces
             case (Succes.RunPlayed_15):
                 return StatusEffectType.BalanceEffect;
 
-            case (Succes.UseACard_DarunyaNeko_5):
+            case (Succes.UseACard_5_DarunyaNeko):
                 return StatusEffectType.BoostIntoInvoke;
-            case (Succes.UseACard_BlacASiable_5):
+            case (Succes.UseACard_5_BlacASiable):
                 return StatusEffectType.RallMpMakeDamage;
-            case (Succes.UseACard_BatteBulle_5):
+            case (Succes.UseACard_5_BatteBulle):
                 return StatusEffectType.PushWallMakeRallMP;
-            case (Succes.UseACard_WoodenShild_20):
+            case (Succes.UseACard_20_WoodenShild):
                 return StatusEffectType.ShildMultWhenFirst;
 
             default:
