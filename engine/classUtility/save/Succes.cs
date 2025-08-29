@@ -20,6 +20,7 @@ public enum Succes
     Take_20_Damage,
     Take_40_Damage,
     Take_60_Damage,
+    Take_80_Damage,
     Take_100_Damage,
     Played_1_Cracked,
     Played_5_Cracked,
@@ -125,6 +126,18 @@ public static class StaticSucces
                     }
                 );
 
+            case (Succes.Take_80_Damage):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_Dashilios,
+                    cardColor: CardColor.Red,
+                    cardEdition: CardEdition.Default,
+                    APCost: 1,
+                    distanceToUse: new(1, 3),
+                    effects: new() {
+                        new KeyValuePair<EffectCard, int>(EffectCard.TeleportSwitch, 0)
+                    }
+                );
+
             default:
                 return null;
         }
@@ -194,7 +207,9 @@ public static class StaticSucces
             case (Succes.Take_40_Damage):
                 return SaveManager.getSave.damageTaked >= 40;
             case (Succes.Take_60_Damage):
-                return SaveManager.getSave.damageTaked >= 40;
+                return SaveManager.getSave.damageTaked >= 60;
+            case (Succes.Take_80_Damage):
+                return SaveManager.getSave.damageTaked >= 80;
             case (Succes.Take_100_Damage):
                 return SaveManager.getSave.damageTaked >= 100;
             case (Succes.Played_1_Cracked):
