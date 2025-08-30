@@ -291,19 +291,25 @@ public class Room
                 }
 
                 bool isCenterRoomCel = (x == midWidthMax && y == midHeightMax);
-                if (celType == CelType.Cel && roomType == RoomType.Room_Center && isCenterRoomCel)
+                if (celType == CelType.Cel && isCenterRoomCel)
                 {
-                    celType = CelType.Cel_CenterRoom; //print center room for spawn stage cel.
+                    switch (roomType)
+                    {
+                        case (RoomType.Room_Center):
+                            celType = CelType.Cel_CenterRoom; //print center room for spawn stage cel.
+                            break;
+                        case (RoomType.Room_Chest):
+                            celType = CelType.Cel_Coffre;
+                            break;
+                        case (RoomType.Room_Shop):
+                            celType = CelType.Cel_Shop;
+                            break;
+                        case (RoomType.Room_Discard):
+                            celType = CelType.Cel_Discard;
+                            break;
+                        // TODO : add sprite center room special room.
+                    }
                 }
-                else if (celType == CelType.Cel && roomType == RoomType.Room_Chest && isCenterRoomCel)
-                {
-                    celType = CelType.Cel_Coffre; //print chest cel.
-                }
-                else if (celType == CelType.Cel && roomType == RoomType.Room_Shop && isCenterRoomCel)
-                {
-                    celType = CelType.Cel_Shop; //print chest cel.
-                }
-                // TODO : add sprite center room special room.
 
                 //instancie cel.
                 cels[cels.Count-1].Add(
