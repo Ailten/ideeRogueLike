@@ -4,8 +4,8 @@ class Program
 {
     // TODO :
 
-    // add special room. -> fusion. (with % chance to rate depend on number effects on card end).
     // add special room. -> discard.
+    // add special room. -> fusion. (with % chance to rate depend on number effects on card end).
     // add special room. -> duplicate.
 
     // add special room. -> boost value effect card. (with % chance fail depend on effect selected and his level).

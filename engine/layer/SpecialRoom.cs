@@ -28,6 +28,8 @@ public class SpecialRoom : Layer
             SpecialRoom.layer.unActive(); // close the layer special room.
         };
 
+        string nameButtonValidate = "valid";
+
         switch (currentRoom.roomType)
         {
             case (RoomType.Room_Chest):
@@ -105,6 +107,7 @@ public class SpecialRoom : Layer
                     cardsUi.pos = new(250, 388);
                     cardsUi.upCardWhenSelected = 45f;
                     cardsUi.zIndex = 3200;
+                    cardsUi.isMakeReOrdered = false;
                     cardsUi.setListCard(listChoose);
                     cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
                     {
@@ -130,6 +133,7 @@ public class SpecialRoom : Layer
 
             case (RoomType.Room_Shop):
                 const int AmountOfProductInShop = 5;
+                nameButtonValidate = "acheter";
 
                 this.setDictionaryShop(rng, AmountOfProductInShop);
                 this.productPrice = new TextPriceProductUi[AmountOfProductInShop];
@@ -240,6 +244,7 @@ public class SpecialRoom : Layer
                     cardsUi.pos = new(250, 388);
                     cardsUi.upCardWhenSelected = 45f;
                     cardsUi.zIndex = 3200;
+                    cardsUi.isMakeReOrdered = false;
                     cardsUi.setListCard(listChoose);
                     cardsUi.setArrayIsSolded(SpecialRoom.layer.getArrayBoolIsSold());
                     cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
@@ -297,6 +302,42 @@ public class SpecialRoom : Layer
 
                 break;
 
+            case (RoomType.Room_Discard):
+                this.isCleanSpecialFromRoom = true;
+                nameButtonValidate = "suprimer";
+
+                { // block generation.
+                    // details card for select a card.
+                    CardDetails cardDetails = new CardDetails(this.idLayer);
+                    cardDetails.pos = new(250, 10);
+                    cardDetails.zIndex = 3200;
+
+                    ListCardUi cardsUi = new ListCardUi(this.idLayer);
+                    cardsUi.pos = new(250, 388);
+                    cardsUi.upCardWhenSelected = 45f;
+                    cardsUi.zIndex = 3200;
+                    cardsUi.isMakeReOrdered = false;
+                    cardsUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInCimetier); // in a special room all card player is in cimetier.
+                    cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCard(cardClicked);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(false);
+                    };
+                    cardsUi.unClickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCard(null);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
+                    };
+
+                    // when valide, set statusEffect selected to player.
+                    this.validateChoise = () =>
+                    {
+
+                    };
+                }
+
+                break;
+
             default:
                 throw new Exception("RoomType has no SpecialRoom UI definition !");
         }
@@ -313,7 +354,7 @@ public class SpecialRoom : Layer
 
         // button valid.
         this.buttonValid = new ButtonUi(this.idLayer);
-        this.buttonValid.text = "valid";
+        this.buttonValid.text = nameButtonValidate;
         this.buttonValid.pos = new(838, 661);
         this.buttonValid.setIsDisabled(true);
         this.buttonValid.zIndex = 3400;
