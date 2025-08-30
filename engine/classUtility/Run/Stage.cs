@@ -355,9 +355,9 @@ public class Stage
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
                     (indexSpecialRoom == 1) ? RoomType.Room_Chest :
                     (indexSpecialRoom == 2) ? (rngSpecialRoom < 900 ? RoomType.Room_Chest : RoomType.Room) :
-                    (indexSpecialRoom == 3) ? RoomType.Room_Shop : //Debug.
-                    (indexSpecialRoom == 4) ? RoomType.Room_Shop :
-                    (indexSpecialRoom == 5) ? RoomType.Room_Shop :
+                    (indexSpecialRoom == 3) ? (rngSpecialRoom < 800 ? RoomType.Room_Discard : RoomType.Room) :
+                    (indexSpecialRoom == 4) ? RoomType.Room :
+                    (indexSpecialRoom == 5) ? RoomType.Room :
                     (indexSpecialRoom == 6) ? RoomType.Room :
                     RoomType.Room
                 );
@@ -367,7 +367,7 @@ public class Stage
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
                     (indexSpecialRoom == 1) ? RoomType.Room_Chest :
                     (indexSpecialRoom == 2) ? (rngSpecialRoom < 750 ? RoomType.Room_Chest : RoomType.Room) :
-                    (indexSpecialRoom == 3) ? RoomType.Room :
+                    (indexSpecialRoom == 3) ? (rngSpecialRoom < 600 ? RoomType.Room_Discard : RoomType.Room) :
                     (indexSpecialRoom == 4) ? RoomType.Room :
                     (indexSpecialRoom == 5) ? RoomType.Room :
                     (indexSpecialRoom == 6) ? RoomType.Room :
@@ -379,7 +379,7 @@ public class Stage
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
                     (indexSpecialRoom == 1) ? RoomType.Room_Chest :
                     (indexSpecialRoom == 2) ? (rngSpecialRoom < 250 ? RoomType.Room_Chest : RoomType.Room) :
-                    (indexSpecialRoom == 3) ? RoomType.Room :
+                    (indexSpecialRoom == 3) ? (rngSpecialRoom < 400 ? RoomType.Room_Discard : RoomType.Room) :
                     (indexSpecialRoom == 4) ? RoomType.Room :
                     (indexSpecialRoom == 5) ? RoomType.Room :
                     (indexSpecialRoom == 6) ? RoomType.Room :
