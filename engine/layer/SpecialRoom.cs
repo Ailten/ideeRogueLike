@@ -333,7 +333,7 @@ public class SpecialRoom : Layer
                     this.validateChoise = () =>
                     {
                         Character player = TurnManager.getMainPlayerCharacter();
-                        
+                        player.deck.destroyCardFromCimetier(cardsUi.getIndexCardSelected); // destroy card from cimetier player.
                     };
                 }
 

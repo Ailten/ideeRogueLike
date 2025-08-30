@@ -115,6 +115,11 @@ public class Deck
     {
         cardsInHand.RemoveAt(indexCard); //remove card use from hand.
     }
+    //destroy a card from cimetier.
+    public void destroyCardFromCimetier(int indexCard)
+    {
+        cardsInCimetier.RemoveAt(indexCard); //remove card use from cimetier.
+    }
 
 
     public override string ToString()
