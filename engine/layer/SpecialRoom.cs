@@ -332,7 +332,8 @@ public class SpecialRoom : Layer
                     // when valide, set statusEffect selected to player.
                     this.validateChoise = () =>
                     {
-
+                        Character player = TurnManager.getMainPlayerCharacter();
+                        
                     };
                 }
 
