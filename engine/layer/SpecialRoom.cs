@@ -340,8 +340,45 @@ public class SpecialRoom : Layer
                 break;
 
             case (RoomType.Room_Duplicate):
+                this.isCleanSpecialFromRoom = true;
+                nameButtonValidate = "dupliquer";
 
-            
+                { // block generation.
+                    // details card for select a card.
+                    CardDetails cardDetails = new CardDetails(this.idLayer);
+                    cardDetails.pos = new(250, 10);
+                    cardDetails.zIndex = 3200;
+
+                    ListCardUi cardsUi = new ListCardUi(this.idLayer);
+                    cardsUi.pos = new(250, 388);
+                    cardsUi.upCardWhenSelected = 45f;
+                    cardsUi.zIndex = 3200;
+                    cardsUi.isMakeReOrdered = false;
+                    cardsUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInCimetier); // in a special room all card player is in cimetier.
+                    cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCard(cardClicked);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(false);
+                    };
+                    cardsUi.unClickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCard(null);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
+                    };
+
+                    // when valide, set statusEffect selected to player.
+                    this.validateChoise = () =>
+                    {
+                        Character player = TurnManager.getMainPlayerCharacter();
+                        Card cardSelected = cardDetails.getCard() ?? throw new Exception("no card selected for duplication !");
+
+                        player.deck.addCardToDeck( // add a copy of card selected to deck.
+                            cardSelected,
+                            isSameColor: true
+                        );
+                    };
+                }
+
                 break;
 
             default:
