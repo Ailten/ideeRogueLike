@@ -21,6 +21,7 @@ public enum CelType
     Cel_Coffre,
     Cel_Shop,
     Cel_Discard,
+    Cel_Duplicate,
 
 
     // celtype who's add by character.
@@ -52,6 +53,7 @@ public static class StaticCelType
             case (CelType.Cel_Coffre):
             case (CelType.Cel_Shop):
             case (CelType.Cel_Discard):
+            case (CelType.Cel_Duplicate):
                 return false;
 
             default:
@@ -84,6 +86,8 @@ public static class StaticCelType
                 return SpriteType.Cel_Shop;
             case (CelType.Cel_Discard):
                 return SpriteType.Cel_Discard;
+            case (CelType.Cel_Duplicate):
+                return SpriteType.Cel_Duplicate;
 
             case (CelType.Cel_SandMPDown):
             case (CelType.Cel_SandMPDown_2):
@@ -132,6 +136,7 @@ public static class StaticCelType
             case (CelType.Cel_Coffre):
             case (CelType.Cel_Shop):
             case (CelType.Cel_Discard):
+            case (CelType.Cel_Duplicate):
                 return true;
 
             default:

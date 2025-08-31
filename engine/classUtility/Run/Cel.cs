@@ -230,6 +230,7 @@ public class Cel : Entity
             case (CelType.Cel_Coffre):
             case (CelType.Cel_Shop):
             case (CelType.Cel_Discard):
+            case (CelType.Cel_Duplicate):
                 SpecialRoom.layer.active(); // active layer SpecialRoom when walk on chest cel.
                 return;
 
