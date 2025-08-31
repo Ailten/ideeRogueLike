@@ -339,6 +339,11 @@ public class SpecialRoom : Layer
 
                 break;
 
+            case (RoomType.Room_Duplicate):
+
+            
+                break;
+
             default:
                 throw new Exception("RoomType has no SpecialRoom UI definition !");
         }
