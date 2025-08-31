@@ -307,6 +307,9 @@ public class Room
                         case (RoomType.Room_Discard):
                             celType = CelType.Cel_Discard;
                             break;
+                        case (RoomType.Room_Duplicate):
+                            celType = CelType.Cel_Duplicate;
+                            break;
                         // TODO : add sprite center room special room.
                     }
                 }
