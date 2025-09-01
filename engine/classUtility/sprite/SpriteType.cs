@@ -84,7 +84,7 @@ public enum SpriteType
     Cel_Selectable,
     Cel_DoorToNextRoomLock,
     Cel_Coffre,
-    Cel_Fusion,
+    Cel_CardEffectBoost,
     Cel_Discard,
     Cel_Duplicate,
     Cel_Shop,

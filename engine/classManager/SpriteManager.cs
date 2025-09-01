@@ -91,7 +91,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Cel_Selectable, new Vector(128, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_DoorToNextRoomLock, new Vector(256, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_Coffre, new Vector(384, 128), new Vector(126, 126));
-        s.addSpriteType(SpriteType.Cel_Fusion, new Vector(0, 256), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Cel_CardEffectBoost, new Vector(0, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_Discard, new Vector(128, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_Shop, new Vector(256, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Cel_Duplicate, new Vector(384, 256), new Vector(126, 126));

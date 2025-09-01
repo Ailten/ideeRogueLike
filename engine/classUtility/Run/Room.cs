@@ -310,6 +310,9 @@ public class Room
                         case (RoomType.Room_Duplicate):
                             celType = CelType.Cel_Duplicate;
                             break;
+                        case (RoomType.Room_CardEffectBoost):
+                            celType = CelType.Cel_CardEffectBoost;
+                            break;
                         // TODO : add sprite center room special room.
                     }
                 }

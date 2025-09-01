@@ -357,7 +357,7 @@ public class Stage
                     (indexSpecialRoom == 2) ? (rngSpecialRoom < 900 ? RoomType.Room_Chest : RoomType.Room) :
                     (indexSpecialRoom == 3) ? (rngSpecialRoom < 600 ? RoomType.Room_Shop : RoomType.Room) :
                     (indexSpecialRoom == 4) ? (rngSpecialRoom < 800 ? RoomType.Room_Discard : RoomType.Room) :
-                    (indexSpecialRoom == 5) ? RoomType.Room :
+                    (indexSpecialRoom == 5) ? (rngSpecialRoom < 150 ? RoomType.Room_CardEffectBoost : RoomType.Room) :
                     (indexSpecialRoom == 6) ? RoomType.Room :
                     RoomType.Room
                 );
@@ -370,7 +370,7 @@ public class Stage
                     (indexSpecialRoom == 3) ? (rngSpecialRoom < 750 ? RoomType.Room_Shop : RoomType.Room) :
                     (indexSpecialRoom == 4) ? (rngSpecialRoom < 600 ? RoomType.Room_Discard : RoomType.Room) :
                     (indexSpecialRoom == 5) ? (rngSpecialRoom < 50 ? RoomType.Room_Duplicate : RoomType.Room) :
-                    (indexSpecialRoom == 6) ? RoomType.Room :
+                    (indexSpecialRoom == 6) ? (rngSpecialRoom < 350 ? RoomType.Room_CardEffectBoost : RoomType.Room) :
                     RoomType.Room
                 );
             
@@ -382,7 +382,7 @@ public class Stage
                     (indexSpecialRoom == 3) ? (rngSpecialRoom < 450 ? RoomType.Room_Shop : RoomType.Room) :
                     (indexSpecialRoom == 4) ? (rngSpecialRoom < 400 ? RoomType.Room_Discard : RoomType.Room) :
                     (indexSpecialRoom == 5) ? (rngSpecialRoom < 150 ? RoomType.Room_Duplicate : RoomType.Room) :
-                    (indexSpecialRoom == 6) ? RoomType.Room :
+                    (indexSpecialRoom == 6) ? (rngSpecialRoom < 550 ? RoomType.Room_CardEffectBoost : RoomType.Room) :
                     RoomType.Room
                 );
             
@@ -392,7 +392,7 @@ public class Stage
                     (indexSpecialRoom == 2) ? (rngSpecialRoom < 600 ? RoomType.Room_Chest : RoomType.Room) :
                     (indexSpecialRoom == 2) ? (rngSpecialRoom < 800 ? RoomType.Room_Shop : RoomType.Room) :
                     (indexSpecialRoom == 3) ? (rngSpecialRoom < 200 ? RoomType.Room_Duplicate : RoomType.Room) :
-                    (indexSpecialRoom == 4) ? RoomType.Room :
+                    (indexSpecialRoom == 4) ? (rngSpecialRoom < 750 ? RoomType.Room_CardEffectBoost : RoomType.Room) :
                     (indexSpecialRoom == 5) ? RoomType.Room :
                     (indexSpecialRoom == 6) ? RoomType.Room :
                     RoomType.Room
@@ -402,7 +402,7 @@ public class Stage
                 return (
                     (indexSpecialRoom == 0) ? RoomType.Room_Boss :
                     (indexSpecialRoom == 2) ? (rngSpecialRoom < 80 ? RoomType.Room_Chest : RoomType.Room) :
-                    (indexSpecialRoom == 2) ? RoomType.Room :
+                    (indexSpecialRoom == 2) ? (rngSpecialRoom < 850 ? RoomType.Room_CardEffectBoost : RoomType.Room) :
                     (indexSpecialRoom == 3) ? RoomType.Room :
                     (indexSpecialRoom == 4) ? RoomType.Room :
                     (indexSpecialRoom == 5) ? RoomType.Room :
