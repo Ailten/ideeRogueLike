@@ -6,6 +6,12 @@ public class CardDetails : Entity
     private Card? card;
     private EffectCard? effectSelected;
     private int effectValueSelected;
+    private int indexEffectSelectedOnCard = 0;
+
+    public int getIndexEffectSelectedOnCard
+    {
+        get { return indexEffectSelectedOnCard; }
+    }
 
     public CardDetails(int idLayer) : base(idLayer, SpriteType.none)
     {
@@ -117,6 +123,10 @@ public class CardDetails : Entity
     }
 
 
+    public Action<EffectCard, int> clickOnEffect = (effectCardSelected, indexEffectOnCard) => { };
+    public Action<EffectCard, int> unclickOnEffect = (effectCardSelected, indexEffectOnCard) => { };
+
+
     public override void eventMouseClick(bool isLeftClick, bool isClickDown)
     {
         if (isClickDown)
@@ -143,8 +153,20 @@ public class CardDetails : Entity
                     EffectCard.NoEffect :
                     cardNN.effects[i].Key
                 );
-                effectSelected = (effectSelected == effect) ? null : effect;
-                effectValueSelected = cardNN.effects[i].Value;
+
+                bool isUndoSelect = (this.effectSelected == effect);
+                if (!isUndoSelect)
+                {
+                    this.effectSelected = effect;
+                    this.effectValueSelected = cardNN.effects[i].Value;
+                    this.indexEffectSelectedOnCard = i;
+                    this.clickOnEffect(effect, i);
+                }
+                else
+                {
+                    this.effectSelected = null;
+                    this.unclickOnEffect(effect, i);
+                }
             }
         }
     }

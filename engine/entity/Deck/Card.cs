@@ -295,6 +295,15 @@ public struct Card
     }
 
 
+    // increase the value of an effect card.
+    public void increaseEffectValue(int indexEffect, int increase = 1)
+    {
+        KeyValuePair<EffectCard, int> getEffect = this.effects[indexEffect];
+        int newValue = getEffect.Value + increase;
+        this.effects[indexEffect] = new(getEffect.Key, newValue);
+    }
+
+
     public override string ToString()
     {
         return (

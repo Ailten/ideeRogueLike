@@ -385,6 +385,50 @@ public class SpecialRoom : Layer
                 this.isCleanSpecialFromRoom = true;
                 nameButtonValidate = "ameliorer";
 
+                { // block generation.
+                    // details card for select a card.
+                    CardDetails cardDetails = new CardDetails(this.idLayer);
+                    cardDetails.pos = new(250, 10);
+                    cardDetails.zIndex = 3200;
+                    cardDetails.clickOnEffect = (effectCardSelected, indexEffectOnCard) =>
+                    {
+                        if (effectCardSelected == EffectCard.NoEffect)
+                            return;
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(false);
+                    };
+                    cardDetails.unclickOnEffect = (effectCardSelected, indexEffectOnCard) =>
+                    {
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
+                    };
+
+                    ListCardUi cardsUi = new ListCardUi(this.idLayer);
+                    cardsUi.pos = new(250, 388);
+                    cardsUi.upCardWhenSelected = 45f;
+                    cardsUi.zIndex = 3200;
+                    cardsUi.isMakeReOrdered = false;
+                    cardsUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInCimetier); // in a special room all card player is in cimetier.
+                    cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCard(cardClicked);
+                    };
+                    cardsUi.unClickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCard(null);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
+                    };
+
+                    // when valide, set statusEffect selected to player.
+                    this.validateChoise = () =>
+                    {
+                        Character player = TurnManager.getMainPlayerCharacter();
+                        int indexCard = cardsUi.getIndexCardSelected;
+                        int indexEffect = cardDetails.getIndexEffectSelectedOnCard;
+
+                        // increase value of effect selected.
+                        player.deck.cardsInCimetier[indexCard].increaseEffectValue(indexEffect);
+                    };
+                }
+
                 break;
 
             default:
