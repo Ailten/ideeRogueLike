@@ -53,7 +53,7 @@ public enum SpriteType
     MiniMapUI_RoomChest,
     MiniMapUI_RoomBoss,
     MiniMapUI_RoomShop,
-    MiniMapUI_RoomFusion,
+    MiniMapUI_RoomCardEffectBoost,
     MiniMapUI_RoomDiscard,
     MiniMapUI_RoomDuplicate,
 

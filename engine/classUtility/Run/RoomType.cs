@@ -8,8 +8,9 @@ public enum RoomType
     Room_Shop, //a room for let player use his PO to buy card or special effect.
     Room_Discard, //allow to delete a card from deck.
     Room_Duplicate, //allow to duplicate a card on your deck.
+    Room_CardEffectBoost, //upgrade the value of an effect on a card.
     //Room_Fusion, //allow to merge two card.
-    //Room_Boost, //send a boost permanent on the player.
+    //Room_BoostEdition, //can set randomly shiny or cracked to a card selected.
 
     Room_Center,
 
@@ -37,10 +38,8 @@ public static class StaticRoomType
                 return SpriteType.MiniMapUI_RoomDiscard;
             case(RoomType.Room_Duplicate):
                 return SpriteType.MiniMapUI_RoomDuplicate;
-            //case(RoomType.Room_Boost):
-            //    return SpriteType.MiniMapUI_RoomBoost;
-            //case(RoomType.Room_Fusion):
-            //    return SpriteType.MiniMapUI_RoomFusion;
+            case(RoomType.Room_CardEffectBoost):
+                return SpriteType.MiniMapUI_RoomCardEffectBoost;
 
             default:
                 return null;

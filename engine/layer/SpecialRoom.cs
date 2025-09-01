@@ -381,6 +381,12 @@ public class SpecialRoom : Layer
 
                 break;
 
+            case (RoomType.Room_CardEffectBoost):
+                this.isCleanSpecialFromRoom = true;
+                nameButtonValidate = "ameliorer";
+
+                break;
+
             default:
                 throw new Exception("RoomType has no SpecialRoom UI definition !");
         }
