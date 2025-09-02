@@ -313,6 +313,9 @@ public class Room
                         case (RoomType.Room_CardEffectBoost):
                             celType = CelType.Cel_CardEffectBoost;
                             break;
+                        case (RoomType.Room_Fusion):
+                            celType = CelType.Cel_Fusion;
+                            break;
                         // TODO : add sprite center room special room.
                     }
                 }

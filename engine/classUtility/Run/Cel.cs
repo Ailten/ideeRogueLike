@@ -232,6 +232,7 @@ public class Cel : Entity
             case (CelType.Cel_Discard):
             case (CelType.Cel_Duplicate):
             case (CelType.Cel_CardEffectBoost):
+            case (CelType.Cel_Fusion):
                 SpecialRoom.layer.active(); // active layer SpecialRoom when walk on chest cel.
                 return;
 

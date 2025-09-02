@@ -23,6 +23,7 @@ public enum CelType
     Cel_Discard,
     Cel_Duplicate,
     Cel_CardEffectBoost,
+    Cel_Fusion,
 
 
     // celtype who's add by character.
@@ -56,6 +57,7 @@ public static class StaticCelType
             case (CelType.Cel_Discard):
             case (CelType.Cel_Duplicate):
             case (CelType.Cel_CardEffectBoost):
+            case (CelType.Cel_Fusion):
                 return false;
 
             default:
@@ -92,6 +94,8 @@ public static class StaticCelType
                 return SpriteType.Cel_Duplicate;
             case (CelType.Cel_CardEffectBoost):
                 return SpriteType.Cel_CardEffectBoost;
+            case (CelType.Cel_Fusion):
+                return SpriteType.Cel_Fusion;
 
             case (CelType.Cel_SandMPDown):
             case (CelType.Cel_SandMPDown_2):
@@ -142,6 +146,7 @@ public static class StaticCelType
             case (CelType.Cel_Discard):
             case (CelType.Cel_Duplicate):
             case (CelType.Cel_CardEffectBoost):
+            case (CelType.Cel_Fusion):
                 return true;
 
             default:

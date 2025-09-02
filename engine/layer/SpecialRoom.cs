@@ -431,6 +431,14 @@ public class SpecialRoom : Layer
 
                 break;
 
+            case (RoomType.Room_Fusion):
+                this.isCleanSpecialFromRoom = true;
+                nameButtonValidate = "fusionner";
+
+
+
+                break;
+
             default:
                 throw new Exception("RoomType has no SpecialRoom UI definition !");
         }

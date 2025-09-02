@@ -56,6 +56,7 @@ public enum SpriteType
     MiniMapUI_RoomCardEffectBoost,
     MiniMapUI_RoomDiscard,
     MiniMapUI_RoomDuplicate,
+    MiniMapUI_RoomFusion,
 
 
 
@@ -90,6 +91,7 @@ public enum SpriteType
     Cel_Shop,
     Cel_SandMPDown,
     Cel_SlimeAPDown,
+    Cel_Fusion,
 
 
     // --- Card.
