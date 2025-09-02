@@ -515,6 +515,7 @@ public class SpecialRoom : Layer
                 return;
             }
         };
+        
 
 
         base.active();
