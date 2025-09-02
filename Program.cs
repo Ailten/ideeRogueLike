@@ -4,7 +4,6 @@ class Program
 {
     // TODO :
 
-    // add special room. -> boost value effect card. (with % chance fail depend on effect selected and his level).
     // add special room. -> fusion. (with % chance to rate depend on number effects on card end).
     // add special room. -> edit edition of a card. (pass normal into shiny, or a cracked into a normal).
 
