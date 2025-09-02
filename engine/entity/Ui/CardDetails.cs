@@ -3,9 +3,9 @@ using System.Globalization;
 
 public class CardDetails : Entity
 {
-    private Card? card;
+    protected Card? card;
     private EffectCard? effectSelected;
-    private int effectValueSelected;
+    protected int effectValueSelected;
     private int indexEffectSelectedOnCard = 0;
 
     public int getIndexEffectSelectedOnCard

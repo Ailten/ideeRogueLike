@@ -12,9 +12,14 @@ public struct Card
 
     public List<KeyValuePair<EffectCard, int>> effects = new(); //all effects of a card (with an int of value).
     private static int maxEffectByCard = 5;
+    public static int getMaxEffectByCard
+    {
+        get { return maxEffectByCard; }
+    }
     public string getPorteeToUseStr
     {
-        get {
+        get
+        {
             string min = Math.Round(distanceToUse.x).ToString();
             string max = Math.Round(distanceToUse.y).ToString();
             string isLine = (isInLine ? "\nen ligne" : "");

@@ -435,7 +435,50 @@ public class SpecialRoom : Layer
                 this.isCleanSpecialFromRoom = true;
                 nameButtonValidate = "fusionner";
 
+                { // block generation.
+                    // details card for select a card.
+                    CardDetailsFusion cardDetails = new CardDetailsFusion(this.idLayer);
+                    cardDetails.pos = new(250, 10);
+                    cardDetails.zIndex = 3200;
+                    cardDetails.eventUpdateCardSelected = () =>
+                    {
+                        if (cardDetails.isAFirstCard && cardDetails.isASecondCard)
+                        {
+                            SpecialRoom.layer.buttonValid!.setIsDisabled(false);
+                            return;
+                        }
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
+                    };
 
+                    ListCardUi cardsUi = new ListCardUi(this.idLayer);
+                    cardsUi.pos = new(250, 388);
+                    cardsUi.upCardWhenSelected = 45f;
+                    cardsUi.zIndex = 3200;
+                    cardsUi.isMakeReOrdered = false;
+                    cardsUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInCimetier); // in a special room all card player is in cimetier.
+                    cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCardForFusion(cardClicked, cardsUi.getIndexCardSelected);
+                    };
+                    cardsUi.unClickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCardForFusion(cardClicked, cardsUi.getIndexCardSelected);
+                    };
+
+                    // when valide, set statusEffect selected to player.
+                    this.validateChoise = () =>
+                    {
+                        Character player = TurnManager.getMainPlayerCharacter();
+
+                        player.deck.destroyCardFromCimetier(cardDetails.getIndexFistCard); // destroy card from cimetier player (first).
+                        player.deck.destroyCardFromCimetier(cardDetails.getIndexSecondCard); // destroy card second.
+
+                        player.deck.addCardToDeck( // add the card fusionned.
+                            card: cardDetails.getCard() ?? throw new Exception("card fusion is null !"),
+                            isSameColor: true
+                        );
+                    };
+                }
 
                 break;
 
