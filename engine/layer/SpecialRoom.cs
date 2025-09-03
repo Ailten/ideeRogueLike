@@ -482,6 +482,57 @@ public class SpecialRoom : Layer
 
                 break;
 
+            case (RoomType.Room_SetCardEdition):
+                this.isCleanSpecialFromRoom = true;
+                nameButtonValidate = "editer";
+
+                { // block generation.
+                    // details card for select a card.
+                    CardDetails cardDetails = new CardDetails(this.idLayer);
+                    cardDetails.pos = new(250, 10);
+                    cardDetails.zIndex = 3200;
+
+                    ListCardUi cardsUi = new ListCardUi(this.idLayer);
+                    cardsUi.pos = new(250, 388);
+                    cardsUi.upCardWhenSelected = 45f;
+                    cardsUi.zIndex = 3200;
+                    cardsUi.isMakeReOrdered = false;
+                    cardsUi.setListCard(TurnManager.getMainPlayerCharacter().deck.cardsInCimetier); // in a special room all card player is in cimetier.
+                    cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCard(cardClicked);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(false);
+                    };
+                    cardsUi.unClickOnCard = (cardClicked, isLeftClick) =>
+                    {
+                        cardDetails.setCard(null);
+                        SpecialRoom.layer.buttonValid!.setIsDisabled(true);
+                    };
+
+                    // when valide, set statusEffect selected to player.
+                    this.validateChoise = () =>
+                    {
+                        Character player = TurnManager.getMainPlayerCharacter();
+                        int indexCardSelected = cardsUi.getIndexCardSelected;
+                        Card cardSelected = cardDetails.getCard() ?? throw new Exception("no card selected for duplication !");
+
+                        int rngForCardEdition = rng.Next(1000); // edit cardEdition.
+                        cardSelected.cardEdition =  (
+                            (rngForCardEdition < 500) ? CardEdition.Shinny :
+                            CardEdition.Cracked
+                        );
+
+                        player.deck.destroyCardFromCimetier(indexCardSelected); // destroy card second.
+
+                        player.deck.addCardToDeck( // add new card (with edition changed).
+                            card: cardSelected,
+                            isSameColor: true
+                        );
+                    };
+                }
+
+                break;
+
             default:
                 throw new Exception("RoomType has no SpecialRoom UI definition !");
         }

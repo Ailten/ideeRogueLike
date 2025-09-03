@@ -10,7 +10,7 @@ public enum RoomType
     Room_Duplicate, //allow to duplicate a card on your deck.
     Room_CardEffectBoost, //upgrade the value of an effect on a card.
     Room_Fusion, //allow to merge two card.
-    //Room_BoostEdition, //can set randomly shiny or cracked to a card selected.
+    Room_SetCardEdition, //can set randomly shiny or cracked to a card selected.
 
     Room_Center,
 
@@ -42,6 +42,8 @@ public static class StaticRoomType
                 return SpriteType.MiniMapUI_RoomCardEffectBoost;
             case(RoomType.Room_Fusion):
                 return SpriteType.MiniMapUI_RoomFusion;
+            case(RoomType.Room_SetCardEdition):
+                return SpriteType.MiniMapUI_RoomSetCardEdition;
 
             default:
                 return null;
