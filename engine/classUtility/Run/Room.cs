@@ -316,6 +316,10 @@ public class Room
                         case (RoomType.Room_Fusion):
                             celType = CelType.Cel_Fusion;
                             break;
+                        case (RoomType.Room_SetCardEdition):
+                            celType = CelType.Cel_SetCardEdition;
+                            break;
+                        
                         // TODO : add sprite center room special room.
                     }
                 }

@@ -4,8 +4,6 @@ class Program
 {
     // TODO :
 
-    // add special room. -> edit edition of a card. (pass normal into shiny, or a cracked into a normal).
-
     // add details mobs when click on it, menu. !!!
 
 
