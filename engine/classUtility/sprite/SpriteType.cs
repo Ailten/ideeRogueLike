@@ -31,6 +31,9 @@ public enum SpriteType
     DeckIcon,
     UiCoffreWin,
     UiGodRayWin,
+    ButtonUiOption,
+    ButtonUiOption_Hover,
+    ButtonUiOption_Selected,
 
     MiniMapUi_RoomBG_,
     MiniMapUi_RoomBG_UR,
