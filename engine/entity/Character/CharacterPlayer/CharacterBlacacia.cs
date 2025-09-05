@@ -11,7 +11,7 @@ public class CharacterBlacacia : CharacterPlayer
         this.HP = HPmax;
 
         // special effect.
-        if(SaveManager.getSave.succes.Contains(Succes.UseACard_BlacASiable_5))
+        if(SaveManager.getSave.succes.Contains(Succes.UseACard_5_BlacASiable))
             this.AddStatusEffect(new RallMpMakeDamage(this.idEntity, -1, -1, damageByMPDecrease: 2));
 
         this.deck.pickCountByTurn = 5;
