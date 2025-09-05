@@ -112,6 +112,11 @@ public class RunHudLayer : Layer
         TimeLineUi timeLineUi = new TimeLineUi(idLayer); // time line ui.
         timeLineUi.pos = new(CanvasManager.sizeWindow.x, 110);
 
+        ButtonOptionUi buttonOptionUi = new ButtonOptionUi(idLayer); // button for open option durring run.
+        buttonOptionUi.pos = new(
+            CanvasManager.sizeWindow.x - 110,
+            110
+        );
 
 
         base.active();

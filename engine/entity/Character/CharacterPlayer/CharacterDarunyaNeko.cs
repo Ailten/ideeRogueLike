@@ -28,7 +28,7 @@ public class CharacterDarunyaNeko : CharacterPlayer
 
 
     // override take damage, to include increase AP.
-    protected override void takeDamage(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
+    public override void takeDamage(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
     {
         this.APmax += 1; // increase AP.
         this.increaseAP(1);
