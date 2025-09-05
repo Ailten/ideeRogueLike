@@ -31,10 +31,14 @@ public class MainMenu : Layer
         buttonOption.text = "option";
         buttonOption.pos = buttonPlay.pos + spacingButton;
         buttonOption.scale = scaleButton;
-        buttonOption.eventClick = () => {
-            //TODO : option menu (a full menu).
+        buttonOption.eventClick = () =>
+        {
+            LayerManager.transition(
+                idLevelStart: new int[0],
+                idLevelEnd: new int[] { Option.layer.idLayer }
+            );
         };
-        buttonOption.setIsDisabled(true);
+        //buttonOption.setIsDisabled(true);
 
         ButtonUi buttonOptionTwitch = new ButtonUi(idLayer);
         int purcentCompletion = (int)(SaveManager.getPurcentCompletion() * 100);

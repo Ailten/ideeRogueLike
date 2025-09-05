@@ -118,6 +118,13 @@ public class RunHudLayer : Layer
             CanvasManager.sizeWindow.x - 80,
             45
         );
+        buttonOptionUi.eventClick = () => // open layer option.
+        {
+            LayerManager.transition(
+                idLevelStart: new int[0],
+                idLevelEnd: new int[] { Option.layer.idLayer }
+            );
+        };
 
 
         base.active();
