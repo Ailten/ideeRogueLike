@@ -10,7 +10,7 @@ public class ButtonOptionUi : ButtonUi
 
         this.geometryTrigger = new Rect(
             new(-99, -51),
-            new(98, 51)
+            new(202, 109)
         );
 
         this.castSpriteType.Add(SpriteType.ButtonUi, SpriteType.ButtonUiOption); //set all cast SpriteType for child.
