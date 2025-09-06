@@ -79,6 +79,10 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Character_Slime, new Vector(128, 0), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Flame, new Vector(256, 0), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Rock, new Vector(384, 0), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Goblin, new Vector(512, 0), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Armor, new Vector(640, 0), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_GoblinDeez, new Vector(768, 0), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_ArmorDamned, new Vector(896, 0), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_DarunyaNeko, new Vector(0, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_KingSlime, new Vector(128, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_KingFlame, new Vector(256, 128), new Vector(126, 126));
