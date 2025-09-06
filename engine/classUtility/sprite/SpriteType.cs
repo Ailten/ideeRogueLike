@@ -120,6 +120,7 @@ public enum SpriteType
     CardImg_Rock,
     CardImg_LuneAllier,
     CardImg_BlackHole,
+    CardImg_Sword,
     CardImg_Barbak,
     CardImg_AxeOLoot,
     CardImg_BatteBulle,
@@ -127,8 +128,9 @@ public enum SpriteType
     CardImg_DarunyaNeko,
     CardImg_Explsur,
     CardImg_Drama,
-    CardImg_OsuAime,
     CardImg_Dashilios,
+    CardImg_OsuAime,
+    CardImg_Flag,
 
 
     // --- FX.
@@ -234,7 +236,11 @@ public static class StaticSpriteType
                 return ("Propage la tendinite.");
             case (SpriteType.CardImg_Dashilios):
                 return ("Teleporte le lanceur.");
-
+            case (SpriteType.CardImg_Sword):
+                return ("Une epee robuste.");
+            case (SpriteType.CardImg_Flag):
+                return ("Besoin de suport.");
+                
                 
                 
             default:
@@ -279,6 +285,10 @@ public static class StaticSpriteType
                 return ("Osu Aime");
             case (SpriteType.CardImg_Dashilios):
                 return ("Dashilios");
+            case (SpriteType.CardImg_Sword):
+                return ("Epee");
+            case (SpriteType.CardImg_Flag):
+                return ("Drapeau");
 
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.

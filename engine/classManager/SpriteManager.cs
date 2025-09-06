@@ -132,11 +132,13 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_Rock, new Vector(440, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_LuneAllier, new Vector(660, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BlackHole, new Vector(880, 449), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Sword, new Vector(1100, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_AxeOLoot, new Vector(0, 575), new Vector(219, 125)); // (l3).
         s.addSpriteType(SpriteType.CardImg_BatteBulle, new Vector(220, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BlacASiable, new Vector(440, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Explsur, new Vector(660, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_OsuAime, new Vector(880, 575), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Flag, new Vector(1100, 575), new Vector(219, 125));
 
         s = new Sprite("FX");
         s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));
