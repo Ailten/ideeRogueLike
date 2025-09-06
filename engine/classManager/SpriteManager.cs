@@ -69,9 +69,10 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.UiCoffreWin, new Vector(0, 639), new Vector(355, 274));
         s.addSpriteType(SpriteType.UiGodRayWin, new Vector(356, 639), new Vector(122, 274));
 
-        s.addSpriteType(SpriteType.ButtonUiOption, new Vector(676, 197), new Vector(202, 109));
-        s.addSpriteType(SpriteType.ButtonUiOption_Hover, new Vector(676, 307), new Vector(202, 109));
-        s.addSpriteType(SpriteType.ButtonUiOption_Selected, new Vector(676, 417), new Vector(202, 109));
+        s.addSpriteType(SpriteType.ButtonUiOption_Disabled, new Vector(676, 197), new Vector(202, 109));
+        s.addSpriteType(SpriteType.ButtonUiOption, new Vector(676, 307), new Vector(202, 109));
+        s.addSpriteType(SpriteType.ButtonUiOption_Hover, new Vector(676, 417), new Vector(202, 109));
+        s.addSpriteType(SpriteType.ButtonUiOption_Selected, new Vector(676, 527), new Vector(202, 109));
 
         s = new Sprite("Characters");
         s.addSpriteType(SpriteType.Character_Ailten, new Vector(0, 0), new Vector(126, 126));

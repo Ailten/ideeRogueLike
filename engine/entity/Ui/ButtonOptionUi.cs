@@ -16,12 +16,6 @@ public class ButtonOptionUi : ButtonUi
         this.castSpriteType.Add(SpriteType.ButtonUi, SpriteType.ButtonUiOption); //set all cast SpriteType for child.
         this.castSpriteType.Add(SpriteType.ButtonUi_Hover, SpriteType.ButtonUiOption_Hover);
         this.castSpriteType.Add(SpriteType.ButtonUi_Selected, SpriteType.ButtonUiOption_Selected);
-        this.castSpriteType.Add(SpriteType.ButtonUi_Disabled, SpriteType.none); // disable not implemented.
+        this.castSpriteType.Add(SpriteType.ButtonUi_Disabled, SpriteType.ButtonUiOption_Disabled);
     }
-
-
-    // ! disable option not working on this class (not implemented).
-    // -> switchIsDisabled()
-    // -> setIsDisabled(bool isDisabled)
-    // -> updateStateIsDisabled()
 }

@@ -9,6 +9,10 @@ class Program
 
     // add details mobs when click on it, menu. !!!
 
+    // add 4 mob stage 2 (goblin, goblin deez, armure, armure damnee).
+    // add 2 card (sword, flag).
+    // disabeld button option.
+
 
     // make win/loose screen (end run).
     // -> sprite letters saying Win or Loose.
