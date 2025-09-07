@@ -33,7 +33,7 @@ public class CharacterGoblin : CharacterMob
                 cardEdition: CardEdition.Default,
                 APCost: 3,
                 distanceToUse: new(1, 1),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 6)
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 3)
             ),
             amountOfCardAdd: 1,
             isSameColor: false

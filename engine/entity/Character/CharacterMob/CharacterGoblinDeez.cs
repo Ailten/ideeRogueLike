@@ -35,7 +35,7 @@ public class CharacterGoblinDeez : CharacterMob
                 APCost: 3,
                 distanceToUse: new(1, 1),
                 effects: new(){
-                    new KeyValuePair<EffectCard, int>(EffectCard.Hit, 12),
+                    new KeyValuePair<EffectCard, int>(EffectCard.Hit, 4),
                     new KeyValuePair<EffectCard, int>(EffectCard.Push, 2)
                 }
             ),
