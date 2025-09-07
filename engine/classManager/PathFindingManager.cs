@@ -13,7 +13,10 @@ public static class PathFindingManager
     //eval a path from a posIndex to anoter.
     public static void evalAPath(Vector posFrom, Vector posTo, int maxMPCost = 100, int distanceToDestAlow = 0)
     {
-		if(posFrom.x == posTo.x && posFrom.y == posTo.y){
+		// distanceToDestAlow is for a mob : the pathifing is valid when the end walk get blose enough from the target without find it.
+
+		if (posFrom.x == posTo.x && posFrom.y == posTo.y)
+		{
 			pathFind = new(); //path invalid if start and end at same position.
 			return;
 		}

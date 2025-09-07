@@ -98,6 +98,9 @@ public class CharacterMob : Character
             case (LogicState.chase):
                 this.logicStateChase();
                 break;
+            case (LogicState.fuit):
+                this.logicStateFuit();
+                break;
             case (LogicState.firstHit):
                 this.logicStateFirstHit();
                 break;
@@ -169,6 +172,83 @@ public class CharacterMob : Character
                 this.nextLogicState();
                 return;
             }
+
+        }
+
+        if (!WalkManager.isWalking)
+        { //when the chase phase is end
+            this.nextLogicState();
+            return;
+        }
+    }
+    private void logicStateFuit()
+    {
+        if (targetOfState == null)
+        {
+
+            //get all oponents (sort by poxi).
+            List<Character> oponents = TurnManager.getAllCharacters().Where((c) => //filter.
+                c.isInRedTeam != this.isInRedTeam
+            ).OrderBy((c) =>  //order by proximity.
+                Vector.distance(this.pos, c.pos)
+            ).ToList();
+
+            if (oponents.Count == 0)
+            {
+                this.nextLogicState();
+                return;
+            }
+
+            this.targetOfState = oponents[0];
+
+            Vector directionToTarget = this.targetOfState.indexPosCel - this.indexPosCel;
+            Vector absDirectionToTarget = new(Math.Abs(directionToTarget.x), Math.Abs(directionToTarget.y));
+            if (absDirectionToTarget.x > absDirectionToTarget.y)
+                directionToTarget.y = 0;
+            else
+                directionToTarget.x = 0;
+            directionToTarget.x = (directionToTarget.x > 1)? 1: -1;
+            directionToTarget.y = (directionToTarget.y > 1)? 1: -1;
+
+            bool isTakeThisPath = false;
+            for (int i = 1; i < this.MP; i++)
+            {
+                Vector posDestWalk = this.indexPosCel + directionToTarget * i;
+
+                Cel? celDest = RunManager.getCel(posDestWalk);
+                if (celDest is null)
+                    break;
+                if (TurnManager.getCharacterAtIndexPos(posDestWalk) is not null)
+                    break;
+
+                PathFindingManager.evalAPath( //eval a pathfinding.
+                    this.indexPosCel, //posIndexFrom.
+                    posDestWalk, //posIndexTo.
+                    i + 1, //infinit length path.
+                    0 //the distance alow to target for stop path.
+                );
+
+                if (isTakeThisPath)
+                    break;
+
+                if (!PathFindingManager.isPathValid)
+                {
+                    if (i == 1)
+                    {
+                        this.nextLogicState();
+                        return;
+                    }
+
+                    isTakeThisPath = true; // take the last path found.
+                    i -= 2;
+                }
+            }
+
+            PathFindingManager.editPathToStayFirstsCels(this.MP); //remove elemnt path until stay as much as current caracter can walk.
+
+            WalkManager.startWalk(); //start walk along the path.
+
+            return;
 
         }
 
