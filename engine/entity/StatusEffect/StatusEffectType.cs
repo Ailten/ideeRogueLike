@@ -274,14 +274,14 @@ public static class StaticStatusEffectType
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    damageBoost: rng.Next(1, 4)
+                    damageBoost: 3
                 );
             case (StatusEffectType.TakeHealMakeHitAround):
                 return new TakeHealMakeHitAround(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    damageMake: rng.Next(1, 3)
+                    damageMake: 2
                 );
             case (StatusEffectType.MultDamageByHPLeft):
                 return new MultDamageByHPLeft(
@@ -300,21 +300,21 @@ public static class StaticStatusEffectType
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    damage: rng.Next(1, 4)
+                    damage: 2
                 );
             case (StatusEffectType.ShildMultWhenFirst):
                 return new ShildMultWhenFirst(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    shildMult: (float)(rng.Next(20, 30) * 10)/100
+                    shildMult: rng.Next(20, 31)/10f
                 );
             case (StatusEffectType.ConvertPurcentHealInShild):
                 return new ConvertPurcentHealInShild(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    purcentConvert: (float)(rng.Next(5, 11) * 10)/100
+                    purcentConvert: rng.Next(5, 11)/10f
                 );
 
 
