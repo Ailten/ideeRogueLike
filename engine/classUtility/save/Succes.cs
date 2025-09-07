@@ -54,9 +54,9 @@ public static class StaticSucces
                     cardIllu: SpriteType.CardImg_Splash,
                     cardColor: CardColor.Blue,
                     cardEdition: CardEdition.Default,
-                    APCost: 2,
-                    distanceToUse: new(2, 2),
-                    effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 3)
+                    APCost: 1,
+                    distanceToUse: new(2, 3),
+                    effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 4)
                 );
             case (Succes.Kill_5_Flame):
                 return new Card(
@@ -72,9 +72,9 @@ public static class StaticSucces
                     cardIllu: SpriteType.CardImg_Rock,
                     cardColor: CardColor.Green,
                     cardEdition: CardEdition.Default,
-                    APCost: 1,
+                    APCost: 0,
                     distanceToUse: new(1, 1),
-                    effect: new KeyValuePair<EffectCard, int>(EffectCard.MPHit, 1)
+                    effect: new KeyValuePair<EffectCard, int>(EffectCard.MPHit, 3)
                 );
 
             case (Succes.Take_10_Coin):
@@ -86,7 +86,7 @@ public static class StaticSucces
                     distanceToUse: new(1, 1),
                     effects: new() {
                         new KeyValuePair<EffectCard, int>(EffectCard.MoneyLoot, 2),
-                        new KeyValuePair<EffectCard, int>(EffectCard.Hit, 4)
+                        new KeyValuePair<EffectCard, int>(EffectCard.Hit, 8)
                     }
                 );
 
@@ -107,11 +107,11 @@ public static class StaticSucces
                     cardIllu: SpriteType.CardImg_Explsur,
                     cardColor: CardColor.Red,
                     cardEdition: CardEdition.Default,
-                    APCost: 2,
+                    APCost: 0,
                     distanceToUse: new(0, 0),
                     effects: new() {
                         new KeyValuePair<EffectCard, int>(EffectCard.Hit, 1),
-                        new KeyValuePair<EffectCard, int>(EffectCard.HitAround, 3)
+                        new KeyValuePair<EffectCard, int>(EffectCard.HitAround, 4)
                     }
                 );
 

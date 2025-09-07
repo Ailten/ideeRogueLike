@@ -68,14 +68,14 @@ public static class StaticStatusEffectType
                         (statusEffectType == StatusEffectType.DamageAddBoostColor_Blue) ? CardColor.Blue :
                         CardColor.Green
                     ),
-                    damageBoost: rng.Next(1, 4)
+                    damageBoost: rng.Next(1, 5)
                 );
             case (StatusEffectType.DamageAddBoostShiny):
                 return new DamageAddBoostShiny(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    damageBoost: rng.Next(1, 4)
+                    damageBoost: rng.Next(3, 8)
                 );
 
             case (StatusEffectType.DamageMultBoostColor_Red):
@@ -90,14 +90,14 @@ public static class StaticStatusEffectType
                         (statusEffectType == StatusEffectType.DamageMultBoostColor_Blue) ? CardColor.Blue :
                         CardColor.Green
                     ),
-                    damageMult: rng.Next(110, 221) / 100f
+                    damageMult: rng.Next(15, 23) / 10f
                 );
             case (StatusEffectType.DamageMultBoostShiny):
                 return new DamageMultBoostShiny(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    damageMult: rng.Next(110, 221) / 100f
+                    damageMult: rng.Next(18, 26) / 100f
                 );
 
             case (StatusEffectType.ShildAddBoostColor_Red):
@@ -112,14 +112,14 @@ public static class StaticStatusEffectType
                         (statusEffectType == StatusEffectType.ShildAddBoostColor_Blue) ? CardColor.Blue :
                         CardColor.Green
                     ),
-                    shildBoost: rng.Next(1, 4)
+                    shildBoost: rng.Next(3, 6)
                 );
             case (StatusEffectType.ShildAddBoostShiny):
                 return new ShildAddBoostShiny(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    shildBoost: rng.Next(1, 4)
+                    shildBoost: rng.Next(5, 11)
                 );
 
             case (StatusEffectType.ShildMultBoostColor_Red):
@@ -134,14 +134,14 @@ public static class StaticStatusEffectType
                         (statusEffectType == StatusEffectType.ShildMultBoostColor_Blue) ? CardColor.Blue :
                         CardColor.Green
                     ),
-                    shildMult: rng.Next(80, 95) / 100f
+                    shildMult: rng.Next(60, 86) / 100f
                 );
             case (StatusEffectType.ShildMultBoostShiny):
                 return new ShildMultBoostShiny(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    shildMult: rng.Next(80, 95) / 100f
+                    shildMult: rng.Next(40, 71) / 100f
                 );
 
             case (StatusEffectType.APBoost):
@@ -170,7 +170,7 @@ public static class StaticStatusEffectType
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    HPUp: 10
+                    HPUp: 1
                 );
             case (StatusEffectType.BoostIntoInvoke):
                 return new BoostIntoInvoke(
@@ -183,58 +183,58 @@ public static class StaticStatusEffectType
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    chooseBoost: Math.Clamp(rng.Next(0, 3), 1, 2)
+                    chooseBoost: 1
                 );
             case (StatusEffectType.BoostPickCard):
                 return new BoostPickCard(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    cardPickBoost: Math.Clamp(rng.Next(0, 3), 1, 2)
+                    cardPickBoost: 1
                 );
             case (StatusEffectType.MoneyMultiplyDamage):
                 return new MoneyMultiplyDamage(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    purcentDamageByCoint: Math.Clamp(rng.Next(0, 3), 1, 2)
+                    purcentDamageByCoint: 1
                 );
             case (StatusEffectType.YingYangShinyCracked):
                 return new YingYangShinyCracked(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    purcentCastShiny: ((float)rng.Next(0, 16) / 100),
-                    purcentCastCracked: ((float)rng.Next(0, 16) / 100)
+                    purcentCastShiny: 0.15f,
+                    purcentCastCracked: 0.15f
                 );
             case (StatusEffectType.DuplicateCracked):
                 return new DuplicateCracked(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    purcentSave: ((float)rng.Next(30, 51) / 100)
+                    purcentSave: 0.99f
                 );
             case (StatusEffectType.CrackedAddDamage):
                 return new CrackedAddDamage(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    damageByCracked: rng.Next(1, 3)
+                    damageByCracked: 5
                 );
             case (StatusEffectType.BrokeCardGainShild):
                 return new BrokeCardGainShild(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    shildByCrack: rng.Next(1, 4)
+                    shildByCrack: 5
                 );
             case (StatusEffectType.BalanceEffect):
                 return new BalanceEffect(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    duplicateRate: ((float)rng.Next(0, 16) / 100),
-                    eraseRate: ((float)rng.Next(0, 16) / 100)
+                    duplicateRate: 0.05f,
+                    eraseRate: 0.05f
                 );
             case (StatusEffectType.ShinyGainAP):
                 return new ShinyGainAP(
@@ -253,21 +253,21 @@ public static class StaticStatusEffectType
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    damageByMPDecrease: rng.Next(1, 4)
+                    damageByMPDecrease: 4
                 );
             case (StatusEffectType.PushWallMakeSelfHeal):
                 return new PushWallMakeSelfHeal(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    heal: rng.Next(1, 3)
+                    heal: 4
                 );
             case (StatusEffectType.PushWallMakeRallMP):
                 return new PushWallMakeRallMP(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    rallMPByCase: Math.Clamp(rng.Next(0, 3), 1, 2)
+                    rallMPByCase: 1
                 );
             case (StatusEffectType.AddIndirectDamage):
                 return new AddIndirectDamage(
