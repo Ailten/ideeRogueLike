@@ -15,11 +15,11 @@ public class CharacterGoblinDeez : CharacterMob
         this.MP = MPmax;
         this.APmax = 4;
         this.AP = APmax;
-        this.HPmax = 20;
+        this.HPmax = 30;
         this.HP = HPmax;
 
         //gold can be looted.
-        this.PO = RandomManager.rng.Next(3, 7);
+        this.PO = RandomManager.rng.Next(8, 14);
 
         // effects.
         this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 1.1f)); // imune to blue damage.
@@ -34,7 +34,10 @@ public class CharacterGoblinDeez : CharacterMob
                 cardEdition: CardEdition.Default,
                 APCost: 3,
                 distanceToUse: new(1, 1),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 6)
+                effects: new(){
+                    new KeyValuePair<EffectCard, int>(EffectCard.Hit, 12),
+                    new KeyValuePair<EffectCard, int>(EffectCard.Push, 2)
+                }
             ),
             amountOfCardAdd: 1,
             isSameColor: false
@@ -45,9 +48,8 @@ public class CharacterGoblinDeez : CharacterMob
                 cardColor: CardColor.Green,
                 cardEdition: CardEdition.Default,
                 APCost: 1,
-                distanceToUse: new(1, 2),
+                distanceToUse: new(2, 2),
                 effects: new(){
-                    new KeyValuePair<EffectCard, int>(EffectCard.Hit, 1),
                     new KeyValuePair<EffectCard, int>(EffectCard.Attire, 1)
                 },
                 isInLine: true
