@@ -20,7 +20,7 @@ public class CharacterKingRock : CharacterMob
         this.PO = RandomManager.rng.Next(5, 9);
 
         // effects.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Green, 0f)); // imune to blue damage.
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Green, 0f)); // imune to color damage.
         this.AddStatusEffect(new DamageAddByTurn(this.idEntity, -1, -1, CardColor.Green, 1, 3)); // increase atk by 1 eatch 3 turn.
 
         //set deck.

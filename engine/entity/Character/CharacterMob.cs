@@ -17,10 +17,11 @@ public class CharacterMob : Character
         new MobType(SpriteType.Character_KingFlame, 1, true),
         new MobType(SpriteType.Character_KingRock, 1, true),
 
+        new MobType(SpriteType.Character_Goblin, 2, false), //stage 2.
+        new MobType(SpriteType.Character_GoblinDeez, 2, true),
+
         // TODO : make a proper boss, and other dificulty mob.
 
-        new MobType(SpriteType.Character_Slime, 2, false),
-        new MobType(SpriteType.Character_Slime, 2, true),
         new MobType(SpriteType.Character_Slime, 3, false),
         new MobType(SpriteType.Character_Slime, 3, true),
         new MobType(SpriteType.Character_Slime, 4, false),
@@ -53,6 +54,11 @@ public class CharacterMob : Character
                 return new CharacterKingFlame(posIndexCel);
             case (SpriteType.Character_KingRock):
                 return new CharacterKingRock(posIndexCel);
+
+            case (SpriteType.Character_Goblin):
+                return new CharacterGoblin(posIndexCel);
+            case (SpriteType.Character_GoblinDeez):
+                return new CharacterGoblinDeez(posIndexCel);
 
             //add heer new CharacterMob.
 
