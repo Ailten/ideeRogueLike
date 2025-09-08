@@ -110,12 +110,21 @@ public class CharacterMob : Character
             case (LogicState.firstAttire):
                 this.logicStateFirstAttire();
                 break;
+            case (LogicState.shildAlly):
+                this.logicStateShildAlly();
+                break;
 
             case (LogicState.chase_or_firstAttire):
                 if (RandomManager.rng.Next(2) == 0)
                     this.logicStateChase();
                 else
                     this.logicStateFirstAttire();
+                break;
+            case (LogicState.firstHit_or_shildAlly):
+                if (RandomManager.rng.Next(2) == 0)
+                    this.logicStateFirstHit();
+                else
+                    this.logicStateShildAlly();
                 break;
 
             default:
@@ -322,6 +331,39 @@ public class CharacterMob : Character
                 continue;
 
             this.useACardFromHand(i, target.indexPosCel); //play the card.
+            break;
+        }
+
+        this.nextLogicState(); //move to next state.
+    }
+    private void logicStateShildAlly()
+    {
+        //use the first card has effect Shild on an ally on range card (with lower HP).
+
+        for (int i = 0; i < this.deck.cardsInHand.Count; i++)
+        {
+            Card currentCard = this.deck.cardsInHand[i];
+
+            if (!currentCard.effects.Select(ev => ev.Key).Contains(EffectCard.Shild))
+                continue;
+
+            List<Character> allys = TurnManager.getAllCharacters()
+                .Where(c =>
+                {
+                    if (c.isInRedTeam != this.isInRedTeam) // not take the oponent.
+                        return false;
+                    if (c == this) // not take the same as him self.
+                        return false;
+                    int dist = this.getDistFrom(c);
+                    if (dist < currentCard.distanceToUse.x || dist > currentCard.distanceToUse.y) // out of range dist card use.
+                        return false;
+                    return true;
+                }).OrderBy(c => (c.HP - c.HPmax)).ToList(); // sort by most HP left.
+
+            if (allys.Count == 0)
+                continue;
+
+            this.useACardFromHand(i, allys[0].indexPosCel); //play the card.
             break;
         }
 
