@@ -13,6 +13,8 @@ class Program
     // add 2 card (sword, flag).
     // add success for killing 5 goblin, 5 armor, to gain card associate.
 
+    // test dificulty.
+
 
     // make win/loose screen (end run).
     // -> sprite letters saying Win or Loose.

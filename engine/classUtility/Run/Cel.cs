@@ -219,6 +219,10 @@ public class Cel : Entity
                             Room.midWidthMax,
                             Room.midHeightMax
                         ), false);
+
+                        characterStep.HPmax += 10; // upgrade stats.
+                        characterStep.HP = characterStep.HPmax;
+
                         SpecialRoom.layer.updateCardCountInDeckPlayer(); // update count card in deck player (for stats rng special room).
                         RunManager.switchToNextStage(); // edit index stage to next one.
                     });
