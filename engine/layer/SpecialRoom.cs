@@ -575,28 +575,9 @@ public class SpecialRoom : Layer
 
     public int amountChoise = 2; // amount of elements choise for a chest or a special room with choise.
     private bool isCleanSpecialFromRoom = false;
-    public int cardInDeckPlayerAtStartStage = 10;
-    public void updateCardCountInDeckPlayer()
-    {
-        this.cardInDeckPlayerAtStartStage = TurnManager.getMainPlayerCharacter().deck.countCardInFullDeck;
-    }
     private bool isAnEffectOrCard(Random rng)
     {
-        // do random based on rng, not the amont of card deck.
         return (rng.Next(1000) < 500);
-        /*/
-        int rngForTypeChest = rng.Next(1000);
-        const int minCard = 8;
-        const int maxCard = 12;
-        int rangeRngTypeChest = (int)(
-            999 - Vector.lerpF(0, 999,
-                Vector.reverceLerpF(minCard, maxCard,
-                    Math.Clamp(this.cardInDeckPlayerAtStartStage, minCard, maxCard)
-                )
-            )
-        );
-        return (rng.Next(1000) < rangeRngTypeChest);
-        //*/
     }
     public TextPriceProductUi[] productPrice = new TextPriceProductUi[0];
 
