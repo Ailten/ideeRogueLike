@@ -18,7 +18,9 @@ public class CharacterMob : Character
         new MobType(SpriteType.Character_KingRock, 1, true),
 
         new MobType(SpriteType.Character_Goblin, 2, false), //stage 2.
+        new MobType(SpriteType.Character_Armor, 2, false),
         new MobType(SpriteType.Character_GoblinDeez, 2, true),
+        new MobType(SpriteType.Character_ArmorDamned, 2, true),
 
         // TODO : make a proper boss, and other dificulty mob.
 
@@ -59,6 +61,10 @@ public class CharacterMob : Character
                 return new CharacterGoblin(posIndexCel);
             case (SpriteType.Character_GoblinDeez):
                 return new CharacterGoblinDeez(posIndexCel);
+            case (SpriteType.Character_Armor):
+                return new CharacterArmor(posIndexCel);
+            case (SpriteType.Character_ArmorDamned):
+                return new CharacterArmorDamned(posIndexCel);
 
             //add heer new CharacterMob.
 
