@@ -11,11 +11,11 @@ public class CharacterArmor : CharacterMob
         this.logicState.Add(LogicState.skipTurn);
 
         //stats.
-        this.MPmax = 2;
+        this.MPmax = 1;
         this.MP = MPmax;
         this.APmax = 3;
         this.AP = APmax;
-        this.HPmax = 20;
+        this.HPmax = 12;
         this.HP = HPmax;
 
         //gold can be looted.
