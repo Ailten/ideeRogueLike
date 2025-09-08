@@ -22,8 +22,9 @@ public class CharacterGoblinDeez : CharacterMob
         this.PO = RandomManager.rng.Next(8, 14);
 
         // effects.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 1.1f)); // imune to blue damage.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Green, 0.9f)); // imune to blue damage.
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 1.5f)); // imune to color damage.
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Green, 0.85f)); // imune to color damage.
+        this.AddStatusEffect(new DamageAddByTurn(this.idEntity, -1, -1, CardColor.Green, 1, 4)); // increase atk by 1 eatch 4 turn.
         
         //set deck.
         this.deck.pickCountByTurn = 2;
@@ -40,7 +41,7 @@ public class CharacterGoblinDeez : CharacterMob
                 }
             ),
             amountOfCardAdd: 1,
-            isSameColor: false
+            isSameColor: true
         );
         this.deck.addCardToDeck(
             new Card(

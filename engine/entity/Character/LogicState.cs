@@ -11,8 +11,8 @@ public enum LogicState
     firstCardPlayableOponent, //execute the first card usable on a target oponent (and not usable on it self).
     firstAttire, //execute the first card in hand who has effect "attire" (on target ennemy).
     shildAlly, //use the first card has effect Shild on an ally on range card (with lower HP).
+    selfShild, //use fist card Shild effect on self.
 
     // or.
     chase_or_firstAttire,
-    firstHit_or_shildAlly,
 }
