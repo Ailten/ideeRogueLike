@@ -6,6 +6,8 @@ public enum Succes
     Kill_5_Slime,
     Kill_5_Flame,
     Kill_5_Rock,
+    Kill_5_Goblin,
+    Kill_5_Armor,
     Take_10_Coin,
     Take_100_Coin,
     Heal_10,
@@ -75,6 +77,30 @@ public static class StaticSucces
                     APCost: 0,
                     distanceToUse: new(1, 1),
                     effect: new KeyValuePair<EffectCard, int>(EffectCard.MPHit, 3)
+                );
+            case (Succes.Kill_5_Goblin):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_Sword,
+                    cardColor: CardColor.Green,
+                    cardEdition: CardEdition.Default,
+                    APCost: 2,
+                    distanceToUse: new(1, 1),
+                    effects: new(){
+                        new KeyValuePair<EffectCard, int>(EffectCard.MPHit, 8),
+                        new KeyValuePair<EffectCard, int>(EffectCard.Push, 2)
+                    }
+                );
+            case (Succes.Kill_5_Armor):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_Flag,
+                    cardColor: CardColor.Green,
+                    cardEdition: CardEdition.Default,
+                    APCost: 1,
+                    distanceToUse: new(0, 3),
+                    effects: new(){
+                        new KeyValuePair<EffectCard, int>(EffectCard.Shild, 8),
+                        new KeyValuePair<EffectCard, int>(EffectCard.Heal, 2)
+                    }
                 );
 
             case (Succes.Take_10_Coin):
@@ -160,6 +186,8 @@ public static class StaticSucces
             case (Succes.UseACard_Flame):
             case (Succes.UseACard_20_WoodenShild):
             case (Succes.Heal_40):
+            case (Succes.Kill_5_Goblin):
+            case (Succes.Kill_5_Armor):
 
             case (Succes.UseACard_5_DarunyaNeko):
                 return true;
@@ -179,6 +207,10 @@ public static class StaticSucces
                 return SaveManager.getAmountKillCount(typeof(CharacterFlame)) >= 5;
             case (Succes.Kill_5_Rock):
                 return SaveManager.getAmountKillCount(typeof(CharacterRock)) >= 5;
+            case (Succes.Kill_5_Goblin):
+                return SaveManager.getAmountKillCount(typeof(CharacterGoblin)) >= 5;
+            case (Succes.Kill_5_Armor):
+                return SaveManager.getAmountKillCount(typeof(CharacterArmor)) >= 5;
             case (Succes.Take_10_Coin):
                 return SaveManager.getSave.coinTaked >= 10;
             case (Succes.Take_100_Coin):

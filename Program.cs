@@ -9,7 +9,6 @@ class Program
 
     // add details mobs when click on it, menu. !!!
 
-    // add 2 mob stage 2 (armure, armure damnee).
     // add 2 card (sword, flag).
     // add success for killing 5 goblin, 5 armor, to gain card associate.
 
