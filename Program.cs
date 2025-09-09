@@ -9,9 +9,6 @@ class Program
 
     // add details mobs when click on it, menu. !!!
 
-    // add 2 card (sword, flag).
-    // add success for killing 5 goblin, 5 armor, to gain card associate.
-
     // test dificulty.
 
 

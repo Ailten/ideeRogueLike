@@ -40,6 +40,10 @@ public static class StatusEffectManager
                 .Select(s => s.getStatusEffectUnlocked())
                 .Where(se => se != null).Cast<StatusEffectType>()
         );
+
+        // FIXME: temporary patch : all rare are commun.
+        communEffect.AddRange(rareEffect);
+        rareEffect = new();
         
     }
 
