@@ -89,6 +89,10 @@ public static class CardManager
                 .Where(c => c != null).Cast<Card>()
         );
 
+        // FIXME: temporary patch : all rare are commun.
+        communCard.AddRange(rareCard);
+        rareCard = new();
+
     }
 
     public static Card generateARandomCard(Random? rng = null)
