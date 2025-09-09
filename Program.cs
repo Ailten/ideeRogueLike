@@ -11,6 +11,8 @@ class Program
 
     // test dificulty.
 
+    // make a layer PrintSuccesUnlocked
+
 
     // make win/loose screen (end run).
     // -> sprite letters saying Win or Loose.

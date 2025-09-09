@@ -86,7 +86,11 @@ public class Cel : Entity
             if (characterAtCel != null)
             { //print info of character.
 
-                //TODO (in specific function).
+                DetailsCharacter.layer.characterSelected = characterAtCel;
+                LayerManager.transition(
+                    new int[] { },
+                    new int[] { DetailsCharacter.layer.idLayer }
+                );
 
                 return;
             }
