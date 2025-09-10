@@ -12,6 +12,10 @@ public class DetailsCharacter : Layer
         //init all entities of layer. --->
 
         // TODO : print a layer like special room, with data of this.characterSelected .
+        if(characterSelected is null)
+            throw new Exception("DetailsCharacter.characterSelected is null !");
+
+        
         
 
         base.active();
