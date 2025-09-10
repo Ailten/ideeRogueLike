@@ -11,11 +11,19 @@ public class DetailsCharacter : Layer
     {
         //init all entities of layer. --->
 
-        // TODO : print a layer like special room, with data of this.characterSelected .
         if(characterSelected is null)
-            throw new Exception("DetailsCharacter.characterSelected is null !");
+            throw new Exception("characterSelected is null !");
 
-        
+        CardMenuBGUi bg = new CardMenuBGUi(this.idLayer); // draw back.
+        bg.pos = new(0, 0);
+        bg.size.x = CanvasManager.sizeWindow.x;
+        bg.geometryTrigger = new Rect(new(), CanvasManager.sizeWindow);
+        bg.zIndex = 3000;
+
+        CharacterUi characterUi = new CharacterUi(idLayer, this.characterSelected.spriteType);
+        characterUi.pos = new(126+10, CanvasManager.centerWindow.y);
+        characterUi.isDrawPseudo = true;
+        characterUi.zIndex = 3200;
         
 
         base.active();
