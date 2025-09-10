@@ -86,12 +86,8 @@ public class Cel : Entity
             if (characterAtCel != null)
             { //print info of character.
 
-                DetailsCharacter.layer.characterSelected = characterAtCel;
-                LayerManager.transition(
-                    new int[] { },
-                    new int[] { DetailsCharacter.layer.idLayer }
-                );
-
+                DetailsCharacter.layer.characterSelected = characterAtCel; // active layer.
+                DetailsCharacter.layer.active();
                 return;
             }
 
