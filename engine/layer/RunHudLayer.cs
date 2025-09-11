@@ -95,6 +95,9 @@ public class RunHudLayer : Layer
         {
             if (!isLeftClick) // print details card hand. 
             {
+                if (LayerManager.isADetailsLayerAreOpen) // can't open two type of detail layer.
+                    return;
+
                 List<Card> cardToPrint = TurnManager.getMainPlayerCharacter().deck.cardsInHand;
                 RunHudLayer.layer.setListCardToMenuCardUi(cardToPrint, isReOrder: false);
                 RunHudLayer.layer.setCardSelectedToMenuCardUi(cardClicked);
@@ -141,6 +144,7 @@ public class RunHudLayer : Layer
     public void activeMenuCardUi(bool isActive = true)
     {
         elementsInMenuCardUi.ForEach(e => e.isActive = isActive);
+        LayerManager.isADetailsLayerAreOpen = isActive;
     }
     public void setListCardToMenuCardUi(List<Card> listCardToPrint)
     {
