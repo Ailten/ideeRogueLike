@@ -9,6 +9,13 @@ public static class LayerManager
     }
     private static int layersIndexCount = 0;
 
+    private static bool _isADetailsLayerAreOpen = false; // flag for check when a layer details or menu are open (only one active). 
+    public static bool isADetailsLayerAreOpen
+    {
+        get { return _isADetailsLayerAreOpen; }
+        set { _isADetailsLayerAreOpen = value; }
+    }
+
 
     //push a new layer in list layers (after init).
     public static void pushNewLayer(Layer l)
@@ -127,8 +134,9 @@ public static class LayerManager
     //dehinit all entities in layers active (and hidde).
     public static void deinit()
     {
-        foreach(Layer l in _layers){ //unActive all level active.
-            if(l.isActive || l.entities.Count() != 0)
+        foreach (Layer l in _layers)
+        { //unActive all level active.
+            if (l.isActive || l.entities.Count() != 0)
                 l.unActive();
         }
     }

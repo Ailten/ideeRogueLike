@@ -33,6 +33,10 @@ public class DetailsCharacter : Layer
         characterUi.pos = new(126+10, CanvasManager.centerWindow.y);
         characterUi.isDrawPseudo = true;
         characterUi.zIndex = 3200;
+
+        // TODO: draw list effetcs of character.
+
+        // TODO: draw cards of character.
         
 
         base.active();
