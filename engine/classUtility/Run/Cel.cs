@@ -86,9 +86,9 @@ public class Cel : Entity
             if (characterAtCel != null)
             { //print info of character.
 
-                if ()
+                if (LayerManager.isADetailsLayerAreOpen) // can't open two type of detail layer.
                     return;
-                
+                LayerManager.isADetailsLayerAreOpen = true;
 
                 DetailsCharacter.layer.characterSelected = characterAtCel; // active layer.
                 DetailsCharacter.layer.active();
@@ -241,7 +241,13 @@ public class Cel : Entity
             case (CelType.Cel_CardEffectBoost):
             case (CelType.Cel_Fusion):
             case (CelType.Cel_SetCardEdition):
+
+                if (LayerManager.isADetailsLayerAreOpen) // can't open two type of detail layer.
+                    return;
+                LayerManager.isADetailsLayerAreOpen = true;
+
                 SpecialRoom.layer.active(); // active layer SpecialRoom when walk on chest cel.
+                
                 return;
 
             case (CelType.Cel_SandMPDown):

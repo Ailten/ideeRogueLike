@@ -15,8 +15,10 @@ public class SpecialRoom : Layer
         currentRoom.refreshRngSpecialRoom();
         Random rng = currentRoom.rngSpecialRoom;
 
-        CardMenuBGUi bg = new CardMenuBGUi(this.idLayer);
+        CardMenuBGUi bg = new CardMenuBGUi(this.idLayer); // back-ground.
         bg.pos = new(240, 0);
+
+        CardMenuBGUiBlack bgb = new CardMenuBGUiBlack(idLayer); // black back-ground.
 
         // X button to exit special room menu.
         CheckBoxUi buttonExit = new CheckBoxUi(idLayer); // button exit card menu.
@@ -602,6 +604,8 @@ public class SpecialRoom : Layer
         this.productPrice = new TextPriceProductUi[0];
 
         this.validateChoise = () => { };
+
+        LayerManager.isADetailsLayerAreOpen = false;
 
         base.unActive();
     }
