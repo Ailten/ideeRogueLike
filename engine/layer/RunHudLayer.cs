@@ -51,6 +51,10 @@ public class RunHudLayer : Layer
         cardMenuBGUi.pos = new(240, 0);
         elementsInMenuCardUi.Add(cardMenuBGUi);
 
+        CardMenuBGUiBlack cardMenuBGUiBlack = new CardMenuBGUiBlack(idLayer); // black back-ground.
+        cardMenuBGUiBlack.isActive = false;
+        elementsInMenuCardUi.Add(cardMenuBGUiBlack);
+
         ListCardUi cardMenuListCardUi = new ListCardUi(idLayer); //list card ui.
         cardMenuListCardUi.isActive = false;
         cardMenuListCardUi.pos = new(250, 388);
@@ -123,6 +127,10 @@ public class RunHudLayer : Layer
         );
         buttonOptionUi.eventClick = () => // open layer option.
         {
+            if (LayerManager.isADetailsLayerAreOpen) // can't open two type of detail layer.
+                return;
+            LayerManager.isADetailsLayerAreOpen = true;
+
             LayerManager.transition(
                 idLevelStart: new int[0],
                 idLevelEnd: new int[] { Option.layer.idLayer }

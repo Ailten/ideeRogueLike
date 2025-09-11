@@ -33,6 +33,10 @@ public class MainMenu : Layer
         buttonOption.scale = scaleButton;
         buttonOption.eventClick = () =>
         {
+            if (LayerManager.isADetailsLayerAreOpen) // can't open two type of detail layer.
+                return;
+            LayerManager.isADetailsLayerAreOpen = true;
+
             LayerManager.transition(
                 idLevelStart: new int[0],
                 idLevelEnd: new int[] { Option.layer.idLayer }

@@ -28,6 +28,8 @@ public class Option : Layer
     {
         //free all entities of layer. --->
 
+        LayerManager.isADetailsLayerAreOpen = false;
+
         base.unActive();
     }
 
