@@ -86,6 +86,10 @@ public class Cel : Entity
             if (characterAtCel != null)
             { //print info of character.
 
+                if ()
+                    return;
+                
+
                 DetailsCharacter.layer.characterSelected = characterAtCel; // active layer.
                 DetailsCharacter.layer.active();
                 return;

@@ -59,6 +59,8 @@ public class DetailsCharacter : Layer
 
         this.characterSelected = null;
 
+        LayerManager.isADetailsLayerAreOpen = false;
+
         base.unActive();
     }
 
