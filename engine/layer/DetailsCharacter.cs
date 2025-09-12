@@ -34,7 +34,14 @@ public class DetailsCharacter : Layer
         characterUi.isDrawPseudo = true;
         characterUi.zIndex = 3200;
 
-        // TODO: draw list effetcs of character.
+        // TODO: draw list effects of character.
+        StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer);
+        statusEffectDetailsUi.pos = new(CanvasManager.centerWindow.x, CanvasManager.centerWindow.y);
+        statusEffectDetailsUi.scaleEffectIllu = 2f;
+        statusEffectDetailsUi.zIndex = 3200;
+        statusEffectDetailsUi.isPrintDetails = true;
+
+        StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer);
 
         // TODO: draw cards of character.
         
