@@ -36,12 +36,20 @@ public class DetailsCharacter : Layer
 
         // draw list effects and cards of character.
         StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer); // details effect selected.
-        statusEffectDetailsUi.pos = new(CanvasManager.centerWindow.x, CanvasManager.centerWindow.y);
+        statusEffectDetailsUi.pos = new(
+            CanvasManager.centerWindow.x,
+            CanvasManager.centerWindow.y
+        );
         statusEffectDetailsUi.scaleEffectIllu = 2f;
         statusEffectDetailsUi.zIndex = 3200;
         statusEffectDetailsUi.isPrintDetails = true;
 
-        // todo : card details.
+        CardDetails cardDetails = new CardDetails(this.idLayer);
+        cardDetails.pos = new(
+            CanvasManager.centerWindow.x - Card.cardSize.x,
+            CanvasManager.centerWindow.y - Card.cardSize.y
+        );
+        cardDetails.zIndex = 3200;
 
         StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer); // list effects.
         statusEffetUi.setWidthSize(CanvasManager.centerWindow.x - 20);
