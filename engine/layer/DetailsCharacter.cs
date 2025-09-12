@@ -34,17 +34,35 @@ public class DetailsCharacter : Layer
         characterUi.isDrawPseudo = true;
         characterUi.zIndex = 3200;
 
-        // TODO: draw list effects of character.
-        StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer);
+        // draw list effects and cards of character.
+        StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer); // details effect selected.
         statusEffectDetailsUi.pos = new(CanvasManager.centerWindow.x, CanvasManager.centerWindow.y);
         statusEffectDetailsUi.scaleEffectIllu = 2f;
         statusEffectDetailsUi.zIndex = 3200;
         statusEffectDetailsUi.isPrintDetails = true;
 
-        StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer);
+        // todo : card details.
 
-        // TODO: draw cards of character.
+        StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer); // list effects.
+        statusEffetUi.setWidthSize(CanvasManager.centerWindow.x - 20);
+        statusEffetUi.pos = new(10, 10);
+        statusEffetUi.setListEffect(characterSelected.statusEffects);
+        statusEffetUi.isWithDetail = false;
+        statusEffetUi.zIndex = 3200;
+        statusEffetUi.clickOnEffect = (effectClicked, isLeftClick) =>
+        {
+            statusEffectDetailsUi.setStatusEffect(effectClicked);
+            // todo : unselect card details.
+        };
+        statusEffetUi.unClickOnEffect = (effectClicked, isLeftClick) =>
+        {
+            statusEffectDetailsUi.setStatusEffect(null);
+            // todo : unselect card details.
+        };
+
+        // todo : list cards.
         
+
 
         base.active();
     }
