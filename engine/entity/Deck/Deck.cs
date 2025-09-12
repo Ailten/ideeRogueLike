@@ -8,13 +8,19 @@ public class Deck
 
     public int pickCountByTurn = 5; //amount of card peak by turn.
 
-    public int countCardInFullDeck //amount of all card in deck.
+    public int getAmountCardsInAllDeck //amount of all card in deck.
     {
-        get { return cardsInHand.Count + cardsInPioche.Count + cardsInCimetier.Count; }
+        get { return this.cardsInHand.Count + this.cardsInPioche.Count + this.cardsInCimetier.Count; }
     }
-    public int getAmountCardsInAllDeck
+    public List<Card> cardsInAllDeck
     {
-        get { return cardsInHand.Count + cardsInPioche.Count + cardsInCimetier.Count; }
+        get
+        {
+            List<Card> output = this.cardsInHand;
+            output.AddRange(this.cardsInPioche);
+            output.AddRange(this.cardsInCimetier);
+            return output;
+        }
     }
 
 

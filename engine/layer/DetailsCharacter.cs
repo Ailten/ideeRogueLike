@@ -44,7 +44,7 @@ public class DetailsCharacter : Layer
         statusEffectDetailsUi.zIndex = 3200;
         statusEffectDetailsUi.isPrintDetails = true;
 
-        CardDetails cardDetails = new CardDetails(this.idLayer);
+        CardDetails cardDetails = new CardDetails(this.idLayer); // details card selected.
         cardDetails.pos = new(
             CanvasManager.centerWindow.x - Card.cardSize.x,
             CanvasManager.centerWindow.y - Card.cardSize.y
@@ -60,15 +60,30 @@ public class DetailsCharacter : Layer
         statusEffetUi.clickOnEffect = (effectClicked, isLeftClick) =>
         {
             statusEffectDetailsUi.setStatusEffect(effectClicked);
-            // todo : unselect card details.
+            cardDetails.setCard(null);
         };
         statusEffetUi.unClickOnEffect = (effectClicked, isLeftClick) =>
         {
             statusEffectDetailsUi.setStatusEffect(null);
-            // todo : unselect card details.
+            cardDetails.setCard(null);
         };
 
-        // todo : list cards.
+        ListCardUi cardsUi = new ListCardUi(this.idLayer); // list cards.
+        cardsUi.pos = new(10, 388);
+        cardsUi.upCardWhenSelected = 45f;
+        cardsUi.zIndex = 3200;
+        cardsUi.isMakeReOrdered = false;
+        cardsUi.setListCard(characterSelected.deck.cardsInAllDeck);
+        cardsUi.clickOnCard = (cardClicked, isLeftClick) =>
+        {
+            cardDetails.setCard(cardClicked);
+            statusEffectDetailsUi.setStatusEffect(null);
+        };
+        cardsUi.unClickOnCard = (cardClicked, isLeftClick) =>
+        {
+            cardDetails.setCard(null);
+            statusEffectDetailsUi.setStatusEffect(null);
+        };
         
 
 
