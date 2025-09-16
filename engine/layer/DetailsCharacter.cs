@@ -84,6 +84,9 @@ public class DetailsCharacter : Layer
             cardDetails.setCard(null);
             statusEffectDetailsUi.setStatusEffect(null);
         };
+
+
+        // TODO : debug pos, up when click (statuseffect and card).
         
 
 

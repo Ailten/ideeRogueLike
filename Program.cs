@@ -13,6 +13,8 @@ class Program
 
     // make a layer PrintSuccesUnlocked
 
+    // debug DetailsCharacter layer.
+
 
     // make win/loose screen (end run).
     // -> sprite letters saying Win or Loose.
