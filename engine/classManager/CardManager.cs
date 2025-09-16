@@ -105,6 +105,7 @@ public static class CardManager
         );
         
         Card output = (isARareCard)? rareCard[indexCardPick]: communCard[indexCardPick];
+        output = output.getCopyOfCard();
 
         output.cardColor = StaticCardColor.getRandomColor(true, rng: rng);
         output.cardEdition = StaticCardEdition.getRandomEdition(false, rng: rng);

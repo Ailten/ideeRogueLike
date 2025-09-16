@@ -40,6 +40,7 @@ public class DuplicateCracked : StatusEffect
         int rangeForSave = (int)Vector.lerpF(0, 999, this.purcentSave);
         if (rngSave < rangeForSave)
         {
+            card = card.getCopyOfCard();
             packageRefCard.character.deck.addCardToDeck(card, isSameColor: true); // add a copy before destroy.
         }
     }

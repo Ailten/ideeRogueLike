@@ -373,6 +373,7 @@ public class SpecialRoom : Layer
                     {
                         Character player = TurnManager.getMainPlayerCharacter();
                         Card cardSelected = cardDetails.getCard() ?? throw new Exception("no card selected for duplication !");
+                        cardSelected = cardSelected.getCopyOfCard();
 
                         player.deck.addCardToDeck( // add a copy of card selected to deck.
                             cardSelected,

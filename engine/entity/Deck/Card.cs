@@ -1,5 +1,6 @@
 
-public struct Card
+// work as class, because of list inside : for disociate instance use getCopyOfCard().
+public class Card
 {
 
     public SpriteType cardIllu; //sprite of illustation card.
@@ -126,7 +127,7 @@ public struct Card
                 rotation: 0f,
                 Raylib_cs.Color.White
             );
-            
+
         }
         else // draw card normaly.
         {
@@ -306,6 +307,28 @@ public struct Card
         KeyValuePair<EffectCard, int> getEffect = this.effects[indexEffect];
         int newValue = getEffect.Value + increase;
         this.effects[indexEffect] = new(getEffect.Key, newValue);
+    }
+
+
+    // get a copy of the card.
+    public Card getCopyOfCard()
+    {
+        Card output = new Card(
+            cardIllu: this.cardIllu,
+            cardColor: this.cardColor,
+            cardEdition: this.cardEdition,
+            APCost: this.APCost,
+            distanceToUse: this.distanceToUse,
+            effects: new()
+        );
+        for (int i = 0; i < this.effects.Count; i++) //duplicate liste effects.
+        {
+            effects.Add(new KeyValuePair<EffectCard, int>(
+                this.effects[i].Key,
+                this.effects[i].Value
+            ));
+        }
+        return output;
     }
 
 

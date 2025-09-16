@@ -364,6 +364,8 @@ public static class StaticEffectCard
 
             case (EffectCard.PickCard):
                 characterLauncher.deck.piocheManyCard(effectValue);
+                if(characterLauncher.isInRedTeam) // update afficahge if a turn of a CharacterPlayer.
+                    RunHudLayer.layer.cardHandListCardUi!.setListCard(characterLauncher.deck.cardsInHand);
                 return;
 
             case (EffectCard.SelfHeal):

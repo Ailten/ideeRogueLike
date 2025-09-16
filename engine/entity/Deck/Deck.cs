@@ -35,7 +35,7 @@ public class Deck
     {
         for (int i = 0; i < amountOfCardAdd; i++)
         {
-            Card c = card;
+            Card c = card.getCopyOfCard();
             if (!isSameColor)
                 c.cardColor = StaticCardColor.getRandomColor(isIncludePolyChrome);
             this.cardsInCimetier.Add(c);

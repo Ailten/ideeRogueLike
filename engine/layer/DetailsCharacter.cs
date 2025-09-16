@@ -35,9 +35,10 @@ public class DetailsCharacter : Layer
         characterUi.zIndex = 3200;
 
         // draw list effects and cards of character.
+        const float decalXFromCenter = 60;
         StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer); // details effect selected.
         statusEffectDetailsUi.pos = new(
-            CanvasManager.centerWindow.x,
+            CanvasManager.centerWindow.x -decalXFromCenter,
             CanvasManager.centerWindow.y
         );
         statusEffectDetailsUi.scaleEffectIllu = 2f;
@@ -46,13 +47,15 @@ public class DetailsCharacter : Layer
 
         CardDetails cardDetails = new CardDetails(this.idLayer); // details card selected.
         cardDetails.pos = new(
-            CanvasManager.centerWindow.x - Card.cardSize.x,
-            CanvasManager.centerWindow.y - Card.cardSize.y
+            CanvasManager.centerWindow.x - Card.cardSize.x/2 -decalXFromCenter,
+            CanvasManager.centerWindow.y - Card.cardSize.y/2
         );
         cardDetails.zIndex = 3200;
 
+        // list card and effects.
         StatusEffectUi statusEffetUi = new StatusEffectUi(this.idLayer); // list effects.
-        statusEffetUi.setWidthSize(CanvasManager.centerWindow.x - 20);
+        ListCardUi cardsUi = new ListCardUi(this.idLayer); // list cards.
+        statusEffetUi.setWidthSize(CanvasManager.centerWindow.x - 76);
         statusEffetUi.pos = new(10, 10);
         statusEffetUi.setListEffect(characterSelected.statusEffects);
         statusEffetUi.isWithDetail = false;
@@ -61,15 +64,17 @@ public class DetailsCharacter : Layer
         {
             statusEffectDetailsUi.setStatusEffect(effectClicked);
             cardDetails.setCard(null);
+            cardsUi.unselectCard();
         };
         statusEffetUi.unClickOnEffect = (effectClicked, isLeftClick) =>
         {
             statusEffectDetailsUi.setStatusEffect(null);
             cardDetails.setCard(null);
+            cardsUi.unselectCard();
         };
 
-        ListCardUi cardsUi = new ListCardUi(this.idLayer); // list cards.
-        cardsUi.pos = new(10, 388);
+        cardsUi.pos = new(10, 488); // list cards.
+        cardsUi.sizeListCard.x = CanvasManager.sizeWindow.x - 20;
         cardsUi.upCardWhenSelected = 45f;
         cardsUi.zIndex = 3200;
         cardsUi.isMakeReOrdered = false;
@@ -78,11 +83,13 @@ public class DetailsCharacter : Layer
         {
             cardDetails.setCard(cardClicked);
             statusEffectDetailsUi.setStatusEffect(null);
+            statusEffetUi.resetSelection();
         };
         cardsUi.unClickOnCard = (cardClicked, isLeftClick) =>
         {
             cardDetails.setCard(null);
             statusEffectDetailsUi.setStatusEffect(null);
+            statusEffetUi.resetSelection();
         };
 
 
