@@ -66,6 +66,11 @@ public class CharacterMob : Character
             case (SpriteType.Character_ArmorDamned):
                 return new CharacterArmorDamned(posIndexCel);
 
+            case (SpriteType.Character_Squelette):
+                return new CharacterSquelette(posIndexCel);
+            case (SpriteType.Character_Ghost):
+                return new CharacterGhost(posIndexCel);
+
             //add heer new CharacterMob.
 
             default:
