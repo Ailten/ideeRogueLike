@@ -128,7 +128,8 @@ public enum SpriteType
     CardImg_DarunyaNeko,
     CardImg_Explsur,
     CardImg_Drama,
-    CardImg_Dashilios,
+    CardImg_Dash,
+    CardImg_AQuiLOs,
     CardImg_OsuAime,
     CardImg_Flag,
 
@@ -234,7 +235,7 @@ public static class StaticSpriteType
                 return ("Attire la cible vers le lanceur.");
             case (SpriteType.CardImg_OsuAime):
                 return ("Propage la tendinite.");
-            case (SpriteType.CardImg_Dashilios):
+            case (SpriteType.CardImg_Dash):
                 return ("Teleporte le lanceur.");
             case (SpriteType.CardImg_Sword):
                 return ("Une epee robuste.");
@@ -283,8 +284,8 @@ public static class StaticSpriteType
                 return ("Trou Noir");
             case (SpriteType.CardImg_OsuAime):
                 return ("Osu Aime");
-            case (SpriteType.CardImg_Dashilios):
-                return ("Dashilios");
+            case (SpriteType.CardImg_Dash):
+                return ("Dash");
             case (SpriteType.CardImg_Sword):
                 return ("Epee");
             case (SpriteType.CardImg_Flag):

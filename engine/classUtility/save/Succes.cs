@@ -155,7 +155,7 @@ public static class StaticSucces
 
             case (Succes.Take_80_Damage):
                 return new Card(
-                    cardIllu: SpriteType.CardImg_Dashilios,
+                    cardIllu: SpriteType.CardImg_Dash,
                     cardColor: CardColor.Red,
                     cardEdition: CardEdition.Default,
                     APCost: 1,
