@@ -8,6 +8,7 @@ public enum Succes
     Kill_5_Rock,
     Kill_5_Goblin,
     Kill_5_Armor,
+    Kill_5_Squelette,
     Take_10_Coin,
     Take_100_Coin,
     Heal_10,
@@ -102,6 +103,18 @@ public static class StaticSucces
                         new KeyValuePair<EffectCard, int>(EffectCard.Heal, 2)
                     }
                 );
+            case (Succes.Kill_5_Squelette):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_AQuiLOs,
+                    cardColor: CardColor.Red,
+                    cardEdition: CardEdition.Default,
+                    APCost: 2,
+                    distanceToUse: new(1, 3),
+                    effects: new() {
+                        new KeyValuePair<EffectCard, int>(EffectCard.Hit, 4),
+                        new KeyValuePair<EffectCard, int>(EffectCard.PickCard, 1),
+                    }
+                );
 
             case (Succes.Take_10_Coin):
                 return new Card(
@@ -165,6 +178,8 @@ public static class StaticSucces
                     }
                 );
 
+
+
             default:
                 return null;
         }
@@ -211,6 +226,8 @@ public static class StaticSucces
                 return SaveManager.getAmountKillCount(typeof(CharacterGoblin)) >= 5;
             case (Succes.Kill_5_Armor):
                 return SaveManager.getAmountKillCount(typeof(CharacterArmor)) >= 5;
+            case (Succes.Kill_5_Squelette):
+                return SaveManager.getAmountKillCount(typeof(CharacterSquelette)) >= 5;
             case (Succes.Take_10_Coin):
                 return SaveManager.getSave.coinTaked >= 10;
             case (Succes.Take_100_Coin):

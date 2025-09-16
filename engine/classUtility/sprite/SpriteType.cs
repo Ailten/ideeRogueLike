@@ -241,7 +241,8 @@ public static class StaticSpriteType
                 return ("Une epee robuste.");
             case (SpriteType.CardImg_Flag):
                 return ("Besoin de suport.");
-                
+            case (SpriteType.CardImg_AQuiLOs):
+                return ("A qui est cette os ?");
                 
                 
             default:
@@ -290,6 +291,9 @@ public static class StaticSpriteType
                 return ("Epee");
             case (SpriteType.CardImg_Flag):
                 return ("Drapeau");
+            case (SpriteType.CardImg_AQuiLOs):
+                return ("A qui l os");
+
 
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.
