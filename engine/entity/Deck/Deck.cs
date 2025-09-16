@@ -76,6 +76,13 @@ public class Deck
         cardsInHand.Add(cardsInPioche[0]); //add card from pioche to hand.
         cardsInPioche.RemoveAt(0); //remove card pick from pioche.
     }
+    public void piocheManyCard(int amountOfCardToPick)
+    {
+        for (int i = 0; i < amountOfCardToPick; i++)
+        {
+            this.piocheACard();
+        }
+    }
 
     //shuffle the cimetier and place it in pioche.
     public void shuffleCimetierIntoPioche()

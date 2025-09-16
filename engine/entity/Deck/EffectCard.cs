@@ -19,6 +19,7 @@ public enum EffectCard
     Attire, //attire target to the launcher.
     PropagatePoison, //poison hit at beginning turn, and try to propage to character cel adjacente.
     TeleportSwitch, //teleport or switch position with the cel target.
+    PickCard, //pick a card from deck.
 }
 
 
@@ -62,6 +63,8 @@ public static class StaticEffectCard
                 return "Propagation";
             case (EffectCard.TeleportSwitch):
                 return "Teleporte";
+            case (EffectCard.PickCard):
+                return "Pioche";
                 
             default:
                 return "No name";
@@ -151,13 +154,18 @@ public static class StaticEffectCard
             case (EffectCard.PropagatePoison):
                 return ("- " + effectCard.getName() + " :\n" +
                     $"applique {value} degat a la cible en debut de tour.\n" +
-                    $"propage l'effet au celules adjacente en debut de tour.\n"
+                    $"propage l'effet au celules adjacente en debut de tour."
                 );
             case (EffectCard.TeleportSwitch):
                 return ("- " + effectCard.getName() + " :\n" +
                     $"Teleporte le lanceur sur la case ciblee.\n" +
-                    $"Si la case est occupee, echange de places.\n"
+                    $"Si la case est occupee, echange de places."
                 );
+            case (EffectCard.PickCard):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"le lanceur pioche {value} carte{(valueIntencity>1?"s":"")}."
+                );
+
 
             default:
                 return "cette effet n'a pas de description.";
@@ -344,6 +352,10 @@ public static class StaticEffectCard
                 if (characterTarget != null)
                     characterTarget.moveTo(characterLauncher.indexPosCel);
                 characterLauncher.moveTo(indexPosTarget);
+                return;
+
+            case (EffectCard.PickCard):
+                characterLauncher.deck.piocheManyCard(effectValue);
                 return;
 
 
