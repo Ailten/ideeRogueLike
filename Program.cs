@@ -15,6 +15,8 @@ class Program
 
     // debug DetailsCharacter layer.
 
+    // create mob Squelette and ghost.
+
 
     // make win/loose screen (end run).
     // -> sprite letters saying Win or Loose.
