@@ -20,6 +20,7 @@ public enum EffectCard
     PropagatePoison, //poison hit at beginning turn, and try to propage to character cel adjacente.
     TeleportSwitch, //teleport or switch position with the cel target.
     PickCard, //pick a card from deck.
+    SelfHeal, //heal the launcher.
 }
 
 
@@ -65,6 +66,8 @@ public static class StaticEffectCard
                 return "Teleporte";
             case (EffectCard.PickCard):
                 return "Pioche";
+            case (EffectCard.SelfHeal):
+                return "Auto Soin";
                 
             default:
                 return "No name";
@@ -165,6 +168,11 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     $"le lanceur pioche {value} carte{(valueIntencity>1?"s":"")}."
                 );
+            case (EffectCard.SelfHeal):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"soigne {value} au lanceur."
+                );
+
 
 
             default:
@@ -357,6 +365,11 @@ public static class StaticEffectCard
             case (EffectCard.PickCard):
                 characterLauncher.deck.piocheManyCard(effectValue);
                 return;
+
+            case (EffectCard.SelfHeal):
+                characterLauncher.giveHeal(characterLauncher, effectValue, refCard);
+                return;
+                
 
 
             default:

@@ -78,6 +78,7 @@ public enum SpriteType
     Character_KingFlame,
     Character_KingRock,
     Character_Squelette,
+    Character_Ghost,
     Character_DarunyaNeko,
     Character_LuneAllier,
     Character_DarumaNico,
@@ -122,6 +123,7 @@ public enum SpriteType
     CardImg_LuneAllier,
     CardImg_BlackHole,
     CardImg_Sword,
+    CardImg_sanTwitch,
     CardImg_Barbak,
     CardImg_AxeOLoot,
     CardImg_BatteBulle,
@@ -244,6 +246,9 @@ public static class StaticSpriteType
                 return ("Besoin de suport.");
             case (SpriteType.CardImg_AQuiLOs):
                 return ("A qui est cette os ?");
+            case (SpriteType.CardImg_sanTwitch):
+                return ("Jeff prend 60 pourcents des calories.");
+
                 
                 
             default:
@@ -294,6 +299,8 @@ public static class StaticSpriteType
                 return ("Drapeau");
             case (SpriteType.CardImg_AQuiLOs):
                 return ("A qui l os");
+            case (SpriteType.CardImg_sanTwitch):
+                return ("San-Twitch");
 
 
             default:

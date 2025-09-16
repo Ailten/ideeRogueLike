@@ -88,7 +88,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Character_KingFlame, new Vector(256, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_KingRock, new Vector(384, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Squelette, new Vector(512, 128), new Vector(126, 126));
-        // todo : ghost.
+        s.addSpriteType(SpriteType.Character_Ghost, new Vector(512, 128), new Vector(126, 126));
+        // todo : ghost boss.
         s.addSpriteType(SpriteType.Character_LuneAllier, new Vector(0, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_DarumaNico, new Vector(128, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Axolootl, new Vector(256, 256), new Vector(126, 126));
@@ -136,7 +137,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_LuneAllier, new Vector(660, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BlackHole, new Vector(880, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Sword, new Vector(1100, 449), new Vector(219, 125));
-        s.addSpriteType(SpriteType.CardImg_, new Vector(1320, 449), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_sanTwitch, new Vector(1320, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_AxeOLoot, new Vector(0, 575), new Vector(219, 125)); // (l3).
         s.addSpriteType(SpriteType.CardImg_BatteBulle, new Vector(220, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BlacASiable, new Vector(440, 575), new Vector(219, 125));
