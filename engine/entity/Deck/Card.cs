@@ -1,6 +1,6 @@
 
 // work as class, because of list inside : for disociate instance use getCopyOfCard().
-public class Card
+public struct Card
 {
 
     public SpriteType cardIllu; //sprite of illustation card.
