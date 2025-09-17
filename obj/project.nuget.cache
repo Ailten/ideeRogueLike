@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/2LKWKFFrUvkYTCnIX6PPVv1AUHm6BQeak+JINg1xEfBUanaLiVGvowwXUxpWktdT0hci6oLkio452VgBdyeVw==",
+  "success": true,
+  "projectFilePath": "/home/faouzi/Documents/ideeRogueLike/ideeRogueLike.csproj",
+  "expectedPackageFiles": [
+    "/home/faouzi/.nuget/packages/raylib-cs/7.0.1/raylib-cs.7.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
