@@ -39,25 +39,12 @@ public class Stage
 
     public Room? currentRoom
     {
-        get
-        {
-            try
-            {
-                return rooms[(int)currentIndexRoom.y][(int)currentIndexRoom.x];
-            }
-            catch (KeyNotFoundException)
-            {
-                return null;
-            }
-        }
+        get { return getRoom(currentIndexRoom); }
     }
 
     public Room currentRoomNN
     {
-        get
-        {
-            return currentRoom ?? throw new Exception("currentRoom is null !");
-        }
+        get { return currentRoom ?? throw new Exception("currentRoom is null !"); }
     }
 
     public Stage(int stage, int seed)

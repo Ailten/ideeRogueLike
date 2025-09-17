@@ -367,11 +367,14 @@ public class Room
     //get cel by index pos.
     public Cel? getCel(Vector indexPosCel)
     {
-        try{
-            return cels[(int)indexPosCel.y][(int)indexPosCel.x]; 
-        }catch(KeyNotFoundException){
+        int indexPosCelY = (int)indexPosCel.y;
+        int indexPosCelX = (int)indexPosCel.x;
+        if (indexPosCelY < 0 || indexPosCelY >= cels.Count)
             return null;
-        }
+        if (!cels[indexPosCelY].Keys.Contains(indexPosCelX))
+            return null;
+
+        return cels[indexPosCelY][indexPosCelX];
     }
 
 
