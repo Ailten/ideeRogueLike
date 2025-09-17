@@ -46,7 +46,7 @@ public class CardDetails : Entity
     public float scaleCards = 1f;
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
-        if (card == null) //TODO: draw text no-card selected.
+        if (card is null) //TODO: draw text no-card selected.
             return;
 
         Card cardNN = card ?? throw new Exception("CardDetails.card is null !");
@@ -132,7 +132,7 @@ public class CardDetails : Entity
         if (isClickDown)
             return;
 
-        if (card == null)
+        if (card is null)
             return;
         Card cardNN = card ?? throw new Exception("CardDetails.card is null !");
 
@@ -174,7 +174,7 @@ public class CardDetails : Entity
     //get rects of text effects in card details.
     private List<Rect> getRectEffects()
     {
-        if (this.card == null)
+        if (this.card is null)
             return new();
         Card cardNN = card ?? throw new Exception("CardDetails.card is null !");
         if (cardNN.isRecto)

@@ -63,7 +63,7 @@ public static class CardManager
         communCard.AddRange( // push card commun from succes into pool commun card.
             SaveManager.getSave.succes.Where(s => !s.isRare())
                 .Select(s => s.getCardUnlocked())
-                .Where(c => c != null).Cast<Card>()
+                .Where(c => c is not null).Cast<Card>()
         );
 
         rareCard = new();
@@ -86,7 +86,7 @@ public static class CardManager
         rareCard.AddRange( // push card rare from succes into pool rare card.
             SaveManager.getSave.succes.Where(s => s.isRare())
                 .Select(s => s.getCardUnlocked())
-                .Where(c => c != null).Cast<Card>()
+                .Where(c => c is not null).Cast<Card>()
         );
 
         // FIXME: temporary patch : all rare are commun.
