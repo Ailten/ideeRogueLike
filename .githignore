@@ -2,3 +2,6 @@ bin/*
 #ideeRogueLike.csproj
 ideeRogueLike.sln
 obj/*
+
+*/bin/*
+*/obj/*
