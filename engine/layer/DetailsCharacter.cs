@@ -35,11 +35,12 @@ public class DetailsCharacter : Layer
         characterUi.zIndex = 3200;
 
         // draw list effects and cards of character.
-        const float decalXFromCenter = 60;
+        const float decalXFromCenter = -60;
+        const float decalYFromCenter = -60;
         StatusEffectDetailsUi statusEffectDetailsUi = new StatusEffectDetailsUi(this.idLayer); // details effect selected.
         statusEffectDetailsUi.pos = new(
-            CanvasManager.centerWindow.x -decalXFromCenter,
-            CanvasManager.centerWindow.y
+            CanvasManager.centerWindow.x +decalXFromCenter,
+            CanvasManager.centerWindow.y +decalYFromCenter
         );
         statusEffectDetailsUi.scaleEffectIllu = 2f;
         statusEffectDetailsUi.zIndex = 3200;
@@ -47,8 +48,8 @@ public class DetailsCharacter : Layer
 
         CardDetails cardDetails = new CardDetails(this.idLayer); // details card selected.
         cardDetails.pos = new(
-            CanvasManager.centerWindow.x - Card.cardSize.x/2 -decalXFromCenter,
-            CanvasManager.centerWindow.y - Card.cardSize.y/2
+            CanvasManager.centerWindow.x - Card.cardSize.x/2 +decalXFromCenter,
+            CanvasManager.centerWindow.y - Card.cardSize.y/2 +decalYFromCenter
         );
         cardDetails.zIndex = 3200;
 
@@ -73,7 +74,7 @@ public class DetailsCharacter : Layer
             cardsUi.unselectCard();
         };
 
-        cardsUi.pos = new(10, 488); // list cards.
+        cardsUi.pos = new(10, 508); // list cards.
         cardsUi.sizeListCard.x = CanvasManager.sizeWindow.x - 20;
         cardsUi.upCardWhenSelected = 45f;
         cardsUi.zIndex = 3200;
@@ -92,9 +93,13 @@ public class DetailsCharacter : Layer
             statusEffetUi.resetSelection();
         };
 
+        characterUi.pos.y += decalYFromCenter; // replace character at center (betwin border left screen and details card selected).
+        float posLeftCardDetails = cardDetails.pos.x - 10;
+        characterUi.pos.x = Vector.lerpF(10, posLeftCardDetails, 0.5f);
+
 
         // TODO : debug pos, up when click (statuseffect and card).
-        
+
 
 
         base.active();
