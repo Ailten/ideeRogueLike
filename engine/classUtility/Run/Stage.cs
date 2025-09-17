@@ -318,14 +318,14 @@ public class Stage
     //get a room by index.
     public Room? getRoom(Vector indexRoom)
     {
-        try
-        {
-            return rooms[(int)indexRoom.y][(int)indexRoom.x];
-        }
-        catch (KeyNotFoundException)
-        {
+        int indexRoomY = (int)indexRoom.y;
+        int indexRoomX = (int)indexRoom.x;
+        if (indexRoomY < 0 || indexRoomY >= rooms.Count)
             return null;
-        }
+        if (!rooms[indexRoomY].Keys.Contains(indexRoomX))
+            return null;
+
+        return rooms[indexRoomY][indexRoomX];
     }
 
 

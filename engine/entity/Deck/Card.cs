@@ -1,6 +1,6 @@
 
 // work as class, because of list inside : for disociate instance use getCopyOfCard().
-public struct Card
+public class Card
 {
 
     public SpriteType cardIllu; //sprite of illustation card.
@@ -323,7 +323,7 @@ public struct Card
         );
         for (int i = 0; i < this.effects.Count; i++) //duplicate liste effects.
         {
-            effects.Add(new KeyValuePair<EffectCard, int>(
+            output.effects.Add(new KeyValuePair<EffectCard, int>(
                 this.effects[i].Key,
                 this.effects[i].Value
             ));
