@@ -98,7 +98,8 @@ public static class LayerManager
                 midTransitionAction();
                 midTransitionAction = null;
             }
-            foreach(int idLevelActive in idLevelEndTransition){ //active all level for transition.
+            foreach (int idLevelActive in idLevelEndTransition)
+            { //active all level for transition.
                 getLayerByIdLayer(idLevelActive).active();
             }
             return;

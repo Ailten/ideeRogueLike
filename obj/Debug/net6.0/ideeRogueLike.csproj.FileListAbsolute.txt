@@ -12,8 +12,6 @@
 /home/faouzi/Documents/ideeRogueLike/bin/Debug/net6.0/runtimes/win-x86/native/raylib.dll
 /home/faouzi/Documents/ideeRogueLike/obj/Debug/net6.0/ideeRogueLike.csproj.AssemblyReference.cache
 /home/faouzi/Documents/ideeRogueLike/obj/Debug/net6.0/ideeRogueLike.GeneratedMSBuildEditorConfig.editorconfig
-/home/faouzi/Documents/ideeRogueLike/obj/Debug/net6.0/ideeRogueLike.AssemblyInfoInputs.cache
-/home/faouzi/Documents/ideeRogueLike/obj/Debug/net6.0/ideeRogueLike.AssemblyInfo.cs
 /home/faouzi/Documents/ideeRogueLike/obj/Debug/net6.0/ideeRogueLike.csproj.CoreCompileInputs.cache
 /home/faouzi/Documents/ideeRogueLike/obj/Debug/net6.0/ideeRogueLike.csproj.CopyComplete
 /home/faouzi/Documents/ideeRogueLike/obj/Debug/net6.0/ideeRogueLike.dll

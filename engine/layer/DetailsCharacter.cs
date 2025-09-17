@@ -101,7 +101,7 @@ public class DetailsCharacter : Layer
     }
 
 
-    public Character? characterSelected;
+    public Character? characterSelected = null;
 
 
     public override void update()
