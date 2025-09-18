@@ -5,3 +5,5 @@ obj/*
 
 */bin/*
 */obj/*
+engine/classManager/obj
+engine/entity/Character/CharacterMob/obj

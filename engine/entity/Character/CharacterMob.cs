@@ -22,10 +22,13 @@ public class CharacterMob : Character
         new MobType(SpriteType.Character_GoblinDeez, 2, true),
         new MobType(SpriteType.Character_ArmorDamned, 2, true),
 
+        new MobType(SpriteType.Character_Squelette, 3, false), //stage 3.
+        new MobType(SpriteType.Character_Ghost, 3, false),
+        new MobType(SpriteType.Character_Lish, 3, true),
+        new MobType(SpriteType.Character_Spectr, 3, true),
+
         // TODO : make a proper boss, and other dificulty mob.
 
-        new MobType(SpriteType.Character_Slime, 3, false),
-        new MobType(SpriteType.Character_Slime, 3, true),
         new MobType(SpriteType.Character_Slime, 4, false),
         new MobType(SpriteType.Character_Slime, 4, true),
         new MobType(SpriteType.Character_Slime, 5, false),
@@ -70,6 +73,10 @@ public class CharacterMob : Character
                 return new CharacterSquelette(posIndexCel);
             case (SpriteType.Character_Ghost):
                 return new CharacterGhost(posIndexCel);
+            case (SpriteType.Character_Lish):
+                return new CharacterLish(posIndexCel);
+            case (SpriteType.Character_Spectr):
+                return new CharacterSpectr(posIndexCel);
 
             //add heer new CharacterMob.
 
