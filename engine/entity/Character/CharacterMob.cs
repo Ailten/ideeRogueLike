@@ -116,9 +116,6 @@ public class CharacterMob : Character
             case (LogicState.chase):
                 this.logicStateChase();
                 break;
-            case (LogicState.fuit):
-                this.logicStateFuit();
-                break;
             case (LogicState.firstHit):
                 this.logicStateFirstHit();
                 break;
@@ -131,9 +128,16 @@ public class CharacterMob : Character
             case (LogicState.shildAlly):
                 this.logicStateShildAlly();
                 break;
+            case (LogicState.fuit):
+                this.logicStateFuit();
+                break;
             case (LogicState.selfShild):
                 this.logicStateSelfShild();
                 break;
+            case (LogicState.firstRetMP):
+                this.logicStateFirstRetMP();
+                break;
+                
 
             case (LogicState.chase_or_firstAttire):
                 if (RandomManager.rng.Next(2) == 0)
@@ -395,6 +399,29 @@ public class CharacterMob : Character
                 continue;
             
             this.useACardFromHand(i, this.indexPosCel); //play the card.
+            break;
+        }
+
+        this.nextLogicState(); //move to next state.
+    }
+    private void logicStateFirstRetMP()
+    {
+        for (int i = 0; i < this.deck.cardsInHand.Count; i++)
+        {
+            Card currentCard = this.deck.cardsInHand[i];
+
+            if (currentCard.APCost > this.AP) //cost to mush ap.
+                continue;
+            if (!currentCard.effects.Select(e => e.Key).Contains(EffectCard.RetMP)) //card has no effect "hit".
+                continue;
+
+            Character? target = TurnManager.getAllCharacters()
+                .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true))
+                .OrderBy(c => c.isAPlayer).FirstOrDefault();
+            if (target == null)
+                continue;
+
+            this.useACardFromHand(i, target.indexPosCel); //play the card.
             break;
         }
 

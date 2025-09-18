@@ -21,6 +21,7 @@ public enum EffectCard
     TeleportSwitch, //teleport or switch position with the cel target.
     PickCard, //pick a card from deck.
     SelfHeal, //heal the launcher.
+    RetMP, //retreat MP.
 }
 
 
@@ -68,6 +69,8 @@ public static class StaticEffectCard
                 return "Pioche";
             case (EffectCard.SelfHeal):
                 return "Auto Soin";
+            case (EffectCard.RetMP):
+                return "Ralentissement";
                 
             default:
                 return "No name";
@@ -171,6 +174,10 @@ public static class StaticEffectCard
             case (EffectCard.SelfHeal):
                 return ("- " + effectCard.getName() + " :\n" +
                     $"soigne {value} au lanceur."
+                );
+            case (EffectCard.RetMP):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"retire {value} points de mouvements."
                 );
 
 
@@ -371,7 +378,12 @@ public static class StaticEffectCard
             case (EffectCard.SelfHeal):
                 characterLauncher.giveHeal(characterLauncher, effectValue, refCard);
                 return;
-                
+            
+            case (EffectCard.RetMP):
+                if (characterTarget != null)
+                    return;
+                characterTarget!.decreaseMP(effectValue, idCharacterWhoDoDecreaseMP: characterLauncher.idEntity);
+                return;
 
 
             default:
