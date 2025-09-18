@@ -16,7 +16,8 @@ public class Deck
     {
         get
         {
-            List<Card> output = this.cardsInHand;
+            List<Card> output = new();
+            output.AddRange(this.cardsInHand);
             output.AddRange(this.cardsInPioche);
             output.AddRange(this.cardsInCimetier);
             return output;

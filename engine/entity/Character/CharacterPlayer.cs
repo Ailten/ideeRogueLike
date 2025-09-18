@@ -34,7 +34,7 @@ public class CharacterPlayer : Character
     //call when character dead.
     public override void death(Character? characterMakeKill = null, PackageRefCard? refCard = null)
     {
-        if (!isAPlayer)
+        if (!this.isAPlayer)
         {
             base.death(characterMakeKill, refCard);
             return;
@@ -44,11 +44,9 @@ public class CharacterPlayer : Character
         isActive = false;
 
         //execute death of every entity in turn has invoc by this one.
-        TurnManager.getAllInvocOfACharacter(this).ForEach((c) => c.death());
+        TurnManager.getAllInvocOfACharacter(this).ForEach(c => c.death());
 
         //do not remove main player of turnManager, for prevent getter overage.
-
-        //TODO : game over screen ? (not remove, jsut unactive, so endFight redWin never call ?).
     }
 
     //overide for aditionnal process for start turn when player.

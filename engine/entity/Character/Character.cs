@@ -132,7 +132,7 @@ public class Character : Entity
             SaveManager.increaseKillCount(this.GetType());
 
         //hidde.
-        isActive = false;
+        this.isActive = false;
 
         //execute death of every entity in turn has invoc by this one.
         TurnManager.getAllInvocOfACharacter(this).ForEach((c) => c.death());

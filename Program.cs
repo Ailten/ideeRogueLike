@@ -12,10 +12,8 @@ class Program
     // test dificulty.
 
     // make a layer PrintSuccesUnlocked
+    // make a layer end run (win and loose).
 
-    // debug DetailsCharacter layer.
-
-    // create mob Squelette and ghost.
 
 
     // make win/loose screen (end run).

@@ -11,7 +11,7 @@ public class DetailsCharacter : Layer
     {
         //init all entities of layer. --->
 
-        if(characterSelected is null)
+        if (characterSelected is null)
             throw new Exception("characterSelected is null !");
 
         CardMenuBGUi bg = new CardMenuBGUi(this.idLayer); // draw back.
