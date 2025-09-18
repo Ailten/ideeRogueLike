@@ -79,6 +79,8 @@ public enum SpriteType
     Character_KingRock,
     Character_Squelette,
     Character_Ghost,
+    Character_Lish,
+    Character_Spectr,
     Character_DarunyaNeko,
     Character_LuneAllier,
     Character_DarumaNico,

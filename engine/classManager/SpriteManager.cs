@@ -88,8 +88,10 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Character_KingFlame, new Vector(256, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_KingRock, new Vector(384, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Squelette, new Vector(512, 128), new Vector(126, 126));
-        s.addSpriteType(SpriteType.Character_Ghost, new Vector(512, 128), new Vector(126, 126));
-        // todo : ghost boss.
+        s.addSpriteType(SpriteType.Character_Ghost, new Vector(640, 128), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Lish, new Vector(768, 128), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Spectr, new Vector(896, 128), new Vector(126, 126));
+
         s.addSpriteType(SpriteType.Character_LuneAllier, new Vector(0, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_DarumaNico, new Vector(128, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Axolootl, new Vector(256, 256), new Vector(126, 126));
