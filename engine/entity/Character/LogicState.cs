@@ -16,4 +16,7 @@ public enum LogicState
 
     // or.
     chase_or_firstAttire,
+
+    // if.
+    chase_ifCardInHand
 }

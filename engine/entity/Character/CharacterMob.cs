@@ -146,6 +146,13 @@ public class CharacterMob : Character
                     this.logicStateFirstAttire();
                 break;
 
+            case (LogicState.chase_ifCardInHand):
+                if (this.deck.cardsInHand.Count > 0)
+                    this.logicStateChase();
+                else
+                    this.nextLogicState();
+                break;
+
             default:
                 throw new Exception("doLogicState has no execution to this enum !");
         }

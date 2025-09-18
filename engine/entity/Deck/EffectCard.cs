@@ -22,6 +22,7 @@ public enum EffectCard
     PickCard, //pick a card from deck.
     SelfHeal, //heal the launcher.
     RetMP, //retreat MP.
+    RetAP, //retreat AP.
     RetResColor, //retreat res fix of color of card played.
 }
 
@@ -72,6 +73,8 @@ public static class StaticEffectCard
                 return "Auto Soin";
             case (EffectCard.RetMP):
                 return "Ralentissement";
+            case (EffectCard.RetAP):
+                return "Engourdissement";
             case (EffectCard.RetResColor):
                 return "Faiblesse couleur";
                 
@@ -181,6 +184,10 @@ public static class StaticEffectCard
             case (EffectCard.RetMP):
                 return ("- " + effectCard.getName() + " :\n" +
                     $"retire {value} points de mouvements."
+                );
+            case (EffectCard.RetAP):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"retire {value} points d'action."
                 );
             case (EffectCard.RetResColor):
                 return ("- " + effectCard.getName() + " :\n" +
@@ -390,6 +397,12 @@ public static class StaticEffectCard
                 if (characterTarget is null)
                     return;
                 characterTarget!.decreaseMP(effectValue, idCharacterWhoDoDecreaseMP: characterLauncher.idEntity);
+                return;
+
+            case (EffectCard.RetAP):
+                if (characterTarget is null)
+                    return;
+                characterTarget!.decreaseAP(effectValue, idCharacterWhoDoDecreaseMP: characterLauncher.idEntity);
                 return;
 
             case (EffectCard.RetResColor):
