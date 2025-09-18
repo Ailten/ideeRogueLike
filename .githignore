@@ -3,7 +3,10 @@ bin/*
 ideeRogueLike.sln
 obj/*
 
+# try to ignore debug stuff.
 */bin/*
 */obj/*
 engine/classManager/obj
 engine/entity/Character/CharacterMob/obj
+bin/Debug
+obj/Debug
