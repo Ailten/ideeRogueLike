@@ -121,12 +121,9 @@ public static class StaticSucces
                     cardIllu: SpriteType.CardImg_sanTwitch,
                     cardColor: CardColor.Red,
                     cardEdition: CardEdition.Default,
-                    APCost: 1,
+                    APCost: 0,
                     distanceToUse: new(0, 2),
-                    effects: new() {
-                        new KeyValuePair<EffectCard, int>(EffectCard.Heal, 6),
-                        new KeyValuePair<EffectCard, int>(EffectCard.SelfHeal, 4),
-                    }
+                    effect: new KeyValuePair<EffectCard, int>(EffectCard.APBoost, 1)
                 );
 
             case (Succes.Take_10_Coin):

@@ -24,6 +24,7 @@ public enum EffectCard
     RetMP, //retreat MP.
     RetAP, //retreat AP.
     RetResColor, //retreat res fix of color of card played.
+    APBoost, //gain AP for end of turn.
 }
 
 
@@ -77,6 +78,9 @@ public static class StaticEffectCard
                 return "Engourdissement";
             case (EffectCard.RetResColor):
                 return "Faiblesse couleur";
+            case (EffectCard.APBoost):
+                return "Energie";
+                
                 
             default:
                 return "No name";
@@ -193,6 +197,11 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     $"retire {value} resistance fix pour 2 tours.\n" +
                     $"dans la couleur de la carte."
+                );
+            case (EffectCard.APBoost):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"gagnie {value} points d'action.\n" +
+                    $"jusqu'a la fin du tour."
                 );
 
 
@@ -435,6 +444,17 @@ public static class StaticEffectCard
                         color: CardColor.Green,
                         shildBoost: effectValue
                     ));
+                return;
+
+            case (EffectCard.APBoost):
+                if (characterTarget is null)
+                    return;
+                characterTarget.AddStatusEffect(new APBoost(
+                    characterIdWhoHasEffect: characterTarget.idEntity,
+                    characterIdWhoApplyEffect: characterLauncher.idEntity,
+                    turnLife: 0,
+                    APUp: effectValue
+                ));
                 return;
 
             default:

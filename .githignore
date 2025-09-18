@@ -10,3 +10,5 @@ engine/classManager/obj
 engine/entity/Character/CharacterMob/obj
 bin/Debug
 obj/Debug
+engine/classManager/bin
+engine/entity/Character/CharacterMob/bin
