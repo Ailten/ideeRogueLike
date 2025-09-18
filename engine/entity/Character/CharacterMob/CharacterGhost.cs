@@ -43,7 +43,7 @@ public class CharacterGhost : CharacterMob
                 cardIllu: SpriteType.CardImg_Splash,
                 cardColor: CardColor.Green,
                 cardEdition: CardEdition.Default,
-                APCost: 1,
+                APCost: 2,
                 distanceToUse: new(1, 3),
                 effects: new(){
                     new KeyValuePair<EffectCard, int>(EffectCard.Hit, 1),

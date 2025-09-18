@@ -22,6 +22,7 @@ public enum EffectCard
     PickCard, //pick a card from deck.
     SelfHeal, //heal the launcher.
     RetMP, //retreat MP.
+    RetResColor, //retreat res fix of color of card played.
 }
 
 
@@ -71,6 +72,8 @@ public static class StaticEffectCard
                 return "Auto Soin";
             case (EffectCard.RetMP):
                 return "Ralentissement";
+            case (EffectCard.RetResColor):
+                return "Faiblesse couleur";
                 
             default:
                 return "No name";
@@ -179,7 +182,11 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     $"retire {value} points de mouvements."
                 );
-
+            case (EffectCard.RetResColor):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"retire {value} resistance fix pour 2 tours.\n" +
+                    $"dans la couleur de la carte."
+                );
 
 
             default:
@@ -380,11 +387,42 @@ public static class StaticEffectCard
                 return;
             
             case (EffectCard.RetMP):
-                if (characterTarget != null)
+                if (characterTarget is null)
                     return;
                 characterTarget!.decreaseMP(effectValue, idCharacterWhoDoDecreaseMP: characterLauncher.idEntity);
                 return;
 
+            case (EffectCard.RetResColor):
+                if (characterTarget is null)
+                    return;
+                if (refCard is null)
+                    return;
+                CardColor retResColorCardRef = refCard!.getCard().cardColor;
+                if (retResColorCardRef.isMatchingColor(CardColor.Blue))
+                    characterTarget.AddStatusEffect(new ShildAddBoostColor(
+                        characterIdWhoHasEffect: characterTarget.idEntity,
+                        characterIdWhoApplyEffect: characterLauncher.idEntity,
+                        turnLife: 2,
+                        color: CardColor.Blue,
+                        shildBoost: effectValue
+                    ));
+                if (retResColorCardRef.isMatchingColor(CardColor.Red))
+                    characterTarget.AddStatusEffect(new ShildAddBoostColor(
+                        characterIdWhoHasEffect: characterTarget.idEntity,
+                        characterIdWhoApplyEffect: characterLauncher.idEntity,
+                        turnLife: 2,
+                        color: CardColor.Red,
+                        shildBoost: effectValue
+                    ));
+                if (retResColorCardRef.isMatchingColor(CardColor.Green))
+                    characterTarget.AddStatusEffect(new ShildAddBoostColor(
+                        characterIdWhoHasEffect: characterTarget.idEntity,
+                        characterIdWhoApplyEffect: characterLauncher.idEntity,
+                        turnLife: 2,
+                        color: CardColor.Green,
+                        shildBoost: effectValue
+                    ));
+                return;
 
             default:
                 throw new Exception($"useACard find a EffectCard with no effect {effectCard} !");
