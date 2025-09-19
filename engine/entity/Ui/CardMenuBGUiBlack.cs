@@ -9,7 +9,7 @@ public class CardMenuBGUiBlack : CardMenuBGUi
     {
         this.zIndex = 2999;
 
-        this.size = CanvasManager.sizeWindow;
+        this.size = new(0, 0);
 
         this.geometryTrigger = new Rect( //no effect, just for prevent click on element under card menu.
             new(0, 0),
@@ -21,10 +21,10 @@ public class CardMenuBGUiBlack : CardMenuBGUi
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
         Raylib.DrawRectangle(
-            (int)rectDest.posStart.x, 
-            (int)rectDest.posStart.y, 
-            (int)rectDest.size.x, 
-            (int)rectDest.size.y, 
+            (int)rectDest.posStart.x,
+            (int)rectDest.posStart.y,
+            (int)CanvasManager.sizeWindow.x,
+            (int)CanvasManager.sizeWindow.y,
             colorBlackTranspa
         );
     }

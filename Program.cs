@@ -15,8 +15,7 @@ class Program
     // make a layer end run (win and loose).
 
 
-    // background black low opacity is full masking. (DEBUG)
-    // special room when no card selected (att all) dont draw recto, draw nothing. (DEBUG)
+    // need be sure is debug : background opacity light, and time line invoke, and special room fusion card recto when no selected.
 
 
 

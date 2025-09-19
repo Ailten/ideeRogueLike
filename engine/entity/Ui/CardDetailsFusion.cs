@@ -96,10 +96,10 @@ public class CardDetailsFusion : CardDetails
             distanceToUse: this.firstCard?.distanceToUse ?? new(1, 1),
             effects: effectsFusion
         );
-        if (!this.isAFirstCard)
-            fusion.isRecto = true;
 
-        this.card = fusion;
+        this.card = fusion; // DEBUG : need to be sure it's safe.
+        if (!this.isAFirstCard)
+            this.card = null;
 
         this.eventUpdateCardSelected();
     }
