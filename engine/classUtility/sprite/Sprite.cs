@@ -9,7 +9,13 @@ public class Sprite
 
     public Sprite(string spritePath)
     {
-        this.texture = Raylib.LoadTexture($"assets/sprite/{spritePath}.png");
+        string pathToSprites = $"assets/sprite/{spritePath}.png";
+        
+#if DEBUG
+        pathToSprites = $"/home/faouzi/Documents/ideeRogueLike/assets/sprite/{spritePath}.png";
+#endif
+
+        this.texture = Raylib.LoadTexture(pathToSprites);
 
         SpriteManager.pushNewSprite(this);
     }

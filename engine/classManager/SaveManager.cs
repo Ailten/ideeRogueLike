@@ -79,6 +79,11 @@ public static class SaveManager
         timePlayStart();
 
         string path = $"assets/save/{nameFileSave}.json"; // set param for write.
+
+#if DEBUG
+        path = $"/home/faouzi/Documents/ideeRogueLike/assets/save/{nameFileSave}.json";
+#endif
+
         string jsonStr = JsonSerializer.Serialize<Save>(currentSave, jsonOption);
 
         if (!File.Exists(path)) // create file if not exist.

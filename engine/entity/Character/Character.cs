@@ -135,7 +135,7 @@ public class Character : Entity
         this.isActive = false;
 
         //execute death of every entity in turn has invoc by this one.
-        TurnManager.getAllInvocOfACharacter(this).ForEach((c) => c.death());
+        TurnManager.getAllInvocOfACharacter(this.idEntity).ForEach((c) => c.death());
 
         // remove status effect (them self and apply to other).
         TurnManager.endAllStatusEffectWhenCharacterDie(this);

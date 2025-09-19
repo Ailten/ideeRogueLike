@@ -39,6 +39,11 @@ public class CharacterLuneAllier : CharacterPlayer
 
         for (int i = deck.cardsInHand.Count - 1; i >= 0; i--)
         {
+            if (!TurnManager.isInFight)
+                return;
+            if (deck.cardsInHand.Count == 0)
+                break;
+                
             Card currentCard = this.deck.cardsInHand[i];
             if (currentCard.APCost > this.AP) // cost to mush AP or not distance expected.
             {

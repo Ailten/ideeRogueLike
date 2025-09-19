@@ -11,7 +11,7 @@ public class CharacterAilten : CharacterPlayer
         this.HP = HPmax;
 
         // special effect.
-        if(SaveManager.getSave.succes.Contains(Succes.RunPlayed_5))
+        if (SaveManager.getSave.succes.Contains(Succes.RunPlayed_5))
             this.AddStatusEffect(new BoostChooseSpecialRoom(this.idEntity, chooseBoost: 1));
 
         this.deck.pickCountByTurn = 5;
@@ -37,6 +37,21 @@ public class CharacterAilten : CharacterPlayer
                 effect: new KeyValuePair<EffectCard, int>(EffectCard.Shild, 2)
             ),
             amountOfCardAdd: 4,
+            isSameColor: false
+        );
+
+
+
+        this.deck.addCardToDeck(
+            new Card(
+                cardIllu: SpriteType.CardImg_DarunyaNeko,
+                cardColor: CardColor.Blue,
+                cardEdition: CardEdition.Default,
+                APCost: 2,
+                distanceToUse: new(1, 1),
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.InvokeDarunyaNeko, 0)
+            ),
+            amountOfCardAdd: 1,
             isSameColor: false
         );
     }

@@ -69,7 +69,8 @@ public static class TurnManager
 
                 allCharacterInRoom.RemoveAt(i); //remove character.
 
-                verifyIfFightIsEnd(); //check end fight.
+                if(isInFight)
+                    verifyIfFightIsEnd(); //check end fight.
 
                 if (i < indexCharacterTurn) //replace index at right place.
                     moveCharacterIndex(-1);
@@ -100,9 +101,9 @@ public static class TurnManager
     }
 
     //get a list of all invoc of a specific character.
-    public static List<Character> getAllInvocOfACharacter(Character characterInovcator)
+    public static List<Character> getAllInvocOfACharacter(int idCharacterInovcator)
     {
-        return allCharacterInRoom.Where((c) => c.invokedBy != null && c.invokedBy.idEntity == characterInovcator.idEntity).ToList();
+        return allCharacterInRoom.Where((c) => c.invokedBy != null && c.invokedBy.idEntity == idCharacterInovcator).ToList();
     }
 
 
@@ -210,11 +211,12 @@ public static class TurnManager
     //make all invocation death.
     private static void deathAllInvoc()
     {
-        allCharacterInRoom.ForEach((c) =>
+        for (int i = allCharacterInRoom.Count - 1; i >= 0; i--)
         {
-            if (c.invokedBy != null)
+            Character c = allCharacterInRoom[i];
+            if (c.isAnInvoc)
                 c.death();
-        });
+        }
     }
 
     //free every character dead in turn.
