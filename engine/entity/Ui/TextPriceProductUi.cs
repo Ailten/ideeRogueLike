@@ -16,7 +16,7 @@ public class TextPriceProductUi : Entity
     private static Font font = FontManager.getFontByFontType(FontType.IntensaFuente);
     private static float fontSize = 50f;
     private static float fontSpacing = 2f;
-    private Raylib_cs.Color colorText = Raylib_cs.Color.Gold;
+    public Raylib_cs.Color colorText = Raylib_cs.Color.Gold;
 
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {

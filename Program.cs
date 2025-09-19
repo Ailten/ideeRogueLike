@@ -17,8 +17,6 @@ class Program
 
     // background black low opacity is full masking. (DEBUG)
     // special room when no card selected (att all) dont draw recto, draw nothing. (DEBUG)
-    // details character should print APmax and MPmax. (DEBUG)
-    // when time line print a character invoke, edit the background of his img. (DEBUG)
 
 
 

@@ -39,21 +39,6 @@ public class CharacterAilten : CharacterPlayer
             amountOfCardAdd: 4,
             isSameColor: false
         );
-
-
-
-        this.deck.addCardToDeck(
-            new Card(
-                cardIllu: SpriteType.CardImg_DarunyaNeko,
-                cardColor: CardColor.Blue,
-                cardEdition: CardEdition.Default,
-                APCost: 2,
-                distanceToUse: new(1, 1),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.InvokeDarunyaNeko, 0)
-            ),
-            amountOfCardAdd: 1,
-            isSameColor: false
-        );
     }
 
 }

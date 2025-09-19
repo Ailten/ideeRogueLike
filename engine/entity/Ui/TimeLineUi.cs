@@ -67,9 +67,14 @@ public class TimeLineUi : Entity
                 statusEffectSizeScaled
             );
 
+            SpriteType backgroundCharacter = (
+                (characterPrint.isAnInvoc)? SpriteType.StatusEffect_BGStatusEffectMalus:
+                SpriteType.StatusEffect_BGStatusEffect
+            );
+            
             Raylib_cs.Raylib.DrawTexturePro( // draw background character.
                 texture: spriteEffect.texture,
-                source: spriteEffect.getSpriteTileBySpriteType(SpriteType.StatusEffect_BGStatusEffect).getRectSource(),
+                source: spriteEffect.getSpriteTileBySpriteType(backgroundCharacter).getRectSource(),
                 dest: rectDestDraw,
                 origine,
                 0,

@@ -97,6 +97,20 @@ public class DetailsCharacter : Layer
         float posLeftCardDetails = cardDetails.pos.x - 10;
         characterUi.pos.x = Vector.lerpF(10, posLeftCardDetails, 0.5f);
 
+        const float replacementPosStatsY = -100;
+        TextPriceProductUi textAP = new(layer.idLayer, $"{characterSelected.AP}/{characterSelected.APmax}");
+        textAP.colorText = StatsCharacterUi.getColorTextAP;
+        textAP.pos = new(
+            characterUi.pos.x * 0.5f,
+            characterUi.pos.y + replacementPosStatsY
+        );
+        TextPriceProductUi textMP = new(layer.idLayer, $"{characterSelected.MP}/{characterSelected.MPmax}");
+        textMP.colorText = StatsCharacterUi.getColorTextMP;
+        textMP.pos = new(
+            characterUi.pos.x * 1.5f,
+            characterUi.pos.y + replacementPosStatsY
+        );
+
 
         // TODO : debug pos, up when click (statuseffect and card).
 
