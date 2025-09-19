@@ -18,8 +18,6 @@ class Program
     // need be sure is debug : background opacity light, and time line invoke, and special room fusion card recto when no selected.
 
 
-
-
     // make win/loose screen (end run).
     // -> sprite letters saying Win or Loose.
     // -> make end run screen with success unlocked during the run.
