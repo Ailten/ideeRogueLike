@@ -12,3 +12,5 @@ bin/Debug
 obj/Debug
 engine/classManager/bin
 engine/entity/Character/CharacterMob/bin
+**/bin/Debug/
+**/obj/Debug/
