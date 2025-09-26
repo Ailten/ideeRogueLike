@@ -136,19 +136,24 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_Drama, new Vector(880, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Dash, new Vector(1100, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_AQuiLOs, new Vector(1320, 323), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Faux, new Vector(1540, 323), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Barbak, new Vector(0, 449), new Vector(219, 125)); // (l2).
         s.addSpriteType(SpriteType.CardImg_Flame, new Vector(220, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Rock, new Vector(440, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_LuneAllier, new Vector(660, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BlackHole, new Vector(880, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Sword, new Vector(1100, 449), new Vector(219, 125));
-        s.addSpriteType(SpriteType.CardImg_sanTwitch, new Vector(1320, 449), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_SanTwitch, new Vector(1320, 449), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_ShaNoar, new Vector(1540, 449), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_AxeOLoot, new Vector(0, 575), new Vector(219, 125)); // (l3).
         s.addSpriteType(SpriteType.CardImg_BatteBulle, new Vector(220, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_BlacASiable, new Vector(440, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Explsur, new Vector(660, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_OsuAime, new Vector(880, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Flag, new Vector(1100, 575), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Vore, new Vector(1320, 575), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Infestation, new Vector(1540, 575), new Vector(219, 125));
+        // (l4).
 
         s = new Sprite("FX");
         s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));

@@ -13,6 +13,7 @@ public enum LogicState
     fuit, //run in oposit direction of oponent.
     selfShild, //use first card Shild effect on self.
     firstRetMP, //use first card making ret mp.
+    firstCardPlayableOnEmpty, //use a card on a empty case (ex: use for invoke).
 
     // or.
     chase_or_firstAttire,

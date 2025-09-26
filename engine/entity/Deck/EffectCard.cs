@@ -25,6 +25,7 @@ public enum EffectCard
     RetAP, //retreat AP.
     RetResColor, //retreat res fix of color of card played.
     APBoost, //gain AP for end of turn.
+    InvokeArachnide, //invoke an arachnide (for ennemy only), with a purcentage to success invoke.
 }
 
 
@@ -80,6 +81,8 @@ public static class StaticEffectCard
                 return "Faiblesse couleur";
             case (EffectCard.APBoost):
                 return "Energie";
+            case (EffectCard.InvokeArachnide):
+                return "Invoque Arachnide";
                 
                 
             default:
@@ -179,7 +182,7 @@ public static class StaticEffectCard
                 );
             case (EffectCard.PickCard):
                 return ("- " + effectCard.getName() + " :\n" +
-                    $"le lanceur pioche {value} carte{(valueIntencity>1?"s":"")}."
+                    $"le lanceur pioche {value} carte{(valueIntencity is null || valueIntencity>1?"s":"")}."
                 );
             case (EffectCard.SelfHeal):
                 return ("- " + effectCard.getName() + " :\n" +
@@ -202,6 +205,11 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     $"gagnie {value} points d'action.\n" +
                     $"jusqu'a la fin du tour."
+                );
+            case (EffectCard.InvokeArachnide):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"invoque une Arachnide.\n"+
+                    $"{(value=="N"? ("(N*5)"): (valueIntencity * 5))}% de chance de reussire."
                 );
 
 
@@ -455,6 +463,14 @@ public static class StaticEffectCard
                     turnLife: 0,
                     APUp: effectValue
                 ));
+                return;
+
+            case (EffectCard.InvokeArachnide):
+                if (characterTarget is not null)
+                    return;
+                characterLauncher.invokeACharacter(
+                    new CharacterArachnide(indexPosTarget)
+                );
                 return;
 
             default:

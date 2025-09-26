@@ -118,7 +118,7 @@ public static class StaticSucces
                 );
             case (Succes.Kill_5_Ghost):
                 return new Card(
-                    cardIllu: SpriteType.CardImg_sanTwitch,
+                    cardIllu: SpriteType.CardImg_SanTwitch,
                     cardColor: CardColor.Red,
                     cardEdition: CardEdition.Default,
                     APCost: 0,

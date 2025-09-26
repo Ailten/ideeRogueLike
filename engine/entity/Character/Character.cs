@@ -140,19 +140,16 @@ public class Character : Entity
         // remove status effect (them self and apply to other).
         TurnManager.endAllStatusEffectWhenCharacterDie(this);
 
+        if (this.isAnInvoc)
+            this.PO = 0;
+
         if (TurnManager.getCharacterOfCurrentTurn() == this) // self kill, do a skip turn.
         {
             this.skipTurn();
         }
         else if (characterMakeKill != null)
         {
-            if (this.PO != 0)
-                characterMakeKill!.gainGold(this.PO);
-        }
-        else if (this.isAnInvoc)
-        {
-            if (this.PO != 0)
-                this.invokedBy!.gainGold(this.PO);
+            characterMakeKill!.gainGold(this.PO);
         }
 
         //remove from list turn.
@@ -220,7 +217,8 @@ public class Character : Entity
 
         this.PO += POIncrement;
 
-        FxTextHit.initOnlyOneFxAtTime(this.pos, $"{POIncrement}", Color.Gold);
+        if(POIncrement > 0)
+            FxTextHit.initOnlyOneFxAtTime(this.pos, $"{POIncrement}", Color.Gold);
     }
     public void decreaseGold(int POdecrease)
     {
@@ -374,7 +372,7 @@ public class Character : Entity
 
 
     // invoke a character.
-    public void invokeACharacter(Character newInvoke)
+    public virtual void invokeACharacter(Character newInvoke)
     {
         TurnManager.addCharacterNextTo(newInvoke, this.idEntity);
 

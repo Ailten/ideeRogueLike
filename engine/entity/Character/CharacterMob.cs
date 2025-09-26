@@ -27,10 +27,12 @@ public class CharacterMob : Character
         new MobType(SpriteType.Character_Lish, 3, true),
         new MobType(SpriteType.Character_Spectr, 3, true),
 
-        // TODO : make a proper boss, and other dificulty mob.
+        new MobType(SpriteType.Character_Pumkin, 4, false), //stage 4.
+        new MobType(SpriteType.Character_Arachnide, 4, false),
+        new MobType(SpriteType.Character_SacHead, 4, true),
+        new MobType(SpriteType.Character_Crow, 4, true),
 
-        new MobType(SpriteType.Character_Slime, 4, false),
-        new MobType(SpriteType.Character_Slime, 4, true),
+        // TODO : make a proper boss, and other dificulty mob.
         new MobType(SpriteType.Character_Slime, 5, false),
         new MobType(SpriteType.Character_Slime, 5, true)
     };
@@ -77,6 +79,15 @@ public class CharacterMob : Character
                 return new CharacterLish(posIndexCel);
             case (SpriteType.Character_Spectr):
                 return new CharacterSpectr(posIndexCel);
+
+            case (SpriteType.Character_Pumkin):
+                return new CharacterPumkin(posIndexCel);
+            case (SpriteType.Character_Arachnide):
+                return new CharacterArachnide(posIndexCel);
+            case (SpriteType.Character_SacHead):
+                return new CharacterSacHead(posIndexCel);
+            case (SpriteType.Character_Crow):
+                return new CharacterCrow(posIndexCel);
 
             //add heer new CharacterMob.
 
@@ -137,7 +148,10 @@ public class CharacterMob : Character
             case (LogicState.firstRetMP):
                 this.logicStateFirstRetMP();
                 break;
-                
+            case (LogicState.firstCardPlayableOnEmpty):
+                this.logicStateFirstCardPlayableOnEmpty();
+                break;
+
 
             case (LogicState.chase_or_firstAttire):
                 if (RandomManager.rng.Next(2) == 0)
@@ -242,8 +256,8 @@ public class CharacterMob : Character
                 directionToTarget.y = 0;
             else
                 directionToTarget.x = 0;
-            directionToTarget.x = (directionToTarget.x > 1)? 1: -1;
-            directionToTarget.y = (directionToTarget.y > 1)? 1: -1;
+            directionToTarget.x = (directionToTarget.x > 1) ? 1 : -1;
+            directionToTarget.y = (directionToTarget.y > 1) ? 1 : -1;
 
             bool isTakeThisPath = false;
             for (int i = 1; i < this.MP; i++)
@@ -404,7 +418,7 @@ public class CharacterMob : Character
 
             if (currentCard.distanceToUse.x != 0)
                 continue;
-            
+
             this.useACardFromHand(i, this.indexPosCel); //play the card.
             break;
         }
@@ -430,6 +444,40 @@ public class CharacterMob : Character
 
             this.useACardFromHand(i, target.indexPosCel); //play the card.
             break;
+        }
+
+        this.nextLogicState(); //move to next state.
+    }
+    private void logicStateFirstCardPlayableOnEmpty()
+    {
+        for (int i = 0; i < this.deck.cardsInHand.Count; i++)
+        {
+            Card currentCard = this.deck.cardsInHand[i];
+
+            if (currentCard.APCost > this.AP) //cost to mush ap.
+                continue;
+
+            bool isCardUsed = false;
+
+            // brows all posIndex of po of this card.
+            Vector.foreachCel(this.indexPosCel, currentCard.distanceToUse, (posCel) =>
+            {
+                if (isCardUsed)
+                    return;
+
+                Cel? currentCel = RunManager.getCel(posCel);
+                if (currentCel is null)
+                    return;
+
+                if (TurnManager.getCharacterAtIndexPos(posCel) is not null)
+                    return;
+
+                this.useACardFromHand(i, posCel); //play the card.
+                isCardUsed = true;
+            });
+
+            if (isCardUsed)
+                break;
         }
 
         this.nextLogicState(); //move to next state.

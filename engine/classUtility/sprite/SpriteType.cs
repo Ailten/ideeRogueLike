@@ -129,7 +129,8 @@ public enum SpriteType
     CardImg_LuneAllier,
     CardImg_BlackHole,
     CardImg_Sword,
-    CardImg_sanTwitch,
+    CardImg_SanTwitch,
+    CardImg_ShaNoar,
     CardImg_Barbak,
     CardImg_AxeOLoot,
     CardImg_BatteBulle,
@@ -139,8 +140,11 @@ public enum SpriteType
     CardImg_Drama,
     CardImg_Dash,
     CardImg_AQuiLOs,
+    CardImg_Faux,
     CardImg_OsuAime,
     CardImg_Flag,
+    CardImg_Vore,
+    CardImg_Infestation,
 
 
     // --- FX.
@@ -252,11 +256,18 @@ public static class StaticSpriteType
                 return ("Besoin de suport.");
             case (SpriteType.CardImg_AQuiLOs):
                 return ("A qui est cette os ?");
-            case (SpriteType.CardImg_sanTwitch):
+            case (SpriteType.CardImg_SanTwitch):
                 return ("Jeff prend 60 pourcents des calories.");
+            case (SpriteType.CardImg_Vore):
+                return ("Glups.");
+            case (SpriteType.CardImg_Infestation):
+                return ("Elle s'appelle Djipsi.");
+            case (SpriteType.CardImg_ShaNoar):
+                return ("Nya.");
+            case (SpriteType.CardImg_Faux):
+                return ("La meilleur carte du jeu, Faux !");
 
-                
-                
+
             default:
                 return "";
                 //throw new Exception("SpriteType getDescription has no description for this spriteType !");
@@ -305,8 +316,16 @@ public static class StaticSpriteType
                 return ("Drapeau");
             case (SpriteType.CardImg_AQuiLOs):
                 return ("A qui l os");
-            case (SpriteType.CardImg_sanTwitch):
+            case (SpriteType.CardImg_SanTwitch):
                 return ("San-Twitch");
+            case (SpriteType.CardImg_Vore):
+                return ("Vore");
+            case (SpriteType.CardImg_Infestation):
+                return ("Infestation");
+            case (SpriteType.CardImg_ShaNoar):
+                return ("Sha Noar");
+            case (SpriteType.CardImg_Faux):
+                return ("Faux");
 
 
             default:

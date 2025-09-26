@@ -79,6 +79,46 @@ public struct Vector
     }
 
 
+    // loop on every cel doing a spiral extending from the center.
+    public static void foreachCel(Vector posCenter, Vector distR, Action<Vector> iteration)
+    {
+        int distMin = (int)distR.x;
+        int distMax = (int)distR.y;
+        if (distMin == 0) // do iteration for the center.
+        {
+            iteration(posCenter);
+            distMin++;
+        }
+
+        Vector[] orlogeWalk = new Vector[]{
+            new(1, 1),
+            new(-1, 1),
+            new(-1, -1),
+            new(1, -1)
+        };
+        
+        Vector currentPos;
+        for (int d = distMin; d <= distMax; d++)
+        {
+            for (int o = 0; o < 4; o++) // loop orloge axes.
+            {
+                currentPos = posCenter + Vector.adjacente[o] * d;
+
+                do // loop on side of the current orloge loop.
+                {
+                    iteration(currentPos);
+
+                    currentPos += orlogeWalk[o];
+
+                    if (currentPos.x == posCenter.x || currentPos.y == posCenter.y)
+                        break;
+
+                } while (true);
+            }
+        }
+    }
+
+
     public override string ToString() => $"[x:{x}, y:{y}]";
 
     //public static implicit operator string(Vector a) => a.ToString();
