@@ -3,6 +3,54 @@ public class CharacterPumkin : CharacterMob
 {
     public CharacterPumkin(Vector posIndexCel) : base(SpriteType.Character_Pumkin, posIndexCel)
     {
-        //TODO.
+        //IA logic.
+        this.logicState.Add(LogicState.fuit);
+        this.logicState.Add(LogicState.firstCardPlayableOnEmpty);
+        this.logicState.Add(LogicState.firstCardPlayableOnEmpty);
+
+        //stats.
+        this.MPmax = 3;
+        this.MP = MPmax;
+        this.APmax = 5;
+        this.AP = APmax;
+        this.HPmax = 45;
+        this.HP = HPmax;
+
+        //gold can be looted.
+        this.PO = RandomManager.rng.Next(10, 18);
+
+        // effects.
+        //this.AddStatusEffect(new MultDamageByHPLeft(this.idEntity, -1, -1)); // mult damage when low HP.
+        this.AddStatusEffect(new PropagatePoison(this.idEntity, -1, -1, 3)); // mult damage when low HP.
+
+        //set deck.
+        this.deck.pickCountByTurn = 3;
+        this.deck.addCardToDeck(
+            new Card(
+                cardIllu: SpriteType.CardImg_Infestation,
+                cardColor: CardColor.Blue,
+                cardEdition: CardEdition.Default,
+                APCost: 2,
+                distanceToUse: new(1, 1),
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.InvokeArachnide, 5)
+            ),
+            amountOfCardAdd: 2,
+            isSameColor: false
+        );
+        this.deck.addCardToDeck(
+            new Card(
+                cardIllu: SpriteType.CardImg_Infestation,
+                cardColor: CardColor.Blue,
+                cardEdition: CardEdition.Shinny,
+                APCost: 2,
+                distanceToUse: new(1, 1),
+                effects: new(){
+                    new KeyValuePair<EffectCard, int>(EffectCard.InvokeArachnide, 5),
+                    new KeyValuePair<EffectCard, int>(EffectCard.SelfHeal, 5)
+                }
+            ),
+            amountOfCardAdd: 2,
+            isSameColor: false
+        );
     }
 }

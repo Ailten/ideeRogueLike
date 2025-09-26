@@ -13,11 +13,14 @@ public class CharacterArachnide : CharacterMob
         this.MP = MPmax;
         this.APmax = 3;
         this.AP = APmax;
-        this.HPmax = 35;
+        this.HPmax = 25;
         this.HP = HPmax;
 
         //gold can be looted.
         this.PO = RandomManager.rng.Next(8, 14);
+
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 1.5f)); // res negative on shiny card.
 
         //set deck.
         this.deck.pickCountByTurn = 2;

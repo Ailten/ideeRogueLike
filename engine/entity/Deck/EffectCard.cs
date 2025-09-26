@@ -477,9 +477,10 @@ public static class StaticEffectCard
             case (EffectCard.InvokeArachnide):
                 if (characterTarget is not null)
                     return;
-                characterLauncher.invokeACharacter(
-                    new CharacterArachnide(indexPosTarget)
-                );
+                if(RandomManager.rng.Next(1000) < (50 * effectValue))
+                    characterLauncher.invokeACharacter(
+                        new CharacterArachnide(indexPosTarget)
+                    );
                 return;
 
             case (EffectCard.SteelHP):
