@@ -14,3 +14,15 @@ engine/classManager/bin
 engine/entity/Character/CharacterMob/bin
 **/bin/Debug/
 **/obj/Debug/
+bin
+obj
+*/bin
+*/obj
+
+# git rm -r bin/Debug
+# git rm -r engine/classManager/bin
+# git rm -r engine/classManager/obj
+# git rm -r engine/entity/Character/CharacterMob/bin
+# git rm -r engine/entity/Character/CharacterMob/obj
+# git rm -r obj/Debug/net10.0
+# git rm -r obj/Debug/net6.0
