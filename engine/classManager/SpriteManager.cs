@@ -91,11 +91,14 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Character_Ghost, new Vector(640, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Lish, new Vector(768, 128), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Spectr, new Vector(896, 128), new Vector(126, 126));
-
         s.addSpriteType(SpriteType.Character_LuneAllier, new Vector(0, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_DarumaNico, new Vector(128, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Axolootl, new Vector(256, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Blacacia, new Vector(384, 256), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_SacHead, new Vector(512, 256), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Pumkin, new Vector(640, 256), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Crow, new Vector(768, 256), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Arachnide, new Vector(896, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Barbak, new Vector(0, 384), new Vector(126, 126));
 
         s = new Sprite("DungeonCels");

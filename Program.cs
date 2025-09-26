@@ -26,8 +26,6 @@ class Program
 
 
     // add character : Babulle, Chlow, Lunali.
-    // add mobs and boss next stage.
-
 
 
     // add a pause menu (back to game, back to main menu, ... other option).

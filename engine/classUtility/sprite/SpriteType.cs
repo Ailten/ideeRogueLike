@@ -86,6 +86,10 @@ public enum SpriteType
     Character_DarumaNico,
     Character_Axolootl,
     Character_Blacacia,
+    Character_SacHead,
+    Character_Pumkin,
+    Character_Crow,
+    Character_Arachnide,
     Character_Barbak,
 
 
