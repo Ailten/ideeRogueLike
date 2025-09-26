@@ -20,8 +20,7 @@ public class CharacterPumkin : CharacterMob
         this.PO = RandomManager.rng.Next(10, 18);
 
         // effects.
-        //this.AddStatusEffect(new MultDamageByHPLeft(this.idEntity, -1, -1)); // mult damage when low HP.
-        this.AddStatusEffect(new PropagatePoison(this.idEntity, -1, -1, 3)); // mult damage when low HP.
+        this.AddStatusEffect(new PropagatePoison(this.idEntity, -1, -1, 3)); // poison.
 
         //set deck.
         this.deck.pickCountByTurn = 3;

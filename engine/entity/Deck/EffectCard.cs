@@ -27,6 +27,7 @@ public enum EffectCard
     APBoost, //gain AP for end of turn.
     InvokeArachnide, //invoke an arachnide (for ennemy only), with a purcentage to success invoke.
     SteelHP, //like hit, but make heal of the amount damage maked to launcher.
+    SendDrama, //send a card drama to deck oponenet.
 }
 
 
@@ -86,6 +87,8 @@ public static class StaticEffectCard
                 return "Invoque Arachnide";
             case (EffectCard.SteelHP):
                 return "Vole de vie";
+            case (EffectCard.SendDrama):
+                return "Dramaturge";
                 
                 
             default:
@@ -218,6 +221,11 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     $"inflige {value} en degats a la cible.\n" +
                     $"puis soigne le lanceur de la meme quantite."
+                );
+            case (EffectCard.SendDrama):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"place une carte Drama dans le deck de la cible.\n"+
+                    $"{(value=="N"? ("(N*5)"): (valueIntencity * 5))}% de chance de reussire."
                 );
 
 
@@ -492,6 +500,24 @@ public static class StaticEffectCard
                     return;
                 int steelHPDifHPTarget = steelHPBackupHPTarget - characterTarget.HP;
                 characterLauncher.giveHeal(characterLauncher, steelHPDifHPTarget, refCard);
+                return;
+
+            case (EffectCard.SendDrama):
+                if (characterTarget is null)
+                    return;
+                if (RandomManager.rng.Next(1000) < (50 * effectValue))
+                    characterTarget.deck.addCardToDeck(
+                        new Card(
+                            cardIllu: SpriteType.CardImg_Drama,
+                            cardColor: CardColor.Blue,
+                            cardEdition: CardEdition.Default,
+                            APCost: 0,
+                            distanceToUse: new(0, 8),
+                            effect: new KeyValuePair<EffectCard, int>(EffectCard.SelfKill, 1)
+                        ),
+                        amountOfCardAdd: 1,
+                        isSameColor: false
+                    );
                 return;
 
 
