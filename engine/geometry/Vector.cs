@@ -4,14 +4,6 @@ public struct Vector
 
     public float x;
     public float y;
-    
-
-    public static Vector[] adjacente = new Vector[]{
-        new(0, -1),
-        new(1, 0),
-        new(0, 1),
-        new(-1, 0)
-    };
 
 
     public Vector(float x = 0, float y = 0)
@@ -79,6 +71,19 @@ public struct Vector
     }
 
 
+    private static Vector[] adjacente = new Vector[]{
+        new(0, -1),
+        new(1, 0),
+        new(0, 1),
+        new(-1, 0)
+    };
+    private static Vector[] orlogeWalk = new Vector[]{
+        new(0, -1),
+        new(1, 0),
+        new(0, 1),
+        new(-1, 0)
+    };
+    
     // loop on every cel doing a spiral extending from the center.
     public static void foreachCel(Vector posCenter, Vector distR, Action<Vector> iteration)
     {
@@ -90,13 +95,6 @@ public struct Vector
             distMin++;
         }
 
-        Vector[] orlogeWalk = new Vector[]{
-            new(1, 1),
-            new(-1, 1),
-            new(-1, -1),
-            new(1, -1)
-        };
-        
         Vector currentPos;
         for (int d = distMin; d <= distMax; d++)
         {
@@ -108,7 +106,7 @@ public struct Vector
                 {
                     iteration(currentPos);
 
-                    currentPos += orlogeWalk[o];
+                    currentPos += Vector.orlogeWalk[o];
 
                     if (currentPos.x == posCenter.x || currentPos.y == posCenter.y)
                         break;

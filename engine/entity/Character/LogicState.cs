@@ -14,6 +14,10 @@ public enum LogicState
     selfShild, //use first card Shild effect on self.
     firstRetMP, //use first card making ret mp.
     firstCardPlayableOnEmpty, //use a card on a empty case (ex: use for invoke).
+    firstOneAPCardOnOponent, //use the first at one AP to an oponent.
+    firstTwoAPCardOnOponent, //same 2.
+    firstTreeAPCardOnOponent, //same 3.
+    firstFourAPCardOnOponent, //same 4.
 
     // or.
     chase_or_firstAttire,

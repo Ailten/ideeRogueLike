@@ -26,6 +26,7 @@ public enum EffectCard
     RetResColor, //retreat res fix of color of card played.
     APBoost, //gain AP for end of turn.
     InvokeArachnide, //invoke an arachnide (for ennemy only), with a purcentage to success invoke.
+    SteelHP, //like hit, but make heal of the amount damage maked to launcher.
 }
 
 
@@ -83,6 +84,8 @@ public static class StaticEffectCard
                 return "Energie";
             case (EffectCard.InvokeArachnide):
                 return "Invoque Arachnide";
+            case (EffectCard.SteelHP):
+                return "Vole de vie";
                 
                 
             default:
@@ -211,6 +214,11 @@ public static class StaticEffectCard
                     $"invoque une Arachnide.\n"+
                     $"{(value=="N"? ("(N*5)"): (valueIntencity * 5))}% de chance de reussire."
                 );
+            case (EffectCard.SteelHP):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"inflige {value} en degats a la cible.\n" +
+                    $"puis soigne le lanceur de la meme quantite."
+                );
 
 
             default:
@@ -327,13 +335,14 @@ public static class StaticEffectCard
                 return;
 
             case (EffectCard.HitAround):
-                for (int i = 0; i < Vector.adjacente.Length; i++)
+                Vector.foreachCel(indexPosTarget, new Vector(1,1), (posCel) =>
                 {
-                    Vector posAdj = indexPosTarget + Vector.adjacente[i];
-                    Character? characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
+                    if (!TurnManager.isInFight)
+                        return;
+                    Character? characterTargetAdj = TurnManager.getCharacterAtIndexPos(posCel);
                     if (characterTargetAdj != null)
                         characterLauncher.makeDamage(characterTargetAdj, effectValue, refCard);
-                }
+                });
                 return;
 
             case (EffectCard.InvokeDarunyaNeko):
@@ -472,6 +481,20 @@ public static class StaticEffectCard
                     new CharacterArachnide(indexPosTarget)
                 );
                 return;
+
+            case (EffectCard.SteelHP):
+                if (characterTarget is null)
+                    return;
+                int steelHPBackupHPTarget = characterTarget.HP;
+                characterLauncher.makeDamage(characterTarget, effectValue, refCard);
+                if (!TurnManager.isInFight)
+                    return;
+                int steelHPDifHPTarget = steelHPBackupHPTarget - characterTarget.HP;
+                characterLauncher.giveHeal(characterLauncher, steelHPDifHPTarget, refCard);
+                return;
+
+
+
 
             default:
                 throw new Exception($"useACard find a EffectCard with no effect {effectCard} !");

@@ -44,6 +44,7 @@ public enum Succes
     UseACard_5_BlacASiable,
     UseACard_5_BatteBulle,
     UseACard_20_WoodenShild,
+    UseACard_20_Barbak,
 }
 
 
@@ -188,6 +189,18 @@ public static class StaticSucces
                     }
                 );
 
+            case (Succes.UseACard_20_Barbak):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_Vore,
+                    cardColor: CardColor.Red,
+                    cardEdition: CardEdition.Default,
+                    APCost: 2,
+                    distanceToUse: new(1, 1),
+                    effects: new() {
+                        new KeyValuePair<EffectCard, int>(EffectCard.SteelHP, 6)
+                    }
+                );
+
 
 
             default:
@@ -308,6 +321,8 @@ public static class StaticSucces
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_BatteBulle) >= 5;
             case (Succes.UseACard_20_WoodenShild):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_WoodenShild) >= 20;
+            case (Succes.UseACard_20_Barbak):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_Barbak) >= 20;
                 
 
             default:

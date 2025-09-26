@@ -42,10 +42,9 @@ public class PropagatePoison : StatusEffect
             charWhoApply.makeDamage(charWhoHas, this.damage);
 
         // propagate.
-        for (int i = 0; i < Vector.adjacente.Length; i++)
+        Vector.foreachCel(charWhoHas.indexPosCel, new Vector(1,1), (posCel) =>
         {
-            Vector posAdj = charWhoHas.indexPosCel + Vector.adjacente[i];
-            Character? characterTargetAdj = TurnManager.getCharacterAtIndexPos(posAdj);
+            Character? characterTargetAdj = TurnManager.getCharacterAtIndexPos(posCel);
             if (characterTargetAdj != null)
                 characterTargetAdj.AddStatusEffect(new PropagatePoison(
                     this.getCharacterIdWhoHasEffect,
@@ -53,6 +52,6 @@ public class PropagatePoison : StatusEffect
                     2,
                     this.damage
                 ));
-        }
+        });
     }
 }

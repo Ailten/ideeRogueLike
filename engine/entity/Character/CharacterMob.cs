@@ -151,6 +151,18 @@ public class CharacterMob : Character
             case (LogicState.firstCardPlayableOnEmpty):
                 this.logicStateFirstCardPlayableOnEmpty();
                 break;
+            case (LogicState.firstOneAPCardOnOponent):
+                this.logicStateFirstAPCardOnOponent(1);
+                break;
+            case (LogicState.firstTwoAPCardOnOponent):
+                this.logicStateFirstAPCardOnOponent(2);
+                break;
+            case (LogicState.firstTreeAPCardOnOponent):
+                this.logicStateFirstAPCardOnOponent(3);
+                break;
+            case (LogicState.firstFourAPCardOnOponent):
+                this.logicStateFirstAPCardOnOponent(4);
+                break;
 
 
             case (LogicState.chase_or_firstAttire):
@@ -478,6 +490,33 @@ public class CharacterMob : Character
 
             if (isCardUsed)
                 break;
+        }
+
+        this.nextLogicState(); //move to next state.
+    }
+    private void logicStateFirstAPCardOnOponent(int APtarget)
+    {
+        if (this.AP < APtarget) //cost to mush ap.
+        {
+            this.nextLogicState(); //move to next state.
+            return;
+        }
+
+        for (int i = 0; i < this.deck.cardsInHand.Count; i++)
+        {
+            Card currentCard = this.deck.cardsInHand[i];
+
+            if (currentCard.APCost != APtarget) // right AP cost card filter.
+                continue;
+
+            Character? target = TurnManager.getAllCharacters()
+                .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true))
+                .OrderBy(c => c.isAPlayer).FirstOrDefault();
+            if (target == null)
+                continue;
+
+            this.useACardFromHand(i, target.indexPosCel); //play the card.
+            break;
         }
 
         this.nextLogicState(); //move to next state.

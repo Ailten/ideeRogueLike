@@ -5,7 +5,7 @@ public class CharacterArachnide : CharacterMob
     {
         //IA logic.
         this.logicState.Add(LogicState.chase);
-        this.logicState.Add(LogicState.firstHit);
+        this.logicState.Add(LogicState.firstOneAPCardOnOponent);
         this.logicState.Add(LogicState.firstCardPlayableOnEmpty);
 
         //stats.
@@ -40,7 +40,7 @@ public class CharacterArachnide : CharacterMob
                 APCost: 1,
                 distanceToUse: new(1, 1),
                 effects: new(){
-                    new KeyValuePair<EffectCard, int>(EffectCard.Hit, 3),
+                    new KeyValuePair<EffectCard, int>(EffectCard.SteelHP, 3),
                     new KeyValuePair<EffectCard, int>(EffectCard.TeleportSwitch, 1)
                 }
             ),
