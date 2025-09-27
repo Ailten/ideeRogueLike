@@ -506,6 +506,7 @@ public static class StaticEffectCard
                 if (characterTarget is null)
                     return;
                 if (RandomManager.rng.Next(1000) < (50 * effectValue))
+                {
                     characterTarget.deck.addCardToDeck(
                         new Card(
                             cardIllu: SpriteType.CardImg_Drama,
@@ -518,6 +519,14 @@ public static class StaticEffectCard
                         amountOfCardAdd: 1,
                         isSameColor: false
                     );
+                    bool isHasEffectFaux = characterTarget.statusEffects
+                        .Select(es => StaticStatusEffectType.getStatusEffectType(es))
+                        .Contains(StatusEffectType.FauxEffect);
+                    if (!isHasEffectFaux)
+                    {
+                        characterTarget.AddStatusEffect(new FauxEffect(characterTarget.idEntity, characterLauncher.idEntity, -1));
+                    }
+                }
                 return;
 
 

@@ -124,6 +124,11 @@ public class Deck
         cardsInPioche.RemoveAll(_ => true);
     }
 
+    //destroy a card from pioche.
+    public void destroyCardFromPioche(int indexCard)
+    {
+        cardsInPioche.RemoveAt(indexCard); //remove card use from pioche.
+    }
     //destroy a card from hand.
     public void destroyCardFromHand(int indexCard)
     {

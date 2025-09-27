@@ -209,6 +209,7 @@ public enum SpriteType
     StatusEffect_PropagatePoison,
     StatusEffect_ShildMultWhenFirst,
     StatusEffect_ConvertPurcentHealInShild,
+    StatusEffect_FauxEffect,
 
 }
 
