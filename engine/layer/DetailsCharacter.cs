@@ -110,6 +110,14 @@ public class DetailsCharacter : Layer
             characterUi.pos.x * 1.5f,
             characterUi.pos.y + replacementPosStatsY
         );
+        if (characterSelected.isAnInvoc) {
+            TextPriceProductUi textIsAnInvoke = new(layer.idLayer, "invocation");
+            textAP.colorText = StatsCharacterUi.getColorTextHP;
+            textAP.pos = new(
+                characterUi.pos.x * 0.5f,
+                characterUi.pos.y - replacementPosStatsY
+            );
+        }
 
 
         // TODO : debug pos, up when click (statuseffect and card).

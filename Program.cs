@@ -7,8 +7,6 @@ class Program
     // add sprite option disabled ?
     // implement layer of option.
 
-    // add details mobs when click on it, menu. !!!
-
     // test dificulty.
 
     // make a layer PrintSuccesUnlocked

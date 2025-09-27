@@ -9,6 +9,10 @@ public class StatsCharacterUi : Entity
     private static Raylib_cs.Color colorTextMP = new Raylib_cs.Color(55, 125, 55, 255);
     private static Raylib_cs.Color colorTextSP = new Raylib_cs.Color(55, 55, 125, 255);
     private static Raylib_cs.Color colorTextPO = new Raylib_cs.Color(160, 59, 0, 255);
+    public static Raylib_cs.Color getColorTextHP
+    {
+        get{ return colorTextHP; }
+    }
     public static Raylib_cs.Color getColorTextAP
     {
         get{ return colorTextAP; }
