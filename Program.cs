@@ -23,7 +23,7 @@ class Program
     // -> make save file.
 
 
-    // add character : Babulle, Chlow, Lunali.
+    // add character : Babulle, Chlow.
 
 
     // add a pause menu (back to game, back to main menu, ... other option).
