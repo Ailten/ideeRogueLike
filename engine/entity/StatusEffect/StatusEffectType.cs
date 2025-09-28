@@ -57,6 +57,21 @@ public static class StaticStatusEffectType
 
         switch (statusEffectType)
         {
+            case (StatusEffectType.Burn):
+                return new Burn(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    damage: 1
+                );
+            case (StatusEffectType.MoneyLoot):
+                return new MoneyLoot(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife,
+                    money: 2
+                );
+
             case (StatusEffectType.DamageAddBoostColor_Red):
             case (StatusEffectType.DamageAddBoostColor_Blue):
             case (StatusEffectType.DamageAddBoostColor_Green):
@@ -333,6 +348,10 @@ public static class StaticStatusEffectType
 
     public static StatusEffectType getStatusEffectType(StatusEffect statusEffect)
     {
+        if (statusEffect.GetType() == typeof(Burn))
+            return StatusEffectType.Burn;
+        if (statusEffect.GetType() == typeof(MoneyLoot))
+            return StatusEffectType.MoneyLoot;
         if (statusEffect.GetType() == typeof(DamageAddBoostColor))
         {
             DamageAddBoostColor statusEffectCast = (DamageAddBoostColor)statusEffect;
