@@ -16,6 +16,7 @@ public enum Succes
     Heal_20,
     Heal_30,
     Heal_40,
+    Heal_50,
     Damage_10,
     Damage_100,
     Damage_200,
@@ -40,6 +41,7 @@ public enum Succes
     UseACard_BlacASiable,
     UseACard_Barbak,
     UseACard_Flame,
+    UseACard_LuneAllier,
     UseACard_5_DarunyaNeko,
     UseACard_5_BlacASiable,
     UseACard_5_BatteBulle,
@@ -265,6 +267,8 @@ public static class StaticSucces
                 return SaveManager.getSave.healMaked >= 30;
             case (Succes.Heal_40):
                 return SaveManager.getSave.healMaked >= 40;
+            case (Succes.Heal_50):
+                return SaveManager.getSave.healMaked >= 50;
             case (Succes.Damage_10):
                 return SaveManager.getSave.damageMaked >= 10;
             case (Succes.Damage_100):
@@ -313,6 +317,8 @@ public static class StaticSucces
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_Barbak) >= 1;
             case (Succes.UseACard_Flame):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_Flame) >= 1;
+            case (Succes.UseACard_LuneAllier):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_LuneAllier) >= 1;
             case (Succes.UseACard_5_DarunyaNeko):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_DarunyaNeko) >= 5;
             case (Succes.UseACard_5_BlacASiable):
@@ -386,6 +392,8 @@ public static class StaticSucces
                 return SpriteType.Character_Blacacia;
             case (Succes.UseACard_Barbak):
                 return SpriteType.Character_Barbak;
+            case (Succes.UseACard_LuneAllier):
+                return SpriteType.Character_LunAlly;
 
             default:
                 return null;
@@ -403,6 +411,8 @@ public static class StaticSucces
                 return StatusEffectType.TakeHealMakeHitAround;
             case (Succes.Heal_40):
                 return StatusEffectType.ConvertPurcentHealInShild;
+            case (Succes.Heal_50):
+                return StatusEffectType.TakeHealAddDamage;
             case (Succes.Damage_100):
                 return StatusEffectType.SideEyes;
             case (Succes.Damage_200):
