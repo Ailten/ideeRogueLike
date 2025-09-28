@@ -91,6 +91,7 @@ public enum SpriteType
     Character_Crow,
     Character_Arachnide,
     Character_Barbak,
+    Character_Lunally,
 
 
     // --- Dungeons.

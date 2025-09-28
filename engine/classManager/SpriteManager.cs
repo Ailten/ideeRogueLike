@@ -100,6 +100,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Character_Crow, new Vector(768, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Arachnide, new Vector(896, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Barbak, new Vector(0, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Lunally, new Vector(0, 384), new Vector(126, 126));
 
         s = new Sprite("DungeonCels");
         s.addSpriteType(SpriteType.Cel, new Vector(0, 0), new Vector(126, 126));
