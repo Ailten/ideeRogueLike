@@ -275,6 +275,10 @@ public static class StaticSpriteType
                 return ("Nya.");
             case (SpriteType.CardImg_Faux):
                 return ("La meilleur carte du jeu, Faux !");
+            case (SpriteType.CardImg_Egg):
+                return ("On ne fait pas d'omelette sans casser quelque oeufs.");
+            case (SpriteType.CardImg_Fissure):
+                return ("Ca c'est une fissure !");
 
 
             default:
@@ -335,7 +339,10 @@ public static class StaticSpriteType
                 return ("Sha Noar");
             case (SpriteType.CardImg_Faux):
                 return ("Faux");
-
+            case (SpriteType.CardImg_Egg):
+                return ("Oeuf");
+            case (SpriteType.CardImg_Fissure):
+                return ("Fissure");
 
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.
