@@ -4,7 +4,7 @@ class Program
 {
     // TODO :
 
-    // add 2 card, 1 effect, 4 mobs.
+    // add 2 card unloackable for player (egg, and fissure).
 
     // add sprite option disabled ?
     // implement layer of option.
