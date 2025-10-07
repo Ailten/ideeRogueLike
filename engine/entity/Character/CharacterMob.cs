@@ -33,6 +33,7 @@ public class CharacterMob : Character
         new MobType(SpriteType.Character_Crow, 4, true),
 
         new MobType(SpriteType.Character_Eye, 5, false), //stage 5.
+        new MobType(SpriteType.Character_HolyArmor, 5, false),
 
         new MobType(SpriteType.Character_Slime, 5, true)
     };
@@ -91,6 +92,8 @@ public class CharacterMob : Character
 
             case (SpriteType.Character_Eye):
                 return new CharacterEye(posIndexCel);
+            case (SpriteType.Character_HolyArmor):
+                return new CharacterHolyArmor(posIndexCel);
 
             //add heer new CharacterMob.
 
