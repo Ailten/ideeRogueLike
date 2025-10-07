@@ -28,6 +28,8 @@ public enum EffectCard
     InvokeArachnide, //invoke an arachnide (for ennemy only), with a purcentage to success invoke.
     SteelHP, //like hit, but make heal of the amount damage maked to launcher.
     SendDrama, //send a card drama to deck oponenet.
+    SelfAPBoost, //send a AP boost to self launcher.
+    FissureACard, //set a card target deck, fissured.
 }
 
 
@@ -89,6 +91,11 @@ public static class StaticEffectCard
                 return "Vole de vie";
             case (EffectCard.SendDrama):
                 return "Dramaturge";
+            case (EffectCard.SelfAPBoost):
+                return "Auto Action boost";
+            case (EffectCard.FissureACard):
+                return "Fissure";
+                
                 
                 
             default:
@@ -226,6 +233,15 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     $"place une carte Drama dans le deck de la cible.\n"+
                     $"{(value=="N"? ("(N*5)"): (valueIntencity * 5))}% de chance de reussire."
+                );
+            case (EffectCard.SelfAPBoost):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"donne {value} points d'action au lanceur."
+                );
+            case (EffectCard.FissureACard):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"transforme {value} de la cible.\n"+
+                    $"les cartes deviennes fissurées."
                 );
 
 
@@ -529,6 +545,57 @@ public static class StaticEffectCard
                 }
                 return;
 
+            case (EffectCard.SelfAPBoost):
+                characterLauncher.AddStatusEffect(new APBoost(
+                    characterIdWhoHasEffect: characterLauncher.idEntity,
+                    characterIdWhoApplyEffect: characterLauncher.idEntity,
+                    turnLife: -1,
+                    APUp: effectValue
+                ));
+                return;
+
+            case (EffectCard.FissureACard):
+                if (characterTarget is null)
+                    return;
+                if (characterTarget.deck.cardsInCimetier.Count > 0)
+                {
+                    int whileCount = 1;
+                    int cardFissured = 0;
+                    do
+                    {
+                        int rndIndex = RandomManager.rng.Next(characterTarget.deck.cardsInCimetier.Count);
+                        if (characterTarget.deck.cardsInCimetier[rndIndex].cardEdition == CardEdition.Default)
+                        {
+                            characterTarget.deck.cardsInCimetier[rndIndex].cardEdition = CardEdition.Cracked;
+                            cardFissured++;
+                            if(cardFissured == effectValue)
+                                break;
+                        }
+                        whileCount++;
+                        if (whileCount > 100)
+                            break;
+                    } while (true);
+                }
+                else if (characterTarget.deck.cardsInPioche.Count > 0)
+                {
+                    int whileCount = 1;
+                    int cardFissured = 0;
+                    do
+                    {
+                        int rndIndex = RandomManager.rng.Next(characterTarget.deck.cardsInPioche.Count);
+                        if (characterTarget.deck.cardsInPioche[rndIndex].cardEdition == CardEdition.Default)
+                        {
+                            characterTarget.deck.cardsInPioche[rndIndex].cardEdition = CardEdition.Cracked;
+                            cardFissured++;
+                            if(cardFissured == effectValue)
+                                break;
+                        }
+                        whileCount++;
+                        if (whileCount > 100)
+                            break;
+                    } while (true);
+                }
+                return;
 
 
 
