@@ -101,10 +101,10 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Character_Arachnide, new Vector(896, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Barbak, new Vector(0, 384), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_LunAlly, new Vector(0, 384), new Vector(126, 126));
-        s.addSpriteType(SpriteType.Character_, new Vector(512, 384), new Vector(126, 126));
-        s.addSpriteType(SpriteType.Character_, new Vector(640, 384), new Vector(126, 126));
-        s.addSpriteType(SpriteType.Character_, new Vector(768, 384), new Vector(126, 126));
-        s.addSpriteType(SpriteType.Character_, new Vector(896, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Eye, new Vector(512, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_HolyArmor, new Vector(640, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Egg, new Vector(768, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Phenix, new Vector(896, 384), new Vector(126, 126));
 
         s = new Sprite("DungeonCels");
         s.addSpriteType(SpriteType.Cel, new Vector(0, 0), new Vector(126, 126));
