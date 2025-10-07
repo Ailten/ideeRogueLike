@@ -34,8 +34,7 @@ public class CharacterMob : Character
 
         new MobType(SpriteType.Character_Eye, 5, false), //stage 5.
         new MobType(SpriteType.Character_HolyArmor, 5, false),
-
-        new MobType(SpriteType.Character_Slime, 5, true)
+        new MobType(SpriteType.Character_Phenix, 5, true)
     };
 
     public CharacterMob(SpriteType spriteType, Vector posIndexCel) : base(spriteType, posIndexCel)
@@ -94,6 +93,8 @@ public class CharacterMob : Character
                 return new CharacterEye(posIndexCel);
             case (SpriteType.Character_HolyArmor):
                 return new CharacterHolyArmor(posIndexCel);
+            case (SpriteType.Character_Phenix):
+                return new CharacterPhenix(posIndexCel);
 
             //add heer new CharacterMob.
 
@@ -169,6 +170,9 @@ public class CharacterMob : Character
             case (LogicState.firstFourAPCardOnOponent):
                 this.logicStateFirstAPCardOnOponent(4);
                 break;
+            case (LogicState.firstSelfCard):
+                this.logicStateFirstSelfCard();
+                break;
 
 
             case (LogicState.chase_or_firstAttire):
@@ -183,6 +187,15 @@ public class CharacterMob : Character
                     this.logicStateChase();
                 else
                     this.nextLogicState();
+                break;
+            case (LogicState.doNextStateIfHpIsUnderTenPurcent):
+                if ((this.HP / (float)this.HPmax) < 0.1f)
+                {
+                    this.nextLogicState();
+                    break;
+                }
+                this.nextLogicState();
+                this.nextLogicState();
                 break;
 
             default:
@@ -403,6 +416,9 @@ public class CharacterMob : Character
             if (!currentCard.effects.Select(ev => ev.Key).Contains(EffectCard.Shild))
                 continue;
 
+            if (currentCard.APCost > this.AP) //cost to mush ap.
+                continue;
+
             List<Character> allys = TurnManager.getAllCharacters()
                 .Where(c =>
                 {
@@ -435,6 +451,9 @@ public class CharacterMob : Character
                 continue;
 
             if (currentCard.distanceToUse.x != 0)
+                continue;
+
+            if (currentCard.APCost > this.AP) //cost to mush ap.
                 continue;
 
             this.useACardFromHand(i, this.indexPosCel); //play the card.
@@ -522,6 +541,24 @@ public class CharacterMob : Character
                 continue;
 
             this.useACardFromHand(i, target.indexPosCel); //play the card.
+            break;
+        }
+
+        this.nextLogicState(); //move to next state.
+    }
+    private void logicStateFirstSelfCard()
+    {
+        for (int i = 0; i < this.deck.cardsInHand.Count; i++)
+        {
+            Card currentCard = this.deck.cardsInHand[i];
+
+            if (currentCard.distanceToUse.x != 0)
+                continue;
+
+            if (this.AP < currentCard.APCost)
+                continue;
+
+            this.useACardFromHand(i, this.indexPosCel); //play the card.
             break;
         }
 

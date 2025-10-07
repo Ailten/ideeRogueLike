@@ -45,6 +45,7 @@ public enum StatusEffectType
     ShildMultWhenFirst,
     ConvertPurcentHealInShild,
     FauxEffect,
+    Eggify,
 
 }
 
@@ -338,6 +339,13 @@ public static class StaticStatusEffectType
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife
                 );
+            case (StatusEffectType.Eggify):
+                return new Eggify(
+                    characterIdWhoHasEffect: characterIdWhoHasEffect,
+                    characterIdWhoApplyEffect: characterIdWhoApplyEffect,
+                    turnLife: turnLife
+                );
+                
                 
 
 
@@ -449,6 +457,9 @@ public static class StaticStatusEffectType
             return StatusEffectType.ConvertPurcentHealInShild;
         if (statusEffect.GetType() == typeof(FauxEffect))
             return StatusEffectType.FauxEffect;
+        if (statusEffect.GetType() == typeof(Eggify))
+            return StatusEffectType.Eggify;
+            
 
         throw new Exception("getStatusEffectType has no impementation for this !");
     }

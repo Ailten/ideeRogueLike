@@ -18,10 +18,12 @@ public enum LogicState
     firstTwoAPCardOnOponent, //same 2.
     firstTreeAPCardOnOponent, //same 3.
     firstFourAPCardOnOponent, //same 4.
+    firstSelfCard, //playe the first card makable on self (dist 0 min).
 
     // or.
     chase_or_firstAttire,
 
     // if.
-    chase_ifCardInHand
+    chase_ifCardInHand,
+    doNextStateIfHpIsUnderTenPurcent
 }

@@ -30,6 +30,7 @@ public enum EffectCard
     SendDrama, //send a card drama to deck oponenet.
     SelfAPBoost, //send a AP boost to self launcher.
     FissureACard, //set a card target deck, fissured.
+    Eggify, //transform into an egg.
 }
 
 
@@ -95,7 +96,8 @@ public static class StaticEffectCard
                 return "Auto Action boost";
             case (EffectCard.FissureACard):
                 return "Fissure";
-                
+            case (EffectCard.Eggify):
+                return "Oeufification";
                 
                 
             default:
@@ -242,6 +244,10 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     $"transforme {value} de la cible.\n"+
                     $"les cartes deviennes fissurées."
+                );
+            case (EffectCard.Eggify):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"transforme en oeuf pour {value} tours."
                 );
 
 
@@ -596,7 +602,15 @@ public static class StaticEffectCard
                     } while (true);
                 }
                 return;
-
+            case (EffectCard.Eggify):
+                if (characterTarget is null)
+                    return;
+                characterTarget.AddStatusEffect(new Eggify(
+                    characterIdWhoHasEffect: characterTarget.idEntity,
+                    characterIdWhoApplyEffect: characterLauncher.idEntity,
+                    turnLife: effectValue
+                ));
+                return;
 
 
             default:
