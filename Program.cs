@@ -4,6 +4,8 @@ class Program
 {
     // TODO :
 
+    // add 2 card, 1 effect, 4 mobs.
+
     // add sprite option disabled ?
     // implement layer of option.
 

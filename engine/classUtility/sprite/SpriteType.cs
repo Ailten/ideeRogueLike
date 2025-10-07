@@ -92,6 +92,10 @@ public enum SpriteType
     Character_Arachnide,
     Character_Barbak,
     Character_LunAlly,
+    Character_Eye,
+    Character_HolyArmor,
+    Character_Egg,
+    Character_Phenix,
 
 
     // --- Dungeons.
@@ -146,6 +150,8 @@ public enum SpriteType
     CardImg_Flag,
     CardImg_Vore,
     CardImg_Infestation,
+    CardImg_Egg,
+    CardImg_Fissure,
 
 
     // --- FX.
@@ -211,6 +217,7 @@ public enum SpriteType
     StatusEffect_ShildMultWhenFirst,
     StatusEffect_ConvertPurcentHealInShild,
     StatusEffect_FauxEffect,
+    StatusEffect_Egg,
 
 }
 

@@ -101,6 +101,10 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Character_Arachnide, new Vector(896, 256), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Barbak, new Vector(0, 384), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_LunAlly, new Vector(0, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_, new Vector(512, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_, new Vector(640, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_, new Vector(768, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_, new Vector(896, 384), new Vector(126, 126));
 
         s = new Sprite("DungeonCels");
         s.addSpriteType(SpriteType.Cel, new Vector(0, 0), new Vector(126, 126));
@@ -154,7 +158,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_Flag, new Vector(1100, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Vore, new Vector(1320, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Infestation, new Vector(1540, 575), new Vector(219, 125));
-        // (l4).
+        s.addSpriteType(SpriteType.CardImg_Egg, new Vector(0, 701), new Vector(219, 125)); // (l4).
+        s.addSpriteType(SpriteType.CardImg_Fissure, new Vector(220, 701), new Vector(219, 125));
 
         s = new Sprite("FX");
         s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));
@@ -215,6 +220,7 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.StatusEffect_ShildMultWhenFirst, new Vector(128, 447), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_ConvertPurcentHealInShild, new Vector(192, 447), new Vector(63, 63));
         s.addSpriteType(SpriteType.StatusEffect_FauxEffect, new Vector(256, 447), new Vector(63, 63));
+        s.addSpriteType(SpriteType.StatusEffect_Egg, new Vector(320, 447), new Vector(63, 63));
         
         
 
