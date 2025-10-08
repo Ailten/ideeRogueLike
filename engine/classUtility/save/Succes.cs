@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 // eatch succes in game.
 public enum Succes
 {
+    Kill_1_Phenix,
     Kill_5_Slime,
     Kill_5_Flame,
     Kill_5_Rock,
@@ -10,6 +11,7 @@ public enum Succes
     Kill_5_Armor,
     Kill_5_Squelette,
     Kill_5_Ghost,
+    Kill_5_Eye,
     Take_10_Coin,
     Take_100_Coin,
     Heal_10,
@@ -56,6 +58,15 @@ public static class StaticSucces
     {
         switch (succes)
         {
+            case (Succes.Kill_1_Phenix):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_Egg,
+                    cardColor: CardColor.Blue,
+                    cardEdition: CardEdition.Default,
+                    APCost: 1,
+                    distanceToUse: new(0, 2),
+                    effect: new KeyValuePair<EffectCard, int>(EffectCard.Eggify, 2)
+                );
             case (Succes.Kill_5_Slime):
                 return new Card(
                     cardIllu: SpriteType.CardImg_Splash,
@@ -127,6 +138,15 @@ public static class StaticSucces
                     APCost: 0,
                     distanceToUse: new(0, 2),
                     effect: new KeyValuePair<EffectCard, int>(EffectCard.APBoost, 1)
+                );
+            case (Succes.Kill_5_Eye):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_Fissure,
+                    cardColor: CardColor.Red,
+                    cardEdition: CardEdition.Default,
+                    APCost: 3,
+                    distanceToUse: new(1, 2),
+                    effect: new KeyValuePair<EffectCard, int>(EffectCard.FissureACard, 1)
                 );
 
             case (Succes.Take_10_Coin):
@@ -241,6 +261,8 @@ public static class StaticSucces
     {
         switch (succes)
         {
+            case (Succes.Kill_1_Phenix):
+                return SaveManager.getAmountKillCount(typeof(CharacterPhenix)) >= 1;
             case (Succes.Kill_5_Slime):
                 return SaveManager.getAmountKillCount(typeof(CharacterSlime)) >= 5;
             case (Succes.Kill_5_Flame):
@@ -255,6 +277,8 @@ public static class StaticSucces
                 return SaveManager.getAmountKillCount(typeof(CharacterSquelette)) >= 5;
             case (Succes.Kill_5_Ghost):
                 return SaveManager.getAmountKillCount(typeof(CharacterGhost)) >= 5;
+            case (Succes.Kill_5_Eye):
+                return SaveManager.getAmountKillCount(typeof(CharacterEye)) >= 5;
             case (Succes.Take_10_Coin):
                 return SaveManager.getSave.coinTaked >= 10;
             case (Succes.Take_100_Coin):
