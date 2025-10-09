@@ -23,6 +23,12 @@ public class CharacterPlayer : Character
                 return new CharacterBlacacia(posIndexCel);
             case (SpriteType.Character_Barbak):
                 return new CharacterBarbak(posIndexCel);
+            case (SpriteType.Character_LunAlly):
+                return new CharacterLunAlly(posIndexCel);
+            case (SpriteType.Character_Chlow):
+                return new CharacterChlow(posIndexCel);
+            case (SpriteType.Character_Babulle):
+                return new CharacterBabulle(posIndexCel);
 
             default:
                 throw new Exception("SpriteType has no CharacterPlayer match !");

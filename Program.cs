@@ -5,7 +5,6 @@ class Program
     // TODO :
 
     // add a card who steel a card from target.
-    // add babulle and chlow on playable character.
 
     // add sprite option disabled ?
     // implement layer of option.

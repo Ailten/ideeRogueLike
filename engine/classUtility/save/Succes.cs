@@ -21,7 +21,6 @@ public enum Succes
     Heal_50,
     Damage_10,
     Damage_100,
-    Damage_200,
     Played_1_Shiny,
     Played_5_Shiny,
     Played_15_Shiny,
@@ -44,8 +43,11 @@ public enum Succes
     UseACard_Barbak,
     UseACard_Flame,
     UseACard_LuneAllier,
+    UseACard_OsuAime,
+    UseACard_BatteBulle,
     UseACard_5_DarunyaNeko,
     UseACard_5_BlacASiable,
+    UseACard_5_OsuAime,
     UseACard_5_BatteBulle,
     UseACard_20_WoodenShild,
     UseACard_20_Barbak,
@@ -297,8 +299,6 @@ public static class StaticSucces
                 return SaveManager.getSave.damageMaked >= 10;
             case (Succes.Damage_100):
                 return SaveManager.getSave.damageMaked >= 100;
-            case (Succes.Damage_200):
-                return SaveManager.getSave.damageMaked >= 200;
             case (Succes.Played_1_Shiny):
                 return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 1;
             case (Succes.Played_5_Shiny):
@@ -343,10 +343,16 @@ public static class StaticSucces
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_Flame) >= 1;
             case (Succes.UseACard_LuneAllier):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_LuneAllier) >= 1;
+            case (Succes.UseACard_OsuAime):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_OsuAime) >= 1;
+            case (Succes.UseACard_BatteBulle):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_BatteBulle) >= 1;
             case (Succes.UseACard_5_DarunyaNeko):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_DarunyaNeko) >= 5;
             case (Succes.UseACard_5_BlacASiable):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_BlacASiable) >= 5;
+            case (Succes.UseACard_5_OsuAime):
+                return SaveManager.getAmountCardPlayed(SpriteType.CardImg_OsuAime) >= 5;
             case (Succes.UseACard_5_BatteBulle):
                 return SaveManager.getAmountCardPlayed(SpriteType.CardImg_BatteBulle) >= 5;
             case (Succes.UseACard_20_WoodenShild):
@@ -418,6 +424,10 @@ public static class StaticSucces
                 return SpriteType.Character_Barbak;
             case (Succes.UseACard_LuneAllier):
                 return SpriteType.Character_LunAlly;
+            case (Succes.UseACard_BatteBulle):
+                return SpriteType.Character_Babulle;
+            case (Succes.UseACard_OsuAime):
+                return SpriteType.Character_Chlow;
 
             default:
                 return null;
@@ -439,8 +449,6 @@ public static class StaticSucces
                 return StatusEffectType.TakeHealAddDamage;
             case (Succes.Damage_100):
                 return StatusEffectType.SideEyes;
-            case (Succes.Damage_200):
-                return StatusEffectType.AddIndirectDamage;
             case (Succes.Take_100_Coin):
                 return StatusEffectType.MoneyMultiplyDamage;
             case (Succes.Played_1_Shiny):
@@ -478,6 +486,8 @@ public static class StaticSucces
                 return StatusEffectType.RallMpMakeDamage;
             case (Succes.UseACard_5_BatteBulle):
                 return StatusEffectType.PushWallMakeRallMP;
+            case (Succes.UseACard_5_OsuAime):
+                return StatusEffectType.AddIndirectDamage;
             case (Succes.UseACard_20_WoodenShild):
                 return StatusEffectType.ShildMultWhenFirst;
 

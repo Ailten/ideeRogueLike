@@ -92,6 +92,8 @@ public enum SpriteType
     Character_Arachnide,
     Character_Barbak,
     Character_LunAlly,
+    Character_Chlow,
+    Character_Babulle,
     Character_Eye,
     Character_HolyArmor,
     Character_Egg,
