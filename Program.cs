@@ -4,6 +4,10 @@ class Program
 {
     // TODO :
 
+    // debug :
+    // option button make no layer option, and sofl lock when you walk on a chest. (do nothing). same about button deck.
+    // --> use debug mode.
+
     // add a card who steel a card from target.
 
     // add sprite option disabled ?

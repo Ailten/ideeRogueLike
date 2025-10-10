@@ -11,7 +11,7 @@ public class CharacterChlow : CharacterPlayer
         this.HP = HPmax;
 
         // special effect.
-        if (SaveManager.getSave.succes.Contains(Succes.Damage_200))
+        if (SaveManager.getSave.succes.Contains(Succes.UseACard_5_OsuAime))
             this.AddStatusEffect(new AddIndirectDamage(this.idEntity, -1, -1, 4));
 
         this.deck.pickCountByTurn = 5;
