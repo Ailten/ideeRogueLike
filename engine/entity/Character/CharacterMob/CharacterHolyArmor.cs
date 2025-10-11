@@ -21,9 +21,6 @@ public class CharacterHolyArmor : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(13, 18);
 
-        // effects.
-        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 0.2f)); // near imune to shinny.
-
         //set deck.
         this.deck.pickCountByTurn = 2;
         this.deck.addCardToDeck(
@@ -54,5 +51,12 @@ public class CharacterHolyArmor : CharacterMob
             isSameColor: false
         );
         
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 0.2f));
     }
 }

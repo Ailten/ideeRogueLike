@@ -21,9 +21,6 @@ public class CharacterCrow : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(10, 18);
 
-        // effects.
-        this.AddStatusEffect(new MultDamageByHPLeft(this.idEntity, -1, -1)); // mult damage when low HP.
-
         //set deck.
         this.deck.pickCountByTurn = 2;
         this.deck.addCardToDeck(
@@ -62,5 +59,12 @@ public class CharacterCrow : CharacterMob
             amountOfCardAdd: 1,
             isSameColor: false
         );
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new MultDamageByHPLeft(this.idEntity, -1, -1));
     }
 }

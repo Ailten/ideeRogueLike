@@ -10,10 +10,6 @@ public class CharacterAxolootl : CharacterPlayer
         this.HPmax = 10;
         this.HP = HPmax;
 
-        // special effect.
-        if(SaveManager.getSave.succes.Contains(Succes.Take_100_Coin))
-            this.AddStatusEffect(new MoneyMultiplyDamage(this.idEntity, -1, -1, purcentDamageByCoint: 1));
-
         this.deck.pickCountByTurn = 5;
         this.deck.addCardToDeck(
             new Card(
@@ -54,5 +50,13 @@ public class CharacterAxolootl : CharacterPlayer
             amountOfCardAdd: 4,
             isSameColor: false
         );
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // special effect.
+        if(SaveManager.getSave.succes.Contains(Succes.Take_100_Coin))
+            this.AddStatusEffect(new MoneyMultiplyDamage(this.idEntity, -1, -1, purcentDamageByCoint: 1));
     }
 }

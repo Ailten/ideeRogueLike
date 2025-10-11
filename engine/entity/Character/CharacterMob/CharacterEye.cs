@@ -20,9 +20,6 @@ public class CharacterEye : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(12, 18);
 
-        // effects.
-        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 2.0f)); // res negative on shiny card.
-
         //set deck.
         this.deck.pickCountByTurn = 2;
         this.deck.addCardToDeck(
@@ -56,5 +53,12 @@ public class CharacterEye : CharacterMob
             isSameColor: false
         );
         
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 2.0f));
     }
 }

@@ -5,8 +5,12 @@ class Program
     // TODO :
 
     // debug :
-    // option button make no layer option, and sofl lock when you walk on a chest. (do nothing). same about button deck.
-    // --> use debug mode.
+    // add stuff (background) on layer Option.
+    // verify background on deck menu.
+    // verifier que le player peu mourir (ouvrir layer end run).
+    // verifier que les invoc on bien le text "invoke" en layer detaisl.
+    // edit overide take damage of invoke darumaneko -> set it on a status effect dedicate !
+
 
     // add a card who steel a card from target.
 

@@ -19,10 +19,6 @@ public class CharacterKingRock : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(5, 9);
 
-        // effects.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Green, 0f)); // imune to color damage.
-        this.AddStatusEffect(new DamageAddByTurn(this.idEntity, -1, -1, CardColor.Green, 1, 3)); // increase atk by 1 eatch 3 turn.
-
         //set deck.
         this.deck.pickCountByTurn = 2;
         this.deck.addCardToDeck(
@@ -50,5 +46,13 @@ public class CharacterKingRock : CharacterMob
             amountOfCardAdd: 1,
             isSameColor: true
         );
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Green, 0f));
+        this.AddStatusEffect(new DamageAddByTurn(this.idEntity, -1, -1, CardColor.Green, 1, 3));
     }
 }

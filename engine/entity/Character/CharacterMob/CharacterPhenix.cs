@@ -22,9 +22,6 @@ public class CharacterPhenix : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(16, 22);
 
-        // effects.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Red, 0.9f)); // res negative on shiny card.
-
         //set deck.
         this.deck.pickCountByTurn = 2;
         this.deck.addCardToDeck(
@@ -52,5 +49,12 @@ public class CharacterPhenix : CharacterMob
             isSameColor: true
         );
         
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Red, 0.9f));
     }
 }

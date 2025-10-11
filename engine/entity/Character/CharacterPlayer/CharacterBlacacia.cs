@@ -10,10 +10,6 @@ public class CharacterBlacacia : CharacterPlayer
         this.HPmax = 10;
         this.HP = HPmax;
 
-        // special effect.
-        if(SaveManager.getSave.succes.Contains(Succes.UseACard_5_BlacASiable))
-            this.AddStatusEffect(new RallMpMakeDamage(this.idEntity, -1, -1, damageByMPDecrease: 2));
-
         this.deck.pickCountByTurn = 5;
         this.deck.addCardToDeck(
             new Card(
@@ -51,5 +47,13 @@ public class CharacterBlacacia : CharacterPlayer
             amountOfCardAdd: 4,
             isSameColor: false
         );
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // special effect.
+        if(SaveManager.getSave.succes.Contains(Succes.UseACard_5_BlacASiable))
+            this.AddStatusEffect(new RallMpMakeDamage(this.idEntity, -1, -1, damageByMPDecrease: 2));
     }
 }

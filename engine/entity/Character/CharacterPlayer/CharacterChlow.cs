@@ -10,10 +10,6 @@ public class CharacterChlow : CharacterPlayer
         this.HPmax = 10;
         this.HP = HPmax;
 
-        // special effect.
-        if (SaveManager.getSave.succes.Contains(Succes.UseACard_5_OsuAime))
-            this.AddStatusEffect(new AddIndirectDamage(this.idEntity, -1, -1, 4));
-
         this.deck.pickCountByTurn = 5;
         this.deck.addCardToDeck(
             new Card(
@@ -54,6 +50,14 @@ public class CharacterChlow : CharacterPlayer
             isSameColor: false
         );
         
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // special effect.
+        if (SaveManager.getSave.succes.Contains(Succes.UseACard_5_OsuAime))
+            this.AddStatusEffect(new AddIndirectDamage(this.idEntity, -1, -1, 4));
     }
     
 }

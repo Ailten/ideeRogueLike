@@ -52,7 +52,8 @@ public class CharacterPlayer : Character
         //execute death of every entity in turn has invoc by this one.
         TurnManager.getAllInvocOfACharacter(this.idEntity).ForEach(c => c.death());
 
-        //do not remove main player of turnManager, for prevent getter overage.
+        //remove from list turn.
+        TurnManager.removeCharacterInRoom(this); // warning, can make error to remove player from TurnManager.
     }
 
     //overide for aditionnal process for start turn when player.

@@ -18,9 +18,6 @@ public class CharacterSacHead : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(8, 14);
 
-        // effects.
-        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 2.0f)); // res negative on shiny card.
-
         //set deck.
         this.deck.pickCountByTurn = 2;
         this.deck.addCardToDeck(
@@ -45,5 +42,12 @@ public class CharacterSacHead : CharacterMob
             ),
             isSameColor: false
         );
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 2.0f));
     }
 }

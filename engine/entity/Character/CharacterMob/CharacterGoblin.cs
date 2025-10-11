@@ -20,10 +20,6 @@ public class CharacterGoblin : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(3, 7);
 
-        // effects.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 1.1f)); // imune to color damage.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Green, 0.9f)); // imune to color damage.
-        
         //set deck.
         this.deck.pickCountByTurn = 2;
         this.deck.addCardToDeck(
@@ -54,5 +50,13 @@ public class CharacterGoblin : CharacterMob
             amountOfCardAdd: 1,
             isSameColor: false
         );
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 1.1f));
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Green, 0.9f));
     }
 }

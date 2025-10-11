@@ -27,16 +27,6 @@ public class CharacterDarunyaNeko : CharacterPlayer
     }
 
 
-    // override take damage, to include increase AP.
-    public override void takeDamage(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
-    {
-        this.APmax += 1; // increase AP.
-        this.increaseAP(1);
-
-        base.takeDamage(atk, characterMakeAtk, refCard);
-    }
-
-
     // invoc auto play.
     public override void turn()
     {
@@ -65,5 +55,12 @@ public class CharacterDarunyaNeko : CharacterPlayer
         }
 
         skipTurn();
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // special effect.
+        this.AddStatusEffect(new APWhenHit(this.idEntity, isAPmax: true));
     }
 }

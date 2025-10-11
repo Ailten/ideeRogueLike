@@ -20,10 +20,6 @@ public class CharacterGhost : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(6, 11);
 
-        // effects.
-        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 2.5f)); // res negative on shiny card.
-        this.AddStatusEffect(new PushWallMakeRallMP(this.idEntity, -1, -1, 1)); // push to wall make 1 rall mp.
-
         //set deck.
         this.deck.pickCountByTurn = 2;
         this.deck.addCardToDeck(
@@ -54,5 +50,13 @@ public class CharacterGhost : CharacterMob
             isSameColor: false
         );
         
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 2.5f));
+        this.AddStatusEffect(new PushWallMakeRallMP(this.idEntity, -1, -1, 1));
     }
 }

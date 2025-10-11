@@ -19,9 +19,6 @@ public class CharacterPumkin : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(10, 18);
 
-        // effects.
-        this.AddStatusEffect(new PropagatePoison(this.idEntity, -1, -1, 3)); // poison.
-
         //set deck.
         this.deck.pickCountByTurn = 3;
         this.deck.addCardToDeck(
@@ -51,5 +48,12 @@ public class CharacterPumkin : CharacterMob
             amountOfCardAdd: 2,
             isSameColor: false
         );
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new PropagatePoison(this.idEntity, -1, -1, 3));
     }
 }

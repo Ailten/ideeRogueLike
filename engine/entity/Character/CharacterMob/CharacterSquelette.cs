@@ -20,10 +20,6 @@ public class CharacterSquelette : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(7, 11);
 
-        // effects.
-        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 2.0f)); // res negative on shiny card.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 1.2f)); // res negative on blue card.
-
         //set deck.
         this.deck.pickCountByTurn = 2;
         this.deck.addCardToDeck(
@@ -54,5 +50,13 @@ public class CharacterSquelette : CharacterMob
             isSameColor: false
         );
 
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 2.0f));
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 1.2f));
     }
 }

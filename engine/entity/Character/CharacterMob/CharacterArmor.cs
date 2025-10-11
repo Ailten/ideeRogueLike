@@ -20,10 +20,6 @@ public class CharacterArmor : CharacterMob
 
         //gold can be looted.
         this.PO = RandomManager.rng.Next(3, 7);
-
-        // effects.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Red, 1.3f)); // imune to color damage.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 0.9f)); // imune to color damage.
         
         //set deck.
         this.deck.pickCountByTurn = 2;
@@ -52,5 +48,13 @@ public class CharacterArmor : CharacterMob
             amountOfCardAdd: 1,
             isSameColor: false
         );
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Red, 1.3f));
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 0.9f));
     }
 }

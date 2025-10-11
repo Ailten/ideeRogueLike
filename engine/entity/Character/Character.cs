@@ -217,7 +217,7 @@ public class Character : Entity
 
         this.PO += POIncrement;
 
-        if(POIncrement > 0)
+        if (POIncrement > 0)
             FxTextHit.initOnlyOneFxAtTime(this.pos, $"{POIncrement}", Color.Gold);
     }
     public void decreaseGold(int POdecrease)
@@ -307,12 +307,12 @@ public class Character : Entity
             characterMakePush.statusEffects.ForEach(se => se.eventWhenMakeAWallPush(ref cellBePushed, ref characterPushed, ref obstacle, ref characterMakePush, ref refCard));
         }
         this.statusEffects.ForEach(se => se.eventWhenTakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard));
-        if(obstacle is not null)
+        if (obstacle is not null)
         {
             Character? characterPushed = this;
             obstacle.statusEffects.ForEach(se => se.eventWhenTakeAWallPush(ref cellBePushed, ref characterPushed, ref characterMakePush, ref refCard));
         }
-        
+
         if (characterMakePush != null)
         {
             characterMakePush.makeDamage(this, cellBePushed, refCard);
@@ -328,15 +328,15 @@ public class Character : Entity
     }
 
     //decrease MP.
-    public void decreaseAP(int decrease, bool isDrawText=true, int idCharacterWhoDoDecreaseMP = -1)
+    public void decreaseAP(int decrease, bool isDrawText = true, int idCharacterWhoDoDecreaseMP = -1)
     {
         int APdecrease = Math.Min(decrease, AP);
         AP -= APdecrease;
 
-        if(isDrawText)
+        if (isDrawText)
             FxTextHit.initOnlyOneFxAtTime(this.pos, $"-{APdecrease}", Color.Yellow);
     }
-    public void decreaseMP(int decrease, bool isDrawText=true, int idCharacterWhoDoDecreaseMP = -1)
+    public void decreaseMP(int decrease, bool isDrawText = true, int idCharacterWhoDoDecreaseMP = -1)
     {
         // apply status effects.
         if (idCharacterWhoDoDecreaseMP >= 0)
@@ -352,21 +352,21 @@ public class Character : Entity
         int MPdecrease = Math.Min(decrease, MP);
         MP -= MPdecrease;
 
-        if(isDrawText)
+        if (isDrawText)
             FxTextHit.initOnlyOneFxAtTime(this.pos, $"-{MPdecrease}", Color.Lime);
     }
-    public void increaseAP(int increace, bool isDrawText=true)
+    public void increaseAP(int increace, bool isDrawText = true)
     {
         AP += increace;
 
-        if(isDrawText)
+        if (isDrawText)
             FxTextHit.initOnlyOneFxAtTime(this.pos, $"{increace}", Color.Yellow);
     }
-    public void increaseMP(int increace, bool isDrawText=true)
+    public void increaseMP(int increace, bool isDrawText = true)
     {
         MP += increace;
 
-        if(isDrawText)
+        if (isDrawText)
             FxTextHit.initOnlyOneFxAtTime(this.pos, $"{increace}", Color.Lime);
     }
 
@@ -480,6 +480,12 @@ public class Character : Entity
     public void dropAStatusEffectByIndex(int indexStatuSEffect)
     {
         this.statusEffects.RemoveAt(indexStatuSEffect);
+    }
+
+
+    // void for set statusEffect when spawn.
+    public virtual void addStatusEffectWhenSpawn()
+    {
     }
 
 }

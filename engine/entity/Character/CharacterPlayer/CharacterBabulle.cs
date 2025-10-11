@@ -10,10 +10,6 @@ public class CharacterBabulle : CharacterPlayer
         this.HPmax = 10;
         this.HP = HPmax;
 
-        // special effect.
-        if(SaveManager.getSave.succes.Contains(Succes.UseACard_5_BatteBulle))
-            this.AddStatusEffect(new PushWallMakeRallMP(this.idEntity, -1, -1, 1));
-
         this.deck.pickCountByTurn = 5;
         this.deck.addCardToDeck(
             new Card(
@@ -51,5 +47,13 @@ public class CharacterBabulle : CharacterPlayer
             amountOfCardAdd: 4,
             isSameColor: false
         );
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // special effect.
+        if(SaveManager.getSave.succes.Contains(Succes.UseACard_5_BatteBulle))
+            this.AddStatusEffect(new PushWallMakeRallMP(this.idEntity, -1, -1, 1));
     }
 }

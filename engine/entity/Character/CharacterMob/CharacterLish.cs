@@ -23,11 +23,6 @@ public class CharacterLish : CharacterMob
         //gold can be looted.
         this.PO = RandomManager.rng.Next(10, 15);
 
-        // effects.
-        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 2.0f)); // res negative on shiny card.
-        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 1.2f)); // res negative on blue card.
-        this.AddStatusEffect(new DamageAddByTurn(this.idEntity, -1, -1, CardColor.Red, 1, 6)); // increase atk by 1 eatch 6 turn.
-
         //set deck.
         this.deck.pickCountByTurn = 2;
         this.deck.addCardToDeck(
@@ -60,5 +55,14 @@ public class CharacterLish : CharacterMob
             amountOfCardAdd: 1,
             isSameColor: false
         );
+    }
+
+
+    public override void addStatusEffectWhenSpawn()
+    {
+        // effects.
+        this.AddStatusEffect(new ShildMultBoostShiny(this.idEntity, -1, -1, 2.0f));
+        this.AddStatusEffect(new ShildMultBoostColor(this.idEntity, -1, -1, CardColor.Blue, 1.2f));
+        this.AddStatusEffect(new DamageAddByTurn(this.idEntity, -1, -1, CardColor.Red, 1, 6));
     }
 }
