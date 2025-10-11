@@ -174,8 +174,8 @@ public static class RunManager
 
         // transition layer (RunLayer, RunHudLayer -> EndRunLayer).
         LayerManager.transition(
-            idLevelEnd: new int[] { RunLayer.layer.idLayer, RunHudLayer.layer.idLayer },
-            idLevelStart: new int[] { EndRunLayer.layer.idLayer }
+            idLevelStart: new int[] { RunLayer.layer.idLayer, RunHudLayer.layer.idLayer },
+            idLevelEnd: new int[] { EndRunLayer.layer.idLayer }
         );
     }
 

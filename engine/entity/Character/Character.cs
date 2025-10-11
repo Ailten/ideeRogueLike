@@ -145,7 +145,8 @@ public class Character : Entity
 
         if (TurnManager.getCharacterOfCurrentTurn() == this) // self kill, do a skip turn.
         {
-            this.skipTurn();
+            if(TurnManager.isInFight)
+                this.skipTurn();
         }
         else if (characterMakeKill != null)
         {

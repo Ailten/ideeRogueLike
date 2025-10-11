@@ -128,10 +128,6 @@ public static class TurnManager
         _isInFight = false;
 
         enfOfFight(teamFind ?? false);
-
-        Deck deckOfMainPlayer = getMainPlayerCharacter().deck; //discard hand at end fight (every card of deck on cimetier).
-        deckOfMainPlayer.discardOfEndTurn();
-        deckOfMainPlayer.pushAllCardPiocheIntoCimetier();
     }
 
     //verify if the fight is start.
@@ -192,12 +188,24 @@ public static class TurnManager
             // apply effects.
             player.statusEffects.ForEach(e => e.eventWhenPlayerWinFight());
 
+            // discard hand at end fight (every card of deck on cimetier).
+            player.deck.discardOfEndTurn();
+            player.deck.pushAllCardPiocheIntoCimetier();
+
         }
         else //ennemy win the fight.
         {
 
-            //disable button skip turn.
+            // disable button skip turn.
             RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(true);
+
+            // disable entity who need player to be print during transition layer.
+            EntityManager.getEntitiesByIdLayer(RunHudLayer.layer.idLayer)
+                .Where(e => (
+                    e is StatsCharacterUi ||
+                    e is MiniMapUi
+                )).ToList()
+                .ForEach(e => e.isActive = false);
 
             // event end run.
             RunManager.endRun(false);
@@ -269,7 +277,6 @@ public static class TurnManager
     {
         return (
             allCharacterInRoom.Find((c) => c.isAPlayer) ??
-            allCharacterDead.Find((c) => c.isAPlayer) ??
             throw new Exception("MainPlayer not found !")
         );
     }
