@@ -248,6 +248,9 @@ public class Character : Entity
 
         TurnManager.endAllStatusEffectBySkipTurn(this.idEntity); //end status effect.
 
+        if (!TurnManager.isInFight)
+            return;
+
         TurnManager.moveCharacterIndexToNextCharacter(); //switch to next entity turn.
         TurnManager.turnCountEdit(); // edit turn count if is a new table turn.
     }

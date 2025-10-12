@@ -466,7 +466,10 @@ public static class StaticEffectCard
                     return;
                 if (refCard is null)
                     return;
-                CardColor retResColorCardRef = refCard!.getCard().cardColor;
+                Card? retResColorGetCard = refCard!.getCard();
+                if (retResColorGetCard is null)
+                    return;
+                CardColor retResColorCardRef = retResColorGetCard.cardColor;
                 if (retResColorCardRef.isMatchingColor(CardColor.Blue))
                     characterTarget.AddStatusEffect(new ShildAddBoostColor(
                         characterIdWhoHasEffect: characterTarget.idEntity,

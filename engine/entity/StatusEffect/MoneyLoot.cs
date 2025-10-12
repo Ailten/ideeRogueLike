@@ -10,7 +10,7 @@ public class MoneyLoot : StatusEffect
     }
     public override void ActivateEffect()
     {
-        this.getCharacterWhoHasEffect.PO += this.money;
+        this.getCharacterWhoHasEffect!.PO += this.money;
     }
 
     public override string getDescription()
@@ -40,8 +40,12 @@ public class MoneyLoot : StatusEffect
     {
         if (isCharacterWhoHasEffectDie)
             return;
-            
-        this.getCharacterWhoHasEffect.PO -= this.money; // cancel effect.
+
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
+
+        whoHas.PO -= this.money; // cancel effect.
     }
 
 }

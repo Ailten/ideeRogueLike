@@ -33,7 +33,9 @@ public class PropagatePoison : StatusEffect
     public override void eventWhenTargetEndTurn()
     {
         Character? charWhoApply = this.getCharacterWhoApplyEffect;
-        Character charWhoHas = this.getCharacterWhoHasEffect;
+        Character? charWhoHas = this.getCharacterWhoHasEffect;
+        if (charWhoHas is null)
+            return;
 
         // do damage.
         if (charWhoApply is null)

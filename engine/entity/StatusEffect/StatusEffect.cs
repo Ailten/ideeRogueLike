@@ -43,9 +43,9 @@ public class StatusEffect
     {
         get { return TurnManager.getCharacterByIdEntity(this.characterIdWhoApplyEffect); }
     }
-    protected Character getCharacterWhoHasEffect
+    protected Character? getCharacterWhoHasEffect
     {
-        get { return TurnManager.getCharacterByIdEntity(this.characterIdWhoHasEffect) ?? throw new Exception("CharacterHasApplyEffect has not found in TurnManager !"); }
+        get { return TurnManager.getCharacterByIdEntity(this.characterIdWhoHasEffect); }
     }
 
     public SpriteType GetSpriteType
@@ -86,8 +86,9 @@ public class StatusEffect
         Character? whoApply = getCharacterWhoApplyEffect;
         string nameWhoApply = (whoApply is not null ? whoApply.getName : "---");
         string turnUntil = (getTurnUntilEnd >= 0 ? getTurnUntilEnd.ToString() + "T" : "infini");
+        string nameWhoHas = (getCharacterWhoHasEffect is not null ? getCharacterWhoHasEffect.getName : "---");
         return (
-            $"- cible : {getCharacterWhoHasEffect.getName}, " +
+            $"- cible : {nameWhoHas}, " +
             $"par : {nameWhoApply}, " +
             $"dure : {turnUntil}"
         );

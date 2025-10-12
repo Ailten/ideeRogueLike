@@ -9,16 +9,20 @@ public class SideEyes : StatusEffect
 
     private StatusEffect? getEffectAtRight()
     {
-        for (int i = 0; i < this.getCharacterWhoHasEffect.statusEffects.Count; i++)
+        Character? characterWhoHas = this.getCharacterWhoHasEffect;
+        if (characterWhoHas is null)
+            return null;
+
+        for (int i = 0; i < characterWhoHas.statusEffects.Count; i++)
         {
-            if (this.getIdEffect == this.getCharacterWhoHasEffect.statusEffects[i].getIdEffect) // match id.
+            if (this.getIdEffect == characterWhoHas.statusEffects[i].getIdEffect) // match id.
             {
                 int indexAtRight = i + 1;
 
-                if (indexAtRight >= this.getCharacterWhoHasEffect.statusEffects.Count - 2)
+                if (indexAtRight >= characterWhoHas.statusEffects.Count - 2)
                     return null;
 
-                return this.getCharacterWhoHasEffect.statusEffects[indexAtRight];
+                return characterWhoHas.statusEffects[indexAtRight];
             }
         }
 

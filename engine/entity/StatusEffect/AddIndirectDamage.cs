@@ -32,7 +32,11 @@ public class AddIndirectDamage : StatusEffect
 
     public override void eventWhenTargetMakeDamage(ref Character target, ref int atk, ref PackageRefCard? refCard)
     {
-        if (TurnManager.getCharacterOfCurrentTurn() != this.getCharacterWhoHasEffect)
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
+
+        if (TurnManager.getCharacterOfCurrentTurn() != whoHas)
             return;
 
         atk += this.damageBoost; // increase atk by sending reference.

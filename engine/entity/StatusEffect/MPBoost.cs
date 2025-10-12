@@ -10,8 +10,8 @@ public class MPBoost : StatusEffect
     }
     public override void ActivateEffect()
     {
-        this.getCharacterWhoHasEffect.MP += this.MPUp;
-        this.getCharacterWhoHasEffect.MPmax += this.MPUp;
+        this.getCharacterWhoHasEffect!.MP += this.MPUp;
+        this.getCharacterWhoHasEffect!.MPmax += this.MPUp;
     }
 
     public override string getDescription()
@@ -39,8 +39,12 @@ public class MPBoost : StatusEffect
         bool isCharacterWhoApplyEffectDie = false,
         bool isDestroyByAction = false)
     {
-        this.getCharacterWhoHasEffect.MP -= this.MPUp; // cancel effect.
-        this.getCharacterWhoHasEffect.MPmax -= this.MPUp;
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
+
+        whoHas.MP -= this.MPUp; // cancel effect.
+        whoHas.MPmax -= this.MPUp;
     }
 
 }

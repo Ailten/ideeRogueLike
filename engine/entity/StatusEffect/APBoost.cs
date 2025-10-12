@@ -10,8 +10,8 @@ public class APBoost : StatusEffect
     }
     public override void ActivateEffect()
     {
-        this.getCharacterWhoHasEffect.AP += this.APUp;
-        this.getCharacterWhoHasEffect.APmax += this.APUp;
+        this.getCharacterWhoHasEffect!.AP += this.APUp;
+        this.getCharacterWhoHasEffect!.APmax += this.APUp;
     }
 
     public override string getDescription()
@@ -39,8 +39,12 @@ public class APBoost : StatusEffect
         bool isCharacterWhoApplyEffectDie = false,
         bool isDestroyByAction = false)
     {
-        this.getCharacterWhoHasEffect.AP -= this.APUp; // cancel effect.
-        this.getCharacterWhoHasEffect.APmax -= this.APUp;
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
+
+        whoHas.AP -= this.APUp; // cancel effect.
+        whoHas.APmax -= this.APUp;
     }
 
 }

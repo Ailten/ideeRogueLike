@@ -11,7 +11,7 @@ public class MoneyMultiplyDamage : StatusEffect
 
     private int getPurcentDamage()
     {
-        return (this.getCharacterWhoHasEffect.PO * this.purcentDamageByCoint);
+        return ((this.getCharacterWhoHasEffect?.PO ?? 0) * this.purcentDamageByCoint);
     }
 
 

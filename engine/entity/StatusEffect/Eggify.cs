@@ -9,9 +9,9 @@ public class Eggify : StatusEffect
     }
     public override void ActivateEffect()
     {
-        Character whoHasEffect = this.getCharacterWhoHasEffect;
-        this.baseAspect = whoHasEffect.spriteType;
-        whoHasEffect.spriteType = SpriteType.Character_Egg;
+        Character? whoHasEffect = this.getCharacterWhoHasEffect;
+        this.baseAspect = whoHasEffect!.spriteType;
+        whoHasEffect!.spriteType = SpriteType.Character_Egg;
     }
 
 
@@ -44,7 +44,10 @@ public class Eggify : StatusEffect
         bool isDestroyByAction = false
     )
     {
-        Character whoHasEffect = this.getCharacterWhoHasEffect;
+        Character? whoHasEffect = this.getCharacterWhoHasEffect;
+        if (whoHasEffect is null)
+            return;
+
         whoHasEffect.spriteType = this.baseAspect; // bring back spryte.
 
         whoHasEffect.giveHeal(whoHasEffect, whoHasEffect.HPmax); // heal.
@@ -57,6 +60,10 @@ public class Eggify : StatusEffect
 
     public override void eventWhenTargetStartTurn()
     {
-        this.getCharacterWhoHasEffect.skipTurn(); // auto skip turn.
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
+
+        whoHas.skipTurn(); // auto skip turn.
     }
 }

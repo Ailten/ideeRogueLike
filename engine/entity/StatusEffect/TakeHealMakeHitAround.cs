@@ -31,7 +31,9 @@ public class TakeHealMakeHitAround : StatusEffect
 
     public override void eventWhenTakeAHeal(ref int healIncrement, ref Character? characterGiveHeal, ref PackageRefCard? refCard)
     {
-        Character characterHasEffect = this.getCharacterWhoHasEffect;
+        Character? characterHasEffect = this.getCharacterWhoHasEffect;
+        if (characterHasEffect is null)
+            return;
         int damage = this.damageMake * healIncrement;
 
         StaticEffectCard.doEffectCard( // do effect hitAround.

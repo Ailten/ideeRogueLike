@@ -10,10 +10,15 @@ class Program
     // verifier que le player peu mourir (ouvrir layer end run).
     // verifier que les invoc on bien le text "invoke" en layer detaisl.
     // edit overide take damage of invoke darumaneko -> set it on a status effect dedicate !
-    // status effect of Ailten (choose 1 more card) is not print on details layer (when click on it).
-    // ---> add update layer print statusEffect player when init mainPlayer.
     // moving to other player, don't change the player print.
-    // all status effect who use "CharacterHasApplyEffect" need a check "is in fight" for no crashing (if fight end, second burn not proc).
+
+    //V status effect of Ailten (choose 1 more card) is not print on details layer (when click on it).
+    //V ---> add update layer print statusEffect player when init mainPlayer.
+
+    //V all status effect who use "CharacterHasApplyEffect" need a check "is in fight" for no crashing (if fight end, second burn not proc).
+    //V maybe the same probleme for refCard !
+
+
 
     // add a card who steel a card from target.
 

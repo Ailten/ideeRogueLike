@@ -34,8 +34,12 @@ public class ShildAddBoostShiny : StatusEffect
     {
         if (refCard is null) // skip if damage is not maked by a card.
             return;
+            
+        Card? getCard = refCard!.getCard();
+        if (getCard is null)
+            return;
 
-        CardEdition editionOfCardUsed = refCard!.getCard().cardEdition;
+        CardEdition editionOfCardUsed = getCard.cardEdition;
         if (editionOfCardUsed == CardEdition.Shinny)
         {
             atk -= this.shildBoost; // decrease atk by sending reference.

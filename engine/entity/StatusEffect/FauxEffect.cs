@@ -42,7 +42,9 @@ public class FauxEffect : StatusEffect
         if (isCharacterWhoHasEffectDie || isDestroyByAction)
             return;
 
-        Character whoHas = this.getCharacterWhoHasEffect;
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
 
         // remove from pioche.
         for (int i = whoHas.deck.cardsInPioche.Count - 1; i >= 0; i--)

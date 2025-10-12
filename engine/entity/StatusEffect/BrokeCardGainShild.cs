@@ -31,6 +31,6 @@ public class BrokeCardGainShild : StatusEffect
 
     public override void eventWhenCardBroke(ref PackageRefCard packageRefCard)
     {
-        this.getCharacterWhoHasEffect.takeShild(shildByCrack, this.getCharacterWhoHasEffect);
+        this.getCharacterWhoHasEffect?.takeShild(shildByCrack, this.getCharacterWhoHasEffect);
     }
 }

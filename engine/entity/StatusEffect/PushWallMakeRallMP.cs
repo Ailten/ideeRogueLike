@@ -35,7 +35,7 @@ public class PushWallMakeRallMP : StatusEffect
             return;
 
         int rallMP = this.rallMPByCase * cellBePushed;
-        int idEntityLauncher = this.getCharacterWhoHasEffect.idEntity;
+        int idEntityLauncher = this.getCharacterWhoHasEffect?.idEntity ?? -1;
 
         characterPushed.decreaseMP(rallMP, idCharacterWhoDoDecreaseMP: idEntityLauncher); // do rall to character pushed and obstacle (is has one).
         obstacle?.decreaseMP(rallMP, idCharacterWhoDoDecreaseMP: idEntityLauncher);

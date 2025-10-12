@@ -379,8 +379,13 @@ public class PackageRefCard
         this.indexCardHand = indexCardHand;
     }
 
-    public Card getCard()
+    public Card? getCard()
     {
+        if (
+            !TurnManager.isInFight ||
+            this.character.deck.cardsInHand.Count <= this.indexCardHand
+        )
+            return null;
         return this.character.deck.cardsInHand[this.indexCardHand];
     }
 }

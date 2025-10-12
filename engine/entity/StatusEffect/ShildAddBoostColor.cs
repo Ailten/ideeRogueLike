@@ -43,8 +43,12 @@ public class ShildAddBoostColor : StatusEffect
     {
         if (refCard is null) // skip if damage is not maked by a card.
             return;
+            
+        Card? getCard = refCard!.getCard();
+        if (getCard is null)
+            return;
 
-        CardColor colorOfCardUsed = refCard!.getCard().cardColor;
+        CardColor colorOfCardUsed = getCard.cardColor;
         if (colorOfCardUsed.isMatchingColor(this.color))
         {
             atk -= this.shildBoost; // decrease atk by sending reference.

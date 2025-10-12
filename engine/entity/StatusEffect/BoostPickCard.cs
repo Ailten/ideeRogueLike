@@ -10,7 +10,7 @@ public class BoostPickCard : StatusEffect
     }
     public override void ActivateEffect()
     {
-        this.getCharacterWhoHasEffect.deck.pickCountByTurn += this.cardPickBoost;
+        this.getCharacterWhoHasEffect!.deck.pickCountByTurn += this.cardPickBoost;
     }
 
 
@@ -40,7 +40,10 @@ public class BoostPickCard : StatusEffect
         bool isCharacterWhoApplyEffectDie = false,
         bool isDestroyByAction = false)
     {
-        
-        this.getCharacterWhoHasEffect.deck.pickCountByTurn -= this.cardPickBoost; // cancel effect.
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
+
+        whoHas.deck.pickCountByTurn -= this.cardPickBoost; // cancel effect.
     }
 }

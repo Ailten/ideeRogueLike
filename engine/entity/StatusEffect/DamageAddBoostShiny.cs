@@ -33,7 +33,11 @@ public class DamageAddBoostShiny : StatusEffect
         if (refCard is null) // skip if damage is not maked by a card.
             return;
 
-        CardEdition editionOfCardUsed = refCard!.getCard().cardEdition;
+        Card? getCard = refCard!.getCard();
+        if (getCard is null)
+            return;
+
+        CardEdition editionOfCardUsed = getCard.cardEdition;
         if (editionOfCardUsed == CardEdition.Shinny)
         {
             atk += this.damageBoost; // increase atk by sending reference.

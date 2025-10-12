@@ -32,7 +32,11 @@ public class CrackedAddDamage : StatusEffect
 
     private int getAmountOfDamageAddTotal()
     {
-        Deck deck = this.getCharacterWhoHasEffect.deck;
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return 0;
+
+        Deck deck = whoHas.deck;
 
         int crackedCount = 0;
         crackedCount += deck.cardsInCimetier.Where(c => c.cardEdition == CardEdition.Cracked).Count();

@@ -38,9 +38,13 @@ public class HPBoost : StatusEffect
 
     public override void eventWhenPlayerWinFight()
     {
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
+
         this.totalHPUp += this.HPUp;
-        this.getCharacterWhoHasEffect.HP += this.HPUp;
-        this.getCharacterWhoHasEffect.HPmax += this.HPUp;
+        whoHas.HP += this.HPUp;
+        whoHas.HPmax += this.HPUp;
     }
 
     public override void eventWhenStatusEffectDisapear(
@@ -50,8 +54,12 @@ public class HPBoost : StatusEffect
         bool isCharacterWhoApplyEffectDie = false,
         bool isDestroyByAction = false)
     {
-        this.getCharacterWhoHasEffect.HPmax -= this.totalHPUp; // cancel effect.
-        if (this.getCharacterWhoHasEffect.HP > this.getCharacterWhoHasEffect.HPmax) // clamp HP (for no over range HP).
-            this.getCharacterWhoHasEffect.HP = this.getCharacterWhoHasEffect.HPmax;
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
+
+        whoHas.HPmax -= this.totalHPUp; // cancel effect.
+        if (whoHas.HP > whoHas.HPmax) // clamp HP (for no over range HP).
+            whoHas.HP = whoHas.HPmax;
     }
 }

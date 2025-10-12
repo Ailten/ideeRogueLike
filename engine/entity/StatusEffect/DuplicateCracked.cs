@@ -34,7 +34,9 @@ public class DuplicateCracked : StatusEffect
 
     public override void eventWhenCardBroke(ref PackageRefCard packageRefCard)
     {
-        Card card = packageRefCard.getCard();
+        Card? card = packageRefCard.getCard();
+        if (card is null)
+            return;
 
         int rngSave = RandomManager.rng.Next(1000);
         int rangeForSave = (int)Vector.lerpF(0, 999, this.purcentSave);

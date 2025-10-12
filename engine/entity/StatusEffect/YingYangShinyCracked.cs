@@ -35,7 +35,9 @@ public class YingYangShinyCracked : StatusEffect
 
     public override void eventWhenUseACard(ref PackageRefCard packageRefCard)
     {
-        Card card = packageRefCard.getCard(); // get card played.
+        Card? card = packageRefCard.getCard(); // get card played.
+        if (card is null)
+            return;
         if (card.cardEdition == CardEdition.Default) // skip the not default edition.
             return;
 

@@ -43,6 +43,10 @@ public class BalanceEffect : StatusEffect
 
     public override void eventWhenPlayerWinFight()
     {
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
+
         int rngDuplicate = RandomManager.rng.Next(1000); // set rng.
         int rngErase = RandomManager.rng.Next(1000);
         int rangeForDuplicate = (int)Vector.lerpF(0, 999, this.duplicateRate);
@@ -58,11 +62,11 @@ public class BalanceEffect : StatusEffect
             isErase = !isDuplicate;
         }
 
-        int randomIndexEffect = RandomManager.rng.Next(getCharacterWhoHasEffect.statusEffects.Count);
+        int randomIndexEffect = RandomManager.rng.Next(whoHas.statusEffects.Count);
 
         if (isDuplicate) // make duplicate effect.
         {
-            StatusEffect se = getCharacterWhoHasEffect.statusEffects[randomIndexEffect];
+            StatusEffect se = whoHas.statusEffects[randomIndexEffect];
             StatusEffectType set = StaticStatusEffectType.getStatusEffectType(se);
             StatusEffect newSe = StaticStatusEffectType.getStatusEffect(
                 set,
@@ -71,14 +75,14 @@ public class BalanceEffect : StatusEffect
                 se.getTurnLife
             );
 
-            getCharacterWhoHasEffect.AddStatusEffect(newSe);
+            whoHas.AddStatusEffect(newSe);
 
         }
         else
         {
-            StatusEffect se = getCharacterWhoHasEffect.statusEffects[randomIndexEffect];
+            StatusEffect se = whoHas.statusEffects[randomIndexEffect];
 
-            getCharacterWhoHasEffect.dropAStatusEffectByIndex(randomIndexEffect);
+            whoHas.dropAStatusEffectByIndex(randomIndexEffect);
 
             se.eventWhenStatusEffectDisapear(isDestroyByAction: true);
         }

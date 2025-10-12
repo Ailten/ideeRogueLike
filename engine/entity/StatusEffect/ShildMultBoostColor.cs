@@ -44,7 +44,11 @@ public class ShildMultBoostColor : StatusEffect
         if (refCard is null) // skip if damage is not maked by a card.
             return;
 
-        CardColor colorOfCardUsed = refCard!.getCard().cardColor;
+        Card? getCard = refCard!.getCard();
+        if (getCard is null)
+            return;
+
+        CardColor colorOfCardUsed = getCard.cardColor;
         if (colorOfCardUsed.isMatchingColor(this.color))
         {
             atk = (int)(atk * this.shildMult); // aply multiplier by reference.

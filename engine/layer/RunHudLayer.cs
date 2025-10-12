@@ -115,6 +115,7 @@ public class RunHudLayer : Layer
         this.statusEffectUi = new StatusEffectUi(idLayer); // status effect ui.
         this.statusEffectUi.pos = new(380, 5);
         this.statusEffectUi.setWidthSize(720);
+        this.statusEffectUi.setListEffect(TurnManager.getMainPlayerCharacter().statusEffects);
 
         TimeLineUi timeLineUi = new TimeLineUi(idLayer); // time line ui.
         timeLineUi.pos = new(CanvasManager.sizeWindow.x, 110);

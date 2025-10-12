@@ -27,12 +27,14 @@ public class ShinyGainAP : StatusEffect
 
     public override void eventWhenUseACard(ref PackageRefCard packageRefCard)
     {
-        Card card = packageRefCard.getCard();
+        Card? card = packageRefCard.getCard();
+        if (card is null)
+            return;
 
         bool isShiny = (card.cardEdition == CardEdition.Shinny);
         if (isShiny)
         {
-            this.getCharacterWhoHasEffect.increaseAP(1); // boost AP.
+            this.getCharacterWhoHasEffect?.increaseAP(1); // boost AP.
         }
     }
 

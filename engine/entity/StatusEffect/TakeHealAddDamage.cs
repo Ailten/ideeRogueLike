@@ -33,7 +33,9 @@ public class TakeHealAddDamage : StatusEffect
 
     public override void eventWhenTakeAHeal(ref int healIncrement, ref Character? characterGiveHeal, ref PackageRefCard? refCard)
     {
-        Character characterHasEffect = this.getCharacterWhoHasEffect;
+        Character? characterHasEffect = this.getCharacterWhoHasEffect;
+        if (characterHasEffect is null)
+            return;
 
         int HPLeft = characterHasEffect.HPmax - characterHasEffect.HP;
         int healTakableByHPLeft = Math.Min(healIncrement, HPLeft);

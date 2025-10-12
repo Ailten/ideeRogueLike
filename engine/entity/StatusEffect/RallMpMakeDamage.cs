@@ -36,6 +36,6 @@ public class RallMpMakeDamage : StatusEffect
 
         int damage = this.damageByMPDecrease * decrease;
 
-        this.getCharacterWhoHasEffect.makeDamage(whoTakeDecreaseMP, damage); // trap can find the refCard tracking.
+        this.getCharacterWhoHasEffect?.makeDamage(whoTakeDecreaseMP, damage); // trap can find the refCard tracking.
     }
 }

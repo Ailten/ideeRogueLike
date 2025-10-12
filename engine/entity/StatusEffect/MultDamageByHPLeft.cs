@@ -10,7 +10,10 @@ public class MultDamageByHPLeft : StatusEffect
 
     public float getPurcentHPLeft()
     {
-        Character characterHasEffect = this.getCharacterWhoHasEffect;
+        Character? characterHasEffect = this.getCharacterWhoHasEffect;
+        if (characterHasEffect is null)
+            return 0;
+            
         float i = (float)characterHasEffect.HP / characterHasEffect.HPmax;
         i = 1f - i;
         return i;

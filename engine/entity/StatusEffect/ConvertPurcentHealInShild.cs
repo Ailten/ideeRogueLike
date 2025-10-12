@@ -35,6 +35,6 @@ public class ConvertPurcentHealInShild : StatusEffect
 
         healIncrement -= convertAmount;
 
-        this.getCharacterWhoHasEffect.giveShild(target, convertAmount, refCard);
+        this.getCharacterWhoHasEffect?.giveShild(target, convertAmount, refCard);
     }
 }

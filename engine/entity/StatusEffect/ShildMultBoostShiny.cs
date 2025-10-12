@@ -35,7 +35,11 @@ public class ShildMultBoostShiny : StatusEffect
         if (refCard is null) // skip if damage is not maked by a card.
             return;
 
-        CardEdition editionOfCardUsed = refCard!.getCard().cardEdition;
+        Card? getCard = refCard!.getCard();
+        if (getCard is null)
+            return;
+
+        CardEdition editionOfCardUsed = getCard.cardEdition;
         if (editionOfCardUsed == CardEdition.Shinny)
         {
             atk = (int)(atk * this.shildMult); // aply multiplier by reference.

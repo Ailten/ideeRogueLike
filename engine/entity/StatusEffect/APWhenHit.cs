@@ -34,7 +34,9 @@ public class APWhenHit : StatusEffect
 
     public override void eventWhenTargetTakeDamage(ref int atk, ref Character? characterMakeAtk, ref PackageRefCard? refCard)
     {
-        Character whoHas = this.getCharacterWhoHasEffect;
+        Character? whoHas = this.getCharacterWhoHasEffect;
+        if (whoHas is null)
+            return;
 
         if (this.isAPmax)
             whoHas.APmax += this.APUp; // increase AP max.

@@ -32,7 +32,11 @@ public class ShildMultWhenFirst : StatusEffect
 
     public override void eventWhenGiveAShild(ref Character target, ref int shildIncrement, ref PackageRefCard? refCard)
     {
-        if (this.getCharacterWhoHasEffect.deck.cardsInHand.Count >= cardMinInHand)
+        Character? characterWhoHas = this.getCharacterWhoHasEffect;
+        if (characterWhoHas is null)
+            return;
+
+        if (characterWhoHas.deck.cardsInHand.Count >= cardMinInHand)
         {
             shildIncrement = (int)(shildIncrement * this.shildMult);
         }

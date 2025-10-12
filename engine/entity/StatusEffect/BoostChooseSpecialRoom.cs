@@ -11,7 +11,7 @@ public class BoostChooseSpecialRoom : StatusEffect
     }
     public override void ActivateEffect()
     {
-        if (this.getCharacterWhoHasEffect.isAPlayer)
+        if (this.getCharacterWhoHasEffect!.isAPlayer)
             SpecialRoom.layer.amountChoise += chooseBoost;
     }
 
@@ -41,7 +41,7 @@ public class BoostChooseSpecialRoom : StatusEffect
         bool isCharacterWhoApplyEffectDie = false,
         bool isDestroyByAction = false)
     {
-        if (this.getCharacterWhoHasEffect.isAPlayer)
+        if (this.getCharacterWhoHasEffect?.isAPlayer ?? false)
             SpecialRoom.layer.amountChoise += chooseBoost; // cancel effect.
     }
 }
