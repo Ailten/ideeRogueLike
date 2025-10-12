@@ -239,7 +239,13 @@ public class Character : Entity
             return;
 
         //status effect when end turn.
-        this.statusEffects.ForEach(se => se.eventWhenTargetEndTurn());
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            if (!TurnManager.isInFight || this.HP <= 0)
+                break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenTargetEndTurn();
+        }
 
         AP = APmax; //refill AP (for next turn).
         MP = MPmax; //refill MP.

@@ -6,10 +6,11 @@ class Program
 
     // debug :
     // add stuff (background) on layer Option.
-    // verify background on deck menu.
-    // verifier que le player peu mourir (ouvrir layer end run).
-    // verifier que les invoc on bien le text "invoke" en layer detaisl.
-    // edit overide take damage of invoke darumaneko -> set it on a status effect dedicate !
+    
+    // verifier que les invoc on bien le text "invoke" en layer details.
+    // noter PV on details.
+
+    // crash when mob die by burn.  --> normaly patched by a loop for event (can't foreach on a list if the list was change during (like by be killed)).
 
 
 
