@@ -68,6 +68,11 @@ public class ChooseCaracter : Layer
         };
 
 
+        CharacterUi characterUi = new CharacterUi(idLayer); //character sprite show.
+        characterUi.pos = CanvasManager.centerWindow;
+        characterUi.isDrawPseudo = true;
+
+
         _littleButtonLeft = new LittleButtonUi(idLayer);
         littleButtonLeft.text = "<";
         littleButtonLeft.pos = new(
@@ -77,8 +82,10 @@ public class ChooseCaracter : Layer
         littleButtonLeft.eventClick = ()=>{
 
             ChooseCaracter.layer.characterPlayerChooseIndex -= 1; //move index choose.
+            characterUi.spriteType = ChooseCaracter.layer.characterPlayerCanBeChoose[ChooseCaracter.layer.characterPlayerChooseIndex]; //edit sprite character show.
+            characterUi.setPseudo();
 
-            if(ChooseCaracter.layer.characterPlayerChooseIndex == 0) //disable left.
+            if (ChooseCaracter.layer.characterPlayerChooseIndex == 0) //disable left.
                 ChooseCaracter.layer.littleButtonLeft.setIsDisabled(true);
 
             if(ChooseCaracter.layer.characterPlayerChooseIndex < ChooseCaracter.layer.characterPlayerCanBeChoose.Count -1) //unable right.
@@ -96,19 +103,16 @@ public class ChooseCaracter : Layer
         littleButtonRight.eventClick = ()=>{
 
             ChooseCaracter.layer.characterPlayerChooseIndex += 1; //move index choose.
+            characterUi.spriteType = ChooseCaracter.layer.characterPlayerCanBeChoose[ChooseCaracter.layer.characterPlayerChooseIndex]; //edit sprite character show.
+            characterUi.setPseudo();
 
-            if(ChooseCaracter.layer.characterPlayerChooseIndex > 0) //enable left.
+            if (ChooseCaracter.layer.characterPlayerChooseIndex > 0) //enable left.
                 ChooseCaracter.layer.littleButtonLeft.setIsDisabled(false);
 
             if(ChooseCaracter.layer.characterPlayerChooseIndex == ChooseCaracter.layer.characterPlayerCanBeChoose.Count -1) //disable right.
                 ChooseCaracter.layer.littleButtonRight.setIsDisabled(true);
 
         };
-
-
-        CharacterUi characterUi = new CharacterUi(idLayer);
-        characterUi.pos = CanvasManager.centerWindow;
-        characterUi.isDrawPseudo = true;
 
 
         characterPlayerChooseIndex = 0; //reset default choose.

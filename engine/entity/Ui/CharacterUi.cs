@@ -31,7 +31,7 @@ public class CharacterUi : Entity
 
 
     //update pseudo str base on sprite name enum.
-    private void setPseudo()
+    public void setPseudo()
     {
         var grpMatch = new Regex("[a-zA-Z0-9]{1,}$").Match(this.spriteType.ToString());
         if(grpMatch.Success){
