@@ -4,13 +4,13 @@ class Program
 {
     // TODO :
 
-    // debug :
     // add stuff (background) on layer Option.
-    
+
+    // debug :
     // verifier que les invoc on bien le text "invoke" en layer details.
     // noter PV on details.
-
-    // crash when mob die by burn.  --> normaly patched by a loop for event (can't foreach on a list if the list was change during (like by be killed)).
+    
+    // try to kill a bod by burn.
 
 
 
