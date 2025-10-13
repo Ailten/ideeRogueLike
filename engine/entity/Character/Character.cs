@@ -65,7 +65,13 @@ public class Character : Entity
     public virtual void makeDamage(Character target, int atk, PackageRefCard? refCard = null)
     {
         // apply status effect.
-        this.statusEffects.ForEach(se => se.eventWhenTargetMakeDamage(ref target, ref atk, ref refCard));
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            if (!TurnManager.isInFight)
+                break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenTargetMakeDamage(ref target, ref atk, ref refCard);
+        }
 
         target.takeDamage(atk, this, refCard);
 
@@ -77,7 +83,13 @@ public class Character : Entity
     public virtual void takeDamage(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
     {
         // apply status effect.
-        this.statusEffects.ForEach(se => se.eventWhenTargetTakeDamage(ref atk, ref characterMakeAtk, ref refCard));
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            if (!TurnManager.isInFight || this.HP <= 0)
+                break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenTargetTakeDamage(ref atk, ref characterMakeAtk, ref refCard);
+        }
 
         if (SP > 0)
         {
@@ -161,7 +173,13 @@ public class Character : Entity
     public virtual void giveShild(Character target, int shildIncrement, PackageRefCard? refCard = null)
     {
         // apply status effect.
-        this.statusEffects.ForEach(se => se.eventWhenGiveAShild(ref target, ref shildIncrement, ref refCard));
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            if (!TurnManager.isInFight)
+                break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenGiveAShild(ref target, ref shildIncrement, ref refCard);
+        }
 
         target.takeShild(shildIncrement, this, refCard);
     }
@@ -186,7 +204,13 @@ public class Character : Entity
     public virtual void giveHeal(Character target, int healIncrement, PackageRefCard? refCard = null)
     {
         // apply status effect.
-        this.statusEffects.ForEach(se => se.eventWhenMakeAHeal(ref target, ref healIncrement, ref refCard));
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            if (!TurnManager.isInFight)
+                break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenMakeAHeal(ref target, ref healIncrement, ref refCard);
+        }
 
         target.takeHeal(healIncrement, this, refCard);
     }
@@ -194,7 +218,13 @@ public class Character : Entity
     protected virtual void takeHeal(int healIncrement, Character? characterGiveHeal = null, PackageRefCard? refCard = null)
     {
         // apply effect list.
-        this.statusEffects.ForEach(se => se.eventWhenTakeAHeal(ref healIncrement, ref characterGiveHeal, ref refCard));
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            if (!TurnManager.isInFight)
+                break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenTakeAHeal(ref healIncrement, ref characterGiveHeal, ref refCard);
+        }
 
         if (characterGiveHeal?.isInRedTeam ?? false) //increase heal maked on stats save.
             SaveManager.increaseHealMaked(healIncrement);
@@ -265,7 +295,13 @@ public class Character : Entity
     public virtual void startTurn()
     {
         //status effect when start turn.
-        this.statusEffects.ForEach(se => se.eventWhenTargetStartTurn());
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            if (!TurnManager.isInFight || this.HP <= 0)
+                break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenTargetStartTurn();
+        }
 
         SP = 0; //reset shild.
 
@@ -314,13 +350,33 @@ public class Character : Entity
         if (characterMakePush is not null)
         {
             Character characterPushed = this;
-            characterMakePush.statusEffects.ForEach(se => se.eventWhenMakeAWallPush(ref cellBePushed, ref characterPushed, ref obstacle, ref characterMakePush, ref refCard));
+            for (int sei = 0; sei < characterMakePush!.statusEffects.Count; sei++)
+            {
+                if (!TurnManager.isInFight)
+                    break;
+                StatusEffect se = characterMakePush!.statusEffects[sei];
+                se.eventWhenMakeAWallPush(ref cellBePushed, ref characterPushed, ref obstacle, ref characterMakePush, ref refCard);
+            }
         }
-        this.statusEffects.ForEach(se => se.eventWhenTakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard));
+
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            if (!TurnManager.isInFight)
+                break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenTakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard);
+        }
+
         if (obstacle is not null)
         {
             Character? characterPushed = this;
-            obstacle.statusEffects.ForEach(se => se.eventWhenTakeAWallPush(ref cellBePushed, ref characterPushed, ref characterMakePush, ref refCard));
+            for (int sei = 0; sei < obstacle!.statusEffects.Count; sei++)
+            {
+                if (!TurnManager.isInFight)
+                    break;
+                StatusEffect se = obstacle!.statusEffects[sei];
+                se.eventWhenTakeAWallPush(ref cellBePushed, ref characterPushed, ref characterMakePush, ref refCard);
+            }
         }
 
         if (characterMakePush != null)
@@ -355,7 +411,13 @@ public class Character : Entity
             if (charWhoDoDecreaseMP is not null)
             {
                 Character whoTakeDecreaseMP = this;
-                charWhoDoDecreaseMP.statusEffects.ForEach(se => se.eventWhenDecreaseMPOfATarget(ref decrease, ref whoTakeDecreaseMP));
+                for (int sei = 0; sei < charWhoDoDecreaseMP.statusEffects.Count; sei++)
+                {
+                    if (!TurnManager.isInFight)
+                        break;
+                    StatusEffect se = charWhoDoDecreaseMP.statusEffects[sei];
+                    se.eventWhenDecreaseMPOfATarget(ref decrease, ref whoTakeDecreaseMP);
+                }
             }
         }
 
@@ -387,7 +449,13 @@ public class Character : Entity
         TurnManager.addCharacterNextTo(newInvoke, this.idEntity);
 
         // apply status effects.
-        this.statusEffects.ForEach(e => e.eventWhenMakeAnInvoke(ref newInvoke));
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            if (!TurnManager.isInFight)
+                break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenMakeAnInvoke(ref newInvoke);
+        }
     }
 
 
@@ -407,7 +475,13 @@ public class Character : Entity
 
         // apply status effects.
         PackageRefCard packageRefCard = new(this, indexCardFromHand);
-        this.statusEffects.ForEach(e => e.eventWhenUseACard(ref packageRefCard));
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            if (!TurnManager.isInFight)
+                break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenUseACard(ref packageRefCard);
+        }
 
         if (isCracked)
             this.destroyACrackedCard(indexCardFromHand);
@@ -418,7 +492,13 @@ public class Character : Entity
     {
         // apply status effects.
         PackageRefCard packageRefCard = new(this, indexCardFromHand);
-        this.statusEffects.ForEach(e => e.eventWhenCardBroke(ref packageRefCard));
+        for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        {
+            //if (!TurnManager.isInFight)
+            //    break;
+            StatusEffect se = this.statusEffects[sei];
+            se.eventWhenCardBroke(ref packageRefCard);
+        }
 
         this.deck.destroyCardFromHand(indexCardFromHand);
     }
