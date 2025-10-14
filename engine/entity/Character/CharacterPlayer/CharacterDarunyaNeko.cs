@@ -1,7 +1,7 @@
 
 public class CharacterDarunyaNeko : CharacterPlayer
 {
-    public CharacterDarunyaNeko(Vector posIndexCel, Character invokedBy, int APMaxStart = 0) : base(SpriteType.Character_DarunyaNeko, posIndexCel)
+    public CharacterDarunyaNeko(Vector posIndexCel, Character invokedBy, int APMaxStart = 0, CardColor? cardColorUsed = null) : base(SpriteType.Character_DarunyaNeko, posIndexCel)
     {
         this.MPmax = 0;
         this.MP = MPmax;
@@ -16,13 +16,14 @@ public class CharacterDarunyaNeko : CharacterPlayer
         this.deck.addCardToDeck(
             new Card(
                 cardIllu: SpriteType.CardImg_Explsur,
-                cardColor: StaticCardColor.getRandomColor(),
+                cardColor: cardColorUsed ?? StaticCardColor.getRandomColor(),
                 cardEdition: CardEdition.Default,
                 APCost: 2,
                 distanceToUse: new(0, 0),
                 effect: new KeyValuePair<EffectCard, int>(EffectCard.HitAround, 4) //todo: effect explo.
             ),
-            amountOfCardAdd: 3
+            amountOfCardAdd: 3,
+            isSameColor: true
         );
     }
 

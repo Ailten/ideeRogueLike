@@ -63,6 +63,7 @@ public class DetailsCharacter : Layer
         statusEffetUi.zIndex = 3200;
         statusEffetUi.clickOnEffect = (effectClicked, isLeftClick) =>
         {
+            // todo : debug why can'b print details effects when in stage 0.
             statusEffectDetailsUi.setStatusEffect(effectClicked);
             cardDetails.setCard(null);
             cardsUi.unselectCard();

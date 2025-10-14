@@ -9,6 +9,7 @@ class Program
     // debug :
     // verifier que les invoc on bien le text "invoke" en layer details.
     // les details des statusEffect en layer details ne s'affiche pas.
+    // crash when two darunyaneko kill eatch other (?) out of range get current character (maybe due to burn effect again).
     
     // try to kill a bod by burn.
 

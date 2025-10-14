@@ -379,7 +379,7 @@ public static class StaticEffectCard
                 if (characterTarget != null)
                     return;
                 characterLauncher.invokeACharacter(
-                    new CharacterDarunyaNeko(indexPosTarget, characterLauncher, effectValue)
+                    new CharacterDarunyaNeko(indexPosTarget, characterLauncher, effectValue, refCard?.getCard()?.cardColor)
                 );
                 return;
 
@@ -387,7 +387,7 @@ public static class StaticEffectCard
                 if (characterTarget != null)
                     return;
                 characterLauncher.invokeACharacter(
-                    new CharacterLuneAllier(indexPosTarget, characterLauncher, effectValue)
+                    new CharacterLuneAllier(indexPosTarget, characterLauncher, effectValue, refCard?.getCard()?.cardColor)
                 );
                 return;
 

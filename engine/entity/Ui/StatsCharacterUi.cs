@@ -36,6 +36,7 @@ public class StatsCharacterUi : Entity
 
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
+        // todo : maybe make a try catch just for return when getCharacter is out of range ?
         Character character = TurnManager.getCharacterOfCurrentTurn();
         if (!character.isInRedTeam)
         { //print stats of main character durring turn of ennemies.

@@ -247,6 +247,14 @@ public static class TurnManager
     //get entity of current turn.
     public static Character getCharacterOfCurrentTurn()
     {
+        // for debuging when kill make crash.
+        if (indexCharacterTurn < 0 || indexCharacterTurn >= allCharacterInRoom.Count)
+        {
+            Console.WriteLine($"indexCharacterTurn: {indexCharacterTurn}");
+            Console.WriteLine($"allCharacterInRoom: \n[\n{string.Join("\n", allCharacterInRoom.Select(c => $"{c.ToString()}"))}\n]");
+            throw new Exception("getCharacterOfCurrentTurn index out of range !");
+        }
+
         return allCharacterInRoom[indexCharacterTurn];
     }
 

@@ -2,7 +2,7 @@
 
 public class CharacterLuneAllier : CharacterPlayer
 {
-    public CharacterLuneAllier(Vector posIndexCel, Character invokedBy, int amountOfHealByCard = 2) : base(SpriteType.Character_LuneAllier, posIndexCel)
+    public CharacterLuneAllier(Vector posIndexCel, Character invokedBy, int amountOfHealByCard = 2, CardColor? cardColorUsed = null) : base(SpriteType.Character_LuneAllier, posIndexCel)
     {
         this.MPmax = 0;
         this.MP = MPmax;
@@ -17,13 +17,14 @@ public class CharacterLuneAllier : CharacterPlayer
         this.deck.addCardToDeck(
             new Card(
                 cardIllu: SpriteType.CardImg_Barbak,
-                cardColor: StaticCardColor.getRandomColor(),
+                cardColor: cardColorUsed ?? StaticCardColor.getRandomColor(),
                 cardEdition: CardEdition.Default,
                 APCost: 2,
                 distanceToUse: new(1, 2),
                 effect: new KeyValuePair<EffectCard, int>(EffectCard.Heal, amountOfHealByCard)
             ),
-            amountOfCardAdd: 2
+            amountOfCardAdd: 2,
+            isSameColor: true
         );
     }
 
