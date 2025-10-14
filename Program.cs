@@ -8,7 +8,7 @@ class Program
 
     // debug :
     // verifier que les invoc on bien le text "invoke" en layer details.
-    // noter PV on details.
+    // les details des statusEffect en layer details ne s'affiche pas.
     
     // try to kill a bod by burn.
 

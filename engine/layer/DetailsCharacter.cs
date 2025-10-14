@@ -97,7 +97,7 @@ public class DetailsCharacter : Layer
         float posLeftCardDetails = cardDetails.pos.x - 10;
         characterUi.pos.x = Vector.lerpF(10, posLeftCardDetails, 0.5f);
 
-        const float replacementPosStatsY = -100;
+        const float replacementPosStatsY = -100; // print details stats.
         TextPriceProductUi textAP = new(layer.idLayer, $"AP: {characterSelected.AP}/{characterSelected.APmax}");
         textAP.colorText = StatsCharacterUi.getColorTextAP;
         textAP.pos = new(
@@ -110,12 +110,18 @@ public class DetailsCharacter : Layer
             characterUi.pos.x * 1.5f,
             characterUi.pos.y + replacementPosStatsY
         );
+        TextPriceProductUi textHP = new(layer.idLayer, $"HP: {characterSelected.HP}/{characterSelected.HPmax}");
+        textHP.colorText = StatsCharacterUi.getColorTextHP;
+        textHP.pos = new(
+            characterUi.pos.x,
+            characterUi.pos.y + replacementPosStatsY * 1.5f
+        );
         if (characterSelected.isAnInvoc) {
             TextPriceProductUi textIsAnInvoke = new(layer.idLayer, "invocation");
-            textAP.colorText = StatsCharacterUi.getColorTextHP;
-            textAP.pos = new(
-                characterUi.pos.x * 0.5f,
-                characterUi.pos.y - replacementPosStatsY
+            textIsAnInvoke.colorText = StatsCharacterUi.getColorTextHP;
+            textIsAnInvoke.pos = new(
+                characterUi.pos.x,
+                characterUi.pos.y - replacementPosStatsY * 1.5f
             );
         }
 
