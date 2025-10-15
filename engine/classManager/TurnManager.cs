@@ -70,8 +70,8 @@ public static class TurnManager
 
                 allCharacterInRoom.RemoveAt(i); //remove character.
 
-                if(isInFight)
-                    verifyIfFightIsEnd(); //check end fight.
+                //if(isInFight)
+                //    verifyIfFightIsEnd(); //check end fight.
 
                 if (i < indexCharacterTurn) //replace index at right place.
                     moveCharacterIndex(-1);
@@ -109,8 +109,15 @@ public static class TurnManager
 
 
     //verify if the current fight is end.
-    private static void verifyIfFightIsEnd()
+    public static void verifyIfFightIsEnd()
     {
+        // do the apply death.
+        for (int i = allCharacterInRoom.Count; i >= 0; i--)
+        {
+            if (allCharacterInRoom[i].isMarkDeath)
+                allCharacterInRoom[i].death(isMarkAsDead: false);
+        }
+
         bool? teamFind = null;
         foreach (Character c in allCharacterInRoom)
         {

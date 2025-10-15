@@ -43,8 +43,10 @@ public class CharacterPlayer : Character
         if (isMarkAsDead)
         {
             this.isMarkDeath = true;
+            this.killedBy = characterMakeKill;
             return;
         }
+        characterMakeKill = this.killedBy;
         
         if (!this.isAPlayer)
         {

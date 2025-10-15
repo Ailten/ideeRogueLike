@@ -45,6 +45,9 @@ public static class WalkManager
         {
             RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(false);
         }
+
+        // at end chaine action (walk), verify kill and ifIsEndFight.
+        TurnManager.verifyIfFightIsEnd();
     }
 
     public static void updateWalk()

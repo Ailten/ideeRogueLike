@@ -48,6 +48,7 @@ public class Character : Entity
 
 
     public bool isMarkDeath = false;
+    public Character? killedBy = null;
 
 
     public Character(SpriteType spriteType, Vector posIndexCel) : base(RunLayer.layer.idLayer, spriteType)
@@ -146,8 +147,10 @@ public class Character : Entity
         if (isMarkAsDead)
         {
             this.isMarkDeath = true;
+            this.killedBy = characterMakeKill;
             return;
         }
+        characterMakeKill = this.killedBy;
 
         // todo: apply effects list. (warning, if implement, need to re-launch chaine event with verify death and end fight !)
 
@@ -513,6 +516,9 @@ public class Character : Entity
             this.destroyACrackedCard(indexCardFromHand);
         else
             this.deck.pushCardFromHandIntoCimetier(indexCardFromHand);
+
+        // at end chaine action, verify kill and ifIsEndFight.
+        TurnManager.verifyIfFightIsEnd();
     }
     public void destroyACrackedCard(int indexCardFromHand)
     {
