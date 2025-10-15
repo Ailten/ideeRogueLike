@@ -11,7 +11,7 @@ class Program
     // les details des statusEffect en layer details ne s'affiche pas.
     // crash when two darunyaneko kill eatch other (?) out of range get current character (maybe due to burn effect again).
 
-    // try to kill a bod by burn.
+    // try to kill a bod by burn. <---
     
     // do details screen about cel type in left click ?
 

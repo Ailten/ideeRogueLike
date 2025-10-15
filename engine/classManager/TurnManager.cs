@@ -108,15 +108,23 @@ public static class TurnManager
     }
 
 
-    //verify if the current fight is end.
-    public static void verifyIfFightIsEnd()
+    private static void applyDeath()
     {
         // do the apply death.
-        for (int i = allCharacterInRoom.Count; i >= 0; i--)
+        for (int i = allCharacterInRoom.Count - 1; i >= 0; i--)
         {
             if (allCharacterInRoom[i].isMarkDeath)
                 allCharacterInRoom[i].death(isMarkAsDead: false);
         }
+    }
+
+    //verify if the current fight is end.
+    public static void verifyIfFightIsEnd()
+    {
+        if (!isInFight)
+            return;
+
+        applyDeath();
 
         bool? teamFind = null;
         foreach (Character c in allCharacterInRoom)
@@ -173,6 +181,7 @@ public static class TurnManager
             //TODO. (like increment fight win, or loot).
 
             deathAllInvoc(); //death all invoc.
+            applyDeath();
 
             //reset all stats player when fight is end.
             Character player = getMainPlayerCharacter();
@@ -198,6 +207,10 @@ public static class TurnManager
             // discard hand at end fight (every card of deck on cimetier).
             player.deck.discardOfEndTurn();
             player.deck.pushAllCardPiocheIntoCimetier();
+
+            // clean/update hands print. (prevend if force end fight by hard index turn skiping).
+            RunHudLayer.layer.cardHandListCardUi!.setListCard(player.deck.cardsInHand);
+            RunHudLayer.layer.statusEffectUi!.setListEffect(player.statusEffects);
 
         }
         else //ennemy win the fight.
@@ -259,7 +272,8 @@ public static class TurnManager
         {
             Console.WriteLine($"indexCharacterTurn: {indexCharacterTurn}");
             Console.WriteLine($"allCharacterInRoom: \n[\n{string.Join("\n", allCharacterInRoom.Select(c => $"{c.ToString()}"))}\n]");
-            throw new Exception("getCharacterOfCurrentTurn index out of range !");
+            //throw new Exception("getCharacterOfCurrentTurn index out of range !");
+            indexCharacterTurn = 0; // hard patch (fixe me).
         }
 
         return allCharacterInRoom[indexCharacterTurn];

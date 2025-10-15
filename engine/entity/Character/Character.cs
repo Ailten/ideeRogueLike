@@ -174,14 +174,21 @@ public class Character : Entity
             if(TurnManager.isInFight)
                 this.skipTurn();
         }
-        else if (characterMakeKill != null)
+        if (characterMakeKill != null)
         {
-            characterMakeKill!.gainGold(this.PO);
+            Character parentEndWhoKill = characterMakeKill; // send gold to parent of invoke.
+            while (parentEndWhoKill.isAnInvoc)
+            {
+                if(parentEndWhoKill.invokedBy is not null)
+                    parentEndWhoKill = parentEndWhoKill.invokedBy;
+            }
+            parentEndWhoKill.gainGold(this.PO);
         }
 
         //remove from list turn.
         TurnManager.removeCharacterInRoom(this);
     }
+    
 
     //give shild point.
     public virtual void giveShild(Character target, int shildIncrement, PackageRefCard? refCard = null)

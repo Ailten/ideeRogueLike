@@ -16,7 +16,7 @@ public class APWhenHit : StatusEffect
         string isAPConstant = this.isAPmax ? "constant" : "pour ce tour";
         return (
             $"- {this.getName()} :\n" +
-            $"gagne {this.APUp} {isAPConstant}, a chaque coup recu.\n" +
+            $"gagne {this.APUp} AP {isAPConstant}, a chaque coup recu.\n" +
             this.getDescriptionTurn()
         );
     }
