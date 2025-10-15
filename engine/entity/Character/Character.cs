@@ -47,6 +47,9 @@ public class Character : Entity
     }
 
 
+    public bool isMarkDeath = false;
+
+
     public Character(SpriteType spriteType, Vector posIndexCel) : base(RunLayer.layer.idLayer, spriteType)
     {
         this.size = new(126, 126);
@@ -65,13 +68,14 @@ public class Character : Entity
     public virtual void makeDamage(Character target, int atk, PackageRefCard? refCard = null)
     {
         // apply status effect.
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            if (!TurnManager.isInFight)
-                break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenTargetMakeDamage(ref target, ref atk, ref refCard);
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    if (!TurnManager.isInFight)
+        //        break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenTargetMakeDamage(ref target, ref atk, ref refCard);
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenTargetMakeDamage(ref target, ref atk, ref refCard));
 
         target.takeDamage(atk, this, refCard);
 
@@ -83,13 +87,14 @@ public class Character : Entity
     public virtual void takeDamage(int atk, Character? characterMakeAtk = null, PackageRefCard? refCard = null)
     {
         // apply status effect.
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            if (!TurnManager.isInFight || this.HP <= 0)
-                break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenTargetTakeDamage(ref atk, ref characterMakeAtk, ref refCard);
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    if (!TurnManager.isInFight || this.HP <= 0)
+        //        break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenTargetTakeDamage(ref atk, ref characterMakeAtk, ref refCard);
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenTargetTakeDamage(ref atk, ref characterMakeAtk, ref refCard));
 
         if (SP > 0)
         {
@@ -136,9 +141,15 @@ public class Character : Entity
     }
 
     //call when character dead.
-    public virtual void death(Character? characterMakeKill = null, PackageRefCard? refCard = null)
+    public virtual void death(Character? characterMakeKill = null, PackageRefCard? refCard = null, bool isMarkAsDead = true)
     {
-        // todo: apply effects list.
+        if (isMarkAsDead)
+        {
+            this.isMarkDeath = true;
+            return;
+        }
+
+        // todo: apply effects list. (warning, if implement, need to re-launch chaine event with verify death and end fight !)
 
         if (characterMakeKill?.isInRedTeam ?? false) //increase kill count on stats save.
             SaveManager.increaseKillCount(this.GetType());
@@ -173,13 +184,14 @@ public class Character : Entity
     public virtual void giveShild(Character target, int shildIncrement, PackageRefCard? refCard = null)
     {
         // apply status effect.
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            if (!TurnManager.isInFight)
-                break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenGiveAShild(ref target, ref shildIncrement, ref refCard);
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    if (!TurnManager.isInFight)
+        //        break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenGiveAShild(ref target, ref shildIncrement, ref refCard);
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenGiveAShild(ref target, ref shildIncrement, ref refCard));
 
         target.takeShild(shildIncrement, this, refCard);
     }
@@ -204,13 +216,14 @@ public class Character : Entity
     public virtual void giveHeal(Character target, int healIncrement, PackageRefCard? refCard = null)
     {
         // apply status effect.
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            if (!TurnManager.isInFight)
-                break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenMakeAHeal(ref target, ref healIncrement, ref refCard);
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    if (!TurnManager.isInFight)
+        //        break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenMakeAHeal(ref target, ref healIncrement, ref refCard);
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenMakeAHeal(ref target, ref healIncrement, ref refCard));
 
         target.takeHeal(healIncrement, this, refCard);
     }
@@ -218,16 +231,20 @@ public class Character : Entity
     protected virtual void takeHeal(int healIncrement, Character? characterGiveHeal = null, PackageRefCard? refCard = null)
     {
         // apply effect list.
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            if (!TurnManager.isInFight)
-                break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenTakeAHeal(ref healIncrement, ref characterGiveHeal, ref refCard);
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    if (!TurnManager.isInFight)
+        //        break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenTakeAHeal(ref healIncrement, ref characterGiveHeal, ref refCard);
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenTakeAHeal(ref healIncrement, ref characterGiveHeal, ref refCard));
 
         if (characterGiveHeal?.isInRedTeam ?? false) //increase heal maked on stats save.
             SaveManager.increaseHealMaked(healIncrement);
+
+        if (this.isMarkDeath) // don't heal if death during the chaine.
+            return;
 
         int healClamped = Math.Min(healIncrement, this.HPmax - this.HP);
         HP += healClamped;
@@ -269,13 +286,14 @@ public class Character : Entity
             return;
 
         //status effect when end turn.
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            if (!TurnManager.isInFight || this.HP <= 0)
-                break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenTargetEndTurn();
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    if (!TurnManager.isInFight || this.HP <= 0)
+        //        break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenTargetEndTurn();
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenTargetEndTurn());
 
         AP = APmax; //refill AP (for next turn).
         MP = MPmax; //refill MP.
@@ -295,13 +313,14 @@ public class Character : Entity
     public virtual void startTurn()
     {
         //status effect when start turn.
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            if (!TurnManager.isInFight || this.HP <= 0)
-                break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenTargetStartTurn();
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    if (!TurnManager.isInFight || this.HP <= 0)
+        //        break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenTargetStartTurn();
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenTargetStartTurn());
 
         SP = 0; //reset shild.
 
@@ -350,33 +369,36 @@ public class Character : Entity
         if (characterMakePush is not null)
         {
             Character characterPushed = this;
-            for (int sei = 0; sei < characterMakePush!.statusEffects.Count; sei++)
-            {
-                if (!TurnManager.isInFight)
-                    break;
-                StatusEffect se = characterMakePush!.statusEffects[sei];
-                se.eventWhenMakeAWallPush(ref cellBePushed, ref characterPushed, ref obstacle, ref characterMakePush, ref refCard);
-            }
+            //for (int sei = 0; sei < characterMakePush!.statusEffects.Count; sei++)
+            //{
+            //    if (!TurnManager.isInFight)
+            //        break;
+            //    StatusEffect se = characterMakePush!.statusEffects[sei];
+            //    se.eventWhenMakeAWallPush(ref cellBePushed, ref characterPushed, ref obstacle, ref characterMakePush, ref refCard);
+            //}
+            characterMakePush!.statusEffects.ForEach(se => se.eventWhenMakeAWallPush(ref cellBePushed, ref characterPushed, ref obstacle, ref characterMakePush, ref refCard));
         }
 
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            if (!TurnManager.isInFight)
-                break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenTakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard);
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    if (!TurnManager.isInFight)
+        //        break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenTakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard);
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenTakeAWallPush(ref cellBePushed, ref obstacle, ref characterMakePush, ref refCard));
 
         if (obstacle is not null)
         {
             Character? characterPushed = this;
-            for (int sei = 0; sei < obstacle!.statusEffects.Count; sei++)
-            {
-                if (!TurnManager.isInFight)
-                    break;
-                StatusEffect se = obstacle!.statusEffects[sei];
-                se.eventWhenTakeAWallPush(ref cellBePushed, ref characterPushed, ref characterMakePush, ref refCard);
-            }
+            //for (int sei = 0; sei < obstacle!.statusEffects.Count; sei++)
+            //{
+            //    if (!TurnManager.isInFight)
+            //        break;
+            //    StatusEffect se = obstacle!.statusEffects[sei];
+            //    se.eventWhenTakeAWallPush(ref cellBePushed, ref characterPushed, ref characterMakePush, ref refCard);
+            //}
+            obstacle!.statusEffects.ForEach(se => se.eventWhenTakeAWallPush(ref cellBePushed, ref characterPushed, ref characterMakePush, ref refCard));
         }
 
         if (characterMakePush != null)
@@ -411,13 +433,15 @@ public class Character : Entity
             if (charWhoDoDecreaseMP is not null)
             {
                 Character whoTakeDecreaseMP = this;
-                for (int sei = 0; sei < charWhoDoDecreaseMP.statusEffects.Count; sei++)
-                {
-                    if (!TurnManager.isInFight)
-                        break;
-                    StatusEffect se = charWhoDoDecreaseMP.statusEffects[sei];
-                    se.eventWhenDecreaseMPOfATarget(ref decrease, ref whoTakeDecreaseMP);
-                }
+                //for (int sei = 0; sei < charWhoDoDecreaseMP.statusEffects.Count; sei++)
+                //{
+                //    if (!TurnManager.isInFight)
+                //        break;
+                //    StatusEffect se = charWhoDoDecreaseMP.statusEffects[sei];
+                //    se.eventWhenDecreaseMPOfATarget(ref decrease, ref whoTakeDecreaseMP);
+                //}
+                charWhoDoDecreaseMP.statusEffects.ForEach(se => se.eventWhenDecreaseMPOfATarget(ref decrease, ref whoTakeDecreaseMP));
+
             }
         }
 
@@ -449,13 +473,14 @@ public class Character : Entity
         TurnManager.addCharacterNextTo(newInvoke, this.idEntity);
 
         // apply status effects.
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            if (!TurnManager.isInFight)
-                break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenMakeAnInvoke(ref newInvoke);
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    if (!TurnManager.isInFight)
+        //        break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenMakeAnInvoke(ref newInvoke);
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenMakeAnInvoke(ref newInvoke));
     }
 
 
@@ -475,13 +500,14 @@ public class Character : Entity
 
         // apply status effects.
         PackageRefCard packageRefCard = new(this, indexCardFromHand);
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            if (!TurnManager.isInFight)
-                break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenUseACard(ref packageRefCard);
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    if (!TurnManager.isInFight)
+        //        break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenUseACard(ref packageRefCard);
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenUseACard(ref packageRefCard));
 
         if (isCracked)
             this.destroyACrackedCard(indexCardFromHand);
@@ -492,13 +518,14 @@ public class Character : Entity
     {
         // apply status effects.
         PackageRefCard packageRefCard = new(this, indexCardFromHand);
-        for (int sei = 0; sei < this.statusEffects.Count; sei++)
-        {
-            //if (!TurnManager.isInFight)
-            //    break;
-            StatusEffect se = this.statusEffects[sei];
-            se.eventWhenCardBroke(ref packageRefCard);
-        }
+        //for (int sei = 0; sei < this.statusEffects.Count; sei++)
+        //{
+        //    //if (!TurnManager.isInFight)
+        //    //    break;
+        //    StatusEffect se = this.statusEffects[sei];
+        //    se.eventWhenCardBroke(ref packageRefCard);
+        //}
+        this.statusEffects.ForEach(se => se.eventWhenCardBroke(ref packageRefCard));
 
         this.deck.destroyCardFromHand(indexCardFromHand);
     }
