@@ -162,6 +162,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.CardImg_Infestation, new Vector(1540, 575), new Vector(219, 125));
         s.addSpriteType(SpriteType.CardImg_Egg, new Vector(0, 701), new Vector(219, 125)); // (l4).
         s.addSpriteType(SpriteType.CardImg_Fissure, new Vector(220, 701), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_CornDAuroch, new Vector(440, 701), new Vector(219, 125));
+        s.addSpriteType(SpriteType.CardImg_Kokorico, new Vector(660, 701), new Vector(219, 125));
 
         s = new Sprite("FX");
         s.addSpriteType(SpriteType.FX_turnOn, new Vector(0, 0), new Vector(63, 63));

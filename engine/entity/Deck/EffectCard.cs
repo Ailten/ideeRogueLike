@@ -31,6 +31,7 @@ public enum EffectCard
     SelfAPBoost, //send a AP boost to self launcher.
     FissureACard, //set a card target deck, fissured.
     Eggify, //transform into an egg.
+    RetMPAllTarget, //ret MP to all entity in cmbt except launcher.
 }
 
 
@@ -98,6 +99,8 @@ public static class StaticEffectCard
                 return "Fissure";
             case (EffectCard.Eggify):
                 return "Oeufification";
+            case (EffectCard.RetMPAllTarget):
+                return "Cri petrifiant";
                 
                 
             default:
@@ -248,6 +251,11 @@ public static class StaticEffectCard
             case (EffectCard.Eggify):
                 return ("- " + effectCard.getName() + " :\n" +
                     $"transforme en oeuf pour {value} tours."
+                );
+            case (EffectCard.RetMPAllTarget):
+                return ("- " + effectCard.getName() + " :\n" +
+                    $"retire {value} MP a toute les creature.\n" +
+                    $"epargne le lanceur."
                 );
 
 
@@ -613,6 +621,13 @@ public static class StaticEffectCard
                     characterIdWhoApplyEffect: characterLauncher.idEntity,
                     turnLife: effectValue
                 ));
+                return;
+            case (EffectCard.RetMPAllTarget):
+                for (int i = TurnManager.getAllCharacters().Count-1; i >=0; i--) {
+                    if (!TurnManager.isInFight || TurnManager.getAllCharacters()[i] == characterLauncher)
+                        continue;
+                    TurnManager.getAllCharacters()[i].decreaseMP(effectValue, idCharacterWhoDoDecreaseMP:characterLauncher.idEntity);
+                }
                 return;
 
 

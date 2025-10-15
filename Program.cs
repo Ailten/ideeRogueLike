@@ -9,7 +9,7 @@ class Program
     // debug :
     // les details des statusEffect en layer details ne s'affiche pas.
     
-    // try to kill a bod by burn. <---
+    // try to kill a mod by burn. <---
     
     // do details screen about cel type in left click ?
 

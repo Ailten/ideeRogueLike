@@ -11,6 +11,7 @@ public enum Succes
     Kill_5_Armor,
     Kill_5_Squelette,
     Kill_5_Ghost,
+    Kill_5_Pumkin,
     Kill_5_Eye,
     Take_10_Coin,
     Take_100_Coin,
@@ -23,6 +24,7 @@ public enum Succes
     Damage_100,
     Played_1_Shiny,
     Played_5_Shiny,
+    Played_10_Shiny,
     Played_15_Shiny,
     Take_20_Damage,
     Take_40_Damage,
@@ -225,6 +227,29 @@ public static class StaticSucces
                     }
                 );
 
+            case (Succes.Played_10_Shiny):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_CornDAuroch,
+                    cardColor: CardColor.Red,
+                    cardEdition: CardEdition.Default,
+                    APCost: 3,
+                    distanceToUse: new(0, 1),
+                    effects: new() {
+                        new KeyValuePair<EffectCard, int>(EffectCard.Shild, 20)
+                    }
+                );
+
+            case (Succes.Kill_5_Pumkin):
+                return new Card(
+                    cardIllu: SpriteType.CardImg_Kokorico,
+                    cardColor: CardColor.Red,
+                    cardEdition: CardEdition.Default,
+                    APCost: 3,
+                    distanceToUse: new(0, 0),
+                    effects: new() {
+                        new KeyValuePair<EffectCard, int>(EffectCard.RetMPAllTarget, 1)
+                    }
+                );
 
 
             default:
@@ -279,6 +304,8 @@ public static class StaticSucces
                 return SaveManager.getAmountKillCount(typeof(CharacterSquelette)) >= 5;
             case (Succes.Kill_5_Ghost):
                 return SaveManager.getAmountKillCount(typeof(CharacterGhost)) >= 5;
+            case (Succes.Kill_5_Pumkin):
+                return SaveManager.getAmountKillCount(typeof(CharacterPumkin)) >= 5;
             case (Succes.Kill_5_Eye):
                 return SaveManager.getAmountKillCount(typeof(CharacterEye)) >= 5;
             case (Succes.Take_10_Coin):
@@ -303,6 +330,8 @@ public static class StaticSucces
                 return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 1;
             case (Succes.Played_5_Shiny):
                 return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 5;
+            case (Succes.Played_10_Shiny):
+                return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 10;
             case (Succes.Played_15_Shiny):
                 return SaveManager.getAmountCardEditionPlayed(CardEdition.Shinny) >= 25;
             case (Succes.Take_20_Damage):

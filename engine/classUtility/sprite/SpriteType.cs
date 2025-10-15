@@ -154,6 +154,8 @@ public enum SpriteType
     CardImg_Infestation,
     CardImg_Egg,
     CardImg_Fissure,
+    CardImg_CornDAuroch,
+    CardImg_Kokorico,
 
 
     // --- FX.
@@ -281,6 +283,11 @@ public static class StaticSpriteType
                 return ("On ne fait pas d'omelette sans casser quelque oeufs.");
             case (SpriteType.CardImg_Fissure):
                 return ("Ca c'est une fissure !");
+            case (SpriteType.CardImg_CornDAuroch):
+                return ("Au gue, au gue.");
+            case (SpriteType.CardImg_Kokorico):
+                return ("Une poule en feu.");
+                
 
 
             default:
@@ -345,6 +352,10 @@ public static class StaticSpriteType
                 return ("Oeuf");
             case (SpriteType.CardImg_Fissure):
                 return ("Fissure");
+            case (SpriteType.CardImg_CornDAuroch):
+                return ("Corn d'Auroch");
+            case (SpriteType.CardImg_Kokorico):
+                return ("Kokorico neon");
 
             default:
                 return spriteType.ToString().Substring("CardImg_".Length); //default get string from enum name.
