@@ -36,7 +36,7 @@ public class AddIndirectDamage : StatusEffect
         if (whoHas is null)
             return;
 
-        if (TurnManager.getCharacterOfCurrentTurn() != whoHas)
+        if (TurnManager.getCharacterOfCurrentTurn() == whoHas)
             return;
 
         atk += this.damageBoost; // increase atk by sending reference.

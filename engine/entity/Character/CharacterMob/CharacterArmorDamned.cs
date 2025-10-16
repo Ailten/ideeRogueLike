@@ -1,7 +1,7 @@
 
 public class CharacterArmorDamned : CharacterMob
 {
-    public CharacterArmorDamned(Vector posIndexCel) : base(SpriteType.Character_Armor, posIndexCel)
+    public CharacterArmorDamned(Vector posIndexCel) : base(SpriteType.Character_ArmorDamned, posIndexCel)
     {
         //IA logic.
         this.logicState.Add(LogicState.selfShild);

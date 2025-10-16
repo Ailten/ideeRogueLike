@@ -272,7 +272,7 @@ public class CharacterMob : Character
             }
 
             //get all oponents (sort by poxi).
-                List<Character> oponents = TurnManager.getAllCharacters().Where((c) => //filter.
+            List<Character> oponents = TurnManager.getAllCharacters().Where((c) => //filter.
                 c.isInRedTeam != this.isInRedTeam
             ).OrderBy((c) =>  //order by proximity.
                 Vector.distance(this.pos, c.pos)
@@ -296,7 +296,7 @@ public class CharacterMob : Character
             directionToTarget.y = (directionToTarget.y > 1) ? 1 : -1;
 
             bool isTakeThisPath = false;
-            for (int i = 1; i < this.MP; i++)
+            for (int i = 1; i <= this.MP; i++)
             {
                 Vector posDestWalk = this.indexPosCel + directionToTarget * i;
 
@@ -309,24 +309,29 @@ public class CharacterMob : Character
                 PathFindingManager.evalAPath( //eval a pathfinding.
                     this.indexPosCel, //posIndexFrom.
                     posDestWalk, //posIndexTo.
-                    i + 1, //infinit length path.
+                    this.MP, //infinit length path.
                     0 //the distance alow to target for stop path.
                 );
 
+                if (i == this.MP)
+                    isTakeThisPath = true;
                 if (isTakeThisPath)
                     break;
 
                 if (!PathFindingManager.isPathValid)
                 {
                     if (i == 1)
-                    {
-                        this.nextLogicState();
-                        return;
-                    }
+                        break;
 
                     isTakeThisPath = true; // take the last path found.
                     i -= 2; // cancel this one, and re-do the last.
+                    continue;
                 }
+            }
+            if(!isTakeThisPath)
+            {
+                this.nextLogicState();
+                return;
             }
 
             PathFindingManager.editPathToStayFirstsCels(this.MP); //remove elemnt path until stay as much as current caracter can walk.

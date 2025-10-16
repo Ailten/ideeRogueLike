@@ -1,7 +1,7 @@
 
 public class CharacterGoblinDeez : CharacterMob
 {
-    public CharacterGoblinDeez(Vector posIndexCel) : base(SpriteType.Character_Goblin, posIndexCel)
+    public CharacterGoblinDeez(Vector posIndexCel) : base(SpriteType.Character_GoblinDeez, posIndexCel)
     {
         //IA logic.
         this.logicState.Add(LogicState.chase);
