@@ -265,9 +265,14 @@ public class CharacterMob : Character
     {
         if (targetOfState == null)
         {
+            if(this.MP == 0)
+            {
+                this.nextLogicState();
+                return;
+            }
 
             //get all oponents (sort by poxi).
-            List<Character> oponents = TurnManager.getAllCharacters().Where((c) => //filter.
+                List<Character> oponents = TurnManager.getAllCharacters().Where((c) => //filter.
                 c.isInRedTeam != this.isInRedTeam
             ).OrderBy((c) =>  //order by proximity.
                 Vector.distance(this.pos, c.pos)
@@ -320,7 +325,7 @@ public class CharacterMob : Character
                     }
 
                     isTakeThisPath = true; // take the last path found.
-                    i -= 2;
+                    i -= 2; // cancel this one, and re-do the last.
                 }
             }
 

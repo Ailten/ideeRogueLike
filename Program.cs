@@ -4,7 +4,9 @@ class Program
 {
     // TODO :
 
-    // add stuff (background) on layer Option.
+    // add stuff on layer Option.
+    // add stuff on layer Succes.
+    // add stuff on layer EndFight.
 
     // debug :
     // les details des statusEffect en layer details ne s'affiche pas.
