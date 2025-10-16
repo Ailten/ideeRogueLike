@@ -246,7 +246,7 @@ public static class StaticEffectCard
             case (EffectCard.FissureACard):
                 return ("- " + effectCard.getName() + " :\n" +
                     $"transforme {value} de la cible.\n"+
-                    $"les cartes deviennes fissurées."
+                    $"les cartes deviennes fissurees."
                 );
             case (EffectCard.Eggify):
                 return ("- " + effectCard.getName() + " :\n" +
