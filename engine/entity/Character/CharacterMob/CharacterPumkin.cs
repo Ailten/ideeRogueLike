@@ -7,6 +7,7 @@ public class CharacterPumkin : CharacterMob
         this.logicState.Add(LogicState.fuit);
         this.logicState.Add(LogicState.firstCardPlayableOnEmpty);
         this.logicState.Add(LogicState.firstCardPlayableOnEmpty);
+        this.logicState.Add(LogicState.skipTurn);
 
         //stats.
         this.MPmax = 3;

@@ -22,10 +22,11 @@ public class CharacterSquelette : CharacterMob
 
         //set deck.
         this.deck.pickCountByTurn = 2;
+        CardColor cardColor = StaticCardColor.getRandomColor();
         this.deck.addCardToDeck(
             new Card(
                 cardIllu: SpriteType.CardImg_AQuiLOs,
-                cardColor: CardColor.Green,
+                cardColor: cardColor,
                 cardEdition: CardEdition.Default,
                 APCost: 4,
                 distanceToUse: new(1, 1),
@@ -35,19 +36,19 @@ public class CharacterSquelette : CharacterMob
                 }
             ),
             amountOfCardAdd: 1,
-            isSameColor: false
+            isSameColor: true
         );
         this.deck.addCardToDeck(
             new Card(
                 cardIllu: SpriteType.CardImg_AQuiLOs,
-                cardColor: CardColor.Green,
+                cardColor: cardColor,
                 cardEdition: CardEdition.Default,
                 APCost: 1,
                 distanceToUse: new(1, 1),
                 effect: new KeyValuePair<EffectCard, int>(EffectCard.RetResColor, 2)
             ),
             amountOfCardAdd: 1,
-            isSameColor: false
+            isSameColor: true
         );
 
     }

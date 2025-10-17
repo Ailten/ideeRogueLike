@@ -7,6 +7,7 @@ public class CharacterArachnide : CharacterMob
         this.logicState.Add(LogicState.chase);
         this.logicState.Add(LogicState.firstOneAPCardOnOponent);
         this.logicState.Add(LogicState.firstCardPlayableOnEmpty);
+        this.logicState.Add(LogicState.skipTurn);
 
         //stats.
         this.MPmax = 2;

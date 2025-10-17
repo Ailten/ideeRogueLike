@@ -97,6 +97,8 @@ public class Character : Entity
         //}
         this.statusEffects.ForEach(se => se.eventWhenTargetTakeDamage(ref atk, ref characterMakeAtk, ref refCard));
 
+        atk = Math.Max(atk, 0); // can't take damage negatif (making it heal).
+
         if (SP > 0)
         {
             int damageAplyToSP = Math.Min(atk, SP);
@@ -113,6 +115,8 @@ public class Character : Entity
     //apply damage to shild.
     private void takeDamageShild(int atk, PackageRefCard? refCard = null)
     {
+        atk = Math.Max(atk, 0); // can't take damage negatif (making it heal).
+
         int SPdecrement = Math.Min(atk, SP);
 
         SP -= SPdecrement;
@@ -130,6 +134,7 @@ public class Character : Entity
         if (this.isAPlayer) //increase damage taked on stats save.
             SaveManager.increaseDamageTaked(atk);
 
+        atk = Math.Max(atk, 0); // can't take damage negatif (making it heal).
         int atkClamped = Math.Min(atk, HP);
         HP -= atkClamped;
 
@@ -214,6 +219,8 @@ public class Character : Entity
         if (characterGiveShild?.isInRedTeam ?? false) //increase damage maked on stats save.
             SaveManager.increaseShildMaked(shildIncrement);
 
+        shildIncrement = Math.Max(shildIncrement, 0); // can't be negatif (making it damage).
+
         SP += shildIncrement;
 
         //make an FX star (and sound) for gain shild.
@@ -256,6 +263,7 @@ public class Character : Entity
         if (this.isMarkDeath) // don't heal if death during the chaine.
             return;
 
+        healIncrement = Math.Max(healIncrement, 0); // can't be negatif (making it damage).
         int healClamped = Math.Min(healIncrement, this.HPmax - this.HP);
         HP += healClamped;
 
@@ -273,6 +281,7 @@ public class Character : Entity
         if (this.isAPlayer)
             SaveManager.increaseCoinTaked(POIncrement);
 
+        POIncrement = Math.Max(POIncrement, 0); // can't be negatif.
         this.PO += POIncrement;
 
         if (POIncrement > 0)
@@ -280,6 +289,7 @@ public class Character : Entity
     }
     public void decreaseGold(int POdecrease)
     {
+        POdecrease = Math.Max(POdecrease, 0); // can't be negatif.
         this.PO -= POdecrease;
     }
 

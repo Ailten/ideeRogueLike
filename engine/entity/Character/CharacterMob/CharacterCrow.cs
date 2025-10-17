@@ -9,6 +9,7 @@ public class CharacterCrow : CharacterMob
         this.logicState.Add(LogicState.firstTwoAPCardOnOponent);
         this.logicState.Add(LogicState.firstTwoAPCardOnOponent);
         this.logicState.Add(LogicState.fuit);
+        this.logicState.Add(LogicState.skipTurn);
 
         //stats.
         this.MPmax = 5;

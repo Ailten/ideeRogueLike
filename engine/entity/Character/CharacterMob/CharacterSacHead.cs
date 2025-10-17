@@ -6,6 +6,7 @@ public class CharacterSacHead : CharacterMob
         //IA logic.
         this.logicState.Add(LogicState.chase);
         this.logicState.Add(LogicState.firstHit);
+        this.logicState.Add(LogicState.skipTurn);
 
         //stats.
         this.MPmax = 2;
