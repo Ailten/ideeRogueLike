@@ -13,8 +13,8 @@ public class CharacterMob : Character
         new MobType(SpriteType.Character_Slime, 1, false), //stage 1.
         new MobType(SpriteType.Character_Rock, 1, false),
         new MobType(SpriteType.Character_Flame, 1, false),
-        //new MobType(SpriteType.Character_KingSlime, 1, true),
-        //new MobType(SpriteType.Character_KingFlame, 1, true),
+        new MobType(SpriteType.Character_KingSlime, 1, true),
+        new MobType(SpriteType.Character_KingFlame, 1, true),
         new MobType(SpriteType.Character_KingRock, 1, true),
 
         new MobType(SpriteType.Character_Goblin, 2, false), //stage 2.

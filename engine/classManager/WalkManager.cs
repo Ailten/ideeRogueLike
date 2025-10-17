@@ -54,6 +54,8 @@ public static class WalkManager
     {
         int timeLayerSpeeded = UpdateManager.timeSpeedForAnime(RunLayer.layer.milisecInLevel); //get the time including speed game.
         float i = (float)(timeLayerSpeeded - timeStartWalk) / milisecForWalkOneCel; //interpolation walk current cel.
+        if(!TurnManager.isInFight) //increase speed.
+            i *= 1.8f;
 
         Character characterWalk = TurnManager.getCharacterOfCurrentTurn();
 

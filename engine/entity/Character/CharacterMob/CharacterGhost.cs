@@ -29,7 +29,8 @@ public class CharacterGhost : CharacterMob
                 cardEdition: CardEdition.Default,
                 APCost: 3,
                 distanceToUse: new(3, 5),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.RetMP, 1)
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.RetMP, 1),
+                isInLine: true
             ),
             amountOfCardAdd: 1,
             isSameColor: false
@@ -44,7 +45,8 @@ public class CharacterGhost : CharacterMob
                 effects: new(){
                     new KeyValuePair<EffectCard, int>(EffectCard.Hit, 1),
                     new KeyValuePair<EffectCard, int>(EffectCard.Push, 1)
-                }
+                },
+                isInLine: true
             ),
             amountOfCardAdd: 1,
             isSameColor: false

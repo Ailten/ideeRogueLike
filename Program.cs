@@ -9,9 +9,11 @@ class Program
     // add stuff on layer EndFight.
 
     // debug :
-    // les details des statusEffect en layer details ne s'affiche pas.
+    // les details des statusEffect en layer details ne s'affiche pas (dans le stage 0).
 
-    // try to kill a mod by burn. <---
+    // try to kill a mod by burn. <--- to see if kill a mob by burn or an effect still make crash.
+    // card description need info about color, edition, ap price, dist.
+
 
     // do details screen about cel type in left click ?
 

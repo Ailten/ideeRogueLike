@@ -1,11 +1,11 @@
 {
-  "timePlayed": "00:18:07.9657275",
-  "runCount": 2,
-  "damageMaked": 414,
+  "timePlayed": "00:47:44.1225411",
+  "runCount": 11,
+  "damageMaked": 1422,
   "healMaked": 0,
-  "shildMaked": 44,
-  "damageTaked": 106,
-  "coinTaked": 158,
+  "shildMaked": 80,
+  "damageTaked": 260,
+  "coinTaked": 366,
   "succes": [
     1,
     2,
@@ -21,20 +21,29 @@
     25,
     26,
     27,
-    47
+    47,
+    19,
+    20,
+    21,
+    22,
+    32
   ],
   "characterKilled": {
-    "Rock": 18,
-    "Slime": 18,
-    "Flame": 12,
-    "KingRock": 1,
-    "Goblin": 5,
-    "Armor": 7
+    "Rock": 24,
+    "Slime": 28,
+    "Flame": 20,
+    "KingRock": 3,
+    "Goblin": 19,
+    "Armor": 21,
+    "GoblinDeez": 1,
+    "ArmorDamned": 1
   },
   "cardPlayed": {
-    "WoodenSword": 168,
-    "WoodenShild": 22
+    "WoodenSword": 259,
+    "WoodenShild": 40,
+    "Splash": 32,
+    "Sword": 26
   },
-  "cardShinyPlayed": 0,
-  "cardCrackedPlayed": 0
+  "cardShinyPlayed": 26,
+  "cardCrackedPlayed": 1
 }
