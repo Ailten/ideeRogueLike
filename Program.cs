@@ -13,7 +13,6 @@ class Program
     // details menu not print shild.
     // king rock can attire without being in line ?? (and attack on same turn)
     // when hit no effect visuel. ?? (when mob stage 1, it work)
-    // SE side eyes, not working.
 
     // try to kill a mod by burn. <---
 

@@ -19,7 +19,7 @@ public class SideEyes : StatusEffect
             {
                 int indexAtRight = i + 1;
 
-                if (indexAtRight >= characterWhoHas.statusEffects.Count - 2)
+                if (indexAtRight >= characterWhoHas.statusEffects.Count)
                     return null;
 
                 return characterWhoHas.statusEffects[indexAtRight];
