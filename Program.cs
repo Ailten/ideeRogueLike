@@ -10,7 +10,6 @@ class Program
 
     // debug :
     // les details des statusEffect en layer details ne s'affiche pas.
-    // king rock can attire without being in line ?? (and attack on same turn)
     // when hit no effect visuel. ?? (when mob stage 1, it work)
 
     // try to kill a mod by burn. <---

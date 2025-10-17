@@ -319,7 +319,8 @@ public class Card
             cardEdition: this.cardEdition,
             APCost: this.APCost,
             distanceToUse: this.distanceToUse,
-            effects: new()
+            effects: new(),
+            isInLine: this.isInLine
         );
         for (int i = 0; i < this.effects.Count; i++) //duplicate liste effects.
         {
