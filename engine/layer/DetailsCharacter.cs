@@ -111,13 +111,26 @@ public class DetailsCharacter : Layer
             characterUi.pos.x * 1.5f,
             characterUi.pos.y + replacementPosStatsY
         );
+        
+        bool isHasShild = characterSelected.SP > 0;
         TextPriceProductUi textHP = new(layer.idLayer, $"HP: {characterSelected.HP}/{characterSelected.HPmax}");
         textHP.colorText = StatsCharacterUi.getColorTextHP;
         textHP.pos = new(
-            characterUi.pos.x,
+            characterUi.pos.x * (!isHasShild? 1f: 0.5f),
             characterUi.pos.y + replacementPosStatsY * 1.5f
         );
-        if (characterSelected.isAnInvoc) {
+        if (isHasShild)
+        { 
+            TextPriceProductUi textSP = new(layer.idLayer, $"+ {characterSelected.SP}");
+            textSP.colorText = StatsCharacterUi.getColorTextSP;
+            textSP.pos = new(
+                characterUi.pos.x * 1.5f,
+                characterUi.pos.y + replacementPosStatsY * 1.5f
+            );
+        }
+
+        if (characterSelected.isAnInvoc)
+        {
             TextPriceProductUi textIsAnInvoke = new(layer.idLayer, "invocation");
             textIsAnInvoke.colorText = StatsCharacterUi.getColorTextHP;
             textIsAnInvoke.pos = new(

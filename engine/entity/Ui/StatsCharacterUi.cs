@@ -21,6 +21,10 @@ public class StatsCharacterUi : Entity
     {
         get{ return colorTextMP; }
     }
+    public static Raylib_cs.Color getColorTextSP
+    {
+        get{ return colorTextSP; }
+    }
     
 
     public StatsCharacterUi(int idLayer) : base(idLayer, SpriteType.HudHP)
