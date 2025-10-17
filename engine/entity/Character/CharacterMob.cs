@@ -286,19 +286,23 @@ public class CharacterMob : Character
 
             this.targetOfState = oponents[0];
 
-            Vector directionToTarget = this.targetOfState.indexPosCel - this.indexPosCel;
-            Vector absDirectionToTarget = new(Math.Abs(directionToTarget.x), Math.Abs(directionToTarget.y));
-            if (absDirectionToTarget.x > absDirectionToTarget.y)
-                directionToTarget.y = 0;
+            Vector directionToFuitTarget = this.indexPosCel - this.targetOfState.indexPosCel;
+            Vector absDirectionToTarget = new(Math.Abs(directionToFuitTarget.x), Math.Abs(directionToFuitTarget.y));
+            if (absDirectionToTarget.x >= absDirectionToTarget.y)
+            {
+                directionToFuitTarget.y = 0;
+                directionToFuitTarget.x = Math.Clamp(directionToFuitTarget.x, -1, 1);
+            }
             else
-                directionToTarget.x = 0;
-            directionToTarget.x = (directionToTarget.x > 1) ? 1 : -1;
-            directionToTarget.y = (directionToTarget.y > 1) ? 1 : -1;
+            {
+                directionToFuitTarget.x = 0;
+                directionToFuitTarget.y = Math.Clamp(directionToFuitTarget.y, -1, 1);
+            }
 
             bool isTakeThisPath = false;
             for (int i = 1; i <= this.MP; i++)
             {
-                Vector posDestWalk = this.indexPosCel + directionToTarget * i;
+                Vector posDestWalk = this.indexPosCel + directionToFuitTarget * i;
 
                 Cel? celDest = RunManager.getCel(posDestWalk);
                 if (celDest is null)

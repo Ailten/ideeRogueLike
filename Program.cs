@@ -10,10 +10,11 @@ class Program
 
     // debug :
     // les details des statusEffect en layer details ne s'affiche pas.
+    // details menu not print shild.
     // king rock can attire without being in line ?? (and attack on same turn)
-    // when hit no effect visuel.
-    // still bug with fuit mob algorythme. (maybe re do the function from zero)
-    
+    // when hit no effect visuel. ?? (when mob stage 1, it work)
+    // SE side eyes, not working.
+
     // try to kill a mod by burn. <---
 
     // do details screen about cel type in left click ?

@@ -39,6 +39,10 @@ public static class SaveManager
 
         string path = $"assets/save/{nameFileSave}.json";
 
+#if DEBUG
+        path = $"/home/faouzi/Documents/ideeRogueLike/{path}";
+#endif
+
         string jsonStr = ""; // read from file.
         try
         {

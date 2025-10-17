@@ -6,6 +6,7 @@ public class CharacterSlime : CharacterMob
         //IA logic.
         this.logicState.Add(LogicState.chase);
         this.logicState.Add(LogicState.firstHit);
+        this.logicState.Add(LogicState.fuit); //for debug.
         this.logicState.Add(LogicState.skipTurn);
 
         //stats.
