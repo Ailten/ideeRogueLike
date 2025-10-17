@@ -365,6 +365,23 @@ public class Card
     {
         throw new NotImplementedException();
     }
+
+
+    // get info additional of card.
+    public string getInfo()
+    {
+        // card description need info about color, edition, ap price, dist.
+        return (
+            $"Couleur: {this.cardColor.getName()}, " +
+            (this.cardEdition != CardEdition.Default?
+                $"Etat: {this.cardEdition.getName()}":
+                ""
+            ) + "\n" +
+            $"Cout: {this.APCost}" +
+            $"Distance: {this.distanceToUse.x}-{this.distanceToUse.y}" +
+            (this.isInLine? "en ligne": "")
+        );
+    }
 }
 
 

@@ -92,7 +92,7 @@ public class CardDetails : Entity
         {
 
             // get values for draw text description card (if has one).
-            string text = "Description: \n" + cardNN.cardIllu.getDescription();
+            string text = $"Description: \n{cardNN.cardIllu.getDescription()}\n{cardNN.getInfo()}";
             Vector posText = posToDraw + (new Vector(1, 0) * (sizeAtScreenCard.x + 10));
             float fontSizeText = Card.fontSizeShorter * scaleCards * CanvasManager.scaleCanvas;
             float fontSpacingText = Card.fontSpacing * scaleCards * CanvasManager.scaleCanvas;

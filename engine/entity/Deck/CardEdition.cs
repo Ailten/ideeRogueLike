@@ -24,18 +24,34 @@ public static class StaticCardEdition
         }
     }
 
-    public static CardEdition getRandomEdition(bool isOnlySpecialEdition = false ,int purcentChanceOfBeingSpecialEdition = 12, Random? rng = null)
+    public static CardEdition getRandomEdition(bool isOnlySpecialEdition = false, int purcentChanceOfBeingSpecialEdition = 12, Random? rng = null)
     {
         rng ??= RandomManager.rng;
 
-        bool isSpecialEdition = (isOnlySpecialEdition)? true: (rng.Next(100) < purcentChanceOfBeingSpecialEdition);
+        bool isSpecialEdition = (isOnlySpecialEdition) ? true : (rng.Next(100) < purcentChanceOfBeingSpecialEdition);
         if (!isSpecialEdition)
             return CardEdition.Default;
 
         int rngEdition = rng.Next(2);
         return (
-            (rngEdition == 0)? CardEdition.Cracked:
+            (rngEdition == 0) ? CardEdition.Cracked :
             CardEdition.Shinny
         );
+    }
+
+
+    public static string getName(this CardEdition cardEdition)
+    {
+        switch (cardEdition)
+        {
+            case (CardEdition.Default):
+                return "Normal";
+            case (CardEdition.Cracked):
+                return "Fissuree";
+            case (CardEdition.Shinny):
+                return "Brillante";
+            default:
+                throw new Exception("CardEdition.getSpriteType found no match !");
+        }
     }
 }
