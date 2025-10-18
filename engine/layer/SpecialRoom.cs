@@ -473,8 +473,11 @@ public class SpecialRoom : Layer
                     {
                         Character player = TurnManager.getMainPlayerCharacter();
 
-                        player.deck.destroyCardFromCimetier(cardDetails.getIndexFistCard); // destroy card from cimetier player (first).
-                        player.deck.destroyCardFromCimetier(cardDetails.getIndexSecondCard); // destroy card second.
+                        int bigestIndex = Math.Max(cardDetails.getIndexFistCard, cardDetails.getIndexSecondCard); // need to be destroy by the bigest, for prevent out of range index.
+                        int smallestIndex = Math.Min(cardDetails.getIndexFistCard, cardDetails.getIndexSecondCard);
+
+                        player.deck.destroyCardFromCimetier(bigestIndex); // destroy card from cimetier player (first).
+                        player.deck.destroyCardFromCimetier(smallestIndex); // destroy card second.
 
                         player.deck.addCardToDeck( // add the card fusionned.
                             card: cardDetails.getCard() ?? throw new Exception("card fusion is null !"),
