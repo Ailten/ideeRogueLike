@@ -32,6 +32,17 @@ public class SpecialRoom : Layer
 
         string nameButtonValidate = "valid";
 
+        Dictionary<DicoLabelForSpecialRoom, int> modificator = TurnManager.getMainPlayerCharacter()
+            .statusEffects.Select(se => se.eventWhenEnterOnASpecialRoom())
+            .Where(d => d is not null).Cast<Dictionary<DicoLabelForSpecialRoom, int>>()
+            .Aggregate(
+                new Dictionary<DicoLabelForSpecialRoom, int>(),
+                (cumul, next) =>
+                {
+                    StaticDicoSpecialRoom.cumulDicoSpecialRoom(ref cumul, next);
+                    return cumul;
+                });
+
         switch (currentRoom.roomType)
         {
             case (RoomType.Room_Chest):
@@ -39,10 +50,14 @@ public class SpecialRoom : Layer
 
                 bool isAnEffectChest = this.isAnEffectOrCard(rng);
 
+                int amountChoiseCurrent = 2;
+                amountChoiseCurrent += modificator[DicoLabelForSpecialRoom.increaseChoise];
+                amountChoiseCurrent = Math.Min(10, amountChoiseCurrent);
+
                 if (isAnEffectChest)
                 {
                     List<StatusEffect> listChoose = new();
-                    for (int i = 0; i < this.amountChoise; i++)
+                    for (int i = 0; i < amountChoiseCurrent; i++)
                     {
                         listChoose.Add(StatusEffectManager.generateARandomEffect(TurnManager.getMainPlayerCharacter().idEntity, rng: rng));
                     }
@@ -90,7 +105,7 @@ public class SpecialRoom : Layer
                 else
                 {
                     List<Card> listChoose = new();
-                    for (int i = 0; i < this.amountChoise; i++)
+                    for (int i = 0; i < amountChoiseCurrent; i++)
                     {
                         Card cardGenerate = CardManager.generateARandomCard(rng: rng);
 
@@ -134,18 +149,21 @@ public class SpecialRoom : Layer
                 break;
 
             case (RoomType.Room_Shop):
-                const int AmountOfProductInShop = 5;
                 nameButtonValidate = "acheter";
 
-                this.setDictionaryShop(rng, AmountOfProductInShop);
-                this.productPrice = new TextPriceProductUi[AmountOfProductInShop];
+                int amountChoiseCurrentShop = 3;
+                amountChoiseCurrentShop += modificator[DicoLabelForSpecialRoom.increaseChoise];
+                amountChoiseCurrentShop = Math.Min(10, amountChoiseCurrentShop);
+
+                this.setDictionaryShop(rng, amountChoiseCurrentShop);
+                this.productPrice = new TextPriceProductUi[amountChoiseCurrentShop];
 
                 bool isAnEffectShop = this.isAnEffectOrCard(rng);
 
                 if (isAnEffectShop)
                 {
                     List<StatusEffect> listChoose = new();
-                    for (int i = 0; i < AmountOfProductInShop; i++)
+                    for (int i = 0; i < amountChoiseCurrentShop; i++)
                     {
                         listChoose.Add(StatusEffectManager.generateARandomEffect(TurnManager.getMainPlayerCharacter().idEntity, rng: rng));
                         this.productPrice[i] = new TextPriceProductUi(this.idLayer, $"{this.getPriceProduct(i)}");
@@ -184,7 +202,7 @@ public class SpecialRoom : Layer
 
                     // replace price and maskSolded.
                     float pricePosY = statusEffetUi.pos.y + (StatusEffectUi.statusEffectSize.y + 35);
-                    for (int i = 0; i < AmountOfProductInShop; i++)
+                    for (int i = 0; i < amountChoiseCurrentShop; i++)
                     {
                         float decalX = (StatusEffectUi.statusEffectSize.x + 10f) * i;
                         this.productPrice[i].pos = new(
@@ -225,7 +243,7 @@ public class SpecialRoom : Layer
                 else
                 {
                     List<Card> listChoose = new();
-                    for (int i = 0; i < AmountOfProductInShop; i++)
+                    for (int i = 0; i < amountChoiseCurrentShop; i++)
                     {
                         Card cardGenerate = CardManager.generateARandomCard(rng: rng);
 
@@ -263,9 +281,9 @@ public class SpecialRoom : Layer
                     // replace price and maskSolded.
                     float pricePosY = cardsUi.pos.y - 20;
                     float cardEndPosX = cardsUi.pos.x + 780 - Card.cardSize.x;
-                    for (int i = 0; i < AmountOfProductInShop; i++)
+                    for (int i = 0; i < amountChoiseCurrentShop; i++)
                     {
-                        float interpolateI = (float)i / (AmountOfProductInShop - 1);
+                        float interpolateI = (float)i / (amountChoiseCurrentShop - 1);
                         float cardPosX = Vector.lerpF(cardsUi.pos.x, cardEndPosX, interpolateI);
                         float decalX = (StatusEffectUi.statusEffectSize.x + 10f) * i;
                         this.productPrice[i].pos = new(
@@ -523,7 +541,7 @@ public class SpecialRoom : Layer
                         Card cardSelected = cardDetails.getCard() ?? throw new Exception("no card selected for duplication !");
 
                         int rngForCardEdition = rng.Next(1000); // edit cardEdition.
-                        cardSelected.cardEdition =  (
+                        cardSelected.cardEdition = (
                             (rngForCardEdition < 500) ? CardEdition.Shinny :
                             CardEdition.Cracked
                         );
@@ -572,14 +590,13 @@ public class SpecialRoom : Layer
                 return;
             }
         };
-        
+
 
 
         base.active();
     }
 
 
-    public int amountChoise = 2; // amount of elements choise for a chest or a special room with choise.
     private bool isCleanSpecialFromRoom = false;
     private bool isAnEffectOrCard(Random rng)
     {
@@ -652,10 +669,12 @@ public class SpecialRoom : Layer
             );
         }
     }
-    private int getPriceProduct(int indexProduct) {
+    private int getPriceProduct(int indexProduct)
+    {
         return dictionarShop[this.getKeyOfDictionarShop()][indexProduct].Key;
     }
-    private bool getProductIsSold(int indexProduct) {
+    private bool getProductIsSold(int indexProduct)
+    {
         return dictionarShop[this.getKeyOfDictionarShop()][indexProduct].Value;
     }
     private void setProductIsSoleded(int indexProduct)
@@ -680,4 +699,29 @@ public class SpecialRoom : Layer
         return rng.Next(min, max + 1);
     }
 
+}
+
+
+// enum for type of value package send by statusEffect (when open a special room).
+public enum DicoLabelForSpecialRoom
+{
+    increaseChoise
+}
+
+
+public static class StaticDicoSpecialRoom
+{
+    // to cumul value on the first attribute dico.
+    public static void cumulDicoSpecialRoom(ref Dictionary<DicoLabelForSpecialRoom, int> dicoA, Dictionary<DicoLabelForSpecialRoom, int> dicoB)
+    {
+        foreach (KeyValuePair<DicoLabelForSpecialRoom, int> keyValuePairB in dicoB)
+        {
+            if (dicoA.ContainsKey(keyValuePairB.Key)) // cumul value.
+            {
+                dicoA[keyValuePairB.Key] += keyValuePairB.Value;
+                continue;
+            }
+            dicoA.Add(keyValuePairB.Key, keyValuePairB.Value); // add new value.
+        }
+    }
 }

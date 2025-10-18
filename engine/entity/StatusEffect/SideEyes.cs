@@ -142,7 +142,11 @@ public class SideEyes : StatusEffect
     {
         this.getEffectAtRight()?.eventWhenTakeAShild(ref shildIncrement, ref characterGiveShild, ref refCard);
     }
-
+    // event call when enter in a special room.
+    public override Dictionary<DicoLabelForSpecialRoom, int>? eventWhenEnterOnASpecialRoom()
+    {
+        return this.getEffectAtRight()?.eventWhenEnterOnASpecialRoom();
+    }
 
 
 }

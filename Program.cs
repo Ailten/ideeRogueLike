@@ -11,7 +11,6 @@ class Program
     // debug :
     // les details des statusEffect en layer details ne s'affiche pas (dans le stage 0).
     // make the SE "add choise in chest" on an event "when open a special room" to get copy the event by side eyes.
-    // crash when fusion two card.
 
     // try to kill a mod by burn. <--- to see if kill a mob by burn or an effect still make crash.
 

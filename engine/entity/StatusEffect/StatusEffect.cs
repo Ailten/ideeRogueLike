@@ -153,5 +153,6 @@ public class StatusEffect
     public virtual void eventWhenGiveAShild(ref Character target, ref int shildIncrement, ref PackageRefCard? refCard) { }
     // event call when take a shild.
     public virtual void eventWhenTakeAShild(ref int shildIncrement, ref Character? characterGiveShild, ref PackageRefCard? refCard) { }
-
+    // event call when enter in a special room.
+    public virtual Dictionary<DicoLabelForSpecialRoom, int>? eventWhenEnterOnASpecialRoom(){ return null; }
 }

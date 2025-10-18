@@ -2,17 +2,14 @@
 public class BoostChooseSpecialRoom : StatusEffect
 {
 
-    private int chooseBoost = 0;
+    Dictionary<DicoLabelForSpecialRoom, int> dicoToSpecialRoom;
 
     public BoostChooseSpecialRoom(int characterIdWhoHasEffect, int characterIdWhoApplyEffect = -1, int turnLife = -1, int chooseBoost = 1) :
     base(SpriteType.StatusEffect_BoostChooseSpecialRoom, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
-        this.chooseBoost = chooseBoost;
-    }
-    public override void ActivateEffect()
-    {
-        if (this.getCharacterWhoHasEffect!.isAPlayer)
-            SpecialRoom.layer.amountChoise += chooseBoost;
+        this.dicoToSpecialRoom = new() {
+            {DicoLabelForSpecialRoom.increaseChoise, chooseBoost}
+        };
     }
 
 
@@ -20,7 +17,7 @@ public class BoostChooseSpecialRoom : StatusEffect
     {
         return (
             $"- {this.getName()} :\n" +
-            $"gagne {this.chooseBoost} choix dans les pieces specials.\n" +
+            $"gagne {this.dicoToSpecialRoom[DicoLabelForSpecialRoom.increaseChoise]} choix dans les pieces specials.\n" +
             this.getDescriptionTurn()
         );
     }
@@ -30,18 +27,12 @@ public class BoostChooseSpecialRoom : StatusEffect
     }
     public override bool isAMalus()
     {
-        return this.chooseBoost < 0;
+        return this.dicoToSpecialRoom[DicoLabelForSpecialRoom.increaseChoise] < 0;
     }
-    
 
-    public override void eventWhenStatusEffectDisapear(
-        bool isEndLifeEffect = false,
-        bool isEndOfFight = false,
-        bool isCharacterWhoHasEffectDie = false,
-        bool isCharacterWhoApplyEffectDie = false,
-        bool isDestroyByAction = false)
+
+    public override Dictionary<DicoLabelForSpecialRoom, int>? eventWhenEnterOnASpecialRoom()
     {
-        if (this.getCharacterWhoHasEffect?.isAPlayer ?? false)
-            SpecialRoom.layer.amountChoise += chooseBoost; // cancel effect.
+        return this.dicoToSpecialRoom;
     }
 }
