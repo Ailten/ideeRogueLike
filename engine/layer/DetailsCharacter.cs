@@ -43,7 +43,7 @@ public class DetailsCharacter : Layer
             CanvasManager.centerWindow.y +decalYFromCenter
         );
         statusEffectDetailsUi.scaleEffectIllu = 2f;
-        statusEffectDetailsUi.zIndex = 3200;
+        statusEffectDetailsUi.zIndex = 3201;
         statusEffectDetailsUi.isPrintDetails = true;
 
         CardDetails cardDetails = new CardDetails(this.idLayer); // details card selected.

@@ -4,34 +4,27 @@ class Program
 {
     // TODO :
 
+    // input select seed. -> menu with enter a number befor start run.
+
     // add stuff on layer Option.
     // add stuff on layer Succes.
     // add stuff on layer EndFight.
 
     // debug :
-    // les details des statusEffect en layer details ne s'affiche pas (dans le stage 0).
-    // make the SE "add choise in chest" on an event "when open a special room" to get copy the event by side eyes.
-
     // try to kill a mod by burn. <--- to see if kill a mob by burn or an effect still make crash.
+
 
 
     // do details screen about cel type in left click ?
 
+    // add card who steel cart to target.
+    // add SE who reduce price on shop.
+    // add card who place trap making damage.
+    // add card who reduce res for a turn (base on color).
 
 
-
-    // add a card who steel a card from target.
-
-    // add sprite option disabled ?
-    // implement layer of option.
 
     // test dificulty.
-
-    // make a layer PrintSuccesUnlocked
-    // make a layer end run (win and loose).
-
-
-    // need be sure is debug : background opacity light, and time line invoke, and special room fusion card recto when no selected.
 
 
     // make win/loose screen (end run).
@@ -40,13 +33,8 @@ class Program
     // -> back to main menu button.
     // -> make save file.
 
-
-    // add character : Babulle, Chlow.
-
-
     // add a pause menu (back to game, back to main menu, ... other option).
     // -> make button ui pause.
-
 
 
     // make tuto : (not now)
@@ -54,14 +42,12 @@ class Program
     // - card, etc ...
     // - explain monster, type room.
 
-    // ? KeyboardManager. (for play more speed) (not now) -> number key for card, and space for skip turn.
 
-    // input select seed. -> menu with enter a number befor start run.
+    // ? KeyboardManager. (for play more speed) (not now) -> number key for card, and space for skip turn.
 
     // ? consoleManager for combat print line ?
 
-
-    // make a run of the day, with a defined seed, character, and card effects randomly send.
+    // ? make a run of the day, with a defined seed, character, and card effects randomly send.
 
 
     public static void Main(string[] args)
