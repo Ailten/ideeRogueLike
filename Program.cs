@@ -12,6 +12,7 @@ class Program
 
     // debug :
     // try to kill a mod by burn. <--- to see if kill a mob by burn or an effect still make crash.
+    // -- can't kill by burn -> set zero HP but not call verify kill mobs.
 
 
 

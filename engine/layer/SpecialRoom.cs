@@ -42,6 +42,7 @@ public class SpecialRoom : Layer
                     StaticDicoSpecialRoom.cumulDicoSpecialRoom(ref cumul, next);
                     return cumul;
                 });
+        int getValueModificator;
 
         switch (currentRoom.roomType)
         {
@@ -51,7 +52,7 @@ public class SpecialRoom : Layer
                 bool isAnEffectChest = this.isAnEffectOrCard(rng);
 
                 int amountChoiseCurrent = 2;
-                amountChoiseCurrent += modificator[DicoLabelForSpecialRoom.increaseChoise];
+                amountChoiseCurrent += modificator.TryGetValue(DicoLabelForSpecialRoom.increaseChoise, out getValueModificator) ? getValueModificator : 0;
                 amountChoiseCurrent = Math.Min(10, amountChoiseCurrent);
 
                 if (isAnEffectChest)
@@ -152,7 +153,7 @@ public class SpecialRoom : Layer
                 nameButtonValidate = "acheter";
 
                 int amountChoiseCurrentShop = 3;
-                amountChoiseCurrentShop += modificator[DicoLabelForSpecialRoom.increaseChoise];
+                amountChoiseCurrentShop += modificator.TryGetValue(DicoLabelForSpecialRoom.increaseChoise, out getValueModificator) ? getValueModificator : 0;;
                 amountChoiseCurrentShop = Math.Min(10, amountChoiseCurrentShop);
 
                 this.setDictionaryShop(rng, amountChoiseCurrentShop);
