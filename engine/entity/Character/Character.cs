@@ -491,6 +491,7 @@ public class Character : Entity
     public virtual void invokeACharacter(Character newInvoke)
     {
         TurnManager.addCharacterNextTo(newInvoke, this.idEntity);
+        newInvoke.addStatusEffectWhenSpawn(); // send effects base character invoke.
 
         // apply status effects.
         //for (int sei = 0; sei < this.statusEffects.Count; sei++)
