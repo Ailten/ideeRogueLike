@@ -18,7 +18,7 @@ public class CharacterAilten : CharacterPlayer
                 cardEdition: CardEdition.Default,
                 APCost: 1,
                 distanceToUse: new(1, 1),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.Burn, 2)
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 2)
             ),
             amountOfCardAdd: 6,
             isSameColor: false

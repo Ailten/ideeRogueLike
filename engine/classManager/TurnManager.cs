@@ -31,6 +31,7 @@ public static class TurnManager
         allCharacterDead = new();
         _isInFight = false;
         turnCount = 0;
+        isMakingVerifyIfFightIsEnd = false;
     }
 
 
@@ -119,10 +120,14 @@ public static class TurnManager
     }
 
     //verify if the current fight is end.
+    static bool isMakingVerifyIfFightIsEnd = false; // lock for enable perpetual loop (for prevent infinit loop by death).
     public static void verifyIfFightIsEnd()
     {
         if (!isInFight)
             return;
+        if (isMakingVerifyIfFightIsEnd) // verify lock.
+            return;
+        isMakingVerifyIfFightIsEnd = true; // lock.
 
         applyDeath();
 
@@ -136,6 +141,7 @@ public static class TurnManager
             }
             if (c.isInRedTeam != teamFind)
             { //fight not finish.
+                isMakingVerifyIfFightIsEnd = false; // un-lock.
                 return;
             }
         }
@@ -143,6 +149,8 @@ public static class TurnManager
         _isInFight = false;
 
         enfOfFight(teamFind ?? false);
+
+        isMakingVerifyIfFightIsEnd = false; // un-lock.
     }
 
     //verify if the fight is start.
@@ -160,7 +168,11 @@ public static class TurnManager
             { //fight start.
                 _isInFight = true;
 
-                getMainPlayerCharacter().deck.piocheOfStartTurn(); //pioche first hands of fight.
+                Character player = getMainPlayerCharacter();
+                player.deck.discardOfEndTurn(); //put all card into cimetier. (security)
+                player.deck.pushAllCardPiocheIntoCimetier();
+                player.deck.shuffleCimetierIntoPioche(); //shuffle to pioche.
+                player.deck.piocheOfStartTurn(); //pioche first hands of fight.
                 RunHudLayer.layer.cardHandListCardUi!.setListCard(getMainPlayerCharacter().deck.cardsInHand); //set card list hand to UI.
 
                 turnCount = 0; //reset turn count.
@@ -201,8 +213,9 @@ public static class TurnManager
                 RunManager.getCelNNCenter().celType = CelType.Cel_NextStage; //spawn roope on cel center of room.
             }
 
-            // apply effects.
-            player.statusEffects.ForEach(e => e.eventWhenPlayerWinFight());
+            // apply effects. (need to be call as a for becose some SE can edit the list add/remove).
+            for (int i = player.statusEffects.Count - 1; i >= 0; i--)
+                player.statusEffects[i].eventWhenPlayerWinFight();
 
             // discard hand at end fight (every card of deck on cimetier).
             player.deck.discardOfEndTurn();

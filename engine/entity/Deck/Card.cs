@@ -377,9 +377,9 @@ public class Card
                 $"Etat: {this.cardEdition.getName()}":
                 ""
             ) + "\n" +
-            $"Cout: {this.APCost}" +
+            $"Cout: {this.APCost}, " +
             $"Distance: {this.distanceToUse.x}-{this.distanceToUse.y}" +
-            (this.isInLine? "en ligne": "")
+            (this.isInLine? " en ligne": "")
         );
     }
 }

@@ -325,6 +325,9 @@ public class Character : Entity
         if (!TurnManager.isInFight)
             return;
 
+        // at end chaine action, verify kill and ifIsEndFight (by SE end turn).
+        TurnManager.verifyIfFightIsEnd();
+
         TurnManager.moveCharacterIndexToNextCharacter(); //switch to next entity turn.
         TurnManager.turnCountEdit(); // edit turn count if is a new table turn.
     }
@@ -350,6 +353,9 @@ public class Character : Entity
 
         //make an FX sparkle (and sound) for signal start turn.
         new FxTurnOn(this.pos);
+
+        // at end chaine action, verify kill and ifIsEndFight (by SE start turn).
+        TurnManager.verifyIfFightIsEnd();
     }
 
 
