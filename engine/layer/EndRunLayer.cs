@@ -12,6 +12,13 @@ public class EndRunLayer : Layer
         //init all entities of layer. --->
 
         // TODO : never test, need debug, all need to be maked.
+        string title = (this.isRunWin? "Victoire": "Defaite");
+        TextPriceProductUi titleUi = new TextPriceProductUi(idLayer, title);
+        titleUi.fontSize = 150;
+        titleUi.colorText = (this.isRunWin? Raylib_cs.Color.Gold: Raylib_cs.Color.Red);
+        titleUi.pos.x = CanvasManager.centerWindow.x;
+        titleUi.pos.y = 90;
+
 
         ButtonUi buttonBackToMenu = new ButtonUi(idLayer); // button back main menu.
         buttonBackToMenu.text = "retour";

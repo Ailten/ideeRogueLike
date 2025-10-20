@@ -10,9 +10,12 @@ class Program
     // add stuff on layer Succes.
     // add stuff on layer EndFight.
 
+    // todo minore :
+    // when select somehting on shop and have not enoug PO (mark price in darkGold and stay button disabled).
 
 
-    // do details screen about cel type in left click ?
+
+    // ? do details screen about cel type in left click.
 
     // add card who steel cart to target.
     // add SE who reduce price on shop.
