@@ -11,7 +11,7 @@ class Program
     // add stuff on layer EndFight.
 
     // todo minore :
-    // when select somehting on shop and have not enoug PO (mark price in darkGold and stay button disabled).
+    // ? when select somehting on shop and have not enoug PO (mark price in darkGold and stay button disabled).
 
 
 
