@@ -4,14 +4,14 @@ class Program
 {
     // TODO :
 
-    // input select seed. -> menu with enter a number befor start run.
-
-    // add stuff on layer Option.
-    // add stuff on layer Succes.
     // add stuff on layer EndFight.
+    // add stuff on layer Succes.
+    // ? add stuff on layer Option.
 
     // todo minore :
     // ? when select somehting on shop and have not enoug PO (mark price in darkGold and stay button disabled).
+    // ? input select seed. -> menu with enter a number befor start run.
+    // ? print the seed on the endRun layer.
 
 
 

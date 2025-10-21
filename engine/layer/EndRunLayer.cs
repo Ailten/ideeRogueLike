@@ -32,9 +32,12 @@ public class EndRunLayer : Layer
         };
 
 
-
-        // print an UI screen WIN or LOOSE.
-        // with button back to main menu.
+        // element for prints succes unlock.
+        SuccesChestUi succesChest = new SuccesChestUi(idLayer);
+        succesChest.setListSucces(this.succesUnlockDuringTheRun);
+        succesChest.pos.x = CanvasManager.centerWindow.x;
+        succesChest.pos.y = 450;
+        succesChest.zIndex = 1999; // under button and other stuff.
 
 
         base.active();
