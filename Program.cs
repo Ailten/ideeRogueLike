@@ -14,6 +14,8 @@ class Program
     // les arakne son un sacré fouilli en combat (et les citrouille son repri en mobe classic, pas boss).
     // un bug avec le skip turn des arakne (ou citrouille).
 
+    // see what append when chest end run. (by hard coding a reward succes).
+
     // todo minore :
     // ? when select somehting on shop and have not enoug PO (mark price in darkGold and stay button disabled).
     // ? input select seed. -> menu with enter a number befor start run.

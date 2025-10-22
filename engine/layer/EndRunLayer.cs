@@ -32,6 +32,10 @@ public class EndRunLayer : Layer
         };
 
 
+        // debug. !!!
+        this.succesUnlockDuringTheRun.Add(Succes.Kill_5_Slime);
+
+
         // element for prints succes unlock.
         SuccesChestUi succesChest = new SuccesChestUi(idLayer);
         succesChest.setListSucces(this.succesUnlockDuringTheRun);
