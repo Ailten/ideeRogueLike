@@ -8,6 +8,12 @@ class Program
     // add stuff on layer Succes.
     // ? add stuff on layer Option.
 
+    // l'IA des mob chase les invoc en priorité (pas sur). 
+    //ou ils tape en priorité les invoke. 
+    //ou change de target (fuit le cac player pour aller au cac d'une invok).
+    // les arakne son un sacré fouilli en combat (et les citrouille son repri en mobe classic, pas boss).
+    // un bug avec le skip turn des arakne (ou citrouille).
+
     // todo minore :
     // ? when select somehting on shop and have not enoug PO (mark price in darkGold and stay button disabled).
     // ? input select seed. -> menu with enter a number befor start run.

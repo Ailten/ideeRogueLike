@@ -191,7 +191,8 @@ public static class StaticEffectCard
             case (EffectCard.PropagatePoison):
                 return ("- " + effectCard.getName() + " :\n" +
                     $"applique {value} degat a la cible en debut de tour.\n" +
-                    $"propage l'effet au celules adjacente en debut de tour."
+                    $"propage l'effet au celules adjacente en debut de tour.\n" +
+                    $"dure 2 tours (fix)."
                 );
             case (EffectCard.TeleportSwitch):
                 return ("- " + effectCard.getName() + " :\n" +
@@ -484,7 +485,7 @@ public static class StaticEffectCard
                         characterIdWhoApplyEffect: characterLauncher.idEntity,
                         turnLife: 2,
                         color: CardColor.Blue,
-                        shildBoost: effectValue
+                        shildBoost: -effectValue
                     ));
                 if (retResColorCardRef.isMatchingColor(CardColor.Red))
                     characterTarget.AddStatusEffect(new ShildAddBoostColor(
@@ -492,7 +493,7 @@ public static class StaticEffectCard
                         characterIdWhoApplyEffect: characterLauncher.idEntity,
                         turnLife: 2,
                         color: CardColor.Red,
-                        shildBoost: effectValue
+                        shildBoost: -effectValue
                     ));
                 if (retResColorCardRef.isMatchingColor(CardColor.Green))
                     characterTarget.AddStatusEffect(new ShildAddBoostColor(
@@ -500,7 +501,7 @@ public static class StaticEffectCard
                         characterIdWhoApplyEffect: characterLauncher.idEntity,
                         turnLife: 2,
                         color: CardColor.Green,
-                        shildBoost: effectValue
+                        shildBoost: -effectValue
                     ));
                 return;
 

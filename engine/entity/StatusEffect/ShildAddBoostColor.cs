@@ -24,8 +24,7 @@ public class ShildAddBoostColor : StatusEffect
     {
         return (
             $"- {this.getName()} :\n" +
-            $"diminue les degats subi par les cartes {this.color.getName()}.\n" +
-            $"la diminution est de {this.shildBoost}.\n" +
+            $"{(this.isAMalus() ? "augmente" : "diminue")} les degats subi par les cartes {this.color.getName()} de {this.shildBoost}.\n" +
             this.getDescriptionTurn()
         );
     }
