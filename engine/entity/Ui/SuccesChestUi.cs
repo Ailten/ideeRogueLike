@@ -16,7 +16,7 @@ public class SuccesChestUi : Entity
 
         this.geometryTrigger = new Rect(
             sizeSuccesChest * -0.5f,
-            sizeSuccesChest * 0.5f
+            sizeSuccesChest
         );
     }
 
