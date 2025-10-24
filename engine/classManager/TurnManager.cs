@@ -85,6 +85,12 @@ public static class TurnManager
     //move index character turn to next character.
     public static void moveCharacterIndex(int movement = 1)
     {
+        if (allCharacterInRoom.Count == 0)
+        {
+            indexCharacterTurn = 0;
+            return;
+        }
+        
         indexCharacterTurn = (indexCharacterTurn + movement + allCharacterInRoom.Count) % allCharacterInRoom.Count;
     }
 
@@ -92,6 +98,8 @@ public static class TurnManager
     public static void moveCharacterIndexToNextCharacter()
     {
         moveCharacterIndex(); //move index.
+        if (allCharacterInRoom.Count == 0)
+            return;
         getCharacterOfCurrentTurn().startTurn(); //call event start turn.
     }
 

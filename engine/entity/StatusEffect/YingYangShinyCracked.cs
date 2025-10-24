@@ -23,7 +23,7 @@ public class YingYangShinyCracked : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Ying Yang fissure brillante";
     }

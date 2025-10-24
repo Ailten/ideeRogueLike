@@ -28,7 +28,7 @@ public class DamageMultBoostColor : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Domage multi {this.color.getName()}";
     }

@@ -19,7 +19,7 @@ public class ConvertPurcentHealInShild : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Convertion soin bouclier";
     }

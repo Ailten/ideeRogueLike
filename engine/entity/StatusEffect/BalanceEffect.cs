@@ -31,7 +31,7 @@ public class BalanceEffect : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Balance effet";
     }

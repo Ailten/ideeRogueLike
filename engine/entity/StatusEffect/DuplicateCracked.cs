@@ -22,7 +22,7 @@ public class DuplicateCracked : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Duplication de fissure";
     }

@@ -20,7 +20,7 @@ public class ShildMultWhenFirst : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Bouclier main plaine";
     }

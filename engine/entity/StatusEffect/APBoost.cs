@@ -22,7 +22,7 @@ public class APBoost : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Action {(this.isAMalus()? "moin": "plus")}";
     }

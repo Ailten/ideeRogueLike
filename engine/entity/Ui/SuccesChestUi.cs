@@ -37,7 +37,34 @@ public class SuccesChestUi : Entity
             return;
         }
 
-        //TODO: print light ray with rotation.
+        // print light ray with rotation.
+        const int rayCount = 3;
+        Vector sizeRayScaled = new Vector(122, 274) * this.scale * CanvasManager.scaleCanvas;
+        const float speedRay = 0.009f;
+        for (int i = 0; i < rayCount; i++)
+        {
+            float scaleRay = (float)Math.Cos((double)UpdateManager.timeSpeedForAnime(EndRunLayer.layer.milisecInLevel) * 0.002);
+            scaleRay = (scaleRay + 1) /8 + (1f - 1/8f);
+
+            Vector sizeScaledZoom = sizeRayScaled * scaleRay;
+            Rect rectDestRay = new Rect(
+                posToDraw, //- sizeRayScaled * new Vector(0.5f, 1f),
+                sizeScaledZoom
+            );
+            Vector origineRay = sizeScaledZoom * new Vector(0.5f, 1f);
+
+            float rotateRay = Vector.lerpF(0, 360, (float)i / rayCount);
+            rotateRay += UpdateManager.timeSpeedForAnime(EndRunLayer.layer.milisecInLevel) * speedRay;
+
+            Raylib_cs.Raylib.DrawTexturePro(
+                sprite.texture, //texture.
+                sprite.getSpriteTileBySpriteType(SpriteType.UiGodRayWin).getRectSource(), //rect source from texture.
+                rectDestRay, //rect desintation at screen.
+                origineRay, //origine, like encrage by adapt at sprite draw in screen (for rotation aply).
+                rotateRay, //rotation.
+                Raylib_cs.Color.White //color (already white).
+            );
+        }
 
         if (this.isPrintTheChest)
         {
@@ -65,7 +92,7 @@ public class SuccesChestUi : Entity
                 if (reward is not null)
                 {
                     // draw card.
-                    reward.drawCard(posToDraw);
+                    reward.drawCard(posToDraw, scale: 0.8f);
                 }
             }
 
@@ -74,7 +101,9 @@ public class SuccesChestUi : Entity
                 if (reward is not null)
                 {
                     CharacterUi character = new CharacterUi(idLayer, (SpriteType)reward);
-                    character.isDrawPseudo = false;
+                    character.pos = this.pos;
+                    character.scale = new(1.8f, 1.8f);
+                    character.isDrawPseudo = true;
                     EntityManager.sortAllEntities();
                 }
             }
@@ -84,8 +113,11 @@ public class SuccesChestUi : Entity
                 if (reward is not null)
                 {
                     StatusEffectDetailsUi seUi = new StatusEffectDetailsUi(idLayer);
+                    seUi.pos = this.pos;
+                    seUi.scale = new(2.5f, 2.5f);
                     seUi.setStatusEffect(StaticStatusEffectType.getStatusEffect((StatusEffectType)reward, -1));
                     seUi.isPrintDetails = false;
+                    seUi.isPrintNameUnder = true;
                     EntityManager.sortAllEntities();
                 }
             }
@@ -97,6 +129,9 @@ public class SuccesChestUi : Entity
 
     public override void eventMouseClick(bool isLeftClick, bool isClickDown)
     {
+        if (isClickDown) // prevent double click.
+            return;
+
         this.isPrintTheChest = !this.isPrintTheChest;
         if (this.isPrintTheChest)
             this.indexSucces++;

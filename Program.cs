@@ -4,11 +4,10 @@ class Program
 {
     // TODO :
 
-    // add stuff on layer EndFight.
     // add stuff on layer Succes.
-    // ? add stuff on layer Option.
+    // ? add stuff on layer Option. --> add button abandon the run (maybe).
 
-    // l'IA des mob chase les invoc en priorité (pas sur). 
+    // l'IA des mob chase les invoc en priorité (pas sur).  (!!!)
     //ou ils tape en priorité les invoke. 
     //ou change de target (fuit le cac player pour aller au cac d'une invok).
     // les arakne son un sacré fouilli en combat (et les citrouille son repri en mobe classic, pas boss).

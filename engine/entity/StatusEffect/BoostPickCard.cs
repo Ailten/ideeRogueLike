@@ -23,7 +23,7 @@ public class BoostPickCard : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Pioche cartes";
     }

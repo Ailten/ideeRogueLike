@@ -21,7 +21,7 @@ public class MoneyLoot : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return "Fortune";
     }

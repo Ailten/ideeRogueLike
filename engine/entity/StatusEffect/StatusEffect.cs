@@ -93,7 +93,7 @@ public class StatusEffect
             $"dure : {turnUntil}"
         );
     }
-    protected virtual string getName()
+    public virtual string getName()
     {
         return "No name";
     }

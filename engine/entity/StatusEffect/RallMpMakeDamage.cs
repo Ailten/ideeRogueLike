@@ -19,7 +19,7 @@ public class RallMpMakeDamage : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return "Domage plantaire";
     }

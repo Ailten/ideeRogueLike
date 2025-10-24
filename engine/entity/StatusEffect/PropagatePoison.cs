@@ -20,7 +20,7 @@ public class PropagatePoison : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return "Propagation";
     }

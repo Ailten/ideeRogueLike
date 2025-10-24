@@ -21,7 +21,7 @@ public class BoostChooseSpecialRoom : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Choix aux pieces specials";
     }

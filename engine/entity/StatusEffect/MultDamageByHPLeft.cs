@@ -30,7 +30,7 @@ public class MultDamageByHPLeft : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Berzerker";
     }

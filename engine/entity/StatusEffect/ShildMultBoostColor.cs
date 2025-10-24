@@ -29,7 +29,7 @@ public class ShildMultBoostColor : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Bouclier multi {this.color.getName()}";
     }

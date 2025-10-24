@@ -20,7 +20,7 @@ public class APWhenHit : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         if (this.isAPmax)
             return "Action par coup plus";

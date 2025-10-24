@@ -19,7 +19,7 @@ public class PushWallMakeRallMP : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Imobilisation colision";
     }

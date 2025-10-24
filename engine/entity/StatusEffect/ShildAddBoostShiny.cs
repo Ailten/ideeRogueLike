@@ -20,7 +20,7 @@ public class ShildAddBoostShiny : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Bouclier {(this.isAMalus() ? "moin" : "plus")} brillante";
     }

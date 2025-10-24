@@ -22,7 +22,7 @@ public class MPBoost : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Deplacement {(this.isAMalus()? "moin": "plus")}";
     }

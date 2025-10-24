@@ -4,6 +4,7 @@ public class StatusEffectDetailsUi : Entity
     private StatusEffect? effectSelected;
     public float scaleEffectIllu = 1f;
     public bool isPrintDetails = false;
+    public bool isPrintNameUnder = false;
 
     public StatusEffectDetailsUi(int idLayer) : base(idLayer, SpriteType.none)
     {
@@ -73,7 +74,7 @@ public class StatusEffectDetailsUi : Entity
                 posToDraw +
                 new Vector(statusEffectSizeScaled.x / 2, 0) +
                 new Vector(padding, 0) +
-                new Vector(0, - sizeText.y / 2)
+                new Vector(0, -sizeText.y / 2)
             );
 
             Raylib_cs.Raylib.DrawRectangle( // draw back text.
@@ -93,6 +94,32 @@ public class StatusEffectDetailsUi : Entity
                 fontSize: fontSizeScaled,
                 spacing: fontSpacingScaled,
                 Raylib_cs.Color.Black
+            );
+        }
+        else if (this.isPrintNameUnder)
+        {
+            string name = this.effectSelected.getName();
+            const float fontSizeName = 50f;
+            float fontSizeEval = fontSizeName * scale.y * CanvasManager.scaleCanvas; //eval font size and spacing.
+            float fontSpacingEval = fontSpacing * scale.y * CanvasManager.scaleCanvas;
+    
+            Vector textRectDest = Raylib_cs.Raylib.MeasureTextEx( //get size of rect texture text at screen.
+                StatusEffectUi.fontDescription,
+                name,
+                fontSizeEval,
+                fontSpacingEval
+            );
+    
+            Vector posReplaceTextAtScreen = new Vector(0, 62); //vector to replace text from center entity.
+            posReplaceTextAtScreen *= this.scale * CanvasManager.scaleCanvas;
+    
+            Raylib_cs.Raylib.DrawTextEx(
+                StatusEffectUi.fontDescription, //font.
+                name, //txt.
+                posToDraw + posReplaceTextAtScreen - textRectDest * 0.5f, //pos in canvas.
+                fontSizeEval, //font size.
+                fontSpacingEval, //space between two letter.
+                Raylib_cs.Color.White //color.
             );
         }
     }

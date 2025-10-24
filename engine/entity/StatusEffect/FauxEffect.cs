@@ -17,7 +17,7 @@ public class FauxEffect : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return "Faux";
     }

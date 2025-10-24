@@ -19,7 +19,7 @@ public class PushWallMakeSelfHeal : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Soin par impacte";
     }

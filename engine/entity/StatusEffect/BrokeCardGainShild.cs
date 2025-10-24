@@ -19,7 +19,7 @@ public class BrokeCardGainShild : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Bouclier fissure";
     }

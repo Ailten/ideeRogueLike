@@ -17,7 +17,7 @@ public class Burn : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return "Brulure";
     }

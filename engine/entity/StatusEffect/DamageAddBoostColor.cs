@@ -28,7 +28,7 @@ public class DamageAddBoostColor : StatusEffect
             this.getDescriptionTurn()
         );
     }
-    protected override string getName()
+    public override string getName()
     {
         return $"Domage {(this.isAMalus() ? "moin" : "plus")} {this.color.getName()}";
     }
