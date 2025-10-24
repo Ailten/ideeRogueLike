@@ -34,6 +34,9 @@ public class EndRunLayer : Layer
 
         // debug. !!!
         this.succesUnlockDuringTheRun.Add(Succes.Kill_5_Slime);
+        this.succesUnlockDuringTheRun.Add(Succes.UseACard_DarunyaNeko);
+        this.succesUnlockDuringTheRun.Add(Succes.Damage_100);
+        
 
 
         // element for prints succes unlock.

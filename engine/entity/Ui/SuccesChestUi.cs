@@ -58,7 +58,39 @@ public class SuccesChestUi : Entity
         }
         else
         {
-            //TODO: print the contend of chest.
+            Succes currentSucces = this.listSucces[this.indexSucces];
+
+            { // block for free reward.
+                Card? reward = currentSucces.getCardUnlocked();
+                if (reward is not null)
+                {
+                    // draw card.
+                    reward.drawCard(posToDraw);
+                }
+            }
+
+            { // block for free reward.
+                SpriteType? reward = currentSucces.getCharacterUnlocked();
+                if (reward is not null)
+                {
+                    CharacterUi character = new CharacterUi(idLayer, (SpriteType)reward);
+                    character.isDrawPseudo = false;
+                    EntityManager.sortAllEntities();
+                }
+            }
+
+            { // block for free reward.
+                StatusEffectType? reward = currentSucces.getStatusEffectUnlocked();
+                if (reward is not null)
+                {
+                    StatusEffectDetailsUi seUi = new StatusEffectDetailsUi(idLayer);
+                    seUi.setStatusEffect(StaticStatusEffectType.getStatusEffect((StatusEffectType)reward, -1));
+                    seUi.isPrintDetails = false;
+                    EntityManager.sortAllEntities();
+                }
+            }
+
+
         }
     }
 
@@ -68,6 +100,14 @@ public class SuccesChestUi : Entity
         this.isPrintTheChest = !this.isPrintTheChest;
         if (this.isPrintTheChest)
             this.indexSucces++;
+
+        // remove reward instanciated.
+        Entity[] entityToDel = EntityManager.getEntitiesByIdLayer(idLayer)
+            .Where(e => e is CharacterUi || e is StatusEffectDetailsUi)
+            .ToArray();
+        for (int i = entityToDel.Length - 1; i >= 0; i--) {
+            EntityManager.removeOneEntity(entityToDel[i]);
+        }
     }
 
 
