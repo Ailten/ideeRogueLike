@@ -1,12 +1,13 @@
 
 public class CharacterArachnide : CharacterMob
 {
-    public CharacterArachnide(Vector posIndexCel) : base(SpriteType.Character_Arachnide, posIndexCel)
+    public CharacterArachnide(Vector posIndexCel, int setHP = 25) : base(SpriteType.Character_Arachnide, posIndexCel)
     {
         //IA logic.
         this.logicState.Add(LogicState.chase);
         this.logicState.Add(LogicState.firstOneAPCardOnOponent);
-        this.logicState.Add(LogicState.firstCardPlayableOnEmpty);
+        this.logicState.Add(LogicState.doNextStateIf10purcent);
+        this.logicState.Add(LogicState.firstInvokeOnEmpty);
         this.logicState.Add(LogicState.skipTurn);
 
         //stats.
@@ -14,7 +15,7 @@ public class CharacterArachnide : CharacterMob
         this.MP = MPmax;
         this.APmax = 3;
         this.AP = APmax;
-        this.HPmax = 25;
+        this.HPmax = setHP;
         this.HP = HPmax;
 
         //gold can be looted.
@@ -29,7 +30,7 @@ public class CharacterArachnide : CharacterMob
                 cardEdition: CardEdition.Default,
                 APCost: 2,
                 distanceToUse: new(1, 1),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.InvokeArachnide, 3)
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.InvokeArachnide, 2)
             ),
             isSameColor: false
         );

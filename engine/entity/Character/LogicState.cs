@@ -13,7 +13,7 @@ public enum LogicState
     fuit, //run in oposit direction of oponent.
     selfShild, //use first card Shild effect on self.
     firstRetMP, //use first card making ret mp.
-    firstCardPlayableOnEmpty, //use a card on a empty case (ex: use for invoke).
+    firstInvokeOnEmpty, //use a card on a empty case (ex: use for invoke).
     firstOneAPCardOnOponent, //use the first at one AP to an oponent.
     firstTwoAPCardOnOponent, //same 2.
     firstTreeAPCardOnOponent, //same 3.
@@ -25,5 +25,7 @@ public enum LogicState
 
     // if.
     chase_ifCardInHand,
-    doNextStateIfHpIsUnderTenPurcent
+    doNextStateIfHpIsUnderTenPurcent,
+    doNextStateIf10purcent,
+    doNextStateIf30purcent
 }

@@ -27,9 +27,9 @@ public class CharacterMob : Character
         new MobType(SpriteType.Character_Lish, 3, true),
         new MobType(SpriteType.Character_Spectr, 3, true),
 
-        new MobType(SpriteType.Character_Pumkin, 4, false), //stage 4.
-        new MobType(SpriteType.Character_Arachnide, 4, false),
-        new MobType(SpriteType.Character_SacHead, 4, true),
+        new MobType(SpriteType.Character_Arachnide, 4, false), //stage 4.
+        new MobType(SpriteType.Character_SacHead, 4, false),
+        new MobType(SpriteType.Character_Pumkin, 4, true),
         new MobType(SpriteType.Character_Crow, 4, true),
 
         new MobType(SpriteType.Character_Eye, 5, false), //stage 5.
@@ -155,8 +155,8 @@ public class CharacterMob : Character
             case (LogicState.firstRetMP):
                 this.logicStateFirstRetMP();
                 break;
-            case (LogicState.firstCardPlayableOnEmpty):
-                this.logicStateFirstCardPlayableOnEmpty();
+            case (LogicState.firstInvokeOnEmpty):
+                this.logicStateFirstInvokeOnEmpty();
                 break;
             case (LogicState.firstOneAPCardOnOponent):
                 this.logicStateFirstAPCardOnOponent(1);
@@ -190,6 +190,24 @@ public class CharacterMob : Character
                 break;
             case (LogicState.doNextStateIfHpIsUnderTenPurcent):
                 if ((this.HP / (float)this.HPmax) < 0.1f)
+                {
+                    this.nextLogicState();
+                    break;
+                }
+                this.nextLogicState();
+                this.nextLogicState();
+                break;
+            case (LogicState.doNextStateIf10purcent):
+                if (RandomManager.rng.Next(100) < 10)
+                {
+                    this.nextLogicState();
+                    break;
+                }
+                this.nextLogicState();
+                this.nextLogicState();
+                break;
+            case (LogicState.doNextStateIf30purcent):
+                if (RandomManager.rng.Next(100) < 30)
                 {
                     this.nextLogicState();
                     break;
@@ -499,13 +517,18 @@ public class CharacterMob : Character
 
         this.nextLogicState(); //move to next state.
     }
-    private void logicStateFirstCardPlayableOnEmpty()
+    private void logicStateFirstInvokeOnEmpty()
     {
         for (int i = 0; i < this.deck.cardsInHand.Count; i++)
         {
             Card currentCard = this.deck.cardsInHand[i];
 
             if (currentCard.APCost > this.AP) //cost to mush ap.
+                continue;
+
+            //verify if card contain an effect "invoke".
+            bool isHasAnEffectInvoke = currentCard.effects.Where(e => e.Key.isAnInvokeEffect()).Count() > 0;
+            if (!isHasAnEffectInvoke)
                 continue;
 
             bool isCardUsed = false;

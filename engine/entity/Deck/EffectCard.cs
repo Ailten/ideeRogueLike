@@ -1,4 +1,6 @@
 
+using System.Text.RegularExpressions;
+
 public enum EffectCard
 {
     NoEffect, //no effect.
@@ -101,8 +103,8 @@ public static class StaticEffectCard
                 return "Oeufification";
             case (EffectCard.RetMPAllTarget):
                 return "Cri petrifiant";
-                
-                
+
+
             default:
                 return "No name";
         }
@@ -170,7 +172,7 @@ public static class StaticEffectCard
             case (EffectCard.InvokeDarunyaNeko):
                 return ("- " + effectCard.getName() + " :\n" +
                     "invoque 1 Darunya Neko.\n" +
-                    $"creature imobile, a {value} AP.\n"+
+                    $"creature imobile, a {value} AP.\n" +
                     "gagniant 1 AP max a chaque coup recu.\n" +
                     "attaque du 4 autour de lui une fois boost a 2 AP."
                 );
@@ -201,7 +203,7 @@ public static class StaticEffectCard
                 );
             case (EffectCard.PickCard):
                 return ("- " + effectCard.getName() + " :\n" +
-                    $"le lanceur pioche {value} carte{(valueIntencity is null || valueIntencity>1?"s":"")}."
+                    $"le lanceur pioche {value} carte{(valueIntencity is null || valueIntencity > 1 ? "s" : "")}."
                 );
             case (EffectCard.SelfHeal):
                 return ("- " + effectCard.getName() + " :\n" +
@@ -227,8 +229,8 @@ public static class StaticEffectCard
                 );
             case (EffectCard.InvokeArachnide):
                 return ("- " + effectCard.getName() + " :\n" +
-                    $"invoque une Arachnide.\n"+
-                    $"{(value=="N"? ("(N*5)"): (valueIntencity * 5))}% de chance de reussire."
+                    $"invoque une Arachnide.\n" +
+                    $"avec {(value == "N" ? ("(N*5)") : (valueIntencity * 5))} points de vies."
                 );
             case (EffectCard.SteelHP):
                 return ("- " + effectCard.getName() + " :\n" +
@@ -237,8 +239,8 @@ public static class StaticEffectCard
                 );
             case (EffectCard.SendDrama):
                 return ("- " + effectCard.getName() + " :\n" +
-                    $"place une carte Drama dans le deck de la cible.\n"+
-                    $"{(value=="N"? ("(N*5)"): (valueIntencity * 5))}% de chance de reussire."
+                    $"place une carte Drama dans le deck de la cible.\n" +
+                    $"{(value == "N" ? ("(N*5)") : (valueIntencity * 5))}% de chance de reussire."
                 );
             case (EffectCard.SelfAPBoost):
                 return ("- " + effectCard.getName() + " :\n" +
@@ -246,7 +248,7 @@ public static class StaticEffectCard
                 );
             case (EffectCard.FissureACard):
                 return ("- " + effectCard.getName() + " :\n" +
-                    $"transforme {value} de la cible.\n"+
+                    $"transforme {value} de la cible.\n" +
                     $"les cartes deviennes fissurees."
                 );
             case (EffectCard.Eggify):
@@ -374,7 +376,7 @@ public static class StaticEffectCard
                 return;
 
             case (EffectCard.HitAround):
-                Vector.foreachCel(indexPosTarget, new Vector(1,1), (posCel) =>
+                Vector.foreachCel(indexPosTarget, new Vector(1, 1), (posCel) =>
                 {
                     if (!TurnManager.isInFight)
                         return;
@@ -450,14 +452,14 @@ public static class StaticEffectCard
 
             case (EffectCard.PickCard):
                 characterLauncher.deck.piocheManyCard(effectValue);
-                if(characterLauncher.isInRedTeam) // update afficahge if a turn of a CharacterPlayer.
+                if (characterLauncher.isInRedTeam) // update afficahge if a turn of a CharacterPlayer.
                     RunHudLayer.layer.cardHandListCardUi!.setListCard(characterLauncher.deck.cardsInHand);
                 return;
 
             case (EffectCard.SelfHeal):
                 characterLauncher.giveHeal(characterLauncher, effectValue, refCard);
                 return;
-            
+
             case (EffectCard.RetMP):
                 if (characterTarget is null)
                     return;
@@ -519,10 +521,9 @@ public static class StaticEffectCard
             case (EffectCard.InvokeArachnide):
                 if (characterTarget is not null)
                     return;
-                if(RandomManager.rng.Next(1000) < (50 * effectValue))
-                    characterLauncher.invokeACharacter(
-                        new CharacterArachnide(indexPosTarget)
-                    );
+                characterLauncher.invokeACharacter(
+                    new CharacterArachnide(indexPosTarget, setHP: effectValue*5)
+                );
                 return;
 
             case (EffectCard.SteelHP):
@@ -586,7 +587,7 @@ public static class StaticEffectCard
                         {
                             characterTarget.deck.cardsInCimetier[rndIndex].cardEdition = CardEdition.Cracked;
                             cardFissured++;
-                            if(cardFissured == effectValue)
+                            if (cardFissured == effectValue)
                                 break;
                         }
                         whileCount++;
@@ -605,7 +606,7 @@ public static class StaticEffectCard
                         {
                             characterTarget.deck.cardsInPioche[rndIndex].cardEdition = CardEdition.Cracked;
                             cardFissured++;
-                            if(cardFissured == effectValue)
+                            if (cardFissured == effectValue)
                                 break;
                         }
                         whileCount++;
@@ -624,10 +625,11 @@ public static class StaticEffectCard
                 ));
                 return;
             case (EffectCard.RetMPAllTarget):
-                for (int i = TurnManager.getAllCharacters().Count-1; i >=0; i--) {
+                for (int i = TurnManager.getAllCharacters().Count - 1; i >= 0; i--)
+                {
                     if (!TurnManager.isInFight || TurnManager.getAllCharacters()[i] == characterLauncher)
                         continue;
-                    TurnManager.getAllCharacters()[i].decreaseMP(effectValue, idCharacterWhoDoDecreaseMP:characterLauncher.idEntity);
+                    TurnManager.getAllCharacters()[i].decreaseMP(effectValue, idCharacterWhoDoDecreaseMP: characterLauncher.idEntity);
                 }
                 return;
 
@@ -635,5 +637,12 @@ public static class StaticEffectCard
             default:
                 throw new Exception($"useACard find a EffectCard with no effect {effectCard} !");
         }
+    }
+
+
+    // eval if an effect is an invoke effect (by regex name).
+    public static bool isAnInvokeEffect(this EffectCard effect)
+    {
+        return Regex.IsMatch(effect.ToString(), "^Invoke");
     }
 }

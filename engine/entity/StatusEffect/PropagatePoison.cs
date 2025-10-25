@@ -49,7 +49,7 @@ public class PropagatePoison : StatusEffect
             Character? characterTargetAdj = TurnManager.getCharacterAtIndexPos(posCel);
             if (characterTargetAdj != null)
                 characterTargetAdj.AddStatusEffect(new PropagatePoison(
-                    this.getCharacterIdWhoHasEffect,
+                    characterTargetAdj.idEntity,
                     this.getCharacterIdWhoApplyEffect,
                     2,
                     this.damage

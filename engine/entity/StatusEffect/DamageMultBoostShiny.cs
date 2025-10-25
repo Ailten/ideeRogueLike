@@ -15,7 +15,7 @@ public class DamageMultBoostShiny : StatusEffect
         return (
             $"- {this.getName()} :\n" +
             $"multiplie les degats des cartes brillante.\n" +
-            $"augmente les degats realise de {purcent}%" +
+            $"augmente les degats realise de {purcent}%.\n" +
             this.getDescriptionTurn()
         );
     }

@@ -1,10 +1,10 @@
 {
-  "timePlayed": "01:54:34.4181861",
-  "runCount": 38,
-  "damageMaked": 1629,
+  "timePlayed": "02:55:35.0969024",
+  "runCount": 44,
+  "damageMaked": 1683,
   "healMaked": 0,
-  "shildMaked": 96,
-  "damageTaked": 776,
+  "shildMaked": 100,
+  "damageTaked": 866,
   "coinTaked": 439,
   "succes": [
     1,
@@ -49,9 +49,9 @@
     "DarunyaNeko": 2
   },
   "cardPlayed": {
-    "WoodenSword": 331,
-    "WoodenShild": 56,
-    "Splash": 34,
+    "WoodenSword": 356,
+    "WoodenShild": 58,
+    "Splash": 35,
     "Sword": 26,
     "DarunyaNeko": 6,
     "BlacASiable": 26,

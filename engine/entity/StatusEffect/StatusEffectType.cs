@@ -114,7 +114,7 @@ public static class StaticStatusEffectType
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    damageMult: rng.Next(18, 26) / 100f
+                    damageMult: rng.Next(18, 26) / 10f
                 );
 
             case (StatusEffectType.ShildAddBoostColor_Red):

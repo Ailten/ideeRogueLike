@@ -5,8 +5,11 @@ public class CharacterPumkin : CharacterMob
     {
         //IA logic.
         this.logicState.Add(LogicState.fuit);
-        this.logicState.Add(LogicState.firstCardPlayableOnEmpty);
-        this.logicState.Add(LogicState.firstCardPlayableOnEmpty);
+        this.logicState.Add(LogicState.doNextStateIf30purcent);
+        this.logicState.Add(LogicState.firstInvokeOnEmpty);
+        this.logicState.Add(LogicState.doNextStateIf30purcent);
+        this.logicState.Add(LogicState.firstInvokeOnEmpty);
+        this.logicState.Add(LogicState.firstHit);
         this.logicState.Add(LogicState.skipTurn);
 
         //stats.
@@ -29,7 +32,7 @@ public class CharacterPumkin : CharacterMob
                 cardEdition: CardEdition.Default,
                 APCost: 2,
                 distanceToUse: new(1, 1),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.InvokeArachnide, 5)
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.InvokeArachnide, 3)
             ),
             amountOfCardAdd: 2,
             isSameColor: false
@@ -42,11 +45,25 @@ public class CharacterPumkin : CharacterMob
                 APCost: 2,
                 distanceToUse: new(1, 1),
                 effects: new(){
-                    new KeyValuePair<EffectCard, int>(EffectCard.InvokeArachnide, 5),
+                    new KeyValuePair<EffectCard, int>(EffectCard.InvokeArachnide, 3),
                     new KeyValuePair<EffectCard, int>(EffectCard.SelfHeal, 5)
                 }
             ),
             amountOfCardAdd: 2,
+            isSameColor: false
+        );
+        this.deck.addCardToDeck(
+            new Card(
+                cardIllu: SpriteType.CardImg_Vore,
+                cardColor: CardColor.Blue,
+                cardEdition: CardEdition.Default,
+                APCost: 4,
+                distanceToUse: new(1, 1),
+                effects: new(){
+                    new KeyValuePair<EffectCard, int>(EffectCard.SteelHP, 5)
+                }
+            ),
+            amountOfCardAdd: 1,
             isSameColor: false
         );
     }
