@@ -74,6 +74,9 @@ public static class RunManager
         //destroy all stage not already destroyed.
         stages.Where(s => s.rooms.Count > 0).ToList().ForEach(s => s.destroyStage());
         stages = new();
+
+        // clean fx manager.
+        FxManager.cleanFxQueue();
     }
 
 

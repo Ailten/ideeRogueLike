@@ -339,6 +339,9 @@ public class Character : Entity
     //make turn start for the character.
     public virtual void startTurn()
     {
+        if (!TurnManager.isInFight)
+            return;
+            
         //status effect when start turn.
         for (int sei = 0; sei < this.statusEffects.Count; sei++)
         {

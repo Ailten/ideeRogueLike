@@ -17,11 +17,16 @@ public static class FxManager
     {
         if (queueFxWaiting.Count > 0) //dequeue last.
             queueFxWaiting.Dequeue();
-            
+
         if (queueFxWaiting.Count > 0) //start next fx on queue.
         {
             KeyValuePair<FxType, Vector> param = queueFxWaiting.ElementAt(0);
             param.Key.initAnFxOnQueue(param.Value);
         }
+    }
+
+    public static void cleanFxQueue()
+    {
+        queueFxWaiting = new();
     }
 }
