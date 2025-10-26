@@ -28,7 +28,10 @@ public class CharacterSacHead : CharacterMob
                 cardEdition: CardEdition.Default,
                 APCost: 4,
                 distanceToUse: new(1, 1),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 12)
+                effects: new(){
+                    new KeyValuePair<EffectCard, int>(EffectCard.Hit, 12),
+                    new KeyValuePair<EffectCard, int>(EffectCard.TeleportSwitch, 0)
+                }
             ),
             isSameColor: false
         );

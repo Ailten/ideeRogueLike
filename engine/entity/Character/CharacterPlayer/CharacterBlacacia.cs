@@ -54,6 +54,6 @@ public class CharacterBlacacia : CharacterPlayer
     {
         // special effect.
         if(SaveManager.getSave.succes.Contains(Succes.UseACard_5_BlacASiable))
-            this.AddStatusEffect(new RallMpMakeDamage(this.idEntity, -1, -1, damageByMPDecrease: 2));
+            this.AddStatusEffect(new RallMpMakeDamage(this.idEntity, -1, -1, damageByMPDecrease: 4));
     }
 }

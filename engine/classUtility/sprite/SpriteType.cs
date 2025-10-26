@@ -96,8 +96,8 @@ public enum SpriteType
     Character_Babulle,
     Character_Eye,
     Character_HolyArmor,
-    Character_Egg,
     Character_Phenix,
+    Character_Egg,
 
 
     // --- Dungeons.

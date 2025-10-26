@@ -23,6 +23,10 @@ public static class RunManager
     {
         get { return currentStage.currentRoom; }
     }
+    public static bool isRunEnable
+    {
+        get { return stages.Count > 0; }
+    }
 
     public static bool isLastStage
     {

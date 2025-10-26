@@ -30,7 +30,7 @@ public class CharacterHolyArmor : CharacterMob
                 cardEdition: CardEdition.Shinny,
                 APCost: 1,
                 distanceToUse: new(1, 1),
-                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 8)
+                effect: new KeyValuePair<EffectCard, int>(EffectCard.Hit, 16)
             ),
             amountOfCardAdd: 1,
             isSameColor: false
@@ -43,8 +43,8 @@ public class CharacterHolyArmor : CharacterMob
                 APCost: 2,
                 distanceToUse: new(1, 2),
                 effects: new(){
-                    new KeyValuePair<EffectCard, int>(EffectCard.Shild, 4),
-                    new KeyValuePair<EffectCard, int>(EffectCard.SelfHeal, 2)
+                    new KeyValuePair<EffectCard, int>(EffectCard.Shild, 6),
+                    new KeyValuePair<EffectCard, int>(EffectCard.SelfHeal, 3)
                 }
             ),
             amountOfCardAdd: 1,

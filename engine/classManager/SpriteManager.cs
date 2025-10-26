@@ -105,8 +105,8 @@ public static class SpriteManager
         s.addSpriteType(SpriteType.Character_Babulle, new Vector(384, 384), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_Eye, new Vector(512, 384), new Vector(126, 126));
         s.addSpriteType(SpriteType.Character_HolyArmor, new Vector(640, 384), new Vector(126, 126));
-        s.addSpriteType(SpriteType.Character_Egg, new Vector(768, 384), new Vector(126, 126));
-        s.addSpriteType(SpriteType.Character_Phenix, new Vector(896, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Phenix, new Vector(768, 384), new Vector(126, 126));
+        s.addSpriteType(SpriteType.Character_Egg, new Vector(896, 384), new Vector(126, 126));
 
         s = new Sprite("DungeonCels");
         s.addSpriteType(SpriteType.Cel, new Vector(0, 0), new Vector(126, 126));

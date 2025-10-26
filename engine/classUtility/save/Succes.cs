@@ -394,6 +394,7 @@ public static class StaticSucces
                 throw new Exception("Succes has no way to be unlocked");
         }
     }
+    
 
     // get description of what do to unlock success.
     public static string getConditionToUnlock(this Succes succes)
@@ -403,15 +404,15 @@ public static class StaticSucces
         Match getFirstPart = new Regex("^[a-zA-Z]{1,}").Match(succesStr);
         Match getLastPart = new Regex("[a-zA-Z]{1,}$").Match(succesStr);
         int amountNeed = (
-            (getNumber.Length > 0)? Int32.Parse(getNumber.Groups[0].Value):
+            (getNumber.Length > 0) ? Int32.Parse(getNumber.Groups[0].Value) :
             1
         );
         string firstPart = (
-            (getFirstPart.Length > 0)? getFirstPart.Groups[0].Value:
+            (getFirstPart.Length > 0) ? getFirstPart.Groups[0].Value :
             ""
         );
         string lastPart = (
-            (getLastPart.Length > 0)? getLastPart.Groups[0].Value:
+            (getLastPart.Length > 0) ? getLastPart.Groups[0].Value :
             ""
         );
 
@@ -437,6 +438,7 @@ public static class StaticSucces
 
         throw new Exception("Can't getConditionToUnlock !");
     }
+    
 
     // get a spriteType from an enum succes (for set list character in main menu start run).
     public static SpriteType? getCharacterUnlocked(this Succes succes)

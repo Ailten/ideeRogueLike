@@ -31,7 +31,7 @@ public class CharacterEye : CharacterMob
                 distanceToUse: new(1, 2),
                 effects: new()
                 {
-                    new KeyValuePair<EffectCard, int>(EffectCard.Hit, 2),
+                    new KeyValuePair<EffectCard, int>(EffectCard.Hit, 5),
                     new KeyValuePair<EffectCard, int>(EffectCard.SelfAPBoost, 1),
                 }
             ),

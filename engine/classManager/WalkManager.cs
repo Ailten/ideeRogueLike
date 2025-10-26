@@ -35,16 +35,18 @@ public static class WalkManager
         if (indexWalkInPath == 0) // skip if walk of zero cel (when endWalk already called).
             return;
 
+        _isWalking = false;
+
+        if (!RunManager.isRunEnable) // cut all if no run (handle exception of end walk to finish the run).
+            return;
+
         Character characterWalk = TurnManager.getCharacterOfCurrentTurn();
+
         if (isDecreaseMP)
             characterWalk.decreaseMP(indexWalkInPath, isDrawText: false); //decrease MP by cost walking.
 
-        _isWalking = false;
-
-        if (TurnManager.getCharacterOfCurrentTurn().isInRedTeam) //enable ui button skip turn.
-        {
+        if (characterWalk.isInRedTeam) //enable ui button skip turn.
             RunHudLayer.layer.buttonSkipTurnNN.setIsDisabled(false);
-        }
 
         // at end chaine action (walk), verify kill and ifIsEndFight.
         TurnManager.verifyIfFightIsEnd();

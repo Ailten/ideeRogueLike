@@ -87,6 +87,31 @@ public class SuccesChestUi : Entity
         {
             Succes currentSucces = this.listSucces[this.indexSucces];
 
+            // print description.
+            string descriptionSucces = currentSucces.getConditionToUnlock();
+            const float fontSizeDescription = 20f;
+            float fontSizeEval = fontSizeDescription * scale.y * CanvasManager.scaleCanvas; //eval font size and spacing.
+            float fontSpacingEval = 2f * scale.y * CanvasManager.scaleCanvas;
+    
+            Vector textRectDest = Raylib_cs.Raylib.MeasureTextEx( //get size of rect texture text at screen.
+                StatusEffectUi.fontDescription,
+                descriptionSucces,
+                fontSizeEval,
+                fontSpacingEval
+            );
+    
+            Vector posReplaceTextAtScreen = new Vector(0, -75); //vector to replace text from center entity.
+            posReplaceTextAtScreen *= this.scale * CanvasManager.scaleCanvas;
+    
+            Raylib_cs.Raylib.DrawTextEx(
+                StatusEffectUi.fontDescription, //font.
+                descriptionSucces, //txt.
+                posToDraw + posReplaceTextAtScreen - textRectDest * new Vector(0.5f, 0.5f), //pos in canvas.
+                fontSizeEval, //font size.
+                fontSpacingEval, //space between two letter.
+                Raylib_cs.Color.Blue //color.
+            );
+
             { // block for free reward.
                 Card? reward = currentSucces.getCardUnlocked();
                 if (reward is not null)

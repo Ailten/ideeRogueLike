@@ -180,7 +180,7 @@ public static class StaticEffectCard
                 return ("- " + effectCard.getName() + " :\n" +
                     "invoque 1 Lune Allier.\n" +
                     "creature imobile.\n" +
-                    $"soigne du {value} a un allier a maximum 2 case d'elle."
+                    $"soigne du {value} a un allier a maximum 2 case d'elle (fix)."
                 );
             case (EffectCard.SelfKill):
                 return ("- " + effectCard.getName() + " :\n" +

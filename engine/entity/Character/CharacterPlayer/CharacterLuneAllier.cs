@@ -47,31 +47,28 @@ public class CharacterLuneAllier : CharacterPlayer
                 
             Card currentCard = this.deck.cardsInHand[i];
             if (currentCard.APCost > this.AP) // cost to mush AP or not distance expected.
-            {
-                skipTurn();
-                return;
-            }
+                continue;
 
             List<Character> allier = TurnManager.getAllCharacters().Where(c =>
             {
                 if (!c.isInRedTeam) // skip mobs.
                     return false;
-                if (this == c) // skip self.
-                    return false;
                 float distCell = (
                     Math.Abs(c.indexPosCel.x - this.indexPosCel.x) +
-                    Math.Abs(c.indexPosCel.x - this.indexPosCel.x)
+                    Math.Abs(c.indexPosCel.y - this.indexPosCel.y)
                 );
-                return ( // distance on right range.
+                bool isOnRangeCard = ( // distance on right range.
                     distCell >= currentCard.distanceToUse.x &&
                     distCell <= currentCard.distanceToUse.y
                 );
-            }).OrderBy(c => c.isAPlayer).ToList();
+                if (!isOnRangeCard) // skip if not in right distance for card.
+                    return false;
+                if (c.HP >= c.HPmax) // skip character full life.
+                    return false;
+                return true;
+            }).OrderBy(c => c.HPmax-c.HP).ToList(); // order by most HP less.
             if (allier.Count == 0)
-            {
-                skipTurn();
-                return;
-            }
+                continue;
 
             this.useACardFromHand(i, allier[0].indexPosCel); // play the card.
         }
