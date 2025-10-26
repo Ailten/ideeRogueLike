@@ -14,6 +14,8 @@ class Program
     // un bug avec le skip turn des arakne (ou citrouille).
     // at a certain stage, atk from mob don't make any effect.
 
+    // make hit end fight make no fx.
+
     // see what append when chest end run. (by hard coding a reward succes).
 
     // todo minore :

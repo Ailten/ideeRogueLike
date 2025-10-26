@@ -654,6 +654,12 @@ public class SpecialRoom : Layer
 
         if (!isAlreadyInit)
             dictionarShop.Add(keySpecialRoomPos, new KeyValuePair<int, bool>[AmountOfProductInShop]);
+        else if (dictionarShop[keySpecialRoomPos].Length < AmountOfProductInShop) // need to ajust array already existinct.
+        {
+            dictionarShop[keySpecialRoomPos] = dictionarShop[keySpecialRoomPos]
+                .Concat(new KeyValuePair<int, bool>[AmountOfProductInShop - dictionarShop[keySpecialRoomPos].Length])
+                .ToArray();
+        }
 
         for (int i = 0; i < AmountOfProductInShop; i++)
         {
@@ -661,7 +667,7 @@ public class SpecialRoom : Layer
             int price = this.randomPriseProductShop(rng);
 
             // skip if already init.
-            if (isAlreadyInit)
+            if (dictionarShop[keySpecialRoomPos][i].Key != 0)
                 continue;
 
             dictionarShop[keySpecialRoomPos][i] = new KeyValuePair<int, bool>(
