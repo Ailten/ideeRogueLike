@@ -16,9 +16,7 @@ class Program
 
     // mob still attaque invoke in first instance of player. (but chass the player)
 
-    // boss phenix spawn as egg (and can move).
-
-
+    // verify print of chest succes.
 
 
     // todo minore :
