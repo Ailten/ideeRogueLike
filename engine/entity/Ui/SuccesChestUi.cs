@@ -89,7 +89,7 @@ public class SuccesChestUi : Entity
 
             // print description.
             string descriptionSucces = currentSucces.getConditionToUnlock();
-            const float fontSizeDescription = 20f;
+            const float fontSizeDescription = 40f;
             float fontSizeEval = fontSizeDescription * scale.y * CanvasManager.scaleCanvas; //eval font size and spacing.
             float fontSpacingEval = 2f * scale.y * CanvasManager.scaleCanvas;
     
@@ -100,7 +100,7 @@ public class SuccesChestUi : Entity
                 fontSpacingEval
             );
     
-            Vector posReplaceTextAtScreen = new Vector(0, -75); //vector to replace text from center entity.
+            Vector posReplaceTextAtScreen = new Vector(0, -150); //vector to replace text from center entity.
             posReplaceTextAtScreen *= this.scale * CanvasManager.scaleCanvas;
     
             Raylib_cs.Raylib.DrawTextEx(

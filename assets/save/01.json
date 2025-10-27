@@ -1,10 +1,10 @@
 {
-  "timePlayed": "05:12:08.7219964",
-  "runCount": 52,
-  "damageMaked": 10764,
+  "timePlayed": "05:15:40.9689136",
+  "runCount": 54,
+  "damageMaked": 10776,
   "healMaked": 355,
   "shildMaked": 504,
-  "damageTaked": 1641,
+  "damageTaked": 1682,
   "coinTaked": 2174,
   "succes": [
     10,
@@ -74,11 +74,11 @@
     "Phenix": 1
   },
   "cardPlayed": {
-    "WoodenSword": 966,
+    "WoodenSword": 972,
     "WoodenShild": 116,
     "Splash": 35,
     "Sword": 77,
-    "DarunyaNeko": 18,
+    "DarunyaNeko": 20,
     "BlacASiable": 26,
     "Flame": 12,
     "Drama": 1,
@@ -89,6 +89,6 @@
     "BatteBulle": 7,
     "LuneAllier": 59
   },
-  "cardShinyPlayed": 105,
+  "cardShinyPlayed": 107,
   "cardCrackedPlayed": 2
 }
