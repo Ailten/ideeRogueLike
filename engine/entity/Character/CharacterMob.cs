@@ -238,8 +238,8 @@ public class CharacterMob : Character
             //get all oponents (sort by poxi).
             List<Character> oponents = TurnManager.getAllCharacters().Where((c) => //filter.
                 c.isInRedTeam != this.isInRedTeam
-            ).OrderBy((c) =>  //order by proximity.
-                Vector.distance(this.pos, c.pos)
+            ).OrderBy((c) =>
+                this.getDistFrom(c)
             ).ToList();
 
             foreach (Character oponent in oponents)
@@ -283,7 +283,7 @@ public class CharacterMob : Character
     {
         if (targetOfState == null)
         {
-            if(this.MP == 0)
+            if (this.MP == 0)
             {
                 this.nextLogicState();
                 return;
@@ -293,7 +293,7 @@ public class CharacterMob : Character
             List<Character> oponents = TurnManager.getAllCharacters().Where((c) => //filter.
                 c.isInRedTeam != this.isInRedTeam
             ).OrderBy((c) =>  //order by proximity.
-                Vector.distance(this.pos, c.pos)
+                this.getDistFrom(c)
             ).ToList();
 
             if (oponents.Count == 0)
@@ -350,7 +350,7 @@ public class CharacterMob : Character
                     continue;
                 }
             }
-            if(!isTakeThisPath)
+            if (!isTakeThisPath)
             {
                 this.nextLogicState();
                 return;
@@ -383,7 +383,7 @@ public class CharacterMob : Character
 
             Character? target = TurnManager.getAllCharacters()
                 .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true))
-                .OrderBy(c => c.isAPlayer).FirstOrDefault();
+                .OrderBy(c => this.getPriorityTarget(c)).FirstOrDefault();
             if (target == null)
                 continue;
 
@@ -406,7 +406,7 @@ public class CharacterMob : Character
 
             Character? target = TurnManager.getAllCharacters()
                 .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true))
-                .OrderBy(c => c.isAPlayer).FirstOrDefault();
+                .OrderBy(c => this.getPriorityTarget(c)).FirstOrDefault();
             if (target == null)
                 continue;
 
@@ -429,7 +429,7 @@ public class CharacterMob : Character
 
             Character? target = TurnManager.getAllCharacters()
                 .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true))
-                .OrderBy(c => c.isAPlayer).FirstOrDefault();
+                .OrderBy(c => this.getPriorityTarget(c)).FirstOrDefault();
             if (target == null)
                 continue;
 
@@ -506,8 +506,8 @@ public class CharacterMob : Character
                 continue;
 
             Character? target = TurnManager.getAllCharacters()
-                .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true))
-                .OrderBy(c => c.isAPlayer).FirstOrDefault();
+                .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true) && c.MP != 0) 
+                .OrderBy(c => this.getPriorityTarget(c)).FirstOrDefault();
             if (target == null)
                 continue;
 
@@ -573,7 +573,7 @@ public class CharacterMob : Character
 
             Character? target = TurnManager.getAllCharacters()
                 .Where(c => this.isCardCanBePlayOnThisCharacter(currentCard, c, true))
-                .OrderBy(c => c.isAPlayer).FirstOrDefault();
+                .OrderBy(c => this.getPriorityTarget(c)).FirstOrDefault();
             if (target == null)
                 continue;
 
@@ -614,6 +614,21 @@ public class CharacterMob : Character
         if (card.isInLine && !this.isAlignTo(target.indexPosCel)) // skip if not aligned.
             return false;
         return true;
+    }
+
+    // eval a number for order targets.
+    private int getPriorityTarget(Character target)
+    {
+        int priorityHit = 0; // more the number is hight, less attract the character is has target.
+        int dist = (
+            (int)Math.Abs(this.pos.x - target.pos.x) +
+            (int)Math.Abs(this.pos.y - target.pos.y)
+        );
+        priorityHit += dist; // +1 by cel dist.
+        priorityHit += (int)(((float)target.HP / target.HPmax) * 10); // + 0 to 10 scale on purcent HP.
+        if (target.isAnInvoc)
+            priorityHit += 2; // +2 (magic number) if is an invoke.
+        return priorityHit;
     }
 
 }
