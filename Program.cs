@@ -66,7 +66,7 @@ class Program
         //active all layers for start window.
         MainMenu.layer.active();
 
-        CanvasManager.isDebug = true; //set debug mode.
+        CanvasManager.isDebug = false; //set debug mode.
 
         //stay open window (with exit input).
         while (!Raylib.WindowShouldClose())
