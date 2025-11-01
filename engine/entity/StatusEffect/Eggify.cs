@@ -4,7 +4,7 @@ public class Eggify : StatusEffect
     SpriteType baseAspect;
 
     public Eggify(int characterIdWhoHasEffect, int characterIdWhoApplyEffect, int turnLife) :
-    base(SpriteType.StatusEffect_FauxEffect, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
+    base(SpriteType.StatusEffect_Egg, characterIdWhoHasEffect, characterIdWhoApplyEffect, turnLife)
     {
     }
     public override void ActivateEffect()

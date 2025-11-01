@@ -44,19 +44,27 @@ public class MainMenu : Layer
         };
         //buttonOption.setIsDisabled(true);
 
-        ButtonUi buttonOptionTwitch = new ButtonUi(idLayer);
+        ButtonUi buttonSuccesMenu = new ButtonUi(idLayer);
         int purcentCompletion = (int)(SaveManager.getPurcentCompletion() * 100);
-        buttonOptionTwitch.text = $"progres {purcentCompletion}%";
-        buttonOptionTwitch.pos = buttonOption.pos + spacingButton;
-        buttonOptionTwitch.scale = scaleButton;
-        buttonOptionTwitch.eventClick = () => {
-            //TODO : success and contains progression (resume + note about how complet it).
+        buttonSuccesMenu.text = $"progres {purcentCompletion}%";
+        buttonSuccesMenu.pos = buttonOption.pos + spacingButton;
+        buttonSuccesMenu.scale = scaleButton;
+        buttonSuccesMenu.eventClick = () =>
+        {
+            if (LayerManager.isADetailsLayerAreOpen) // can't open two type of detail layer.
+                return;
+            LayerManager.isADetailsLayerAreOpen = true;
+
+            LayerManager.transition(
+                idLevelStart: new int[0],
+                idLevelEnd: new int[] { SuccessMenu.layer.idLayer }
+            );
         };
-        buttonOptionTwitch.setIsDisabled(true);
+        //buttonSuccesMenu.setIsDisabled(true);
 
         ButtonUi buttonExit = new ButtonUi(idLayer);
         buttonExit.text = "quit";
-        buttonExit.pos = buttonOptionTwitch.pos + spacingButton;
+        buttonExit.pos = buttonSuccesMenu.pos + spacingButton;
         buttonExit.scale = scaleButton;
         buttonExit.eventClick = () => {
             CanvasManager.isCloseWindow = true; //close the window.

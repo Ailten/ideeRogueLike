@@ -324,14 +324,14 @@ public static class StaticStatusEffectType
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    shildMult: rng.Next(20, 31)/10f
+                    shildMult: rng.Next(20, 31) / 10f
                 );
             case (StatusEffectType.ConvertPurcentHealInShild):
                 return new ConvertPurcentHealInShild(
                     characterIdWhoHasEffect: characterIdWhoHasEffect,
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife,
-                    purcentConvert: rng.Next(5, 11)/10f
+                    purcentConvert: rng.Next(5, 11) / 10f
                 );
             case (StatusEffectType.FauxEffect):
                 return new FauxEffect(
@@ -345,8 +345,8 @@ public static class StaticStatusEffectType
                     characterIdWhoApplyEffect: characterIdWhoApplyEffect,
                     turnLife: turnLife
                 );
-                
-                
+
+
 
 
             default:
@@ -459,8 +459,111 @@ public static class StaticStatusEffectType
             return StatusEffectType.FauxEffect;
         if (statusEffect.GetType() == typeof(Eggify))
             return StatusEffectType.Eggify;
-            
+
 
         throw new Exception("getStatusEffectType has no impementation for this !");
+    }
+
+
+    public static SpriteType getSpriteType(this StatusEffectType set)
+    {
+        switch (set)
+        {
+            case(StatusEffectType.Burn):
+                return SpriteType.StatusEffect_Burn;
+            case(StatusEffectType.MoneyLoot):
+                return SpriteType.StatusEffect_MoneyLoot;
+            case(StatusEffectType.DamageAddBoostColor_Red):
+                return SpriteType.StatusEffect_DamageAddBoostRed;
+            case(StatusEffectType.DamageAddBoostColor_Blue):
+                return SpriteType.StatusEffect_DamageAddBoostBlue;
+            case(StatusEffectType.DamageAddBoostColor_Green):
+                return SpriteType.StatusEffect_DamageAddBoostGreen;
+            case(StatusEffectType.DamageAddBoostShiny):
+                return SpriteType.StatusEffect_DamageAddBoostShiny;
+            case(StatusEffectType.DamageMultBoostColor_Red):
+                return SpriteType.StatusEffect_DamageMultiplyBoostRed;
+            case(StatusEffectType.DamageMultBoostColor_Blue):
+                return SpriteType.StatusEffect_DamageMultiplyBoostBlue;
+            case(StatusEffectType.DamageMultBoostColor_Green):
+                return SpriteType.StatusEffect_DamageMultiplyBoostGreen;
+            case(StatusEffectType.DamageMultBoostShiny):
+                return SpriteType.StatusEffect_DamageMultiplyBoostShiny;
+            case(StatusEffectType.ShildAddBoostColor_Red):
+                return SpriteType.StatusEffect_ShildAddBoostRed;
+            case(StatusEffectType.ShildAddBoostColor_Blue):
+                return SpriteType.StatusEffect_ShildAddBoostBlue;
+            case(StatusEffectType.ShildAddBoostColor_Green):
+                return SpriteType.StatusEffect_ShildAddBoostGreen;
+            case(StatusEffectType.ShildAddBoostShiny):
+                return SpriteType.StatusEffect_ShildAddBoostShiny;
+            case(StatusEffectType.ShildMultBoostColor_Red):
+                return SpriteType.StatusEffect_ShildMultiplyBoostRed;
+            case(StatusEffectType.ShildMultBoostColor_Blue):
+                return SpriteType.StatusEffect_ShildMultiplyBoostBlue;
+            case(StatusEffectType.ShildMultBoostColor_Green):
+                return SpriteType.StatusEffect_ShildMultiplyBoostGreen;
+            case(StatusEffectType.ShildMultBoostShiny):
+                return SpriteType.StatusEffect_ShildMultiplyBoostShiny;
+            case(StatusEffectType.APBoost):
+                return SpriteType.StatusEffect_APBoost;
+            case(StatusEffectType.MPBoost):
+                return SpriteType.StatusEffect_MPBoost;
+            case(StatusEffectType.APWhenHit):
+                return SpriteType.StatusEffect_APWhenHit;
+            case(StatusEffectType.HPBoost):
+                return SpriteType.StatusEffect_HPBoost;
+            case(StatusEffectType.BoostIntoInvoke):
+                return SpriteType.StatusEffect_BoostIntoInvoke;
+            case(StatusEffectType.BoostChooseSpecialRoom):
+                return SpriteType.StatusEffect_BoostChooseSpecialRoom;
+            case(StatusEffectType.BoostPickCard):
+                return SpriteType.StatusEffect_BoostPickCard;
+            case(StatusEffectType.MoneyMultiplyDamage):
+                return SpriteType.StatusEffect_MoneyMultiplyDamage;
+            case(StatusEffectType.YingYangShinyCracked):
+                return SpriteType.StatusEffect_YingYangShinyCracked;
+            case(StatusEffectType.DuplicateCracked):
+                return SpriteType.StatusEffect_DuplicateCracked;
+            case(StatusEffectType.CrackedAddDamage):
+                return SpriteType.StatusEffect_CrackedAddDamage;
+            case(StatusEffectType.BrokeCardGainShild):
+                return SpriteType.StatusEffect_BrokeCardGainShild;
+            case(StatusEffectType.BalanceEffect):
+                return SpriteType.StatusEffect_BalanceEffect;
+            case(StatusEffectType.ShinyGainAP):
+                return SpriteType.StatusEffect_ShinyGainAP;
+            case(StatusEffectType.SideEyes):
+                return SpriteType.StatusEffect_SideEyes;
+            case(StatusEffectType.RallMpMakeDamage):
+                return SpriteType.StatusEffect_RallMpMakeDamage;
+            case(StatusEffectType.PushWallMakeSelfHeal):
+                return SpriteType.StatusEffect_PushWallMakeSelfHeal;
+            case(StatusEffectType.PushWallMakeRallMP):
+                return SpriteType.StatusEffect_PushWallMakeRallMP;
+            case(StatusEffectType.AddIndirectDamage):
+                return SpriteType.StatusEffect_AddIndirectDamage;
+            case(StatusEffectType.TakeHealMakeHitAround):
+                return SpriteType.StatusEffect_TakeHealMakeHitAround;
+            case(StatusEffectType.MultDamageByHPLeft):
+                return SpriteType.StatusEffect_MultDamageByHPLeft;
+            case(StatusEffectType.TakeHealAddDamage):
+                return SpriteType.StatusEffect_TakeHealAddDamage;
+            case(StatusEffectType.PropagatePoison):
+                return SpriteType.StatusEffect_PropagatePoison;
+            case(StatusEffectType.ShildMultWhenFirst):
+                return SpriteType.StatusEffect_ShildMultWhenFirst;
+            case(StatusEffectType.ConvertPurcentHealInShild):
+                return SpriteType.StatusEffect_ConvertPurcentHealInShild;
+            case(StatusEffectType.FauxEffect):
+                return SpriteType.StatusEffect_FauxEffect;
+            case(StatusEffectType.Eggify):
+                return SpriteType.StatusEffect_Egg;
+
+
+
+            default:
+                throw new Exception("has no match !");
+        }
     }
 }
