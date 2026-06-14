@@ -7,6 +7,8 @@ class Program
     // debug :
     // invoke darunya is print over the the menu card.
 
+
+
     // when play a second game : fx not proc.
     // reset zoom camera when re-play a game.
     // when a mob die during his turn (ex: by flame effect), player draw twice card hands.

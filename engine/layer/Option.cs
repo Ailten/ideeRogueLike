@@ -34,6 +34,41 @@ public class Option : Layer
 
             buttonExit.setIsOn(false); // lock on "x" char.
         };
+
+        Vector scaleButton = new(0.9f, 0.9f);
+
+        ButtonUi buttonBackMainMenu = new ButtonUi(idLayer);
+        buttonBackMainMenu.text = "retour menu";
+        buttonBackMainMenu.pos = new(CanvasManager.centerWindow.x, CanvasManager.sizeWindow.y - 75);
+        buttonBackMainMenu.scale = scaleButton;
+        buttonBackMainMenu.zIndex = 3200;
+        buttonBackMainMenu.eventClick = () =>
+        {
+            List<int> layerFrom = new List<int>() { Option.layer.idLayer };
+
+            // if call button back main menu from option of main menu.
+            if(MainMenu.layer.isActive){
+                layerFrom.Add(MainMenu.layer.idLayer);
+            }
+            else if(RunLayer.layer.isActive){
+                layerFrom.Add(RunLayer.layer.idLayer);
+                layerFrom.Add(RunHudLayer.layer.idLayer);
+
+                // TODO : save progression ?
+
+            }
+
+            LayerManager.transition(
+                idLevelStart: layerFrom.ToArray(),
+                idLevelEnd: new int[] { MainMenu.layer.idLayer },
+                midAction: () => {
+
+                    // clean the run data loaded (run manager).
+                    RunManager.destroyRun();
+
+                }
+            );
+        };
         
 
         base.active();
