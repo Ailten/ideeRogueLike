@@ -15,6 +15,11 @@ public class MiniMapUi : Entity
 
     public override void drawAfter(Vector posToDraw, Rect rectDest, Vector origine)
     {
+        // prevent for no stage load (at end of the run).
+        Stage? currentStageN = RunManager.currentStageN;
+        if(currentStageN == null)
+            return;
+
         float sizeTileWidth = 16f * CanvasManager.scaleCanvas; //size of tile in screen (width).
         Vector sizeTile = new(sizeTileWidth, sizeTileWidth); //size of tile in screen (square).
         Vector origineTile = new();

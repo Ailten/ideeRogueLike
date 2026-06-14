@@ -19,6 +19,14 @@ public static class RunManager
     {
         get { return stages[currentIndexStage]; }
     }
+    public static Stage? currentStageN
+    {
+        get { 
+            if(currentIndexStage < 0 || currentIndexStage >= stages.Count)
+                return null;
+            return stages[currentIndexStage]; 
+        }
+    }
     public static Room? currentRoom
     {
         get { return currentStage.currentRoom; }

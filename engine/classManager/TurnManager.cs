@@ -299,6 +299,14 @@ public static class TurnManager
 
         return allCharacterInRoom[indexCharacterTurn];
     }
+    public static Character? getCharacterOfCurrentTurnN()
+    {
+        if (indexCharacterTurn < 0 || indexCharacterTurn >= allCharacterInRoom.Count)
+        {
+            return null;
+        }
+        return TurnManager.getCharacterOfCurrentTurn();
+    }
 
 
     //get character by idEntity.

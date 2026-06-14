@@ -36,9 +36,6 @@ public class RunLayer : Layer
         TurnManager.addCharacterInRoom(player);
 
 
-        //TODO : Card in Hands, list of player turn to play (time-line at right of screen), a button pause/option at up right of screen.
-
-
         base.active();
     }
 
