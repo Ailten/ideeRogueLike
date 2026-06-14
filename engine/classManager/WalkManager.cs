@@ -80,7 +80,10 @@ public static class WalkManager
                 return;
             }
 
-            characterWalk.moveTo(PathFindingManager.pathFind[indexWalkInPath]); //move to next cel.
+            characterWalk.moveTo(  //move to next cel.
+                PathFindingManager.pathFind[indexWalkInPath], 
+                TurnManager.isInFight  // for disable cel effect when player walk over a cel on a room with no fight.
+            );
 
             return;
         }
