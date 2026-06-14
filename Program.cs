@@ -5,12 +5,8 @@ class Program
     // TODO :
 
     // debug :
-    // pathfinding -> in mode no-combat, esquive the effect of special case he walk (except the destination).
     // invoke darunya is print over the the menu card.
 
-
-    
-    // darunya never play more than one card by turn.
     // when play a second game : fx not proc.
     // reset zoom camera when re-play a game.
     // when a mob die during his turn (ex: by flame effect), player draw twice card hands.

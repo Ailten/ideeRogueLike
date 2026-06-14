@@ -76,6 +76,8 @@ public static class TurnManager
 
                 if (i < indexCharacterTurn) //replace index at right place.
                     moveCharacterIndex(-1);
+                else if (indexCharacterTurn >= allCharacterInRoom.Count)  // if remove character, make index turn out of range.
+                    moveCharacterIndex(-1);
                 return;
             }
         }
